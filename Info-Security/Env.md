@@ -23,3 +23,6 @@ sudo vboxreload
 然后在虚拟机的Preference里面添加Extension
 
 安装好的Ubuntu可以通过更改Displays=>Resolution来扩大屏幕
+
+需要从Devices目录中下载Guest Additions, 才能实现粘贴板功能。
+

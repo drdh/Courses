@@ -152,7 +152,7 @@ sudo apt install ros-kinetic-usb-cam
 roslaunch usb_cam usb_cam-test.launch
 ```
 
-如果出现错误，可能需要修改`/opt/ros/kinetic/share/usb_cam/launch/usb+cam-test.launch`
+如果出现错误，可能需要修改`/opt/ros/kinetic/share/usb_cam/launch/usb_cam-test.launch`
 
 改`pixel_format`为`yuyv`或者`mjpeg`
 
@@ -164,11 +164,48 @@ roslaunch usb_cam usb_cam-test.launch
 git clone https://github.com/huchunxu/ros_exploring.git
 ```
 
-将源码中的`tensorflow_mnist`复制到`~/catkin_ws/src`目录下，然后在`~/catkin_ws`进行`catkin_make`
+将源码中的`tensorflow_mnist`复制到`~/catkin_ws/src`目录下，然后在`~/catkin_ws`进行`catkin_make` 
+
+注意[需要把执行的文件添加权限](https://answers.ros.org/question/50206/cannot-launch-node/)`chmod +x ./*`, 否则出现如下错误(最好把全部的文件都执行相应的权限)。
+
+````
+cannot launch node of type ....
+````
+
+依次执行
+
+```bash
+roscore
+roslaunch usb_cam usb_cam-test.launch #摄像头
+roslaunch tensorflow_mnist ros_tensorflow_mnist.launch #数据处理
+rostopic echo /result #结果输出
+```
 
 
 
 
+
+
+
+RL in ROS
+
+只有配置环境的一些记录，所以就没有做成PPT == >概要性的介绍，下周再做。
+
+装ROS(Ubuntu 16.04, 使用Virtualbox 就会产生一些奇怪的Bug耗费了比较长的时间)：学ROS 《ROS机器人开发实战》ROS wiki
+
+装tensorflow
+
+ROS使用摄像头，然后手写字体识别
+
+Next: 
+
+1. 使用RLGraph/RLlib/OpenAI Gym/Keras-rl
+2. PyTorch等其他的深度学习库
+3. 模拟场景/更多的前沿
+
+
+
+列一些问题；目标不明确。
 
 
 

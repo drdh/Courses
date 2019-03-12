@@ -1,0 +1,6 @@
+aab
+bbc
+cca
+abb
+aad
+aab

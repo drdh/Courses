@@ -1,5 +1,6 @@
 all:
 	@g++ LongestWordChain.cpp -o LongestWordChain
-	@./LongestWordChain -w -f ./text.txt
+	@./LongestWordChain -w -f ./testcases/text.txt
+	@cat solution.txt
 clean:
-	@rm LongestWordChain 
+	@rm LongestWordChain solution.txt

@@ -1,0 +1,13 @@
+Software engineering is the application of engineering to the development of software in a systematic method.[1][2][3]
+
+Notable definitions of software engineering include:
+
+"the systematic application of scientific and technological knowledge, methods, and experience to the design, implementation, testing, and documentation of software"—The Bureau of Labor Statistics—IEEE Systems and software engineering - Vocabulary[4]
+"The application of a systematic, disciplined, quantifiable approach to the development, operation, and maintenance of software"—IEEE Standard Glossary of Software Engineering Terminology[5]
+"an engineering discipline that is concerned with all aspects of software production"—Ian Sommerville[6]
+"the establishment and use of sound engineering principles in order to economically obtain software that is reliable and works efficiently on real machines"—Fritz Bauer[7]
+The term has also been used less formally:
+
+as the informal contemporary term for the broad range of activities that were formerly called computer programming and systems analysis;[8]
+as the broad term for all aspects of the practice of computer programming, as opposed to the theory of computer programming, which is formally studied as a sub-discipline of computer science;[9]
+as the term embodying the advocacy of a specific approach to computer programming, one that urges that it be treated as an engineering discipline rather than an art or a craft, and advocates the codification of recommended practices.[10]

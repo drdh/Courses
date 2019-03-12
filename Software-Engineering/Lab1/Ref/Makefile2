@@ -1,0 +1,8 @@
+main:main.o LongestWordChain.o
+	@g++ main.o LongestWordChain.o -o main 
+main.o:main.cpp 
+	@g++ -c main.cpp -o main.o 
+LongestWordChain.o:LongestWordChain.cpp
+	@g++ -c LongestWordChain.cpp -o LongestWordChain.o 	
+clean:
+	@rm main solution.txt *.o -f

@@ -6,7 +6,7 @@
 #include<cstring>
 #include<map>
 
-#define MAX_CELL 26
+#include "LongestWordChain.h"
 
 using namespace std;
 
@@ -91,124 +91,75 @@ vector<pair<int,vector<int>>> maxLength(vector<string>text,map<string,int>word2i
     return result;
 }
 
-int main(int argc,char *argv[]){
-    //main参数处理的条件判断
-    /*
-        ./t -w -f ./text.txt 最多单词数量 4
-        ./t -c -f ./text.txt 最多字母数量 4
-        
-        ./t -h e -w -f ./text.txt 指定开头字母 6
-        ./t -t r -w -f ./text.txt 指定结尾字母 6
-        ./t -h e -t r -c -f ./text.txt 指定开头和结尾字母 8
+/*
+    w_or_c -w -c 有且只有一个
+    file_name 输入文件
+    specific_num -n后的数字,为0则表示为指定
+    specific_head -h后的字母，为'\0'则表示未指定
+    specific_tail -t后的字母，为'\0'则表示未指定
+    输出到solution.txt中
+*/
+void LWC(bool w_or_c,string file_name,unsigned specific_num,char specific_head,char specific_tail){
+    //读文件
+    ifstream t(file_name);
+    if(!t){
+        throw "File doesn't exist";
+    }
 
-        ./t -n 4 -w -f ./text.txt 指定单词数量 6
-        ./t -n 4 -c -f ./text.txt 指定字母数量 8
+    stringstream buffer;
+    buffer << t.rdbuf();
+    string text_original(buffer.str());
 
-        ./t -h e -n 4 -w -f ./text.txt 指定开头字母且指定单词数量 8
-        ./t -t r -w -n 4 -f ./text.txt 指定结尾字母指定单词数量 8
-        ./t -h e -t r -n 4 -c -f ./text.txt 指定开头和结尾字母指定字母数量 10
+    //text处理成vector<string>,仅包含小写字符
+    vector<string>text;
 
-    */
-    bool define_w=false,define_c=false;//w,c
-    unsigned file_name_pos=0,specific_num=0;//f,n
-    char specific_head='\0',specific_tail='\0';//h,t
+    for(auto &c:text_original){
+        if('a'<=c && c<= 'z')
+            continue;
+        else if('A'<=c && c<='Z'){
+            c=c-'A'+'a';
+            continue;
+        }
+        else
+            c=' ';
+    }
+    size_t pos=0;
+    string token;
+    while((pos=text_original.find(' '))!=string::npos){
+        token=text_original.substr(0,pos);
+        if(token.length()!=0)
+            text.push_back(token);
+        text_original.erase(0,pos+1);
+    }
+    if(text_original.length()!=0)
+        text.push_back(text_original);
 
-    for(int i=0;i<argc;i++){
-        if(strcmp(argv[i],"-w")==0){
-            define_w=true;
-        } 
-        else if(strcmp(argv[i],"-c")==0){
-            define_c=true;
-        }
-        else if(strcmp(argv[i],"-f")==0 && i+1<argc){
-            file_name_pos=i+1;
-        }
-        else if(strcmp(argv[i],"-n")==0 && i+1<argc){
-            specific_num=atoi(argv[i+1]);
-        }
-        else if(strcmp(argv[i],"-h")==0 && i+1<argc){
-            specific_head=argv[i+1][0];
-        }
-        else if(strcmp(argv[i],"-t")==0 && i+1<argc){
-            specific_tail=argv[i+1][0];
-        }
-    } 
+    map<int,string>id2word; 
+    map<string,int>word2id;
+    int word_count=0;
+    for(auto w:text){
+            id2word.insert(make_pair(word_count,w));
+            word2id.insert(make_pair(w,word_count));
+            word_count++;
+    }
 
-    try{
-        if(file_name_pos==0){
-            throw "No file name specialized";
-        }
-        if(!(define_c || define_w)){
-            throw "-w,-c must be specialized";
-        }
-        if(define_c && define_w){
-            throw "-w,-c cannot be specialized at the same time";
-        }
-
-        //读文件
-        ifstream t(argv[file_name_pos]);
-        if(!t){
-            throw "File doesn't exist";
-        }
-    
-        stringstream buffer;
-        buffer << t.rdbuf();
-        string text_original(buffer.str());
-
-        //text处理成vector<string>,仅包含小写字符
-        vector<string>text;
-
-        for(auto &c:text_original){
-            if('a'<=c && c<= 'z')
-                continue;
-            else if('A'<=c && c<='Z'){
-                c=c-'A'+'a';
-                continue;
-            }
-            else
-                c=' ';
-        }
-        size_t pos=0;
-        string token;
-        while((pos=text_original.find(' '))!=string::npos){
-            token=text_original.substr(0,pos);
-            if(token.length()!=0)
-                text.push_back(token);
-            text_original.erase(0,pos+1);
-        }
-        if(text_original.length()!=0)
-            text.push_back(text_original);
-
-        map<int,string>id2word; 
-        map<string,int>word2id;
-        int word_count=0;
-        for(auto w:text){
-             id2word.insert(make_pair(word_count,w));
-             word2id.insert(make_pair(w,word_count));
-             word_count++;
-        }
-
-        //计算
-        vector<pair<int,vector<int>>> result=maxLength(text,word2id,define_w,specific_head,specific_tail,specific_num);
-        //输出
-        ofstream out("solution.txt");
-        if(specific_num!=0){
-            out<<result.size()-1<<endl;
-            for(int i=1;i<result.size();i++){
-                for(auto word:result[i].second){
-                    out<<id2word[word]<<endl;
-                }
-                out<<endl;
-            }
-        }
-        else{
-            out<<result[0].first<<endl;
-            for(auto word:result[0].second){
+    //计算
+    vector<pair<int,vector<int>>> result=maxLength(text,word2id,w_or_c,specific_head,specific_tail,specific_num);
+    //输出
+    ofstream out("solution.txt");
+    if(specific_num!=0){
+        out<<result.size()-1<<endl;
+        for(int i=1;i<result.size();i++){
+            for(auto word:result[i].second){
                 out<<id2word[word]<<endl;
             }
+            out<<endl;
         }
     }
-    catch(const char *msg){
-        cerr<<msg<<endl;
+    else{
+        out<<result[0].first<<endl;
+        for(auto word:result[0].second){
+            out<<id2word[word]<<endl;
+        }
     }
 }

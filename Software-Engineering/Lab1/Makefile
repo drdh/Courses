@@ -1,9 +1,13 @@
-all:
-	@g++ LongestWordChain.cpp -o LongestWordChain -g
-test:
-	@./LongestWordChain -w -f ./testcases/text.txt
-	@cat solution.txt
+CC=g++
+CFLAGS=-g -O3 
+TARGET=main
+SRCS=main.cpp LongestWordChain.cpp 
+OBJS = $(SRCS:.cpp=.o)
+$(TARGET):$(OBJS)
+	$(CC) -o $@ $^
 
-	
+%.o:%.cpp
+	$(CC) $(CFLAGS) -o $@ -c $<
+
 clean:
-	@rm LongestWordChain solution.txt -rf
+	rm -rf $(TARGET) $(OBJS)

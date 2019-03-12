@@ -1,0 +1,5 @@
+4
+algebra
+apple
+elephant
+trick

@@ -3,7 +3,7 @@
 `make`
 
 ```bash
-./LongestWordChain -f ./testcases/text.txt -w
+./main -f ./testcases/text.txt -w
 ```
 
 1. 指定需要加上`-f`

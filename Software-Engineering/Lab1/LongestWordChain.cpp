@@ -4,17 +4,18 @@
 #include<fstream>
 #include<sstream>
 #include<cstring>
+#include<map>
 
 #define MAX_CELL 26
 
 using namespace std;
 
-vector<pair<int,string>> route[MAX_CELL][MAX_CELL];
+vector<pair<int,int>> route[MAX_CELL][MAX_CELL];
 
 void DFS(int index, 
-        vector<string>&current_path,
+        vector<int>&current_path,
         char specific_tail,unsigned specific_num,
-        vector<pair<int,vector<string>>> &result,int depth){
+        vector<pair<int,vector<int>>> &result,int depth){
 
     //判断是否达到要求
     if(specific_num!=0){//指定了-n,从1开始储存
@@ -40,23 +41,19 @@ void DFS(int index,
     //寻找下一个节点
     for(int i=0;i<MAX_CELL;i++){
         if(route[index][i].size()>0){
-            for(auto &word:route[index][i]){
-                if(word.first!=0){//标0表示遍历过的边/word
-                    int word_length=word.first;
-                    word.first=0;
-                    current_path.push_back(word.second);
-                    
-                    DFS(i,current_path,specific_tail,specific_num,result,depth+word_length);
+            auto word=route[index][i].back();
+            route[index][i].pop_back();
+            current_path.push_back(word.second);
 
-                    word.first=word_length;
-                    current_path.pop_back();
-                }
-            }
+            DFS(i,current_path,specific_tail,specific_num,result,depth+word.first);
+
+            route[index][i].push_back(word);
+            current_path.pop_back();
         }
     }
 }
 
-vector<pair<int,vector<string>>> maxLength(vector<string>text,bool w_or_c,
+vector<pair<int,vector<int>>> maxLength(vector<string>text,map<string,int>word2id,bool w_or_c,
                                 char specific_head,char specific_tail,
                                 unsigned specific_num){
     int head[MAX_CELL]={0}; //head[i]有出边
@@ -65,29 +62,28 @@ vector<pair<int,vector<string>>> maxLength(vector<string>text,bool w_or_c,
     for(auto node:text){
         head[node.front()-'a']=1;
         if(w_or_c){
-            route[node.front()-'a'][node.back()-'a'].push_back(make_pair(1,node));//以word计数
+            route[node.front()-'a'][node.back()-'a'].push_back(make_pair(1,word2id[node]));//以word计数
         } 
         else{
-            route[node.front()-'a'][node.back()-'a'].push_back(make_pair(node.size(),node));//以char 计数
+            route[node.front()-'a'][node.back()-'a'].push_back(make_pair(node.size(),word2id[node]));//以char 计数
         }
     }    
     
     //DFS搜索
-    vector<pair<int,vector<string>>> result;
-    result.push_back(make_pair<int,vector<string>>(0,{})); //没有-n则只有一个结果，保存在0;有-n则从1开始储存
+    vector<pair<int,vector<int>>> result;
+    result.push_back(make_pair<int,vector<int>>(0,{})); //没有-n则只有一个结果，保存在0;有-n则从1开始储存
 
     if(specific_head!='\0'){//指定了开头
         if(head[specific_head-'a']==1){
-            vector<string>current_path={};
+            vector<int>current_path={};
             DFS(specific_head-'a',current_path,specific_tail,specific_num,result,0); 
         }
     }
     else{
         for(int k=0;k<MAX_CELL;k++){//没有指定则遍历
             if(head[k]==1){
-                vector<string>current_path={};
+                vector<int>current_path={};
                 DFS(k,current_path,specific_tail,specific_num,result,0); 
-                cout<<k<<endl;
             }
         }
     }
@@ -183,15 +179,24 @@ int main(int argc,char *argv[]){
         if(text_original.length()!=0)
             text.push_back(text_original);
 
+        map<int,string>id2word; 
+        map<string,int>word2id;
+        int word_count=0;
+        for(auto w:text){
+             id2word.insert(make_pair(word_count,w));
+             word2id.insert(make_pair(w,word_count));
+             word_count++;
+        }
+
         //计算
-        vector<pair<int,vector<string>>> result=maxLength(text,define_w,specific_head,specific_tail,specific_num);
+        vector<pair<int,vector<int>>> result=maxLength(text,word2id,define_w,specific_head,specific_tail,specific_num);
         //输出
         ofstream out("solution.txt");
         if(specific_num!=0){
             out<<result.size()-1<<endl;
             for(int i=1;i<result.size();i++){
                 for(auto word:result[i].second){
-                    out<<word<<endl;
+                    out<<id2word[word]<<endl;
                 }
                 out<<endl;
             }
@@ -199,7 +204,7 @@ int main(int argc,char *argv[]){
         else{
             out<<result[0].first<<endl;
             for(auto word:result[0].second){
-                out<<word<<endl;
+                out<<id2word[word]<<endl;
             }
         }
     }

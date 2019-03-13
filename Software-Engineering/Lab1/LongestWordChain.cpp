@@ -5,6 +5,7 @@
 #include<sstream>
 #include<cstring>
 #include<map>
+#include<set>
 
 #include "LongestWordChain.h"
 
@@ -112,6 +113,7 @@ void LWC(bool w_or_c,string file_name,unsigned specific_num,char specific_head,c
 
     //text处理成vector<string>,仅包含小写字符
     vector<string>text;
+    set<string>text_mod;
 
     for(auto &c:text_original){
         if('a'<=c && c<= 'z')
@@ -127,12 +129,18 @@ void LWC(bool w_or_c,string file_name,unsigned specific_num,char specific_head,c
     string token;
     while((pos=text_original.find(' '))!=string::npos){
         token=text_original.substr(0,pos);
-        if(token.length()!=0)
-            text.push_back(token);
+        if(token.length()!=0){
+            text_mod.insert(token);
+        }
         text_original.erase(0,pos+1);
     }
-    if(text_original.length()!=0)
-        text.push_back(text_original);
+    if(text_original.length()!=0){
+        text_mod.insert(text_original);
+    }
+    for(auto w:text_mod){
+        text.push_back(w);
+    }
+        
 
     map<int,string>id2word; 
     map<string,int>word2id;
@@ -140,7 +148,7 @@ void LWC(bool w_or_c,string file_name,unsigned specific_num,char specific_head,c
     for(auto w:text){
             id2word.insert(make_pair(word_count,w));
             word2id.insert(make_pair(w,word_count));
-            word_count++;
+            word_count++;            
     }
 
     //计算

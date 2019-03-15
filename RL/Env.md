@@ -181,7 +181,11 @@ roslaunch tensorflow_mnist ros_tensorflow_mnist.launch #数据处理
 rostopic echo /result #结果输出
 ```
 
+## [安装PyTorch](https://pytorch.org/get-started/locally/)
 
+```bash
+sudo pip install torch torchvision
+```
 
 
 

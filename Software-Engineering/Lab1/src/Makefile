@@ -10,4 +10,4 @@ $(TARGET):$(OBJS)
 	$(CC) $(CFLAGS) -o $@ -c $<
 
 clean:
-	rm -rf $(TARGET) $(OBJS)
+	rm -rf $(TARGET) $(OBJS) solution.txt

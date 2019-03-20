@@ -1,8 +1,7 @@
 ## ROS仿真环境下的DeepRL
 
-> 应用案例二：强化学习应用，在ROS上构建二维机器人导航仿真平台，让机器人自主决定移动的线速度和角速度。
+> 应用案例二：强化学习应用，在ROS上构建二维机器人导航仿真平台，让机器人自主决定移动的线速度和角速度。网络结构考虑激光以及定位信息。
 >
-> 网络结构考虑激光以及定位信息
 
 ROS环境的构建请查看Env.md, 本实验的环境为
 
@@ -99,11 +98,6 @@ roslaunch turtlebot3_dqn turtlebot3_dqn_stage_4.launch
 roslaunch turtlebot3_dqn result_graph.launch
 ```
 
-### Results
-
-
-
-
 
 ### Analysis
 
@@ -117,13 +111,23 @@ DQN
 
 
 
+### Results
 
+1. 简单静态障碍环境下，使用DQN，训练5个小时情况下，结果依然很差。
 
+### Discussion
 
+1. 改进NN结构
 
+   使用Keras搭建的(Tensorflow作为backend), 现在的是3层Dense. 没有ConvNet(输入不是图片而是State，也就是激光扫描得到的信息).
 
-
-
+2. 使用DQN变体
+   - Double DQN
+   - Prioritized Experience Replay (DQN)
+   - Dueling DQN
+3. 使用其他算法
+4. 是否一定需要RL框架？需要添加ROS的消息传递机制，很多东西耦合比较紧
+5. 环境需要多复杂的？静态动态，范围，可观察的信息。
 
 ### Ref
 

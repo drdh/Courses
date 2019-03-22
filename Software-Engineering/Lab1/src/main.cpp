@@ -1,6 +1,7 @@
 #include<iostream>
 #include<string>
 #include<cstring>
+#include<fstream>
 
 #include "LongestWordChain.h"
 
@@ -61,7 +62,9 @@ int main(int argc,char *argv[]){
         if(define_c && define_w){
             throw "-w,-c cannot be specialized at the same time";
         }
-        LWC(define_w,file_name,specific_num,specific_head,specific_tail);
+        string result=LWC(define_w,file_name,specific_num,specific_head,specific_tail);
+        ofstream out("solution.txt");
+        out<<result;
     }
     catch(const char *msg){
         cerr<<msg<<endl;

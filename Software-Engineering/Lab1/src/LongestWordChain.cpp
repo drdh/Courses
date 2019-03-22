@@ -100,7 +100,7 @@ vector<pair<int,vector<int>>> maxLength(vector<string>text,map<string,int>word2i
     specific_tail -t后的字母，为'\0'则表示未指定
     输出到solution.txt中
 */
-void LWC(bool w_or_c,string file_name,unsigned specific_num,char specific_head,char specific_tail){
+string LWC(bool w_or_c,string file_name,unsigned specific_num,char specific_head,char specific_tail){
     //读文件
     ifstream t(file_name);
     if(!t){
@@ -151,9 +151,41 @@ void LWC(bool w_or_c,string file_name,unsigned specific_num,char specific_head,c
             word_count++;            
     }
 
+    if(word_count<2){
+        throw "too few word";
+    }
+
     //计算
     vector<pair<int,vector<int>>> result=maxLength(text,word2id,w_or_c,specific_head,specific_tail,specific_num);
     //输出
+
+    string resultString;
+    if(specific_num != 0)
+    {
+        resultString += std::to_string(result.size() - 1);
+        resultString += "\n";
+        for(int i = 1; i < result.size(); i++)
+        {
+            for(auto wordIndex: result[i].second)
+                resultString += id2word[wordIndex] + "\n";
+            resultString += "\n";
+        }
+    }
+    else
+    {
+        resultString += std::to_string(result[0].first);
+        resultString += "\n";
+        for(auto word: result[0].second)
+            resultString += id2word[word] + "\n";
+    }
+    //cout<<resultString;
+    for(int i = 0; i < MAX_CELL; i++)
+        for(int j = 0; j < MAX_CELL; j++)
+            route[i][j].clear();
+
+    return resultString;
+
+/*
     ofstream out("solution.txt");
     if(specific_num!=0){
         out<<result.size()-1<<endl;
@@ -170,4 +202,5 @@ void LWC(bool w_or_c,string file_name,unsigned specific_num,char specific_head,c
             out<<id2word[word]<<endl;
         }
     }
+*/  
 }

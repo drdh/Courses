@@ -27,6 +27,6 @@ vector<pair<int,vector<int>>> maxLength(vector<string>text,map<string,int>word2i
     输出到solution.txt中
 */
 
-void LWC(bool w_or_c,string file_name,unsigned specific_num,char specific_head,char specific_tail);
+string LWC(bool w_or_c,string file_name,unsigned specific_num,char specific_head,char specific_tail);
 
 #endif

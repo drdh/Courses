@@ -23,8 +23,8 @@ catkin_make
 然后构建默认激活
 
 ```bash
-source /home/user/ros/base/devel/setup.bash
-source /home/drdh/catkin_ws/devel/setup.bash
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib:/usr/local/lib64
+source /home/user/ros_extra/install_isolated/setup.bash
 ```
 
 ### 远程桌面
@@ -120,26 +120,55 @@ ssh -N -L localhost:33890:192.168.1.63:3389 drdh@222.195.92.204 -p 5555
 
 <img src="Recurrence-on-Server.assets/1553086741830.png" style="zoom:70%">
 
+### 新的连接方式
 
+[黑屏的解决](https://www.centos.org/forums/viewtopic.php?t=66886)从`.bashrc`中移除`Anaconda`相关的路径。。。
+
+```bash
+ssh -N -L localhost:5901:localhost:5901 222.195.92.204 -p 5555
+```
+
+使用一个 VNC client 连接 `vnc://localhost:5901` 即可.
+
+```bash
+systemctl restart vncserver@:1.service
+```
 
 ### 重现过程
 
-在`~/.bashrc`中加上
+每次打开重启service后打开桌面，都需要将`anaconda`部分注释掉，然后打开新的`bash`，在重启service
 
 ```bash
-export PATH="/home/user/anaconda3/bin:$PATH"
+systemctl restart vncserver@:1.service
 ```
 
-需要`conda init`
-
-然后重新打开shell
+重新打开shell
 
 ```bash
 conda activate tf 
 # conda deactivate 
 ```
 
+```bash
+pip2 install keras --user -i http://pypi.mirrors.ustc.edu.cn/simple/
+```
 
+
+
+
+
+实验的Demo代码下载与编译
+
+```bash
+cd ~/catkin_ws/src/
+git clone https://github.com/ROBOTIS-GIT/turtlebot3_msgs.git
+git clone https://github.com/ROBOTIS-GIT/turtlebot3.git
+git clone https://github.com/ROBOTIS-GIT/turtlebot3_simulations
+git clone https://github.com/ROBOTIS-GIT/turtlebot3_machine_learning
+cd ~/catkin_ws && catkin_make
+```
+
+### 
 
 
 

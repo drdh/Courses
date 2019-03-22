@@ -98,8 +98,7 @@ roslaunch turtlebot3_dqn turtlebot3_dqn_stage_4.launch
 roslaunch turtlebot3_dqn result_graph.launch
 ```
 
-<<<<<<< HEAD
-=======
+
 
 
 
@@ -107,9 +106,6 @@ roslaunch turtlebot3_dqn result_graph.launch
 ### Results
 
 
-
-
->>>>>>> bbd8b5d474463e75324a0426ffab5665a5334d01
 
 ### Analysis
 

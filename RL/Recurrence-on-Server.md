@@ -11,7 +11,7 @@ ssh -N -f -L localhost:8001:192.168.1.63:8000 222.195.92.204 -p 5555
 ```
 然后浏览器中打开`http://localhost:8001/`
 
-创建工作环境，先`source /home/user/ros/base/devel/setup.bash`
+创建工作环境，先`source /home/user/ros_extra/install_isolated/setup.bash`
 
 ```bash
 mkdir -p ~/catkin_ws/src
@@ -168,7 +168,15 @@ git clone https://github.com/ROBOTIS-GIT/turtlebot3_machine_learning
 cd ~/catkin_ws && catkin_make
 ```
 
-### 
+**依赖关系无法解决，暂时使用虚拟机**
+
+
+
+memory size: 10240MB
+
+Filesize: 50GB
+
+Core:8
 
 
 

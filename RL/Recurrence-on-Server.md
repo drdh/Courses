@@ -170,6 +170,12 @@ cd ~/catkin_ws && catkin_make
 
 **依赖关系无法解决，暂时使用虚拟机**
 
+下载`virtualbox rmp`包，然后使用`rmp -i xxx.rmp`安装即可。
+
+ubuntu使用之前搭建的环境export==>import即可。
+
+
+
 
 
 memory size: 10240MB

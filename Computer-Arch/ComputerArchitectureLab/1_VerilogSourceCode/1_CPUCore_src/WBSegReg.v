@@ -56,7 +56,7 @@ module WBSegReg(
 
     wire [31:0] RD_raw;
     DataRam DataRamInst (
-        .clk    (???),                      //请补全
+        .clk    (clk),                      //请补全
         .wea    (???),                      //请补全
         .addra  (???),                      //请补全
         .dina   (???),                      //请补全

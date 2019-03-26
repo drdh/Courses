@@ -16,7 +16,42 @@ module ALU(
     input wire [3:0] AluContrl,
     output reg [31:0] AluOut
     );
+    always@(*)
+    begin
+        case(AluContrl)
+            `SLL: AluOut <= Operand1 << Operand2[4:0];
+            `SRL: AluOut <= Operand1 >> Operand2[4:0];
+            `SRA: AluOut <= Operand1 >>> Operand2[4:0];
+            `ADD: AluOut <= Operand1 + Operand2;
+            `SUB: AluOut <= Operand1 - Operand2;
+            `XOR: AluOut <= Operand1 ^ Operand2;
+            `OR:  AluOut <= Operand1 | Operand2;
+            `AND: AluOut <= Operand1 & Operand2;
+            `SLT: AluOut <= $signed(Operand1) < $signed(Operand2) ? 32'b1:32'b0;
+            `SLTU: AluOut<= Operand1 < Operand2 ? 32'b1:32'b0;
+            `LUI: AluOut <= Operand1 <<12;
+            default: AluOut <= 32'b0;
+        endcase
+    end
+
+
 endmodule
+
+/*
+//ALUContrl[3:0]
+    `define SLL  4'd0
+    `define SRL  4'd1
+    `define SRA  4'd2
+    `define ADD  4'd3
+    `define SUB  4'd4
+    `define XOR  4'd5
+    `define OR  4'd6
+    `define AND  4'd7
+    `define SLT  4'd8
+    `define SLTU  4'd9
+    `define LUI  4'd10
+*/
+
 
 //功能和接口说明
 	//ALU接受两个操作数，根据AluContrl的不同，进行不同的计算操作，将计算结果输出到AluOut

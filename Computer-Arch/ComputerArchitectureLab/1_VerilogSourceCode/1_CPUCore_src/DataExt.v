@@ -19,6 +19,17 @@ module DataExt(
     );    
 endmodule
 
+/*
+//RegWrite[2:0]  six kind of ways to save values to Register
+    `define NOREGWRITE  3'b0	//	Do not write Register
+    `define LB  3'd1			//	load 8bit from Mem then signed extended to 32bit
+    `define LH  3'd2			//	load 16bit from Mem then signed extended to 32bit
+    `define LW  3'd3			//	write 32bit to Register
+    `define LBU  3'd4			//	load 8bit from Mem then unsigned extended to 32bit
+    `define LHU  3'd5			//	load 16bit from Mem then unsigned extended to 32bit
+
+*/
+
 //功能说明
     //DataExt是用来处理非字对齐load的情形，同时根据load的不同模式对Data Mem中load的数进行符号或者无符号拓展，组合逻辑电路
 //输入

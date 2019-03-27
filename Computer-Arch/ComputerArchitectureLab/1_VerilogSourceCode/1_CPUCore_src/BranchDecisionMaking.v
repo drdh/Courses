@@ -13,7 +13,7 @@
 module BranchDecisionMaking(
     input wire [2:0] BranchTypeE,
     input wire [31:0] Operand1,Operand2,
-    output reg BranchE
+    output reg BranchE);
 
     always@(*)
     begin
@@ -23,13 +23,11 @@ module BranchDecisionMaking(
             `BNE: BranchE <= (Operand1 != Operand2);
             `BLT: BranchE <= ($signed(Operand1) < $signed(Operand2));
             `BLTU: BranchE <= (Operand1 < Operand2);
-            `BGE: BranchE <= ($(signed(Operand1) >= $signed(Operand2)));
+            `BGE: BranchE <= ($signed(Operand1) >= $signed(Operand2));
             `BGEU:BranchE <= (Operand1 >= Operand2);
             default: BranchE <= 0;
         endcase
     end
-
-    );
 endmodule
 
 

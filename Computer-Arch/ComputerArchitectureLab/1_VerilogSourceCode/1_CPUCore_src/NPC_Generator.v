@@ -19,10 +19,10 @@ module NPC_Generator(
     //Jalr=Br > Jal (Jalr与Br不可能同时出现)
     always@(*)
     begin
-        if(Jalr)begin PC_In<=JalrTarget; end
+        if(JalrE)begin PC_In<=JalrTarget; end
         else if(BranchE)begin PC_In<=BranchTarget; end
-        else if(JalD)PC_In<=JalTarget; end
-        else PC_In<=PCF+4;
+        else if(JalD)begin PC_In<=JalTarget; end
+        else begin PC_In<=PCF+4; end
     end 
 
 endmodule

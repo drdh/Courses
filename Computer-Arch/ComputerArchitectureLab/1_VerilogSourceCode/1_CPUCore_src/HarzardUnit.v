@@ -36,7 +36,7 @@ module HarzardUnit(
         end
         else begin
             //LW
-            if(MemToRegE && ((RdE==Rs1D && RegReadD[1])||(RdE==Rs2D && RegReadD[0]))&& RdE!=0)begin
+            if(MemToRegE && ((RdE==Rs1D )||(RdE==Rs2D))&& RdE!=0)begin
                 StallF=1'b1; //F,D等待一个stall
                 StallD=1'b1;
                 StallE=1'b0;

@@ -51,7 +51,7 @@ module ControlUnit(
     assign LUI= (Op == lui_op);
     assign AUIPC= (Op == auipc_op);
     assign JAL = (Op == jal_op);
-    assign JALR = (Op = jalr_op);
+    assign JALR = (Op == jalr_op);
 
     //br
     assign BEQ = (Op == br_op)&&(Fn3 == 3'b000);
@@ -172,7 +172,7 @@ module ControlUnit(
 */
     always@(*)
     begin
-        case ({BEQ,BNE,BLT,BLTLoadNpcDU,BGE,BGEU})
+        case ({BEQ,BNE,BLT,BLTU,BGE,BGEU})
             6'b100000: BranchTypeD <= `BEQ;
             6'b010000: BranchTypeD <= `BNE;
             6'b001000: BranchTypeD <= `BLT;
@@ -231,8 +231,8 @@ module ControlUnit(
 */
     always@(*)
     begin
-        if(Op==RType_op)begin ImmType<=`RTYPE end
-        else if(Op==ITYPE || Op==load_op || JALR) begin ImmType<=`ITYPE; end
+        if(Op==RType_op)begin ImmType<=`RTYPE; end
+        else if(Op==IType_op || Op==load_op || JALR) begin ImmType<=`ITYPE; end
         else if(Op==store_op)begin ImmType<=`STYPE; end
         else if(Op==br_op)begin ImmType<=`BTYPE; end
         else if(LUI||AUIPC)begin ImmType<=`UTYPE; end

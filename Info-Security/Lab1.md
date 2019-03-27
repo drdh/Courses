@@ -33,3 +33,21 @@ net use Y: /del
 
 
 如果出现不安全的信息，在启用或关闭Windows功能 中打开`SMB 1.0/CIFS 文件共享支持`的`客户端`
+
+
+
+先从Host上下载相应的文件，解压，然后网络调整到Host-Only,使用Lab1的共享传输文件。
+
+需要[修改权限](<https://blog.csdn.net/tingyuyiye01/article/details/49903297>)
+
+```cmd
+net share helloc=C: /grant:win,full
+```
+
+然后在host上
+
+```cmd
+net use Y: \\192.168.86.101\helloc
+```
+
+winwinpass

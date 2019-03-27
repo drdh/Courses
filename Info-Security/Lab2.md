@@ -3,7 +3,7 @@
 需要[修改权限](<https://blog.csdn.net/tingyuyiye01/article/details/49903297>)
 
 ```cmd
-net share helloc=C /grant:win,full
+net share helloc=C: /grant:win,full
 ```
 
 然后在host上

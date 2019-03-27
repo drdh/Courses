@@ -172,6 +172,10 @@ cd ~/catkin_ws && catkin_make
 
 下载`virtualbox rmp`包，然后使用`rmp -i xxx.rmp`安装即可。
 
+[VirtualBox 6.0.4 platform packages]([VirtualBox](https://www.virtualbox.org/wiki/VirtualBox) 6.0.4 platform packages)
+
+
+
 ubuntu使用之前搭建的环境export==>import即可。
 
 

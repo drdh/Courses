@@ -172,7 +172,7 @@ module ControlUnit(
 */
     always@(*)
     begin
-        case ({BEQ,BNE,BLT,BLTU,BGE,BGEU})
+        case ({BEQ,BNE,BLT,BLTLoadNpcDU,BGE,BGEU})
             6'b100000: BranchTypeD <= `BEQ;
             6'b010000: BranchTypeD <= `BNE;
             6'b001000: BranchTypeD <= `BLT;
@@ -216,18 +216,31 @@ module ControlUnit(
     
     //output wire [1:0] AluSrc2D,表示Alu输入源2的选择; 00:Reg   01:Rs2 5bits    10:Imm    
     //output wire AluSrc1D,表示Alu输入源1的选择; 0:Reg  1:PC 
-    assign AluSrc1D = (Op==br_op)||(AUIPC);
-    assign AluSrc2D = (SLLI||SRLI||SRAI)? 2'b01 : ()
+    assign AluSrc1D = (AUIPC);
+    assign AluSrc2D = (SLLI||SRLI||SRAI)? 2'b01 : ((Op==br_op||Op==RType_op)? 2'b00 : 2'b10);
 
+    //output reg [2:0] ImmType;表示指令的立即数格式
+/*
+//ImmType[2:0]
+    `define RTYPE  3'd0
+    `define ITYPE  3'd1
+    `define STYPE  3'd2
+    `define BTYPE  3'd3
+    `define UTYPE  3'd4
+    `define JTYPE  3'd5
+*/
+    always@(*)
+    begin
+        if(Op==RType_op)begin ImmType<=`RTYPE end
+        else if(Op==ITYPE || Op==load_op || JALR) begin ImmType<=`ITYPE; end
+        else if(Op==store_op)begin ImmType<=`STYPE; end
+        else if(Op==br_op)begin ImmType<=`BTYPE; end
+        else if(LUI||AUIPC)begin ImmType<=`UTYPE; end
+        else if(JAL)begin ImmType<=`JTYPE; end
+        else begin ImmType<=3'dx; end
+    end
 
 endmodule
-
-
-/*
-    
-    output reg [2:0] ImmType    
-
-*/
 
 //功能说明
     //ControlUnit       是本CPU的指令译码器，组合逻辑电路

@@ -14,6 +14,17 @@ module NPC_Generator(
     input wire BranchE,JalD,JalrE,
     output reg [31:0] PC_In
     );
+    //优先级
+    //流水线深的先执行
+    //Jalr=Br > Jal (Jalr与Br不可能同时出现)
+    always@(*)
+    begin
+        if(Jalr)begin PC_In<=JalrTarget; end
+        else if(BranchE)begin PC_In<=BranchTarget; end
+        else if(JalD)PC_In<=JalTarget; end
+        else PC_In<=PCF+4;
+    end 
+
 endmodule
 
 //功能说明

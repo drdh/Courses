@@ -29,7 +29,7 @@ module ALU(
             `AND: AluOut <= Operand1 & Operand2;
             `SLT: AluOut <= $signed(Operand1) < $signed(Operand2) ? 32'b1:32'b0;
             `SLTU: AluOut<= Operand1 < Operand2 ? 32'b1:32'b0;
-            `LUI: AluOut <= Operand1 <<12;
+            `LUI: AluOut <= Operand2;//LUI的值已在imm上计算了，直接用，而AUIPC使用的是ADD
             default: AluOut <= 32'b0;
         endcase
     end

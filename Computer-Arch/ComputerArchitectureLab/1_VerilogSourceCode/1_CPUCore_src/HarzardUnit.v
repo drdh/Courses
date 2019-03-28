@@ -16,13 +16,89 @@ module HarzardUnit(
     input wire [1:0] RegReadE,
     input wire [2:0] MemToRegE, RegWriteM, RegWriteW,
     output reg StallF, FlushF, StallD, FlushD, StallE, FlushE, StallM, FlushM, StallW, FlushW,
-    output reg [1:0] Forward1E, Forward2E
+    output wire [1:0] Forward1E, Forward2E //之前是wire
     );
     //Stall and Flush signals generate
+    always@(*)
+    begin
+        if(CpuRst)begin
+            StallF=1'b0;
+            StallD=1'b0;
+            StallE=1'b0;
+            StallM=1'b0;
+            StallW=1'b0;
+
+            FlushF=1'b1;
+            FlushD=1'b1;
+            FlushE=1'b1;
+            FlushM=1'b1;
+            FlushW=1'b1;
+        end
+        else begin
+            //LW
+            if(MemToRegE && ((RdE==Rs1D && RegReadD[1])||(RdE==Rs2D && RegReadD[0]))&& RdE!=0)begin
+                StallF=1'b1; //F,D等待一个stall
+                StallD=1'b1;
+                StallE=1'b0;
+                StallM=1'b0;
+                StallW=1'b0;
+
+                FlushF=1'b0;
+                FlushD=1'b0;
+                FlushE=1'b0;
+                FlushM=1'b0;
+                FlushW=1'b0;
+            end
+            else if(BranchE || JalrE)begin
+                StallF=1'b0;
+                StallD=1'b0;
+                StallE=1'b0;
+                StallM=1'b0;
+                StallW=1'b0;
+
+                FlushF=1'b1;  //猜测执行PC+4的指令失败
+                FlushD=1'b1;
+                FlushE=1'b0;
+                FlushM=1'b0;
+                FlushW=1'b0;
+            end
+            else if(JalD)begin
+                StallF=1'b0;
+                StallD=1'b0;
+                StallE=1'b0;
+                StallM=1'b0;
+                StallW=1'b0;
+
+                FlushF=1'b1;    //仅仅只用IF
+                FlushD=1'b0;
+                FlushE=1'b0;
+                FlushM=1'b0;
+                FlushW=1'b0;
+            end
+            else begin
+                StallF=1'b0;
+                StallD=1'b0;
+                StallE=1'b0;
+                StallM=1'b0;
+                StallW=1'b0;
+
+                FlushF=1'b0;
+                FlushD=1'b0;
+                FlushE=1'b0;
+                FlushM=1'b0;
+                FlushW=1'b0;
+            end
+        end
+    end
+
 
     //Forward Register Source 1
+    assign Forward1E[0]=(|RegWriteW)&&(RdW!=0)&&(!((RdM==Rs1E)&&(|RegWriteM)))&&(RdW==Rs1E)&&RegReadE[1];
+    assign Forward1E[1]=(|RegWriteM)&&(RdM!=0)&&(RdM==Rs1E)&&RegReadE[1];
 
     //Forward Register Source 2
+    assign Forward2E[0]=(|RegWriteW)&&(RdW!=0)&&(!((RdM==Rs2E)&&(|RegWriteM)))&&(RdW==Rs2E)&&RegReadE[0];
+    assign Forward2E[1]=(|RegWriteM)&&(RdM!=0)&&(RdM==Rs2E)&&RegReadE[1];
 
 endmodule
 

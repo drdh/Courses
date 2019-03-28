@@ -180,3 +180,47 @@ RISC-V指令集手册（卷1-用户级指令集）-中文版
 
 
 
+1. 为什么将DataMemory和InstructionMemory嵌入在段寄存器中？
+2. DataMemory和InstructionMemory输入地址是字（32bit）地址，如何将访存地址转
+  化为字地址输入进去？
+3. 如何实现DataMemory的非字对齐的Load？
+
+4. 如何实现DataMemory的非字对齐的Store？
+
+
+5. 为什么RegFile 的时钟要取反？
+
+   相当于不采用同步读，就是比较方便五段流水，不用在内部转发
+
+6. NPC_Generator中对于不同跳转target 的选择有没有优先级？
+
+   执行越靠后越优先
+
+7. ALU模块中，默认wire变量是有符号数还是无符号数？
+
+   无符号数，可以使用`$signed()`
+
+8. AluSrc1E执行哪些指令时等于1’b1？
+
+9. AluSrc2E执行哪些指令时等于2‘b01？
+
+10. 哪条指令执行过程中会使得LoadNpcD==1？
+
+    `jalr, jal`
+
+11. DataExt模块中，LoadedBytesSelect的意义是什么？
+
+    从取到的32bits选择相应的位
+
+12. Harzard模块中，有哪几类冲突需要插入气泡？
+
+    Load相关
+
+13. Harzard 模块中采用默认不跳转的策略，遇到branch 指令时，如何控制flush 和stall
+    信号？
+
+14. Harzard模块中，RegReadE 信号有什么用？
+
+15. 0号寄存器值始终为 0，是否会对forward的处理产生影响？
+
+    需要判断是否为x0,如果是则不需要转发

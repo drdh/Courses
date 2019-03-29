@@ -16,7 +16,7 @@ module HarzardUnit(
     input wire [1:0] RegReadE,
     input wire [2:0] MemToRegE, RegWriteM, RegWriteW,
     output reg StallF, FlushF, StallD, FlushD, StallE, FlushE, StallM, FlushM, StallW, FlushW,
-    output wire [1:0] Forward1E, Forward2E //之前是wire
+    output wire [1:0] Forward1E, Forward2E //之前是reg
     );
     //Stall and Flush signals generate
     always@(*)
@@ -56,9 +56,9 @@ module HarzardUnit(
                 StallM=1'b0;
                 StallW=1'b0;
 
-                FlushF=1'b1;  //猜测执行PC+4的指令失败
+                FlushF=1'b0;  //猜测执行PC+4的指令失败
                 FlushD=1'b1;
-                FlushE=1'b0;
+                FlushE=1'b1;
                 FlushM=1'b0;
                 FlushW=1'b0;
             end
@@ -69,8 +69,8 @@ module HarzardUnit(
                 StallM=1'b0;
                 StallW=1'b0;
 
-                FlushF=1'b1;    //仅仅只用IF
-                FlushD=1'b0;
+                FlushF=1'b0;    //仅仅只用IF
+                FlushD=1'b1;
                 FlushE=1'b0;
                 FlushM=1'b0;
                 FlushW=1'b0;

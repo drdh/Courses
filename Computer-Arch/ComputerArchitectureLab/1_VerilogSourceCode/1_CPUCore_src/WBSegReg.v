@@ -55,11 +55,18 @@ module WBSegReg(
         end
 
     wire [31:0] RD_raw;
-    DataRam DataRamInst (
+	
+	wire [3:0] WE_test;
+	assign WE_test= (|WE)? ((WE==4'b0001)? (WE<<A[1:0]):((WE==4'b0011)? ((A[1]==1'b0)? 4'b0011:4'b1100):4'b1111)):WE;
+	wire [31:0]WD_test;
+	assign WD_test= (|WE)? ((WE==4'b0001)? ({WD[7:0],WD[7:0],WD[7:0],WD[7:0]}) : ((WE==4'b0011)? ({WD[15:0],WD[15:0]}) : WD)  ):WD;
+	
+	
+    DataRam DataRamInst (//
         .clk    (clk),                      //请补全
-        .wea    (WE),                      //请补全
+        .wea    (WE_test),                      //请补全
         .addra  (A[31:2]),                      //请补全
-        .dina   (WD),                      //请补全
+        .dina   (WD_test),                      //请补全//
         .douta  ( RD_raw         ),
         .web    ( WE2            ),
         .addrb  ( A2[31:2]       ),

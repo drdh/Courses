@@ -13,10 +13,10 @@
 // !!! ALL YOU NEED TO CHANGE IS 4 FILE PATH BELOW !!!	
 //				(they are all optional, you can run cpu without change paths here,if files are failed to open, we will not dump the content to .txt and will not try to initial your bram)
 //////////////////////////////////////////////////////////////////////////////////
-`define DataRamContentLoadPath "F:\\VivadoWorkspace\\RISCV-CPU\\RISCV-CPU.srcs\\sources_1\\new\\SimFiles\\1testAll.data"
-`define InstRamContentLoadPath "F:\\VivadoWorkspace\\RISCV-CPU\\RISCV-CPU.srcs\\sources_1\\new\\SimFiles\\1testAll.inst"
-`define DataRamContentSavePath "F:\\VivadoWorkspace\\RISCV-CPU\\RISCV-CPU.srcs\\sources_1\\new\\SimFiles\\DataRamContent.txt"
-`define InstRamContentSavePath "F:\\VivadoWorkspace\\RISCV-CPU\\RISCV-CPU.srcs\\sources_1\\new\\SimFiles\\InstRamContent.txt"
+`define DataRamContentLoadPath "D:\\lx\\Courses\\Computer-Arch\\ComputerArchitectureLab\\2_BRAMInputFileGenerator\\3testAll.data"  //1testAll
+`define InstRamContentLoadPath "D:\\lx\\Courses\\Computer-Arch\\ComputerArchitectureLab\\2_BRAMInputFileGenerator\\3testAll.inst"
+`define DataRamContentSavePath "D:\\lx\\Courses\\Computer-Arch\\ComputerArchitectureLab\\2_BRAMInputFileGenerator\\DataRamContent.txt"
+`define InstRamContentSavePath "D:\\lx\\Courses\\Computer-Arch\\ComputerArchitectureLab\\2_BRAMInputFileGenerator\\InstRamContent.txt"
 `define BRAMWORDS 4096  //a word is 32bit, so our bram is 4096*32bit
 
 module testBench(

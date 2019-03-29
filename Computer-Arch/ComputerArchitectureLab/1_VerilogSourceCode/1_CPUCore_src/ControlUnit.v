@@ -209,7 +209,7 @@ module ControlUnit(
         else if(SLL||SLLI)begin AluContrlD <= `SLL; end
         else if(SRL||SRLI)begin AluContrlD <= `SRL; end
         else if(SRA||SRAI)begin AluContrlD <= `SRA; end
-        else if(SLT||SLLI)begin AluContrlD <= `SLT; end
+        else if(SLT||SLTI)begin AluContrlD <= `SLT; end
         else if(SLTU||SLTIU)begin AluContrlD <= `SLTU; end
         else begin AluContrlD <= 4'dx; end
     end

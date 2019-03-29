@@ -21,14 +21,14 @@ module ALU(
         case(AluContrl)
             `SLL: AluOut <= Operand1 << Operand2[4:0];
             `SRL: AluOut <= Operand1 >> Operand2[4:0];
-            `SRA: AluOut <= Operand1 >>> Operand2[4:0];
-            `ADD: AluOut <= Operand1 + Operand2;
-            `SUB: AluOut <= Operand1 - Operand2;
+            `SRA: AluOut <= $signed(Operand1) >>> Operand2[4:0];
+            `ADD: AluOut <= $signed(Operand1) + $signed(Operand2);
+            `SUB: AluOut <= $signed(Operand1) - $signed(Operand2);
             `XOR: AluOut <= Operand1 ^ Operand2;
             `OR:  AluOut <= Operand1 | Operand2;
             `AND: AluOut <= Operand1 & Operand2;
-            `SLT: AluOut <= $signed(Operand1) < $signed(Operand2) ? 32'b1:32'b0;
-            `SLTU: AluOut<= Operand1 < Operand2 ? 32'b1:32'b0;
+            `SLT: AluOut <= ($signed(Operand1) < $signed(Operand2)) ? 32'b1:32'b0;
+            `SLTU: AluOut<= (Operand1 < Operand2) ? 32'b1:32'b0;
             `LUI: AluOut <= Operand2;//LUI的值已在imm上计算了，直接用，而AUIPC使用的是ADD
             default: AluOut <= 32'b0;
         endcase

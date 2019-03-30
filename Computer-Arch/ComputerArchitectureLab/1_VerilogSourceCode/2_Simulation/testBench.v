@@ -13,7 +13,7 @@
 // !!! ALL YOU NEED TO CHANGE IS 4 FILE PATH BELOW !!!	
 //				(they are all optional, you can run cpu without change paths here,if files are failed to open, we will not dump the content to .txt and will not try to initial your bram)
 //////////////////////////////////////////////////////////////////////////////////
-`define DataRamContentLoadPath "D:\\lx\\Courses\\Computer-Arch\\ComputerArchitectureLab\\2_BRAMInputFileGenerator\\3testAll.data"  //1testAll
+`define DataRamContentLoadPath "D:\\lx\\Courses\\Computer-Arch\\ComputerArchitectureLab\\2_BRAMInputFileGenerator\\3testAll.data"  //3testAll
 `define InstRamContentLoadPath "D:\\lx\\Courses\\Computer-Arch\\ComputerArchitectureLab\\2_BRAMInputFileGenerator\\3testAll.inst"
 `define DataRamContentSavePath "D:\\lx\\Courses\\Computer-Arch\\ComputerArchitectureLab\\2_BRAMInputFileGenerator\\DataRamContent.txt"
 `define InstRamContentSavePath "D:\\lx\\Courses\\Computer-Arch\\ComputerArchitectureLab\\2_BRAMInputFileGenerator\\InstRamContent.txt"

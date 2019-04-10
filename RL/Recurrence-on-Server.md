@@ -184,9 +184,9 @@ ubuntu使用之前搭建的环境export==>import即可。
 
 memory size: 10240MB
 
-Filesize: 50GB
+Filesize: 100GB
 
-Core:8
+Core:28
 
 
 

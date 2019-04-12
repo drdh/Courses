@@ -1,6 +1,8 @@
 #include<iostream>
 #include<set>
 #include<string>
+#include<queue>
+#include<cstring>
 
 using namespace std;
 
@@ -23,8 +25,17 @@ class Position{
         }
 };
 
+struct  cmp{
+    bool operator()(Position &a,Position &b){
+        return a.score<b.score;
+    }
+};
+
+int scores[2][72];
 
 int main(){
-    string s="123";
-    cout<<s.size()<<endl;
+    memset(scores,0,sizeof(scores));
+    for(int i=0;i<72;i++){
+        cout<<scores[0][i]<<scores[1][i]<<endl;
+    }
 }

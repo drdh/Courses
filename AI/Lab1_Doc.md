@@ -1,10 +1,40 @@
+## 迷宫搜索
 
+两个算法都是用曼哈顿距离，即
+$$
+d=|x-d_x|+|y-d_y|
+$$
+原因在于走迷宫时，正好是只能走上下左右，然后只能是直上直下，所以这个启发函数满足
+$$
+h(n)\le h^*(n)
+$$
+
+
+### A*算法
+
+
+
+
+
+
+
+### IDA*算法
+
+
+
+
+
+
+
+## 五子棋对弈
+
+### 五子棋对战记录
 
 对战[在线五子棋小游戏 - aTool在线工具](<http://www.atool88.com/gobang.php>)
 
-![1555072227868](README.assets/1555072227868.png)
+![1555072227868](Gobang/README.assets/1555072227868.png)
 
-![1555072238484](README.assets/1555072238484.png)
+![1555072238484](Gobang/README.assets/1555072238484.png)
 
 ```
   AI 	  ME
@@ -24,9 +54,9 @@ AI WIN!
 
 第二次仍然胜
 
-![1555072511201](README.assets/1555072511201.png)
+![1555072511201](Gobang/README.assets/1555072511201.png)
 
-![1555072518904](README.assets/1555072518904.png)
+![1555072518904](Gobang/README.assets/1555072518904.png)
 
 ```
   AI 	  ME
@@ -49,9 +79,9 @@ AI WIN!
 
 对战[在线五子棋](<http://html5.huceo.com/wzq/>)
 
-![1555074017840](README.assets/1555074017840.png)
+![1555074017840](Gobang/README.assets/1555074017840.png)
 
-![1555074041332](README.assets/1555074041332.png)
+![1555074041332](Gobang/README.assets/1555074041332.png)
 
 ```
   AI 	  ME
@@ -74,9 +104,9 @@ AI WIN!
 
 第二次仍然胜利
 
-![1555074300111](README.assets/1555074300111.png)
+![1555074300111](Gobang/README.assets/1555074300111.png)
 
-![1555074315659](README.assets/1555074315659.png)
+![1555074315659](Gobang/README.assets/1555074315659.png)
 
 ```
   AI 	  ME
@@ -100,9 +130,9 @@ AI WIN!
 
 对战[973五子棋](<http://www.973.com/p76698>)
 
-![1555074817407](README.assets/1555074817407.png)
+![1555074817407](Gobang/README.assets/1555074817407.png)
 
-![1555074854575](README.assets/1555074854575.png)
+![1555074854575](Gobang/README.assets/1555074854575.png)
 
 ```
   AI 	  ME
@@ -139,9 +169,9 @@ AI WIN!
 
 再战仍然赢
 
-![1555075165893](README.assets/1555075165893.png)
+![1555075165893](Gobang/README.assets/1555075165893.png)
 
-![1555075196006](README.assets/1555075196006.png)
+![1555075196006](Gobang/README.assets/1555075196006.png)
 
 ```
   AI 	  ME
@@ -170,9 +200,9 @@ AI WIN!
 
 对战[7k7k五子棋](<http://www.7k7k.com/swf/189065.htm>)
 
-![1555075601385](README.assets/1555075601385.png)
+![1555075601385](Gobang/README.assets/1555075601385.png)
 
-![1555075615476](README.assets/1555075615476.png)
+![1555075615476](Gobang/README.assets/1555075615476.png)
 
 ```
 AI WIN!
@@ -192,7 +222,7 @@ AI WIN!
 
 再战仍然胜利
 
-![1555075424183](README.assets/1555075424183.png)
+![1555075424183](Gobang/README.assets/1555075424183.png)
 
 ```
   AI 	  ME
@@ -213,9 +243,9 @@ AI WIN!
 
 对战[Gobang V3.0.0-beta.3](<http://gobang.light7.cn/#/>)
 
-![1555076125859](README.assets/1555076125859.png)
+![1555076125859](Gobang/README.assets/1555076125859.png)
 
-![1555076178446](README.assets/1555076178446.png)
+![1555076178446](Gobang/README.assets/1555076178446.png)
 
 ```
   AI 	  ME
@@ -253,9 +283,9 @@ AI WIN!
 
 再战仍然胜利
 
-![1555076626518](README.assets/1555076626518.png)
+![1555076626518](Gobang/README.assets/1555076626518.png)
 
-![1555076645835](README.assets/1555076645835.png)
+![1555076645835](Gobang/README.assets/1555076645835.png)
 
 ```
   AI 	  ME
@@ -287,13 +317,7 @@ AI WIN!
 AI WIN!
 ```
 
-
-
-
-
-
-
-## ref
+### Ref
 
 [五子棋AI](<https://blog.lihongxun.com/categories/%E4%BA%94%E5%AD%90%E6%A3%8BAI/>)
 

@@ -9,6 +9,7 @@
 #include<cstring>
 #include<queue>
 #include<ctime>
+#include<fstream>
 
 #define BOARD_WIDTH 15
 #define MAX_SCORE (10000000)
@@ -48,7 +49,8 @@ vector<HistoryItem> history;
 void AddPossiblePositions(const Position pos){
     int poss_x,poss_y;
     set<Position> addedPositions;
-    vector<pair<int,int>>directions={{1,1},{1,-1},{-1,1},{-1,-1},{1,0},{0,1},{-1,0},{0,-1}};
+    vector<pair<int,int>>directions={{1,1},{1,-1},{-1,1},{-1,-1},{1,0},{0,1},{-1,0},{0,-1},
+    {-2,-2},{-2,-1},{-2,0},{-2,1},{-2,2},{-1,-2},{-1,2},{0,-2},{0,2},{1,-2},{1,2},{2,-2},{2,-1},{2,0},{2,1},{2,2}};
     for(int i=0;i<directions.size();i++){
         poss_x=pos.x+directions[i].first;
         poss_y=pos.y+directions[i].second;
@@ -106,50 +108,63 @@ vector<pair<string,int>>paterns={
     {"001000",20}
 };
 
-int evaluatePoint(const Position p,char role){
-    string lines[4];//横，竖，斜，反斜
+int evaluatePoint(const Position p,Role role){
+    string lines1[4],lines2[4];//横，竖，斜，反斜
     for(int i=max(0,p.x-5);i<min(BOARD_WIDTH,p.x+6);i++){
         if(i!=p.x){
-            lines[0].push_back(board[i][p.y]==role? '1' : board[i][p.y] == EMPTY ? '0' : '2');
+            lines1[0].push_back(board[i][p.y] == role ? '1' : board[i][p.y] == EMPTY ? '0' : '2');
+            lines2[0].push_back(board[i][p.y] == role ? '2' : board[i][p.y] == EMPTY ? '0' : '1');
         }
         else{
-            lines[0].push_back('1');
+            lines1[0].push_back('1');
+            lines2[0].push_back('1');
         }
     }
     for(int i=max(0,p.y-5);i<min(BOARD_WIDTH,p.y+6);i++){
         if(i!=p.y){
-            lines[1].push_back(board[p.x][i]==role ? '1' : board[p.x][i] == EMPTY ? '0' : '2');
+            lines1[1].push_back(board[p.x][i] == role ? '1' : board[p.x][i] == EMPTY ? '0' : '2');
+            lines2[1].push_back(board[p.x][i] == role ? '2' : board[p.x][i] == EMPTY ? '0' : '1');
         }
         else{
-            lines[1].push_back('1');
+            lines1[1].push_back('1');
+            lines2[1].push_back('1');
         }
     }
     for(int i=p.x-min(min(p.x, p.y),5), j=p.y-min(min(p.x, p.y),5); i<min(BOARD_WIDTH,p.x+6)&&j<min(BOARD_WIDTH,p.y+6);i++,j++) {
         if(i!=p.x){
-            lines[2].push_back(board[i][j] == role ? '1' : board[i][j] == EMPTY ? '0' : '2');
+            lines1[2].push_back(board[i][j] == role ? '1' : board[i][j] == EMPTY ? '0' : '2');
+            lines2[2].push_back(board[i][j] == role ? '2' : board[i][j] == EMPTY ? '0' : '1');
         }
         else{
-            lines[2].push_back('1');
+            lines1[2].push_back('1');
+            lines2[2].push_back('1');
         }
     }
     for(int i=p.x+min(min(p.y,BOARD_WIDTH-1-p.x),5),j=p.y-min(min(p.y,BOARD_WIDTH-1-p.x),5);i>=max(0,p.x-5)&&j<min(BOARD_WIDTH,p.y+6);i--,j++) {
         if (i != p.x) {
-            lines[3].push_back(board[i][j] == role ? '1' : board[i][j] == EMPTY ? '0' : '2');
+            lines1[3].push_back(board[i][j] == role ? '1' : board[i][j] == EMPTY ? '0' : '2');
+            lines2[3].push_back(board[i][j] == role ? '2' : board[i][j] == EMPTY ? '0' : '1');
         }
         else {
-            lines[3].push_back('1');
+            lines1[3].push_back('1');
+            lines2[3].push_back('1');
         }
     }
 
-    int result=0;
+    int a=0,b=0;
     for(int i=0;i<4;i++){
         for(int j=0;j<paterns.size();j++){
             int num=0;
-            for(int t=0;(t=lines[i].find(paterns[j].first,t))!=string::npos; num++,t++);
-            result+=num*paterns[j].second;
+            for(int t=0;(t=lines1[i].find(paterns[j].first,t))!=string::npos; num++,t++);
+            a+=num*paterns[j].second;
+
+            num=0;
+            for(int t=0;(t=lines2[i].find(paterns[j].first,t))!=string::npos; num++,t++);
+            b+=num*paterns[j].second;
         }
     }
-    return result;
+    return (a+b);
+    
 }
 
 int evaluate(Role role){
@@ -167,12 +182,10 @@ void updateScore(const Position p){
     for (int i = 0; i < BOARD_WIDTH; i++) { //横
         lines1[1].push_back(board[p.x][i] == role ? '1' : board[p.x][i] == EMPTY ? '0' : '2');
         lines2[1].push_back(board[p.x][i] == role ? '2' : board[p.x][i] == EMPTY ? '0' : '1');
-
     }
     for (int i = p.x - min(p.x, p.y), j = p.y - min(p.x, p.y); i < BOARD_WIDTH && j < BOARD_WIDTH; i++, j++) {//反斜杠
         lines1[2].push_back(board[i][j] == role ? '1' : board[i][j] == EMPTY ? '0' : '2');
         lines2[2].push_back(board[i][j] == role ? '2' : board[i][j] == EMPTY ? '0' : '1');
-
     }
     for (int i = p.x + min(p.y, BOARD_WIDTH - 1 - p.x), j = p.y - min(p.y, BOARD_WIDTH - 1 - p.x); i >= 0 && j < BOARD_WIDTH; i--, j++) {//斜杠
         lines1[3].push_back(board[i][j] == role ? '1' : board[i][j] == EMPTY ? '0' : '2');
@@ -293,12 +306,11 @@ int abPruning(int depth,int alpha,int beta,Role currentSearchRole){
                 searchResult=p;
             }
         }
-
-    /*    count++;
-        if(count>=9){
+    
+        count++;
+        if(count>=7){
             break;
         }
-    */
     }
     return alpha;
 }
@@ -339,14 +351,18 @@ int main(){
     history.clear();
     winner=EMPTY;
     
+    ofstream out("output.txt");
+    vector<pair<int,int>>mannual;
+
     //开局
     srand((unsigned)time(NULL));
-    //int x=rand()%BOARD_WIDTH;
-    //int y=rand()%BOARD_WIDTH;
-    int x=7,y=7;
+    int x=rand()%BOARD_WIDTH;
+    int y=rand()%BOARD_WIDTH;
+    //int x=7,y=7;
     board[x][y]=AI;
     updateScore(Position(x,y));
     AddPossiblePositions(Position(x,y));
+    mannual.push_back({x,y});
 
     //对弈
     while(winner==EMPTY){
@@ -358,7 +374,8 @@ int main(){
         board[x][y]=HUMAN;
         updateScore(Position(x,y));
         AddPossiblePositions(Position(x,y));
-        
+        mannual.push_back({x,y});
+
         int score=abPruning(DEPTH,MIN_SCORE,MAX_SCORE,AI);
         cout<<"AI:"<<searchResult.x<<","<<searchResult.y<<endl;
         if(score>=MAX_SCORE-1000-1){
@@ -370,12 +387,28 @@ int main(){
         board[searchResult.x][searchResult.y]=AI;
         updateScore(searchResult);
         AddPossiblePositions(searchResult);
+        mannual.push_back({searchResult.x,searchResult.y});
     }
     printBoard();
+    out<<"  AI \t  ME"<<endl;
+    int turn=0;
+    for(auto item:mannual){
+        out<<'['<<item.first<<','<<item.second<<']';
+        if(turn%2==0){
+            out<<'\t';
+        }
+        else{
+            out<<endl;
+        }
+        turn++;
+    }
+
     if(winner==HUMAN){
         cout<<"YOU WIN!"<<endl;
+        out<<"\n\nYOU WIN!"<<endl;
     }
     else{
         cout<<"AI WIN!"<<endl;
+        out<<"\n\nAI WIN!"<<endl;
     }
 }

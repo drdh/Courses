@@ -1,7 +1,8 @@
 all:
-	@rm ./gobang -rf
+	@rm ./gobang output.txt -rf
 	@g++ -o gobang gobang.cpp -g
-	@./gobang
+	@#./gobang;cat output.txt
 
 clean:
-	@rm ./gobang -rf
+	@rm ./gobang output.txt -rf
+

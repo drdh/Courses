@@ -7,12 +7,6 @@
 
 using namespace std;
 
-struct cmp{
-    bool operator()(vector<int>&a,vector<int>&b){
-        return a[2]+a[3]>b[2]+b[3];//<i,j,g,h>
-    }
-};
-
 int h[18][25];//h(n), heuristics, -1==wall
 vector<char>Way;
 

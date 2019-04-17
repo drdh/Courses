@@ -11,14 +11,8 @@
 
 
 ```bash
-#命令查看GPU型号
-lspci |grep nvidia –I 
-#在CUDA下载页面选择合适的系统平台，下载对应的开发包(*.run)。
-#安装：使用：
-chmod a+x cuda_7.0.28_linux.run sudo
-./cuda_7.0.28_linux.run。
+yaourt -S cuda
 #设置环境变量：
-PATH=/usr/local/cuda/bin:$PATH export PATH
-source /etc/profile
+export PATH=/opt/cuda/bin:$PATH 
 ```
 

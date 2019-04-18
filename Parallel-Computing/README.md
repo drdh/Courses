@@ -16,3 +16,6 @@ yaourt -S cuda
 export PATH=/opt/cuda/bin:$PATH 
 ```
 
+
+
+[Matrix Vector Multiplication](<https://stackoverflow.com/questions/26417475/matrix-vector-multiplication-in-cuda-benchmarking-performance>)

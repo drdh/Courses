@@ -57,8 +57,7 @@ void parallel1(int *A, int *B, int *C,int BLOCK_NUM){
 
     dim3 dimBlock(BLOCK_SIZE, BLOCK_SIZE); 
     dim3 dimGrid(BLOCK_NUM, BLOCK_NUM);
-    deviceParallel1<<<dimBlock, dimGrid>>>(CA, CB, CC,BLOCK_NUM);
-    //cudaThreadSynchronize();
+    deviceParallel1<<<dimGrid,dimBlock>>>(CA, CB, CC,BLOCK_NUM);
     cudaDeviceSynchronize();
     cudaMemcpy(C, CC, sizeof(int) * BLOCK_NUM * BLOCK_SIZE * BLOCK_NUM * BLOCK_SIZE, 
                                         cudaMemcpyDeviceToHost);
@@ -81,8 +80,8 @@ void deviceParallel2(int *A, int *B, int *C,int BLOCK_NUM){
 
     //循环，遍历所有子矩阵
     for (int i = 0; i < BLOCK_NUM; i++) {   
-        const int *ASub = A + blkRow * BLOCK_SIZE * BLOCK_NUM + i * BLOCK_SIZE; 
-        const int *BSub = B + i * BLOCK_SIZE * BLOCK_NUM + blkCol * BLOCK_SIZE;
+        const int *ASub = A + blkRow * BLOCK_SIZE * BLOCK_NUM * BLOCK_SIZE + i * BLOCK_SIZE; 
+        const int *BSub = B + i * BLOCK_SIZE * BLOCK_NUM * BLOCK_SIZE + blkCol * BLOCK_SIZE;
 
         __shared__ int Ads[BLOCK_SIZE][BLOCK_SIZE]; 
         __shared__ int Bds[BLOCK_SIZE][BLOCK_SIZE];
@@ -92,12 +91,12 @@ void deviceParallel2(int *A, int *B, int *C,int BLOCK_NUM){
 
         __syncthreads();
 
-        for (int i = 0; i < BLOCK_SIZE; i++) {
-            var += Ads[row][i] * Bds[i][col]; 
+        for (int k = 0; k < BLOCK_SIZE; k++) {
+            var += Ads[row][k] * Bds[k][col]; 
         }
         __syncthreads();
     }
-    int *CSub = C + blkRow * BLOCK_SIZE * BLOCK_NUM + blkCol * BLOCK_SIZE;
+    int *CSub = C + blkRow * BLOCK_SIZE * BLOCK_NUM * BLOCK_SIZE + blkCol * BLOCK_SIZE;
     *(CSub + row * BLOCK_SIZE * BLOCK_NUM + col) = var;
 }
 
@@ -116,9 +115,8 @@ void parallel2(int *A, int *B, int *C,int BLOCK_NUM){
     dim3 dimBlock(BLOCK_SIZE, BLOCK_SIZE); 
     dim3 dimGrid(BLOCK_NUM, BLOCK_NUM);
 
-    deviceParallel2<<<dimBlock, dimGrid>>>(CA, CB, CC,BLOCK_NUM);
+    deviceParallel2<<<dimGrid,dimBlock>>>(CA, CB, CC,BLOCK_NUM);
 
-    //cudaThreadSynchronize();
     cudaDeviceSynchronize();
 
     cudaMemcpy(C, CC, sizeof(int) * BLOCK_NUM * BLOCK_SIZE * BLOCK_NUM * BLOCK_SIZE, 
@@ -140,7 +138,7 @@ void read(int *M, int row, int col){
 
 
 int main(int argc, char const *argv[]){
-    int BLOCK_NUM=4;
+    int BLOCK_NUM=3;
 
     int *A = new int[BLOCK_NUM * BLOCK_SIZE * BLOCK_NUM * BLOCK_SIZE];
     int *B = new int[BLOCK_NUM * BLOCK_SIZE * BLOCK_NUM * BLOCK_SIZE];
@@ -154,12 +152,12 @@ int main(int argc, char const *argv[]){
 
     cout << "Serial Time = " << getTime(A, B, C1, searial,BLOCK_NUM) << " ps." << endl;
     cout << "Parallel1 Time = " << getTime(A, B, C2, parallel1,BLOCK_NUM) << " ps." << endl;
-    //cout << "Parallel2 Time = " << getTime(A, B, C3, parallel2,BLOCK_NUM) << " ps." << endl;
+    cout << "Parallel2 Time = " << getTime(A, B, C3, parallel2,BLOCK_NUM) << " ps." << endl;
 
     
     for(int i=0;i<BLOCK_NUM* BLOCK_SIZE * BLOCK_NUM * BLOCK_SIZE;i++){
         if(C1[i]!=C2[i]|| C1[i]!=C3[i] ){
-            cout<<"error "<<C1[i]<<","<<C2[i]<<","<<C3[i]<<endl;
+            cout<<"error "<<i<<" "<<C1[i]<<","<<C2[i]<<","<<C3[i]<<endl;
         }
     }
     

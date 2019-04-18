@@ -19,10 +19,10 @@ double getTime( int * dA, int *dx,int *dy, int nRows, int nx,
     return interval;
 }
 
-void matvect_serial( int * dA, int *dx,int *dy, int nRows, int nx){
+void matvec_serial( int * dA, int *dx,int *dy, int nRows, int nx){
     for(int i=0;i<nRows;i++){
         int sum=0;
-        for(int j=0;i<nx;j++){
+        for(int j=0;j<nx;j++){
             sum+=dA[i*nx+j]*dx[j];
         }
         dy[i]=sum;
@@ -36,8 +36,7 @@ __global__ void matvec_kernel(int *dA, int *dx,int *dy, int nRows, int nCols){
    int y_val = 0;
 
    #pragma unroll
-   for (unsigned int m = 0; m < ((nCols + BLOCK_SIZE - 1)/ BLOCK_SIZE); ++m)
-   {
+   for (int m = 0; m < ((nCols + BLOCK_SIZE - 1)/ BLOCK_SIZE); ++m){
        if ((m * BLOCK_SIZE + threadIdx.x) <  nCols) 
            x_shared[threadIdx.x] = dx[threadIdx.x + m * BLOCK_SIZE];
        else                                         
@@ -46,11 +45,11 @@ __global__ void matvec_kernel(int *dA, int *dx,int *dy, int nRows, int nCols){
        __syncthreads();
 
        #pragma unroll
-       for (unsigned int e = 0; e < BLOCK_SIZE; ++e) {
+       for (int e = 0; e < BLOCK_SIZE; ++e) {
            // --- Column-major ordering - faster
-           y_val += dA[tid + (e + BLOCK_SIZE * m) * nRows] * x_shared[e];
+           //y_val += dA[tid + (e + BLOCK_SIZE * m) * nRows] * x_shared[e];
            // --- Row-major ordering - slower
-           //y_val += dA[tid * nCols + (e + BLOCK_SIZE * m)] * x_shared[e];
+           y_val += dA[tid * nCols + (e + BLOCK_SIZE * m)] * x_shared[e];
        }
        __syncthreads();
    }
@@ -70,7 +69,7 @@ __host__ void matvec( int * dA, int *dx,int *dy, int nRows, int nx){
 
     dim3 grid((nRows+BLOCK_SIZE-1)/BLOCK_SIZE);
     dim3 block(BLOCK_SIZE);
-    matvec_kernel<<<grid,block>>>(dA,dx,dy,nRows,nx);
+    matvec_kernel<<<grid,block>>>(CdA,Cdx,Cdy,nRows,nx);
 
     cudaDeviceSynchronize();
 
@@ -94,7 +93,7 @@ int main(int argc, char const *argv[]){
 
     srand((unsigned)time(NULL));
     for(int i=0;i<nRows;i++){
-        for(int j=0;i<nx;j++){
+        for(int j=0;j<nx;j++){
             dA[i*nx+j]=rand()%100;
         }
     }
@@ -102,8 +101,14 @@ int main(int argc, char const *argv[]){
         dx[i]=rand()%100;
     }
 
-    cout << "Serial Time = " << getTime(dA,dx,dr,nRows,nx,matvec) << " ps." << endl;
-    cout << "Parallel1 Time = " << getTime(dA,dx,dy,nRows,nx,matvect_serial) << " ps." << endl;
+    cout << "Serial Time = " <<    getTime(dA,dx,dr,nRows,nx,matvec_serial) << " ps." << endl;
+    cout << "Parallel Time = " << getTime(dA,dx,dy,nRows,nx,matvec) << " ps." << endl;
+
+    for(int i=0;i<nRows;i++){
+        if(dy[i]!=dr[i]){
+            cout<<"error "<<i<<" "<<dr[i]<<","<<dy[i]<<endl;
+        }
+    }
 
     free(dA);
     free(dx);

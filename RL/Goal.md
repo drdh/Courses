@@ -1,55 +1,87 @@
-#### Goal
+### Original Ideas
 
-~~not Navigation~~
+#### Problem
 
-task-based navigation and obstacles avoidance
+Task-Based Navigation and Obstacles Avoidance. ~~not pure Navigation~~
+
+<img src="./Goal.assets/goal_define.png" style="zoom:100%">
 
 #### Features
 
-map-less
+- Map-less
 
-autonomous navigation and task completion
+- Autonomous navigation and task completion
 
-task definition by imitating
+- Task definition by imitating
 
 #### Approach
 
-*use one or two new techniques or combine some undone things*
+***combine one or two new techniques***
 
-static env data to pre-train NN 
+1. **Data Generating ** 
 
-Imitation Learning ==> RL(Constrained Policy Optimization (CPO))
+   Use classic methods(SLAM, ROS move_base) to generate data in static env(without dynamic obstacles) [with random settings].
 
-**or** Inverse RL 
+   - Dynamic obstacles will be handled by RL
+   - Random settings: Avoid overfitting to some specific env 
+     - Random static wall layout
 
+2. **Task Definition by Imitating** 
 
+   Imitation Learning(IL) to pre-train SRL(State Representation Learning) and RL(Constrained Policy Optimization (CPO)) 
+
+   - Imitation: task define & accelerate training process by reduce random exploration iterations
+   - SRL: reduce search space
+   - CPO: avoid collision
+   - NN Structure: 1D CNN
+
+3. **Training Process ** 
+
+   Train SRL and RL in dynamic env [with random settings] by trial and error exploration combined with reward signals. 
+
+   - Dynamic obstacle avoidance with RL
+   - Random settings: Avoid overfitting to some specific env 
+     - Random static wall layout
+     - Random dynamic obstacles
+
+4. **Optimal Structure Search: **
+
+   - AutoRL
+     - automates the search for RL reward and neural network architecture
+
+#### Contributions
+
+1. Combine IL, SRL, RL together in task-based navigation
+2. Pre-Training in static env and Re-Training in dynamic env
+3. Use AutoRL to define rewards in staged-goals
+
+**Other ideas**
+
+Inverse RL 
 
 hierarchical RL
 
+Navigation: A* algorithms
 
+#### Experiments
 
-Navigation:
+Multiple Approaches Comparation
 
-A* algorithms
-
-
-
-Obstacle Avoidance: 
-
-RL
-
-
-
-Random Env
-
-Other static/dynamic agents
+- with/without Imitation Learning
+- with/without SRL
+- pure RL
 
 #### Ref Papers
 
-- [Reinforced Imitation: Sample Efficient Deep Reinforcement Learning for Map-less Navigation by Leveraging Prior Demonstrations](<https://arxiv.org/pdf/1805.07095.pdf>)
+- [github RL navigation](<https://github.com/ethz-asl/rl-navigation>)
 
-  [RL navigation](<https://github.com/ethz-asl/rl-navigation>)
+  [arxiv1805: Reinforced Imitation: Sample Efficient Deep Reinforcement Learning for Map-less Navigation by Leveraging Prior Demonstrations](<https://arxiv.org/abs/1805.07095>)
 
 - [S-RL Toolbox’s documentation](<https://s-rl-toolbox.readthedocs.io/en/latest/>)
 
 - [Google AI Navigation via AutoRL](<https://ai.googleblog.com/2019/02/long-range-robotic-navigation-via.html>)
+
+#### Others
+
+- [Lab for Autonomous and Intelligent Robotics ](<https://www.lair.hmc.edu/>)
+

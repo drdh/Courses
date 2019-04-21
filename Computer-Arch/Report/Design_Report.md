@@ -1,5 +1,3 @@
-
-
 # RISC-V 32流水线CPU的verilog实现
 
 ## 1. 实验任务

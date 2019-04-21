@@ -44,7 +44,7 @@ Task-Based Navigation and Obstacles Avoidance. ~~not pure Navigation~~
      - Random static wall layout
      - Random dynamic obstacles
 
-4. **Optimal Structure Search: **
+4. **Optimal Structure Search**
 
    - AutoRL
      - automates the search for RL reward and neural network architecture

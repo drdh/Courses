@@ -51,6 +51,133 @@ Task-Based Navigation and Obstacles Avoidance. ~~not pure Navigation~~
 
 #### Related work
 
+##### Reinforced Imitation
+
+###### Resources
+
+[github](<https://github.com/ethz-asl/rl-navigation>) implement this [paper](<https://arxiv.org/abs/1805.07095>): *Reinforced Imitation: Sample Efficient Deep Reinforcement Learning for Map-less Navigation by Leveraging Prior Demonstrations* 
+
+###### Background
+
+- Autonomous navigation in environments where global knowledge of the map is available is nowadays well understood
+- Given only local perception of the robot and a relative target position, robust map-less navigation strategies are required
+
+###### Motivation
+
+- Main purpose: map-less navigation skills based solely on local information available to the robot through its sensors 
+
+  Given the sensor measurements $\mathbf{y}$ and a relative target position $\mathbf{g}$ ,we want to find a policy $\pi_\theta$ parametrized by $\theta$ which maps the inputs to suitable control commands, $\mathbf{u}$ (translational and rotational velocity), i.e
+  $$
+  \mathbf{u}=\pi_\theta (\mathbf{y},\mathbf{g})
+  $$
+
+
+- RL: sample complexity
+
+  - sample inefficiency and missing safety during training
+
+- IL: distribution mismatch
+
+  - sample efficient and can achieve accurate imitation of the expert demonstrations
+  - overfit to the environment and situations presented at training time
+
+- intension
+
+  does not intend to show that we can outperform a global graph-based planner in known environments, where graphbased solutions are fast and can achieve optimal behavior. The goal of our experiments is to investigate the limits of motion planning with local information only
+
+###### Methods
+
+combines supervised IL based on expert demonstrations to pre-train the navigation policy with subsequent RL (Constrained Policy Optimization (CPO) )
+
+- Training navigation model
+
+  ![1556365572357](Goal.assets/1556365572357.png)
+
+- generate expert demonstrations in simulation: global planner
+
+  similar to [paper](<https://arxiv.org/abs/1609.07910>) *From Perception to Decision: A Data-driven Approach to End-to-end Motion Planning for Autonomous Ground Robots*
+
+  [**ROS move_base**](<http://wiki.ros.org/move_base>)
+
+- Neural network model for $\pi_\theta$
+
+  ![1556366240977](Goal.assets/1556366240977.png)
+
+  - inputs: 2D laser range findings and a relative target position in polar coordinates w.r.t. the local robot coordinate frame.
+
+    fully connected layers instead of CNN: CNN tends to overfit to the shapes of the obstacles presented during training.
+
+  - min pooling: compress the full range of 1080 measurements into 36 values
+    $$
+    \mathbf{y}_{p,i}=\min\left(\mathbf{y}_{i\cdot k},\cdots,\mathbf{y}_{(i+1)\cdot k-1}	\right)
+    $$
+    $i$ value index; $k$ kernel size for 1D pooling, k=30
+
+    assure safety; simplify models
+
+  - normalize to interval [-1,1]
+    $$
+    2\left(1-\frac{\min(\mathbf{y}_{p,i},r_{\text{max}})}{r_{\text{max}}}	\right)-1
+    $$
+    $r_{\text{max}}$: maximum laser range
+
+- CPO
+
+  -  If it is too low, the agent may decide to experience unsafe states for short amounts of time as this will not severely impact the overall performance
+
+  - Conversely, if the cost is too high, the agent may avoid exploring entire portions of the state space to avoid the risk of experiencing unsafe states
+
+  - $$
+    C: \mathcal{S}\times \mathcal{A}\to \mathbb{R}	\\
+    J_C(\theta)=\mathbb{E}\left[\sum_{t=0}^T \gamma^t\cdot C(s_t,\pi_\theta(s_t))	\right]\\
+    \theta^*=\arg \max J(\theta),s.t. J_C(\theta)\le \alpha
+    $$
+
+    
+
+  - output stochastic policy
+
+    - a 2D Gaussian distribution having the de-normalized values of the output of the neural network as mean
+    - a 2D standard deviation which is a separate learn-able parameter
+
+##### CPO
+
+###### Resources
+
+[github](<https://github.com/jachiam/cpo>) implement constrained policy optimization([CPO](<https://arxiv.org/abs/1705.10528>))
+
+###### Features
+
+- Incorporate constraints during training
+
+##### SRL
+
+###### Resources
+
+- SRL ToolBox
+  - [github](<https://github.com/araffin/robotics-rl-srl>) implementation and [docs](<https://s-rl-toolbox.readthedocs.io/en/latest/>)
+  - [Paper 1](<https://arxiv.org/abs/1809.09369>)*S-RL Toolbox: Environments, Datasets and Evaluation Metrics for State Representation Learning*
+  - [Paper 2](<https://arxiv.org/abs/1901.08651>) *Decoupling feature extraction from policy learning: assessing benefits of state representation learning in goal based robotics*
+- SRL for control overview
+  - [Paper](<https://www.sciencedirect.com/science/article/pii/S0893608018302053>) *State representation learning for control: An overview*
+  - 
+
+###### Features
+
+- State representation learning aims at learning compact representations from raw observations in robotics and control applications. 
+- Approaches
+  - autoencoders
+  - learning forward models
+  - inverse dynamics 
+
+
+
+##### AutoRL
+
+###### Resources
+
+[Google AI Blog Navigation via AutoRL](<https://ai.googleblog.com/2019/02/long-range-robotic-navigation-via.html>)
+
 
 
 
@@ -77,11 +204,9 @@ Multiple Approaches Comparation
 - with/without SRL
 - pure RL
 
-#### Ref Papers
+#### Ref 
 
 - [github RL navigation](<https://github.com/ethz-asl/rl-navigation>)
-
-  [arxiv1805: Reinforced Imitation: Sample Efficient Deep Reinforcement Learning for Map-less Navigation by Leveraging Prior Demonstrations](<https://arxiv.org/abs/1805.07095>)
 
 - [S-RL Toolbox’s documentation](<https://s-rl-toolbox.readthedocs.io/en/latest/>)
 

@@ -1,5 +1,7 @@
 # Lab 4 MapReduce
 
+下载[Hadoop tsinghua](<https://mirrors.tuna.tsinghua.edu.cn/apache/hadoop/common/hadoop-3.2.0/>)
+
 
 
 

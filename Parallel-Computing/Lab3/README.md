@@ -8,6 +8,18 @@
 
 ## 实验环境
 
+SSH Tunnel
+
+```bash
+ssh -N -L localhost:5901:localhost:5901 drdh@222.195.92.204 -p 5555
+```
+
+`Ubuntu`中安装`remmina` 
+
+![1556336875446](README.assets/1556336875446.png)
+
+
+
 ```bash
 CPU: Intel(R) Xeon(R) CPU E5-2680 v4 @ 2.40GHZ
 GPU: GeForce GTX 1080

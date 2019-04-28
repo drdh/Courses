@@ -72,6 +72,7 @@ Task-Based Navigation and Obstacles Avoidance. ~~not pure Navigation~~
   $$
 
 
+
 - RL: sample complexity
 
   - sample inefficiency and missing safety during training
@@ -160,15 +161,83 @@ combines supervised IL based on expert demonstrations to pre-train the navigatio
   - [Paper 2](<https://arxiv.org/abs/1901.08651>) *Decoupling feature extraction from policy learning: assessing benefits of state representation learning in goal based robotics*
 - SRL for control overview
   - [Paper](<https://www.sciencedirect.com/science/article/pii/S0893608018302053>) *State representation learning for control: An overview*
-  - 
 
 ###### Features
 
 - State representation learning aims at learning compact representations from raw observations in robotics and control applications. 
-- Approaches
-  - autoencoders
-  - learning forward models
-  - inverse dynamics 
+
+- encode essential information (for a given task) while discarding irrelevant aspects of the original data.
+
+- General model
+  $$
+  o_t \xrightarrow[SRL]{\phi}s_t\xrightarrow[RL]{\pi}a_t
+  $$
+  
+
+  ![1556416096146](Goal.assets/1556416096146.png)
+
+  circles are observable; squares are the latent state variables.
+
+###### Approaches
+
+- **Reconstructing the observation**
+
+  minimize the reconstruction error between the original observation and its predicted reconstructions
+  $$
+  s_t=\phi(o_t;\theta_\phi)	\\
+  \hat{o}_t=\phi^{-1}(s_t;\theta_{\phi^{-1}})
+  $$
+  $\theta_\phi$ : parameters for encoder
+
+  $\theta_{\phi^{-1}}$: parameters for decoder
+
+  ![1556418662859](Goal.assets/1556418662859.png)
+
+  This approach does not take advantage of the robotic context because it ignores the possible actions, therefore it is often associated with different objectives (e.g. forward model), and provides a performance baseline.
+
+  Auto-encoders tend to reconstruct everything (that is salient enough in the observation),
+  including static objects and irrelevant features for the task (distractors)
+
+- Learning a **forward model**
+
+  predicts $s_{t+1}$ from $o_t$ or $s_t$ and $a_t$
+  $$
+  s_t=\phi(o_t;\theta_\phi)	\\
+  \hat{s}_{t+1}=f(s_t,a_t;\theta_{fwd})
+  $$
+  ![1556424044355](Goal.assets/1556424044355.png)
+
+  forward and inverse models focus on the dynamics, usually encoding the position of the controlled robot in the representation, but not a goal that is not controlled by the actions
+
+- Learning an **inverse model**
+
+  predicts $a_t$ given observations $o_t$ and $o_{t+1}$ or states $s_t$ and $s_{t+1}$
+  $$
+  s_t=\phi(o_t;\theta_\phi)	\\
+  s_{t+1}=\phi(o_{t+1};\theta_\phi)	\\
+  \hat{a}_t=g(s_t,s_{t+1};\theta_{inv})
+  $$
+  compute the error between $a_t$ and $\hat{a}_t$
+
+  ![1556418710964](Goal.assets/1556418710964.png)
+
+- Using **prior knowledge** to constrain the state space
+
+  using specific constraints or prior knowledge about the functioning, dynamics or physics of the world (besides the constraints of forward and inverse models) such as the temporal continuity or the causality principles that generally reflect the interaction of the agent with objects or in the environment
+  $$
+  Loss=\mathcal{L}(s_{1:n};\theta_{\phi}|c)
+  $$
+  ![1556418729100](Goal.assets/1556418729100.png)
+
+  
+
+- combination
+
+  - VAE with a recurrent forward model
+
+    [paper](<https://arxiv.org/abs/1803.10122>) *World Models*
+
+    
 
 
 

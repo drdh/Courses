@@ -26,7 +26,7 @@ Task-Based Navigation and Obstacles Avoidance. ~~not pure Navigation~~
    - Random settings: Avoid overfitting to some specific env 
      - Random static wall layout
 
-2. **Task Definition by Imitating** 
+2. **Initialized by Imitating** 
 
    Imitation Learning(IL) to pre-train SRL(State Representation Learning) and RL(Constrained Policy Optimization (CPO)) 
 
@@ -44,7 +44,7 @@ Task-Based Navigation and Obstacles Avoidance. ~~not pure Navigation~~
      - Random static wall layout
      - Random dynamic obstacles
 
-4. **Optimal Structure Search**
+4. **Optimal Reward & Structure Search**
 
    - AutoRL
      - automates the search for RL reward and neural network architecture
@@ -84,7 +84,7 @@ Task-Based Navigation and Obstacles Avoidance. ~~not pure Navigation~~
 
 - intension
 
-  does not intend to show that we can outperform a global graph-based planner in known environments, where graphbased solutions are fast and can achieve optimal behavior. The goal of our experiments is to investigate the limits of motion planning with local information only
+  does not intend to show that we can outperform a global graph-based planner in known environments, where graph based solutions are fast and can achieve optimal behavior. The goal of our experiments is to investigate the limits of motion planning with local information only
 
 ###### Methods
 
@@ -243,11 +243,22 @@ combines supervised IL based on expert demonstrations to pre-train the navigatio
 
 ##### AutoRL
 
-###### Resources
+GPU intensive
 
 [Google AI Blog Navigation via AutoRL](<https://ai.googleblog.com/2019/02/long-range-robotic-navigation-via.html>)
 
+[paper 1](<https://ieeexplore.ieee.org/document/8643443>) *Learning Navigation Behaviors End-to-End With AutoRL*
 
+#### Features
+
+- train local planner agents to perform basic navigation behaviors, traversing short distances safely without collisions with moving obstacles.
+- The local planners take noisy sensor observations, such as a 1D lidar that provides distances to obstacles, and output linear and angular velocities for robot control
+- train the local planner in simulation with AutoRL, a method that automates the search for RL reward and neural network architecture
+- Paper 1
+  - 2 phases
+    - reward search;fixed network
+    - neural network architecture search; fixed reward
+  - trained in simulation with only static obstacles, they can also handle moving objects effectively
 
 
 

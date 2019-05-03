@@ -8,6 +8,18 @@
 
 ## 实验环境
 
+首先使用SSH Tunnel建立连接到本地，
+
+```bash
+ssh -N -L localhost:5901:localhost:5901 drdh@222.195.92.204 -p 5555
+```
+
+然后使用远程桌面，`Ubuntu`中安装`remmina` ，配置如下
+
+![1556336875446](README.assets/1556336875446.png)
+
+使用方式先是上面的`SSH`命令，然后`remmina`运行，然后点击desk3即可。
+
 ```bash
 CPU: Intel(R) Xeon(R) CPU E5-2680 v4 @ 2.40GHZ
 GPU: GeForce GTX 1080

@@ -5,7 +5,7 @@
 登录服务器[SSH Tunnel扫盲(ssh port forwarding端口转发)](https://blog.51cto.com/sjitwant/1934069)
 
 ```bash
-ssh -N -f -L localhost:8001:192.168.1.63:8000 222.195.92.204 -p 5555
+ssh -N  -L localhost:8001:192.168.1.63:8000 222.195.92.204 -p 5555
 # lsof -ti:8001 | xargs kill -9
 #　或者不使用-f
 ```

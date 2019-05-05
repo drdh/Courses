@@ -206,5 +206,111 @@ Core:28
 
 
 
+## Ubuntu 远程桌面
 
+### VNC的安装与配置
+
+安装之前先输入
+
+```bash
+apt-get update
+```
+
+获取最新套件的信息。
+
+输入以下命令安装VNC，安装过程中需要输入Y来确认
+
+```bash
+apt-get install vnc4server
+```
+
+启动VNC
+
+```bash
+vncserver
+```
+
+设置密码为`drdhlx`
+
+### gnome 桌面环境安装与配置
+
+安装x－windows的基础
+
+```bash
+sudo apt-get install x-window-system-core
+```
+
+安装登录管理器
+
+```bash
+#sudo apt-get install gdm
+```
+
+安装Ubuntu的桌面
+
+```bash
+#sudo apt-get install ubuntu-desktop
+sudo apt-get install ubuntu-gnome-desktop
+```
+
+安装gnome配套软件
+
+```bash
+sudo apt-get install gnome-panel gnome-settings-daemon metacity nautilus gnome-terminal
+```
+
+调整分辨率，方便操作
+
+```
+vim /usr/bin/vncserver
+```
+
+修改VNC配置文件
+
+```bash
+vim ~/.vnc/xstartup
+```
+
+
+修改为
+
+```bash
+#!/bin/sh
+export XKL_XMODMAP_DISABLE=1
+#unset SESSION_MANAGER
+#exec /etc/X11/xinit/xinitrc
+unset DBUS_SESSION_BUS_ADDRESS
+[ -x /etc/vnc/xstartup ] && exec /etc/vnc/xstartup
+[ -r $HOME/.Xresources ] && xrdb $HOME/.Xresources
+xsetroot -solid grey
+vncconfig -iconic &
+x-terminal-emulator -geometry 80x24+10+10 -ls -title "$VNCDESKTOP Desktop" &
+gnome-session &
+gnome-panel &
+gnmoe-settings-daemon &
+metacity &
+nautilus &
+gnome-terminal &
+xfwm4 &
+```
+
+
+杀掉原桌面进程，输入命令（其中的:1是桌面号）：
+
+```
+vncserver -kill :1
+```
+
+输入以下命令生成新的会话：
+
+```
+vncserver :1
+```
+
+
+开启VNC服务需要用到的5900和5901端口，具体可查看防火墙功能说明。
+
+```bash
+ssh -N -L localhost:5901:localhost:5901 222.195.92.204 -p 5555
+```
 

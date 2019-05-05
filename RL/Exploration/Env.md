@@ -219,6 +219,13 @@ Next:
 
 
 
+```
+- tar:
+    local-name: opencv3
+    uri: https://github.com/ros-gbp/opencv3-release/archive/release/kinetic/opencv3/3.3.1-5.tar.gz
+    version: opencv3-release-release-kinetic-opencv3-3.3.1-5
+```
+
 
 
 

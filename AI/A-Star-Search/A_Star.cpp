@@ -4,8 +4,11 @@
 #include<queue>
 #include<vector>
 #include<time.h>
+#include<cstring>
 
 using namespace std;
+
+int ROW,COL,dst_row,dst_col;
 
 struct cmp{
     bool operator()(vector<int>&a,vector<int>&b){
@@ -13,29 +16,51 @@ struct cmp{
     }
 };
 
-int main(){
+int main(int argc,char * argv[]){
     clock_t start_time,stop_time;
-    int h[18][25];//h(n), heuristics, -1==wall
+    string filename;
+    if(!strcmp(argv[1],"-1")){
+        filename="input1.txt";
+        ROW=18;//30
+        COL=25;//60
+        dst_row=16;//28
+        dst_col=24;//59
+    }
+    else if(!strcmp(argv[1],"-2")){
+        filename="input2.txt";
+        ROW=30;
+        COL=60;
+        dst_row=28;
+        dst_col=59;
+    }
+    else{
+        cout<<"arg error"<<endl;
+        return 0;
+    }
+
+    int h[ROW][COL];//h(n), heuristics, -1==wall
 
     //read file
-    ifstream in("input.txt");
-    for(int i=0;i<18;i++){
-        char buffer[64];
-        in.getline(buffer,51);
-        for(int j=0;j<25;j++){
+    ifstream in(filename);
+    
+
+    for(int i=0;i<ROW;i++){
+        char buffer[COL*3];
+        in.getline(buffer,COL*3-2);
+        for(int j=0;j<COL;j++){
             int tmp=buffer[j*2]-'0';
             if(tmp==1){
                 h[i][j]=-1;
             }
             else{
-                h[i][j]=abs(i-16)+abs(j-24);
+                h[i][j]=abs(i-dst_row)+abs(j-dst_col);
             }
         }
     }//(1,0)==>(16,24)
 
     //<i,j,g,h>
     priority_queue<vector<int>,vector<vector<int>>,cmp>Leaf;
-    char Way[18][25]; //L D R U
+    char Way[ROW][COL]; //L D R U
 
     start_time=clock();
 
@@ -43,7 +68,7 @@ int main(){
     Leaf.push({1,0,0,h[1][0]});
     h[0][1]=-1; //never back
 
-    while(!(pos[0]==16 && pos[1]==24)){
+    while(!(pos[0]==dst_row && pos[1]==dst_col)){
         pos=Leaf.top();Leaf.pop();
         int i=pos[0],j=pos[1],g=pos[2];
         if(h[i+1][j]!=-1){
@@ -72,7 +97,7 @@ int main(){
     ofstream out("output_A.txt");
 
     out<<(double)(stop_time-start_time)/CLOCKS_PER_SEC<<endl;
-    int i=16,j=24;
+    int i=dst_row,j=dst_col;
     vector<char>tmp;
     while(!(i==1 && j==0)){
         switch (Way[i][j]){

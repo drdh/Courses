@@ -6,9 +6,9 @@
 
 ```bash
 make #编译
-./A_Star #执行A*算法
+./A_Star -1 #执行A*算法,-1表示input1.txt, -2表示input2.txt
 cat output_A.txt #输出结果
-./IDA_Star #执行IDA*算法
+./IDA_Star -1 #执行IDA*算法,-1表示input1.txt, -2表示input2.txt
 cat output_IDA.txt #输出结果
 make clean #清空
 ```
@@ -27,15 +27,25 @@ $$
 
 除此之外，相对于欧式距离，曼哈顿距离不用计算平方，计算量小。
 
-
 ### 1.3 结果
+
+#### input1
 
 | 算法 | 执行时间 | 动作序列                                | 总步数 |
 | ---- | -------- | --------------------------------------- | ------ |
 | A*   | 1.6e-05  | RDDDRRRDDRDRDDDDRRRRDDRRRRRRRRDDDRRRRRR | 39     |
 | IDA* | 6e-06    | RDDDRRRDDRDRDDDDRRRRDDDDDRRRRRRRRRRRRRR | 39     |
 
-![1555126374500](Lab1_Doc.assets/1555126374500.png)
+#### input2
+
+由于input2中的可行路线太多，直接的IDA*算法搜索空间过大，无法得出结果。
+
+| 算法 | 执行时间 | 动作序列                                                     | 总步数 |
+| ---- | -------- | ------------------------------------------------------------ | :----- |
+| A*   | 0.000109 | RRRRRRRRRRRRRRRRRRRDDRDRRDRRRRRRRRRRRRRRUUUURRDDD RRRRDDDDDDDDRRRRRRUUUUUURRDDRDRDRRRRRRDDDDDDDD DDDDDDDDLLLLLDDRRRRRR | 116    |
+| IDA* | ×        | ×                                                            | ×      |
+
+![1557131882905](Lab1_Doc.assets/1557131882905.png)
 
 ### 1.4 复杂度分析
 

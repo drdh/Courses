@@ -14,17 +14,18 @@ module cache #(
     input  wr_req,             // 写请求信号
     input  [31:0] wr_data      // 要写入的数据，一次写一个word
 );
-
+//主存每次读一个line的数据
 localparam MEM_ADDR_LEN    = TAG_ADDR_LEN + SET_ADDR_LEN ; // 计算主存地址长度 MEM_ADDR_LEN，主存大小=2^MEM_ADDR_LEN个word
-localparam UNUSED_ADDR_LEN = 32 - MEM_ADDR_LEN - 2 ;       // 计算未使用的地址的长度
+localparam UNUSED_ADDR_LEN = 32 - MEM_ADDR_LEN - 2 -LINE_ADDR_LEN ;       // 计算未使用的地址的长度
+//此处之前没有-LINE_ADDR_LEN, 但是很明显需要加上
 
 localparam LINE_SIZE       = 1 << LINE_ADDR_LEN  ;         // 计算 line 中 word 的数量，即 2^LINE_ADDR_LEN 个word 每 line
 localparam SET_SIZE        = 1 << SET_ADDR_LEN   ;         // 计算一共有多少组，即 2^SET_ADDR_LEN 个组
 
-reg [            31:0] cache_mem    [SET_SIZE][LINE_SIZE]; // SET_SIZE个line，每个line有LINE_SIZE个word
-reg [TAG_ADDR_LEN-1:0] cache_tags   [SET_SIZE];            // SET_SIZE个TAG
-reg                    valid        [SET_SIZE];            // SET_SIZE个valid(有效位)
-reg                    dirty        [SET_SIZE];            // SET_SIZE个dirty(脏位)
+reg [            31:0] cache_mem    [SET_SIZE][WAY_CNT][LINE_SIZE]; // SET_SIZE个line，每个line有LINE_SIZE个word
+reg [TAG_ADDR_LEN-1:0] cache_tags   [SET_SIZE][WAY_CNT];            // SET_SIZE个TAG
+reg                    valid        [SET_SIZE][WAY_CNT];            // SET_SIZE个valid(有效位)
+reg                    dirty        [SET_SIZE][WAY_CNT];            // SET_SIZE个dirty(脏位)
 
 wire [              2-1 :0]   word_addr;                   // 将输入地址addr拆分成这5个部分
 wire [  LINE_ADDR_LEN-1 :0]   line_addr;
@@ -40,7 +41,7 @@ reg [   TAG_ADDR_LEN-1 :0] mem_rd_tag_addr = 0;
 wire[   MEM_ADDR_LEN-1 :0] mem_rd_addr = {mem_rd_tag_addr, mem_rd_set_addr};
 reg [   MEM_ADDR_LEN-1 :0] mem_wr_addr = 0;
 
-reg  [31:0] mem_wr_line [LINE_SIZE];
+reg  [31:0] mem_wr_line [LINE_SIZE]; //mem操作的单位为一个line长度
 wire [31:0] mem_rd_line [LINE_SIZE];
 
 wire mem_gnt;      // 主存响应读写的握手信号
@@ -48,12 +49,23 @@ wire mem_gnt;      // 主存响应读写的握手信号
 assign {unused_addr, tag_addr, set_addr, line_addr, word_addr} = addr;  // 拆分 32bit ADDR
 
 reg cache_hit = 1'b0;
+reg [WAY_CNT-1:0]hit_way;//当hit时，表示具体哪一个路命中
 always @ (*) begin              // 判断 输入的address 是否在 cache 中命中
-    if( valid[set_addr] && cache_tags[set_addr] == tag_addr )   // 如果 cache line有效，并且tag与输入地址中的tag相等，则命中
-        cache_hit = 1'b1;
-    else
-        cache_hit = 1'b0;
+	for(integer i=0;i<WAY_CNT;i++)begin
+		if(valid[set_addr][i] && cache_tags[set_addr][i]==tag_addr)begin // 如果 cache line有效，并且tag与输入地址中的tag相等，则命中
+			cache_hit=1'b1;
+			hit_way=i;
+		end
+		else begin
+			cache_hit=1'b0;
+		end
+	end
 end
+
+reg [WAY_CNT-1:0]wr_way;//表示写入哪一路(如果有数据，则需要在下面换出，如果没有，直接写入)
+reg [WAY_CNT-1:0]FIFO_pointer[SET_SIZE];//对于FIFO,每一组都有一个写入的目标,依次递增
+reg [WAY_CNT-1:0]LRU_stack[SET_SIZE][WAY_CNT];//对于LRU,保存一个栈,每次access一个，就把它换到尾部，每次写入都是头部
+
 
 always @ (posedge clk or posedge rst) begin     // ?? cache ???
     if(rst) begin

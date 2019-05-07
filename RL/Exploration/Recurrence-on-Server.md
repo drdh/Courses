@@ -257,6 +257,7 @@ sudo apt-get install ubuntu-gnome-desktop
 
 ```bash
 sudo apt-get install gnome-panel gnome-settings-daemon metacity nautilus gnome-terminal
+#apt install gnome
 ```
 
 调整分辨率，方便操作
@@ -269,6 +270,7 @@ vim /usr/bin/vncserver
 
 ```bash
 vim ~/.vnc/xstartup
+#/root/.vnc/xstartup
 ```
 
 
@@ -307,10 +309,22 @@ vncserver -kill :1
 vncserver :1
 ```
 
+开启VNC服务需要用到的5900和5901端口，具体可查看防火墙功能说明。[Aliyun Ubuntu 桌面](<https://blog.csdn.net/guo_lei_lamant/article/details/84289908>)
 
-开启VNC服务需要用到的5900和5901端口，具体可查看防火墙功能说明。
+![1557217526324](Recurrence-on-Server.assets/1557217526324.png)
+
+连接方式：对于实验室服务器
 
 ```bash
 ssh -N -L localhost:5901:localhost:5901 222.195.92.204 -p 5555
 ```
 
+对于阿里云，除了上面的端口要添加外,直接使用remmina
+
+![1557217455277](Recurrence-on-Server.assets/1557217455277.png)
+
+```bash
+chmod 400 Key.pem
+ssh root@112.74.180.53 -i Key.pem
+# drdh@Aliyun
+```

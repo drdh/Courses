@@ -22,5 +22,16 @@ git clone https://github.com/ros-simulation/stage_ros/ -b add_pose_sub
 sudo apt install ros-kinetic-turtlebot
 ```
 
+```bash
+export ROS_HOSTNAME=localhost
+```
 
 
+
+
+
+#### Training the Model
+
+1. First run the stage simulator: `roslaunch reinforcement_learning_navigation stage_sim.launch`
+2. In a separate terminal, run the training code: `rosrun reinforcement_learning_navigation train_cpo.py --output_name $experiment_name$`
+   In order to use pre-trained weights from imitation learning, add the arguments `--jump_start 1 --model_init $path_to_policy_weights$`

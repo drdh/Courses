@@ -24,7 +24,7 @@ bool IDA(int maxf,int depth,int i,int j){
     if(h[i][j+1]!=-1 ){
         Way.push_back('R');
         pre_h=h[i][j+1];
-        //h[i][j+1]=-1;
+        h[i][j+1]=-1;
         if(IDA(maxf,depth+1,i,j+1)){
             return true;
         }
@@ -34,7 +34,7 @@ bool IDA(int maxf,int depth,int i,int j){
     if(h[i+1][j]!=-1 ){
         Way.push_back('D');
         pre_h=h[i+1][j];
-        //h[i+1][j]=-1;
+        h[i+1][j]=-1;
         if(IDA(maxf,depth+1,i+1,j)){
             return true;
         }
@@ -45,7 +45,7 @@ bool IDA(int maxf,int depth,int i,int j){
     if(h[i-1][j]!=-1 ){
         Way.push_back('U');
         pre_h=h[i-1][j];
-        //h[i-1][j]=-1;
+        h[i-1][j]=-1;
         if(IDA(maxf,depth+1,i-1,j)){
             return true;
         }
@@ -55,7 +55,7 @@ bool IDA(int maxf,int depth,int i,int j){
     if(h[i][j-1]!=-1){
         Way.push_back('L');
         pre_h=h[i][j-1];
-        //h[i][j-1]=-1;
+        h[i][j-1]=-1;
         if(IDA(maxf,depth+1,i,j-1)){
             return true;
         }
@@ -88,6 +88,7 @@ int main(int argc,char * argv[]){
     }
     
     //read file
+    int h1[30][60];
     ifstream in(filename);
     for(int i=0;i<ROW;i++){
         char buffer[COL*3];
@@ -95,15 +96,37 @@ int main(int argc,char * argv[]){
         for(int j=0;j<COL;j++){
             int tmp=buffer[j*2]-'0';
             if(tmp==1){
-                h[i][j]=-1;
+                h1[i][j]=-1;
             }
             else{
-                h[i][j]=abs(i-dst_row)+abs(j-dst_col);
+                h1[i][j]=abs(i-dst_row)+abs(j-dst_col);
             }
         }
     }//(1,0)==>(16,24)
+    for(int i=0;i<ROW;i++){
+        for(int j=0;j<COL;j++){
+            h[i][j]=h1[i][j];
+            if(h1[i][j]!=-1 && i-1>=0 && i+1<ROW && j-1>=0 && j+1<COL){
+                int count=0;
+                if(h1[i-1][j]!=-1)count++;
+                if(h1[i+1][j]!=-1)count++;
+                if(h1[i][j-1]!=-1)count++;
+                if(h1[i][j+1]!=-1)count++;
+                if(h1[i-1][j-1]!=-1)count++;
+                if(h1[i-1][j+1]!=-1)count++;
+                if(h1[i+1][j-1]!=-1)count++;
+                if(h1[i+1][j+1]!=-1)count++;
+
+                if(count==8)
+                    h[i][j]=-1;
+            }
+            cout<<(h[i][j]==-1? 1: 0)<<" ";
+        }
+        cout<<endl;
+    }
 
     start_time=clock();
+    //cout<<h[1][0];
     for(int maxf=h[1][0];!IDA(maxf,0,1,0);maxf++)
         cout<<maxf<<endl;
 

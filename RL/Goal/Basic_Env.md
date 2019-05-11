@@ -20,6 +20,7 @@ git clone https://github.com/ros-simulation/stage_ros/ -b add_pose_sub
 
 ```bash
 sudo apt install ros-kinetic-turtlebot
+sudo apt install ros-kinetic-turtlebot-simulator
 ```
 
 ```bash

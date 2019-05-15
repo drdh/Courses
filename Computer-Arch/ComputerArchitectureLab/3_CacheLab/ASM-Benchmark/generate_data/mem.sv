@@ -1,6 +1,6 @@
 
 module mem #(                   // 
-    parameter  ADDR_LEN  = 8   // 
+    parameter  ADDR_LEN  = 11   // 
 ) (
     input  clk, rst,
     input  [ADDR_LEN-1:0] addr, // memory address

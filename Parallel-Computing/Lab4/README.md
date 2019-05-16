@@ -192,15 +192,15 @@ cp ./WordCount.java ./wordcount
 cd ./wordcount
 mkdir classes
 
-javac -classpath /home/drdh/lx/hadoop/hadoop-1.0.4/hadoop-core-1.0.4.jar:/home/drdh/lx/hadoop/hadoop-1.0.4/lib/commons-cli-1.2.jar -d ./classes/ ./WordCount.java
+javac -classpath /home/drdh/lx/hadoop/hadoop-1.0.4/hadoop-core-1.0.4.jar:/home/drdh/lx/hadoop/hadoop-1.0.4/lib/commons-cli-1.2.jar -d ./classes/ ./WordCountLength.java
 
-jar -cvf ./WordCount.jar -C ./classes  . #打包的时候一定不能忘记了上面命令最后的点号
+jar -cvf ./WordCountLength.jar -C ./classes  . #打包的时候一定不能忘记了上面命令最后的点号
 ```
 
 运行Hadoop作业
 
 ```bash
-hadoop jar ./WordCount.jar WordCount /user/drdh/wordcount/input   /user/drdh/wordcount/output
+hadoop jar ./WordCountLength.jar WordCountLength /user/drdh/wordcount/input   /user/drdh/wordcount/output
 # 如果提示你说输出文件夹已经存在，那么则执行如下命令删除
 hadoop fs -rmr /user/drdh/wordcount/output
 ```
@@ -223,6 +223,16 @@ stop-all.sh
 ```
 
 ![1557939788062](README.assets/1557939788062.png)
+
+
+
+## 实验
+
+![1557976025993](README.assets/1557976025993.png)
+
+
+
+![1557976046910](README.assets/1557976046910.png)
 
 
 

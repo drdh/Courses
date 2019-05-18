@@ -1,5 +1,4 @@
-
-//`define FIFO_LRU  //0:FIFO  1:LRU
+`define FIFO_LRU  //0:FIFO  1:LRU
 module cache #(
     parameter  LINE_ADDR_LEN = 3, // line内地�?长度，决定了每个line具有2^3个word
     parameter  SET_ADDR_LEN  = 3, // 组地�?长度，决定了�?共有2^3=8�?

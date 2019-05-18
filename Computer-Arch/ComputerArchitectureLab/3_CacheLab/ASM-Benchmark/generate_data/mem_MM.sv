@@ -9,7 +9,7 @@ module mem #(                   //
     input  [31:0] wr_data       // data write in
 );
 localparam MEM_SIZE = 1<<ADDR_LEN;
-reg  [31:0] ram_cell[0:768-1];
+reg [0:768-1] [31:0] ram_cell;
 
 always @ (posedge clk or posedge rst)
     if(rst)

@@ -7,7 +7,7 @@
 
 using namespace std;
 
-#define BLOCK_SIZE 4
+#define BLOCK_SIZE 16
 
 
 typedef void (*multiply)(int *A, int *B, int *C,int BLOCK_NUM);
@@ -138,7 +138,7 @@ void read(int *M, int row, int col){
 
 
 int main(int argc, char const *argv[]){
-    int BLOCK_NUM=3;
+    int BLOCK_NUM=100;
 
     int *A = new int[BLOCK_NUM * BLOCK_SIZE * BLOCK_NUM * BLOCK_SIZE];
     int *B = new int[BLOCK_NUM * BLOCK_SIZE * BLOCK_NUM * BLOCK_SIZE];
@@ -150,9 +150,15 @@ int main(int argc, char const *argv[]){
     read(A, BLOCK_NUM * BLOCK_SIZE, BLOCK_NUM * BLOCK_SIZE);
     read(B, BLOCK_NUM * BLOCK_SIZE, BLOCK_NUM * BLOCK_SIZE);
 
-    cout << "Serial Time = " << getTime(A, B, C1, searial,BLOCK_NUM) << " ps." << endl;
-    cout << "Parallel1 Time = " << getTime(A, B, C2, parallel1,BLOCK_NUM) << " ps." << endl;
-    cout << "Parallel2 Time = " << getTime(A, B, C3, parallel2,BLOCK_NUM) << " ps." << endl;
+    double time_1=getTime(A, B, C1, searial,BLOCK_NUM);
+    double time_2=getTime(A, B, C2, parallel1,BLOCK_NUM);
+    double time_3=getTime(A, B, C3, parallel2,BLOCK_NUM);
+
+    cout << "Serial Time = " << time_1 << " ps." << endl;
+    cout << "Parallel1 Time = " <<time_2 << " ps." << endl;
+    cout << "Parallel2 Time = " << time_3 << " ps." << endl;
+    cout << "speedup 1= "<<time_1/time_2<<endl;
+    cout<<  "speedup 2= "<<time_1/time_3<<endl;
 
     
     for(int i=0;i<BLOCK_NUM* BLOCK_SIZE * BLOCK_NUM * BLOCK_SIZE;i++){

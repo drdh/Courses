@@ -319,7 +319,7 @@ vncserver :1
 ssh -N -L localhost:5901:localhost:5901 222.195.92.204 -p 5555
 ```
 
-对于阿里云，除了上面的端口要添加外,直接使用remmina
+对于阿里云，除了上面的端口要添加外,**直接使用remmina**
 
 ![1557217455277](Recurrence-on-Server.assets/1557217455277.png)
 

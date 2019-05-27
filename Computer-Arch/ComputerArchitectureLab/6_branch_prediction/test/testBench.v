@@ -13,8 +13,8 @@
 // !!! ALL YOU NEED TO CHANGE IS 4 FILE PATH BELOW !!!	
 //				(they are all optional, you can run cpu without change paths here,if files are failed to open, we will not dump the content to .txt and will not try to initial your bram)
 //////////////////////////////////////////////////////////////////////////////////
-`define DataRamContentLoadPath "D:\\lx\\Courses1\\Computer-Arch\\ComputerArchitectureLab\\6_branch_prediction\\test\\btb.data"  //3testAll
-`define InstRamContentLoadPath "D:\\lx\\Courses1\\Computer-Arch\\ComputerArchitectureLab\\6_branch_prediction\\test\\btb.inst"
+`define DataRamContentLoadPath "D:\\lx\\Courses1\\Computer-Arch\\ComputerArchitectureLab\\6_branch_prediction\\test\\bht.data"  //btb,bht
+`define InstRamContentLoadPath "D:\\lx\\Courses1\\Computer-Arch\\ComputerArchitectureLab\\6_branch_prediction\\test\\bht.inst"
 `define DataRamContentSavePath "D:\\lx\\Courses1\\Computer-Arch\\ComputerArchitectureLab\\6_branch_prediction\\test\\DataRamContent.txt"
 `define InstRamContentSavePath "D:\\lx\\Courses1\\Computer-Arch\\ComputerArchitectureLab\\6_branch_prediction\\test\\InstRamContent.txt"
 `define BRAMWORDS 4096  //a word is 32bit, so our bram is 4096*32bit

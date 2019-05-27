@@ -73,6 +73,7 @@ Task-Based Navigation and Obstacles Avoidance. ~~not pure Navigation~~
 
 
 
+
 - RL: sample complexity
 
   - sample inefficiency and missing safety during training
@@ -134,8 +135,6 @@ combines supervised IL based on expert demonstrations to pre-train the navigatio
     \theta^*=\arg \max J(\theta),s.t. J_C(\theta)\le \alpha
     $$
 
-    
-
   - output stochastic policy
 
     - a 2D Gaussian distribution having the de-normalized values of the output of the neural network as mean
@@ -158,7 +157,7 @@ combines supervised IL based on expert demonstrations to pre-train the navigatio
 - SRL ToolBox
   - [github](<https://github.com/araffin/robotics-rl-srl>) implementation and [docs](<https://s-rl-toolbox.readthedocs.io/en/latest/>)
   - [Paper 1](<https://arxiv.org/abs/1809.09369>)*S-RL Toolbox: Environments, Datasets and Evaluation Metrics for State Representation Learning*
-  - [Paper 2](<https://arxiv.org/abs/1901.08651>) *Decoupling feature extraction from policy learning: assessing benefits of state representation learning in goal based robotics*
+  - [Paper 2](<https://arxiv.org/abs/1901.08651>)*Decoupling feature extraction from policy learning: assessing benefits of state representation learning in goal based robotics*
 - SRL for control overview
   - [Paper](<https://www.sciencedirect.com/science/article/pii/S0893608018302053>) *State representation learning for control: An overview*
 
@@ -229,15 +228,12 @@ combines supervised IL based on expert demonstrations to pre-train the navigatio
   $$
   ![1556418729100](Goal.assets/1556418729100.png)
 
-  
-
 - combination
 
   - VAE with a recurrent forward model
 
     [paper](<https://arxiv.org/abs/1803.10122>) *World Models*
 
-    
 
 
 

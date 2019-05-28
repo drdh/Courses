@@ -1,3 +1,31 @@
+
+
+<https://github.com/ajayrandhawa/PyQt-Sqlite-Project-CURD>
+
+<https://github.com/mbaser/pyqt-sqlite>
+
+
+
+<https://www.yiibai.com/sqlite/insert-query.html>
+
+<http://www.runoob.com/sqlite/sqlite-update.html>
+
+
+
+<https://pythonspot.com/pyqt5/>
+
+<http://code.py40.com/pyqt5/18.html>
+
+
+
+
+
+
+
+
+
+
+
 oracle apex account
 
 用户名：dh_129@163.com

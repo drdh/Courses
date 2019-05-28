@@ -5,7 +5,7 @@ module BTB #(
 	input wire clk,
 	input wire rst,
 	input wire [31:0]PCF,
-	output wire PredF,
+	output reg PredF,
 	output wire [31:0]NPC_PredF,
 	
 	input wire [31:0]PCE,
@@ -23,8 +23,18 @@ module BTB #(
 	wire [TABLE_LEN-1:0] Pred_PC_in=PCF[TABLE_LEN+1:2];
 	wire [TABLE_LEN-1:0] Update_PC_in=PCE[TABLE_LEN+1:2];
 	
+	wire Hit_Buff_Pred=(Target_Buff_Tag[Pred_PC_in]==PCF);
+	wire Hit_Buff_Update=(Target_Buff_Tag[Update_PC_in]==PCE);
+	
 	assign NPC_PredF=Target_Buff[Pred_PC_in];
-	assign PredF=(Extra_Bit[Pred_PC_in] && Target_Buff_Tag[Pred_PC_in]==PCF);
+	
+	always @(*)
+		if(Extra_Bit[Pred_PC_in] && Hit_Buff_Pred)
+			PredF<=1'b1;
+		else
+			PredF<=1'b0;
+	//assign PredF=(Extra_Bit[Pred_PC_in] && Hit_Buff_Pred)? 1'b1:1'b0;
+	
 	
 	integer i;
 	always @(negedge clk or posedge rst)
@@ -41,7 +51,7 @@ module BTB #(
 			Target_Buff_Tag[Update_PC_in]<=PCE;
 			Extra_Bit[Update_PC_in]<=1'b1;
 		end
-		else if((!BranchE)&& PredE && (Target_Buff_Tag[Update_PC_in]==PCE))begin//预测Taken, 实际未taken,如果有此项，则置零
+		else if((!BranchE) && Hit_Buff_Update)begin//预测Taken, 实际未taken,如果有此项，则置零
 			Extra_Bit[Update_PC_in]<=1'b0;
 		end
 	end

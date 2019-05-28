@@ -16,16 +16,27 @@ module HarzardUnit(
     input wire [1:0] RegReadE,
     input wire [2:0] MemToRegE, RegWriteM, RegWriteW,
     output reg StallF, FlushF, StallD, FlushD, StallE, FlushE, StallM, FlushM, StallW, FlushW,
-    output reg [1:0] Forward1E, Forward2E
+    output reg [1:0] Forward1E, Forward2E,
+	
+	//for branch prediction
+	input wire PredE,
+	input wire [31:0]NPC_PredE,
+	input wire [31:0]BrNPC,
+	output wire[1:0] Pred_Error
     );
     //
+	
+	//for branch prediction
+	assign Pred_Error[0]=(BranchE && !PredE) || (BranchE && PredE && NPC_PredE!=BrNPC);//实际taken, 但hi预测错误
+	assign Pred_Error[1]=!BranchE && PredE;//实际不taken, 但是预测taken
+	
     //Stall and Flush signals generate
     always @ (*)
         if(CpuRst)
             {StallF,FlushF,StallD,FlushD,StallE,FlushE,StallM,FlushM,StallW,FlushW} <= 10'b0101010101;
         else if(DCacheMiss | ICacheMiss)
             {StallF,FlushF,StallD,FlushD,StallE,FlushE,StallM,FlushM,StallW,FlushW} <= 10'b1010101010;
-        else if(BranchE | JalrE)
+        else if( (|Pred_Error )| JalrE )
             {StallF,FlushF,StallD,FlushD,StallE,FlushE,StallM,FlushM,StallW,FlushW} <= 10'b0001010000;
         else if(MemToRegE & ((RdE==Rs1D)||(RdE==Rs2D)) )
             {StallF,FlushF,StallD,FlushD,StallE,FlushE,StallM,FlushM,StallW,FlushW} <= 10'b1010010000;

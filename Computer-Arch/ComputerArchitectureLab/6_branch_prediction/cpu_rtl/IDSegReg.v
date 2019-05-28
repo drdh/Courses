@@ -23,9 +23,29 @@ module IDSegReg(
     output wire [31:0] RD2,
     //
     input wire [31:0] PCF,
-    output reg [31:0] PCD 
+    output reg [31:0] PCD,
+	//for branch prediction
+	input wire PredF,
+	output reg PredD,
+	input wire [31:0]NPC_PredF,
+	output reg [31:0]NPC_PredD
     );
     
+	//for branch prediction
+	always@(posedge clk)
+	begin
+		if(en)begin
+			if(clear)begin
+				PredD<=0;
+				NPC_PredD<=0;
+			end
+			else begin
+				PredD<=PredF;
+				NPC_PredD<=NPC_PredF;
+			end
+		end
+	end
+	
     initial PCD = 0;
     always@(posedge clk)
         if(en)

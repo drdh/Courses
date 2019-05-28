@@ -82,6 +82,12 @@ module RV32Core(
     wire [1:0] Forward1E;
     wire [1:0] Forward2E;
     wire [1:0] LoadedBytesSelect;
+	
+	//for branch prediction
+	wire PredF,PredD,PredE;
+	wire [1:0]Pred_Error;
+	wire [31:0]NPC_PredF,NPC_PredD,NPC_PredE;
+	
     //wire values assignments
     assign {Funct7D, Rs2D, Rs1D, Funct3D, RdD, OpCodeD} = Instr;
     assign JalNPC=ImmD+PCD;
@@ -104,7 +110,12 @@ module RV32Core(
         .BranchE(BranchE),
         .JalD(JalD),
         .JalrE(JalrE),
-        .PC_In(PC_In)
+        .PC_In(PC_In),
+		//for branch prediction
+		.PredF(PredF),
+		.Pred_Error(Pred_Error),
+		.NPC_PredF(NPC_PredF),
+		.PCE(PCE)
     );
 
     IFSegReg IFSegReg1(
@@ -114,6 +125,21 @@ module RV32Core(
         .PC_In(PC_In),
         .PCF(PCF)
     );
+	
+	//BTB BHT for branch prediction
+	BHT #(
+		.TABLE_LEN(4)
+	)BTB_instance(
+		.clk(CPU_CLK),
+		.rst(CPU_RST),
+		.PCF(PCF),
+		.PredF(PredF),
+		.NPC_PredF(NPC_PredF),
+		.PCE(PCE),
+		.BranchE(BranchE),
+		.NPC_PredE(NPC_PredE),
+		.BrNPC(BrNPC)
+	);
 
     // ---------------------------------------------
     // ID stage
@@ -129,7 +155,12 @@ module RV32Core(
         .WE2(CPU_Debug_InstRAM_WE2),
         .RD2(CPU_Debug_InstRAM_RD2),
         .PCF(PCF),
-        .PCD(PCD) 
+        .PCD(PCD),
+		//for branch prediction
+		.PredF(PredF),
+		.PredD(PredD),
+		.NPC_PredF(NPC_PredF),
+		.NPC_PredD(NPC_PredD)
     );
 
     ControlUnit ControlUnit1(
@@ -210,7 +241,12 @@ module RV32Core(
         .AluSrc1D(AluSrc1D),
         .AluSrc1E(AluSrc1E),
         .AluSrc2D(AluSrc2D),
-        .AluSrc2E(AluSrc2E)
+        .AluSrc2E(AluSrc2E),
+		//for branch prediction
+		.PredD(PredD),
+		.PredE(PredE),
+		.NPC_PredD(NPC_PredD),
+		.NPC_PredE(NPC_PredE)
     	); 
 
     ALU ALU1(
@@ -316,7 +352,12 @@ module RV32Core(
         .StallW(StallW),
         .FlushW(FlushW),
         .Forward1E(Forward1E),
-        .Forward2E(Forward2E)
+        .Forward2E(Forward2E),
+		//for branch prediction
+		.PredE(PredE),
+		.NPC_PredE(NPC_PredE),
+		.BrNPC(BrNPC),
+		.Pred_Error(Pred_Error)
     	);    
     	         
 endmodule

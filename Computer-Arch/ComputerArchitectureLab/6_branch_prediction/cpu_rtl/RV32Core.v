@@ -127,9 +127,9 @@ module RV32Core(
     );
 	
 	//BTB BHT for branch prediction
-	BHT #(
+	BTB #(
 		.TABLE_LEN(4)
-	)BTB_instance(
+	)BrPred_instance(
 		.clk(CPU_CLK),
 		.rst(CPU_RST),
 		.PCF(PCF),

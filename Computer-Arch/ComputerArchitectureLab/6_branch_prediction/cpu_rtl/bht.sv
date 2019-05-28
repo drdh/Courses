@@ -18,7 +18,7 @@ module BHT #(
 	localparam TABLE_SIZE=1<<TABLE_LEN;
 	reg [31:0]Target_Buff[TABLE_SIZE];
 	reg [31:0]Target_Buff_Tag[TABLE_SIZE];
-	reg Extra_Bit[TABLE_SIZE];//表示有效
+	//reg Extra_Bit[TABLE_SIZE];//表示有效
 	reg[1:0]State_Buff[TABLE_SIZE];
 	//SN:00	WN:01	WT:10 ST:11
 	
@@ -33,7 +33,8 @@ module BHT #(
 	//	(Extra_Bit[Pred_PC_in] && Hit_Buff_Pred) : 1'b0;
 	
 	always@(*)
-		if(State_Buff[Pred_PC_in][1]==1'b1 && (Extra_Bit[Pred_PC_in] && Hit_Buff_Pred))
+		//if(State_Buff[Pred_PC_in][1]==1'b1 && (Extra_Bit[Pred_PC_in] && Hit_Buff_Pred))
+		if(State_Buff[Pred_PC_in][1]==1'b1 && Hit_Buff_Pred)
 			PredF<=1'b1;
 		else 
 			PredF<=1'b0;
@@ -45,14 +46,14 @@ module BHT #(
 			for(i=0;i<TABLE_SIZE;i=i+1)begin
 				Target_Buff[i]<=0;
 				Target_Buff_Tag[i]<=0;
-				Extra_Bit[i]<=0;
+				//Extra_Bit[i]<=0;
 				State_Buff[i]<=0;
 			end
 		end
 		else if(BranchE)begin
 			Target_Buff[Update_PC_in]<=BrNPC;
 			Target_Buff_Tag[Update_PC_in]<=PCE;
-			Extra_Bit[Update_PC_in]<=1'b1;
+			//Extra_Bit[Update_PC_in]<=1'b1;
 			
 			if(Hit_Buff_Update)begin
 				case(State_Buff[Update_PC_in])
@@ -69,7 +70,7 @@ module BHT #(
 			
 		end
 		else if((!BranchE) && Hit_Buff_Update)begin//实际没有taken,且预测单元有此项
-			Extra_Bit[Update_PC_in]<=1'b0;
+			//Extra_Bit[Update_PC_in]<=1'b0;
 			case(State_Buff[Update_PC_in])
 				2'b00:State_Buff[Update_PC_in]<=2'b00;
 				2'b01:State_Buff[Update_PC_in]<=2'b00;

@@ -1,10 +1,8 @@
 ## 设计
 
+对于BTB实现一个Buffer，当Branch 实际Taken的时候，不管预测如何，都直接更新buffer, 当Branch没有taken但是预测taken时，设置extra bit为上次未taken.
 
-
-
-
-
+对于BHT在BTB的基础上实现一个状态转移图，实现2bits的转移。
 
 ## 预测表
 

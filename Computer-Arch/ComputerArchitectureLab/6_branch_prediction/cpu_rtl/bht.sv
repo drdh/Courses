@@ -47,7 +47,7 @@ module BHT #(
 				Target_Buff[i]<=0;
 				Target_Buff_Tag[i]<=0;
 				//Extra_Bit[i]<=0;
-				State_Buff[i]<=0;
+				State_Buff[i]<=2'b00;
 			end
 		end
 		else if(BranchE)begin
@@ -65,7 +65,7 @@ module BHT #(
 				endcase
 			end
 			else begin
-				State_Buff[Update_PC_in]<=2'b01;
+				State_Buff[Update_PC_in]<=2'b10;
 			end
 			
 		end

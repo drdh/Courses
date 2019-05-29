@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* DBMS name:      ORACLE Version 11g                           */
-/* Created on:     2019/5/29 22:51:47                           */
+/* Created on:     2019/5/29 23:10:09                           */
 /*==============================================================*/
 
 
@@ -123,7 +123,6 @@ create table "Check_Account"
    "acount_id"          NUMBER               not null,
    "branch_name"        CLOB,
    "balance"            NUMBER(8,2),
-   "Acc_open_date"      DATE,
    "open_date"          DATE,
    "overdraft"          NUMBER(8,2),
    constraint PK_CHECK_ACCOUNT primary key ("acount_id")
@@ -198,9 +197,10 @@ create index "branch_loan_FK" on "Loan" (
 create table "Payment" 
 (
    "load_id"            NUMBER(11)           not null,
+   "paymen_id"          NUMBER               not null,
    "payment_date"       DATE,
    "amount"             NUMBER(8,2),
-   constraint PK_PAYMENT primary key ("load_id")
+   constraint PK_PAYMENT primary key ("load_id", "paymen_id")
 );
 
 /*==============================================================*/

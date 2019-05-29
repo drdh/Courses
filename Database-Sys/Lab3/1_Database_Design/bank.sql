@@ -1,11 +1,14 @@
 /*==============================================================*/
 /* DBMS name:      ORACLE Version 11g                           */
-/* Created on:     2019/5/29 20:22:53                           */
+/* Created on:     2019/5/29 22:40:45                           */
 /*==============================================================*/
 
 
+alter table "Account"
+   drop constraint FK_ACCOUNT_OPEN_ACCO_BRANCH;
+
 alter table "Check_Account"
-   drop constraint FK_CHECK_AC_Account_IN_Account;
+   drop constraint FK_CHECK_AC_ACOUNT_IN_ACCOUNT;
 
 alter table "Employee"
    drop constraint FK_EMPLOYEE_MANAGE_EMPLOYEE;
@@ -20,7 +23,7 @@ alter table "Payment"
    drop constraint FK_PAYMENT_PAY_LOAN;
 
 alter table "Saving_Account"
-   drop constraint FK_SAVING_A_Account_IN_Account;
+   drop constraint FK_SAVING_A_ACOUNT_IN_ACCOUNT;
 
 alter table "borrow"
    drop constraint FK_BORROW_BORROW_CUSTOMER;
@@ -29,7 +32,7 @@ alter table "borrow"
    drop constraint FK_BORROW_BORROW2_LOAN;
 
 alter table "depositor"
-   drop constraint FK_DEPOSITO_DEPOSITOR_Account;
+   drop constraint FK_DEPOSITO_DEPOSITOR_ACCOUNT;
 
 alter table "depositor"
    drop constraint FK_DEPOSITO_DEPOSITOR_CUSTOMER;
@@ -39,6 +42,8 @@ alter table "responsible"
 
 alter table "responsible"
    drop constraint FK_RESPONSI_RESPONSIB_CUSTOMER;
+
+drop index "open_account_FK";
 
 drop table "Account" cascade constraints;
 
@@ -81,14 +86,22 @@ drop index "responsible_FK";
 drop table "responsible" cascade constraints;
 
 /*==============================================================*/
-/* Table: "Account"                                              */
+/* Table: "Account"                                             */
 /*==============================================================*/
 create table "Account" 
 (
-   "Account_id"          NUMBER               not null,
+   "acount_id"          NUMBER               not null,
+   "branch_name"        CLOB                 not null,
    "balance"            NUMBER(8,2),
    "open_date"          DATE,
-   constraint PK_Account primary key ("Account_id")
+   constraint PK_ACCOUNT primary key ("acount_id")
+);
+
+/*==============================================================*/
+/* Index: "open_account_FK"                                     */
+/*==============================================================*/
+create index "open_account_FK" on "Account" (
+   "branch_name" ASC
 );
 
 /*==============================================================*/
@@ -107,12 +120,13 @@ create table "Branch"
 /*==============================================================*/
 create table "Check_Account" 
 (
-   "Account_id"          NUMBER               not null,
+   "acount_id"          NUMBER               not null,
+   "branch_name"        CLOB,
    "balance"            NUMBER(8,2),
-   "Aco_open_date"      DATE,
+   "Acc_open_date"      DATE,
    "open_date"          DATE,
    "overdraft"          NUMBER(8,2),
-   constraint PK_CHECK_ACCOUNT primary key ("Account_id")
+   constraint PK_CHECK_ACCOUNT primary key ("acount_id")
 );
 
 /*==============================================================*/
@@ -190,16 +204,17 @@ create table "Payment"
 );
 
 /*==============================================================*/
-/* Table: "Saving_Account"                                       */
+/* Table: "Saving_Account"                                      */
 /*==============================================================*/
 create table "Saving_Account" 
 (
-   "Account_id"          NUMBER               not null,
+   "acount_id"          NUMBER               not null,
+   "branch_name"        CLOB,
    "balance"            NUMBER(8,2),
    "open_date"          DATE,
    "interest_rate"      FLOAT,
    "currency_type"      CLOB,
-   constraint PK_SAVING_Account primary key ("Account_id")
+   constraint PK_SAVING_ACCOUNT primary key ("acount_id")
 );
 
 /*==============================================================*/
@@ -231,17 +246,17 @@ create index "borrow2_FK" on "borrow" (
 /*==============================================================*/
 create table "depositor" 
 (
-   "Account_id"          NUMBER               not null,
+   "acount_id"          NUMBER               not null,
    "customer_id"        NUMBER               not null,
    "access_date"        DATE,
-   constraint PK_DEPOSITOR primary key ("Account_id", "customer_id")
+   constraint PK_DEPOSITOR primary key ("acount_id", "customer_id")
 );
 
 /*==============================================================*/
 /* Index: "depositor_FK"                                        */
 /*==============================================================*/
 create index "depositor_FK" on "depositor" (
-   "Account_id" ASC
+   "acount_id" ASC
 );
 
 /*==============================================================*/
@@ -276,9 +291,13 @@ create index "responsible2_FK" on "responsible" (
    "customer_id" ASC
 );
 
+alter table "Account"
+   add constraint FK_ACCOUNT_OPEN_ACCO_BRANCH foreign key ("branch_name")
+      references "Branch" ("branch_name");
+
 alter table "Check_Account"
-   add constraint FK_CHECK_AC_Account_IN_Account foreign key ("Account_id")
-      references "Account" ("Account_id");
+   add constraint FK_CHECK_AC_ACOUNT_IN_ACCOUNT foreign key ("acount_id")
+      references "Account" ("acount_id");
 
 alter table "Employee"
    add constraint FK_EMPLOYEE_MANAGE_EMPLOYEE foreign key ("Emp_employee_id")
@@ -297,8 +316,8 @@ alter table "Payment"
       references "Loan" ("load_id");
 
 alter table "Saving_Account"
-   add constraint FK_SAVING_A_Account_IN_Account foreign key ("Account_id")
-      references "Account" ("Account_id");
+   add constraint FK_SAVING_A_ACOUNT_IN_ACCOUNT foreign key ("acount_id")
+      references "Account" ("acount_id");
 
 alter table "borrow"
    add constraint FK_BORROW_BORROW_CUSTOMER foreign key ("customer_id")
@@ -309,8 +328,8 @@ alter table "borrow"
       references "Loan" ("load_id");
 
 alter table "depositor"
-   add constraint FK_DEPOSITO_DEPOSITOR_Account foreign key ("Account_id")
-      references "Account" ("Account_id");
+   add constraint FK_DEPOSITO_DEPOSITOR_ACCOUNT foreign key ("acount_id")
+      references "Account" ("acount_id");
 
 alter table "depositor"
    add constraint FK_DEPOSITO_DEPOSITOR_CUSTOMER foreign key ("customer_id")

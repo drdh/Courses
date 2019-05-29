@@ -14,6 +14,8 @@ CREATE TABLE IF NOT EXISTS "Branch"
    "asset"              real,
    constraint PK_BRANCH primary key ("branch_name")
 );
+INSERT INTO Branch VALUES('North_Bank','North',12345.0);
+INSERT INTO Branch VALUES('South_Bank','South',12345.0);
 CREATE TABLE IF NOT EXISTS "Check_Account" 
 (
    "Account_id"         integer               not null,

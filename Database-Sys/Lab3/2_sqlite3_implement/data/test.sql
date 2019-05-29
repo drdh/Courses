@@ -3,9 +3,12 @@ BEGIN TRANSACTION;
 CREATE TABLE IF NOT EXISTS "Account" 
 (
    "Account_id"         integer               not null,
+   "branch_name"        text                  not null,
    "balance"            real,
    "open_date"          text,
-   constraint PK_Account primary key ("Account_id")
+   constraint PK_Account primary key ("Account_id"),
+   constraint FK_ACCOUNT_OPEN_ACCO_BRANCH foreign key ("branch_name")
+      references "Branch" ("branch_name")
 );
 CREATE TABLE IF NOT EXISTS "Branch" 
 (
@@ -14,13 +17,12 @@ CREATE TABLE IF NOT EXISTS "Branch"
    "asset"              real,
    constraint PK_BRANCH primary key ("branch_name")
 );
-INSERT INTO Branch VALUES('North_Bank','North',12345.0);
-INSERT INTO Branch VALUES('South_Bank','South',12345.0);
 CREATE TABLE IF NOT EXISTS "Check_Account" 
 (
    "Account_id"         integer               not null,
-   "balance"            real,
-   "open_date"          text,
+--   "branch_name"        text,                 not null,
+--   "balance"            real,
+--   "open_date"          text,
    "overdraft"          real,
    constraint PK_CHECK_ACCOUNT primary key ("Account_id"),
    constraint FK_CHECK_AC_Account_IN_Account foreign key ("Account_id")
@@ -42,40 +44,42 @@ CREATE TABLE IF NOT EXISTS "Employee"
 (
    "employee_id"        integer               not null,
    "branch_name"        text                 not null,
-   "Emp_employee_id"    integer,
+   "manager_id"    integer,
    "name"               text,
-   "addree"             text,
+   "address"             text,
    "phone"              text,
    "start_date"         text,
    constraint PK_EMPLOYEE primary key ("employee_id"),
-   constraint FK_EMPLOYEE_MANAGE_EMPLOYEE foreign key ("Emp_employee_id")
+   constraint FK_EMPLOYEE_MANAGE_EMPLOYEE foreign key ("manager_id")
       references "Employee" ("employee_id"),
    constraint FK_EMPLOYEE_WORK_FOR_BRANCH foreign key ("branch_name")
       references "Branch" ("branch_name")
 );
 CREATE TABLE IF NOT EXISTS "Loan" 
 (
-   "load_id"            integer           not null,
+   "loan_id"            integer           not null,
    "branch_name"        text                 not null,
    "amount"             real,
-   constraint PK_LOAN primary key ("load_id"),
+   constraint PK_LOAN primary key ("loan_id"),
    constraint FK_LOAN_BRANCH_LO_BRANCH foreign key ("branch_name")
       references "Branch" ("branch_name")
 );
 CREATE TABLE IF NOT EXISTS "Payment" 
 (
-   "load_id"            integer           not null,
+   "loan_id"            integer           not null,
+   "payment_id"          integer               not null,
    "payment_date"       text,
    "amount"             real,
-   constraint PK_PAYMENT primary key ("load_id"),
-   constraint FK_PAYMENT_PAY_LOAN foreign key ("load_id")
-      references "Loan" ("load_id")
+   constraint PK_PAYMENT primary key ("loan_id", "payment_id"),
+   constraint FK_PAYMENT_PAY_LOAN foreign key ("loan_id")
+      references "Loan" ("loan_id")
 );
 CREATE TABLE IF NOT EXISTS "Saving_Account" 
 (
    "Account_id"         integer               not null,
-   "balance"            real,
-   "open_date"          text,
+--   "branch_name"        text,                 not null,
+--   "balance"            real,
+--   "open_date"          text,
    "interest_rate"      real,
    "currency_type"      text,
    constraint PK_SAVING_Account primary key ("Account_id"),
@@ -85,12 +89,12 @@ CREATE TABLE IF NOT EXISTS "Saving_Account"
 CREATE TABLE IF NOT EXISTS "borrow" 
 (
    "customer_id"        integer               not null,
-   "load_id"            integer           not null,
-   constraint PK_BORROW primary key ("customer_id", "load_id"),
+   "loan_id"            integer           not null,
+   constraint PK_BORROW primary key ("customer_id", "loan_id"),
    constraint FK_BORROW_BORROW_CUSTOMER foreign key ("customer_id")
       references "Customer" ("customer_id"),
-   constraint FK_BORROW_BORROW2_LOAN foreign key ("load_id")
-      references "Loan" ("load_id")
+   constraint FK_BORROW_BORROW2_LOAN foreign key ("loan_id")
+      references "Loan" ("loan_id")
 );
 CREATE TABLE IF NOT EXISTS "depositor" 
 (

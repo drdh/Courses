@@ -62,18 +62,26 @@ insert into branch (branch_name,city,asset)
 -- customer
 insert into customer (customer_id,name,phone,address,contact_name,contact_phone,contact_email,contact_relation)
 values 
-(1,"ab",123456,"ustc","cd",234567,"ab@mail.ustc.edu.cn","friends");
+(1,"ab","123456","ustc","cd","234567","ab@mail.ustc.edu.cn","friends");
 
 insert into customer (customer_id,name,phone,address,contact_name,contact_phone,contact_email,contact_relation)
 values 
-(2,"cd",234567,"ustc","ef",234567,"cd@mail.ustc.edu.cn","parents");
+(2,"cd","234567","ustc","ef","234567","cd@mail.ustc.edu.cn","parents");
 
+insert into customer (customer_id,name,phone,address,contact_name,contact_phone,contact_email,contact_relation)
+values 
+(3,"ef","345678","ustc","ab","123456","ef@mail.ustc.edu.cn","other");
 
+-- employee
+insert into employee
+(employee_id,branch_name,manager_id,name,address,phone,start_date)
+values
+(1,"North_Bank",2,"a","ustc","123","2019-04-25 11:25:13.333");
 
-/*	
-insert into branch 
-	values ("North_Bank","North",12345);
-*/
+insert into employee
+(employee_id,branch_name,manager_id,name,address,phone,start_date)
+values
+(2,"North_Bank",2,"b","ustc","234","2019-04-24 11:25:13.333");
 ```
 
 更新数据

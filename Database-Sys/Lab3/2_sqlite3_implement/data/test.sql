@@ -17,6 +17,10 @@ CREATE TABLE IF NOT EXISTS "Branch"
    "asset"              real,
    constraint PK_BRANCH primary key ("branch_name")
 );
+INSERT INTO Branch VALUES('North_Bank','North',12345.0);
+INSERT INTO Branch VALUES('South_Bank','South',23456.0);
+INSERT INTO Branch VALUES('East_Bank','East',34567.0);
+INSERT INTO Branch VALUES('West_Bank','West',45678.0);
 CREATE TABLE IF NOT EXISTS "Check_Account" 
 (
    "Account_id"         integer               not null,
@@ -40,13 +44,16 @@ CREATE TABLE IF NOT EXISTS "Customer"
    "contact_relation"   text,
    constraint PK_CUSTOMER primary key ("customer_id")
 );
+INSERT INTO Customer VALUES(1,'ab','123456','ustc','cd','234567','ab@mail.ustc.edu.cn','friends');
+INSERT INTO Customer VALUES(2,'cd','234567','ustc','ef','234567','cd@mail.ustc.edu.cn','parents');
+INSERT INTO Customer VALUES(3,'ef','345678','ustc','ab','123456','ef@mail.ustc.edu.cn','other');
 CREATE TABLE IF NOT EXISTS "Employee" 
 (
    "employee_id"        integer               not null,
    "branch_name"        text                 not null,
-   "manager_id"    integer,
+   "manager_id"         integer,
    "name"               text,
-   "address"             text,
+   "address"            text,
    "phone"              text,
    "start_date"         text,
    constraint PK_EMPLOYEE primary key ("employee_id"),
@@ -55,6 +62,8 @@ CREATE TABLE IF NOT EXISTS "Employee"
    constraint FK_EMPLOYEE_WORK_FOR_BRANCH foreign key ("branch_name")
       references "Branch" ("branch_name")
 );
+INSERT INTO Employee VALUES(1,'North_Bank',2,'a','ustc','123','2019-04-25 11:25:13.333');
+INSERT INTO Employee VALUES(2,'North_Bank',2,'b','ustc','234','2019-04-24 11:25:13.333');
 CREATE TABLE IF NOT EXISTS "Loan" 
 (
    "loan_id"            integer           not null,
@@ -67,7 +76,7 @@ CREATE TABLE IF NOT EXISTS "Loan"
 CREATE TABLE IF NOT EXISTS "Payment" 
 (
    "loan_id"            integer           not null,
-   "payment_id"          integer               not null,
+   "payment_id"         integer               not null,
    "payment_date"       text,
    "amount"             real,
    constraint PK_PAYMENT primary key ("loan_id", "payment_id"),

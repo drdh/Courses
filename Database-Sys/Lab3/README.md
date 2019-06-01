@@ -14,6 +14,10 @@
 
 <https://pythonspot.com/pyqt5/>
 
+<https://maicss.gitbooks.io/pyqt5/content/>
+
+<https://doc.bccnsoft.com/docs/PyQt5/>
+
 <http://code.py40.com/pyqt5/18.html>
 
 

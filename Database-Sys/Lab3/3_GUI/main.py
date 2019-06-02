@@ -546,6 +546,7 @@ class Saving_Dialog(QDialog):
 
         self.model = QSqlRelationalTableModel()
         self.model.setTable('saving_account')
+        self.model.setRelation(1, QSqlRelation("branch", "branch_name", "branch_name"))
         self.model.setEditStrategy(QSqlTableModel.OnFieldChange)
 
         self.model.setHeaderData(0, Qt.Horizontal, "account_id")
@@ -683,7 +684,7 @@ class Saving_Dialog(QDialog):
             record.setValue("branch_name",self.branch_name_edit.text())
             record.setValue("balance",self.balanceL_edit.text())
             record.setValue("open_date",self.open_date_edit.text())
-            record.setValue("interest_rate",self.interestL_rate_edit.text())
+            record.setValue("interest_rate",self.interest_rateL_edit.text())
             record.setValue("currency_type",self.currency_type_edit.text())
 
             if not self.model.setRecord(self.tableWidget.currentIndex().row(),record):
@@ -700,7 +701,7 @@ class Saving_Dialog(QDialog):
         self.model.setData(self.model.index(row,1),self.branch_name_edit.text())
         self.model.setData(self.model.index(row,2),self.balanceL_edit.text())
         self.model.setData(self.model.index(row,3),self.open_date_edit.text())
-        self.model.setData(self.model.index(row,4),self.interestL_rate_edit.text())
+        self.model.setData(self.model.index(row,4),self.interest_rateL_edit.text())
         self.model.setData(self.model.index(row,5),self.currency_type_edit.text())
 
         if not self.model.submitAll():
@@ -737,6 +738,7 @@ class Check_Dialog(QDialog):
 
         self.model = QSqlRelationalTableModel()
         self.model.setTable('check_account')
+        self.model.setRelation(1, QSqlRelation("branch", "branch_name", "branch_name"))
         self.model.setEditStrategy(QSqlTableModel.OnFieldChange)
 
         self.model.setHeaderData(0, Qt.Horizontal, "account_id")
@@ -914,6 +916,8 @@ class Depositor_Dialog(QDialog):
 
         self.model = QSqlRelationalTableModel()
         self.model.setTable('depositor')
+        self.model.setRelation(0, QSqlRelation("account", "account_id", "account_id"))
+        self.model.setRelation(1, QSqlRelation("customer", "customer_id", "name"))
         self.model.setEditStrategy(QSqlTableModel.OnFieldChange)
 
         self.model.setHeaderData(0, Qt.Horizontal, "account_id")
@@ -1044,6 +1048,7 @@ class Loan_Dialog(QDialog):
 
         self.model = QSqlRelationalTableModel()
         self.model.setTable('loan')
+        self.model.setRelation(1, QSqlRelation("branch", "branch_name", "branch_name"))
         self.model.setEditStrategy(QSqlTableModel.OnFieldChange)
 
         self.model.setHeaderData(0, Qt.Horizontal, "loan_id")
@@ -1183,6 +1188,7 @@ class Payment_Dialog(QDialog):
 
         self.model = QSqlRelationalTableModel()
         self.model.setTable('payment')
+        self.model.setRelation(0, QSqlRelation("loan", "loan_id", "loan_id"))
         self.model.setEditStrategy(QSqlTableModel.OnFieldChange)
 
         self.model.setHeaderData(0, Qt.Horizontal, "loan_id")
@@ -1336,6 +1342,8 @@ class Borrow_Dialog(QDialog):
 
         self.model = QSqlRelationalTableModel()
         self.model.setTable('borrow')
+        self.model.setRelation(0, QSqlRelation("customer", "customer_id", "name"))
+        self.model.setRelation(1, QSqlRelation("loan", "loan_id", "loan_id"))
         self.model.setEditStrategy(QSqlTableModel.OnFieldChange)
 
         self.model.setHeaderData(0, Qt.Horizontal, "customer_id")

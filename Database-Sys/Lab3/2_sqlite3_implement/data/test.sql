@@ -24,13 +24,15 @@ INSERT INTO Branch VALUES('West_Bank','West',45678.0);
 CREATE TABLE IF NOT EXISTS "Check_Account" 
 (
    "Account_id"         integer               not null,
---   "branch_name"        text,                 not null,
---   "balance"            real,
---   "open_date"          text,
+   "branch_name"        text                 not null,
+   "balance"            real,
+   "open_date"          text,
    "overdraft"          real,
    constraint PK_CHECK_ACCOUNT primary key ("Account_id"),
    constraint FK_CHECK_AC_Account_IN_Account foreign key ("Account_id")
-      references "Account" ("Account_id")
+      references "Account" ("Account_id"),
+   constraint FK_Check_ACCOUNT_OPEN_ACCO_BRANCH foreign key ("branch_name")
+      references "Branch" ("branch_name")
 );
 CREATE TABLE IF NOT EXISTS "Customer" 
 (
@@ -44,9 +46,6 @@ CREATE TABLE IF NOT EXISTS "Customer"
    "contact_relation"   text,
    constraint PK_CUSTOMER primary key ("customer_id")
 );
-INSERT INTO Customer VALUES(1,'ab','123456','ustc','cd','234567','ab@mail.ustc.edu.cn','friends');
-INSERT INTO Customer VALUES(2,'cd','234567','ustc','ef','234567','cd@mail.ustc.edu.cn','parents');
-INSERT INTO Customer VALUES(3,'ef','345678','ustc','ab','123456','ef@mail.ustc.edu.cn','other');
 CREATE TABLE IF NOT EXISTS "Employee" 
 (
    "employee_id"        integer               not null,
@@ -62,8 +61,6 @@ CREATE TABLE IF NOT EXISTS "Employee"
    constraint FK_EMPLOYEE_WORK_FOR_BRANCH foreign key ("branch_name")
       references "Branch" ("branch_name")
 );
-INSERT INTO Employee VALUES(1,'North_Bank',2,'a','ustc','123','2019-04-25 11:25:13.333');
-INSERT INTO Employee VALUES(2,'North_Bank',2,'b','ustc','234','2019-04-24 11:25:13.333');
 CREATE TABLE IF NOT EXISTS "Loan" 
 (
    "loan_id"            integer           not null,
@@ -86,14 +83,16 @@ CREATE TABLE IF NOT EXISTS "Payment"
 CREATE TABLE IF NOT EXISTS "Saving_Account" 
 (
    "Account_id"         integer               not null,
---   "branch_name"        text,                 not null,
---   "balance"            real,
---   "open_date"          text,
+   "branch_name"        text                 not null,
+   "balance"            real,
+   "open_date"          text,
    "interest_rate"      real,
    "currency_type"      text,
    constraint PK_SAVING_Account primary key ("Account_id"),
    constraint FK_SAVING_A_Account_IN_Account foreign key ("Account_id")
-      references "Account" ("Account_id")
+      references "Account" ("Account_id"),
+   constraint FK_Saving_ACCOUNT_OPEN_ACCO_BRANCH foreign key ("branch_name")
+      references "Branch" ("branch_name")
 );
 CREATE TABLE IF NOT EXISTS "borrow" 
 (

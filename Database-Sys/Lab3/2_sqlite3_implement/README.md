@@ -15,7 +15,7 @@ other: text
 
 
 ```bash
-rmtest.db -rf
+rm test.db -rf
 sqlite3 test.db < ../bank.sql
 ```
 

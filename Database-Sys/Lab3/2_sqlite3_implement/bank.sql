@@ -34,13 +34,15 @@ create table "Branch"
 create table "Check_Account" 
 (
    "Account_id"         integer               not null,
---   "branch_name"        text,                 not null,
---   "balance"            real,
---   "open_date"          text,
+   "branch_name"        text                 not null,
+   "balance"            real,
+   "open_date"          text,
    "overdraft"          real,
    constraint PK_CHECK_ACCOUNT primary key ("Account_id"),
    constraint FK_CHECK_AC_Account_IN_Account foreign key ("Account_id")
-      references "Account" ("Account_id")
+      references "Account" ("Account_id"),
+   constraint FK_Check_ACCOUNT_OPEN_ACCO_BRANCH foreign key ("branch_name")
+      references "Branch" ("branch_name")
 );
 
 /*==============================================================*/
@@ -111,14 +113,16 @@ create table "Payment"
 create table "Saving_Account" 
 (
    "Account_id"         integer               not null,
---   "branch_name"        text,                 not null,
---   "balance"            real,
---   "open_date"          text,
+   "branch_name"        text                 not null,
+   "balance"            real,
+   "open_date"          text,
    "interest_rate"      real,
    "currency_type"      text,
    constraint PK_SAVING_Account primary key ("Account_id"),
    constraint FK_SAVING_A_Account_IN_Account foreign key ("Account_id")
-      references "Account" ("Account_id")
+      references "Account" ("Account_id"),
+   constraint FK_Saving_ACCOUNT_OPEN_ACCO_BRANCH foreign key ("branch_name")
+      references "Branch" ("branch_name")
 );
 
 /*==============================================================*/

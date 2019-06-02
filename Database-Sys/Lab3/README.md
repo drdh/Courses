@@ -4,6 +4,8 @@
 
 <https://github.com/mbaser/pyqt-sqlite>
 
+<https://github.com/skinex/CRUD-SQLite->
+
 
 
 <https://www.yiibai.com/sqlite/insert-query.html>
@@ -17,6 +19,8 @@
 <https://maicss.gitbooks.io/pyqt5/content/>
 
 <https://doc.bccnsoft.com/docs/PyQt5/>
+
+<https://github.com/PyQt5/PyQt>
 
 <http://code.py40.com/pyqt5/18.html>
 

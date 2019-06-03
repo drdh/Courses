@@ -1,3 +1,15 @@
+responsible不能删除，与relation设置相关
+
+depositor不能插入，因为account表没有更新
+
+其他的需求可能可以使用query直接用sql语句解决
+
+按dialog分成不同的文件存放
+
+设计添加管理员界面
+
+
+
 
 
 <https://github.com/ajayrandhawa/PyQt-Sqlite-Project-CURD>

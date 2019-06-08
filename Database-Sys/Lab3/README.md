@@ -1,12 +1,18 @@
-responsible不能删除，与relation设置相关
+Bugs
 
-depositor不能插入，因为account表没有更新
+- [ ] responsible/depositor不能删除,设置了relation的column不能查找，与relation设置相关
 
-其他的需求可能可以使用query直接用sql语句解决
+- [x] depositor不能插入，因为account表没有更新
 
-按dialog分成不同的文件存放
+  > 使用触发器解决
 
-设计添加管理员界面
+- [ ] 其他的需求可能可以使用query直接用sql语句或者视图解决
+
+- [ ] statistics设计
+
+- [ ] 按dialog分成不同的文件存放
+
+- [ ] 设计添加管理员界面
 
 
 
@@ -35,6 +41,8 @@ depositor不能插入，因为account表没有更新
 <https://github.com/PyQt5/PyQt>
 
 <http://code.py40.com/pyqt5/18.html>
+
+<http://shouce.jb51.net/qt-beginning/>
 
 
 

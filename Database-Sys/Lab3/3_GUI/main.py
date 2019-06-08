@@ -920,8 +920,8 @@ class Depositor_Dialog(QDialog):
         self.model.setRelation(1, QSqlRelation("customer", "customer_id", "name"))
         self.model.setEditStrategy(QSqlTableModel.OnFieldChange)
 
-        self.model.setHeaderData(0, Qt.Horizontal, "account_id")
-        self.model.setHeaderData(1, Qt.Horizontal, "customer_id")
+        self.model.setHeaderData(0, Qt.Horizontal, "account1")
+        self.model.setHeaderData(1, Qt.Horizontal, "customer1")
         self.model.setHeaderData(2, Qt.Horizontal, "access_date")
 
         self.tableWidget.setModel(self.model)
@@ -976,6 +976,7 @@ class Depositor_Dialog(QDialog):
 
         if self.account_id_edit.text()!="":
             select_string+="account_id="+"'"+self.account_id_edit.text()+"'"
+            #select_string+="account_0="+"'"+self.account_id_edit.text()+"'"
 
         if self.customer_id_edit.text()!="":
             if select_string!="":

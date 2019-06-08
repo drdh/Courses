@@ -10,11 +10,11 @@ create table "Account"
 (
    "Account_id"         integer               not null,
    "branch_name"        text                  not null,
-   "balance"            real,
-   "open_date"          text,
-   constraint PK_Account primary key ("Account_id"),
-   constraint FK_ACCOUNT_OPEN_ACCO_BRANCH foreign key ("branch_name")
-      references "Branch" ("branch_name")
+--   "balance"            real,
+--   "open_date"          text,
+   constraint PK_Account primary key ("Account_id")
+--   constraint FK_ACCOUNT_OPEN_ACCO_BRANCH foreign key ("branch_name")
+--      references "Branch" ("branch_name")
 );
 
 /*==============================================================*/
@@ -169,3 +169,27 @@ create table "responsible"
       references "Customer" ("customer_id")
    
 );
+
+create trigger insert_saving after insert on saving_account
+begin
+insert into account("Account_id","branch_name")
+	values (new.Account_id,new.branch_name);
+end;
+
+create trigger insert_check after insert on check_account
+begin
+insert into account("Account_id","branch_name")
+	values (new.Account_id,new.branch_name);
+end;
+
+create trigger delete_saving after delete on saving_account
+begin
+delete from account 
+	where Account_id=old.Account_id;
+end;
+
+create trigger delete_check after delete on check_account
+begin
+delete from account 
+	where Account_id=old.Account_id;
+end;

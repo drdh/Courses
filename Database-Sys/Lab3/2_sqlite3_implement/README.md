@@ -11,6 +11,36 @@ date: text
 other: text
 ```
 
+触发器设计
+
+```sqlite
+create trigger insert_saving after insert on saving_account
+begin
+insert into account("Account_id","branch_name")
+	values (new.Account_id,new.branch_name);
+end;
+
+create trigger insert_check after insert on check_account
+begin
+insert into account("Account_id","branch_name")
+	values (new.Account_id,new.branch_name);
+end;
+
+create trigger delete_saving after delete on saving_account
+begin
+delete from account 
+	where Account_id=old.Account_id;
+end;
+
+create trigger delete_check after delete on check_account
+begin
+delete from account 
+	where Account_id=old.Account_id;
+end;
+```
+
+
+
 使用`bank.sql`生成数据库初始表
 
 

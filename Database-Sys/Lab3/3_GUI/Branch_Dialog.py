@@ -20,6 +20,8 @@ class Branch_Dialog(QDialog):
         else:
             self.db=QSqlDatabase.addDatabase('QSQLITE')
             self.db.setDatabaseName("../2_sqlite3_implement/data/test.db")
+        self.db.open()
+        self.db.exec("PRAGMA foreign_keys=ON;")
 
         self.model = QSqlRelationalTableModel()
         self.model.setTable('branch')

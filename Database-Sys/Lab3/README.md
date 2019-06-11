@@ -1,18 +1,22 @@
 Bugs
 
-- [ ] responsible/depositor不能删除,设置了relation的column不能查找，与relation设置相关
+- [x] responsible/depositor不能删除,设置了relation的column不能查找，与relation设置相关
+
+  > 去掉所有的`setRelation`. 因为这的确是个麻烦项，似乎设计的目的只是for view
 
 - [x] depositor不能插入，因为account表没有更新
 
   > 使用触发器解决
 
-- [ ] 其他的需求可能可以使用query直接用sql语句或者视图解决
+- [x] 其他的需求可能可以使用query直接用sql语句或者视图解决
+
+  > 使用触发器解决
 
 - [ ] statistics设计
 
 - [ ] 按dialog分成不同的文件存放
 
-- [ ] 设计添加管理员界面
+- [ ] 设计添加管理员界面/mainWindow
 
 
 
@@ -26,9 +30,9 @@ Bugs
 
 
 
-<https://www.yiibai.com/sqlite/insert-query.html>
+[易百sqlite3](https://www.yiibai.com/sqlite/insert-query.html)
 
-<http://www.runoob.com/sqlite/sqlite-update.html>
+[runoob sqlite3](http://www.runoob.com/sqlite/sqlite-update.html)
 
 
 
@@ -36,15 +40,25 @@ Bugs
 
 <https://maicss.gitbooks.io/pyqt5/content/>
 
-<https://doc.bccnsoft.com/docs/PyQt5/>
+[PyQt5 Doc](https://doc.bccnsoft.com/docs/PyQt5)
 
-<https://github.com/PyQt5/PyQt>
+[PyQt Chart](<https://doc.qt.io/qt-5/qtcharts-index.html>)
+
+[QSqlQuery](<https://blog.csdn.net/baidu_33570760/article/details/71740554>)
+
+[PyQt 测试案例](https://github.com/PyQt5/PyQt)
 
 <http://code.py40.com/pyqt5/18.html>
 
 <http://shouce.jb51.net/qt-beginning/>
 
 
+
+安装
+
+```bash
+pip install PyQtChart --user
+```
 
 
 

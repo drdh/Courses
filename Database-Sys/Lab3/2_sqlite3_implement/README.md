@@ -73,45 +73,18 @@ sqlite3 test.db .dump > test.sql
 --.timer on
 ```
 
+开启外键约束
+
+```sqlite
+PRAGMA foreign_keys=ON;
+```
+
+
+
 插入数据
 
 ```sqlite
--- branch
-insert into branch (branch_name,city,asset)
-	values ("North_Bank","North",12345);
-	
-insert into branch (branch_name,city,asset)
-	values ("South_Bank","South",23456);
-	
-insert into branch (branch_name,city,asset)
-	values ("East_Bank","East",34567);
-
-insert into branch (branch_name,city,asset)
-	values ("West_Bank","West",45678);
-
--- customer
-insert into customer (customer_id,name,phone,address,contact_name,contact_phone,contact_email,contact_relation)
-values 
-(1,"ab","123456","ustc","cd","234567","ab@mail.ustc.edu.cn","friends");
-
-insert into customer (customer_id,name,phone,address,contact_name,contact_phone,contact_email,contact_relation)
-values 
-(2,"cd","234567","ustc","ef","234567","cd@mail.ustc.edu.cn","parents");
-
-insert into customer (customer_id,name,phone,address,contact_name,contact_phone,contact_email,contact_relation)
-values 
-(3,"ef","345678","ustc","ab","123456","ef@mail.ustc.edu.cn","other");
-
--- employee
-insert into employee
-(employee_id,branch_name,manager_id,name,address,phone,start_date)
-values
-(1,"North_Bank",2,"a","ustc","123","2019-04-25 11:25:13.333");
-
-insert into employee
-(employee_id,branch_name,manager_id,name,address,phone,start_date)
-values
-(2,"North_Bank",2,"b","ustc","234","2019-04-24 11:25:13.333");
+--见test_data_generator.ipynb
 ```
 
 更新数据

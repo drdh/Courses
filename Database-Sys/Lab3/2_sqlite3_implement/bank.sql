@@ -36,7 +36,7 @@ create table "Check_Account"
    "Account_id"         integer               not null,
    "branch_name"        text                 not null,
    "balance"            real,
-   "open_date"          text,
+   "open_date"          text     "2019-6-11 19:23:45",
    "overdraft"          real,
    constraint PK_CHECK_ACCOUNT primary key ("Account_id"),
    constraint FK_CHECK_AC_Account_IN_Account foreign key ("Account_id")
@@ -88,6 +88,7 @@ create table "Loan"
    "loan_id"            integer           not null,
    "branch_name"        text                 not null,
    "amount"             real,
+   "total"              real     default 0,
    constraint PK_LOAN primary key ("loan_id"),
    constraint FK_LOAN_BRANCH_LO_BRANCH foreign key ("branch_name")
       references "Branch" ("branch_name")
@@ -192,4 +193,11 @@ create trigger delete_check after delete on check_account
 begin
 delete from account 
 	where Account_id=old.Account_id;
+end;
+
+create trigger add_payment after insert on payment
+begin
+update loan 
+   set total=total+new.amount
+   where loan_id=new.loan_id;
 end;

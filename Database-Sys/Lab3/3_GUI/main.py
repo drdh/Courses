@@ -3,6 +3,7 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
 from PyQt5.QtPrintSupport import *
 from PyQt5.QtSql import *
+from PyQt5.QtChart import *
 import sys,sqlite3,time
 
 import os
@@ -24,11 +25,13 @@ class Employee_Dialog(QDialog):
         else:
             self.db=QSqlDatabase.addDatabase('QSQLITE')
             self.db.setDatabaseName("../2_sqlite3_implement/data/test.db")
+        self.db.open()
+        self.db.exec("PRAGMA foreign_keys=ON;")
 
         self.model = QSqlRelationalTableModel()
         self.model.setTable('employee')
-        self.model.setRelation(1, QSqlRelation("branch", "branch_name", "branch_name"))
-        self.model.setRelation(2, QSqlRelation("employee", "employee_id", "name"))
+        #self.model.setRelation(1, QSqlRelation("branch", "branch_name", "branch_name"))
+        #self.model.setRelation(2, QSqlRelation("employee", "employee_id", "name"))
         self.model.setEditStrategy(QSqlTableModel.OnFieldChange)
 
         self.model.setHeaderData(0, Qt.Horizontal, "employee_id")
@@ -111,7 +114,7 @@ class Employee_Dialog(QDialog):
 
         if self.employee_id_edit.text()!="":
             select_string+="employee_id="+"'"+self.employee_id_edit.text()+"'"
-        
+            
         if self.branch_name_edit.text()!="":
             if select_string!="":
                 select_string+=" and branch_name="+"'"+self.branch_name_edit.text()+"'"
@@ -214,6 +217,8 @@ class Customer_Dialog(QDialog):
         else:
             self.db=QSqlDatabase.addDatabase('QSQLITE')
             self.db.setDatabaseName("../2_sqlite3_implement/data/test.db")
+        self.db.open()
+        self.db.exec("PRAGMA foreign_keys=ON;")
 
         self.model = QSqlRelationalTableModel()
         self.model.setTable('customer')
@@ -412,11 +417,13 @@ class Responsible_Dialog(QDialog):
         else:
             self.db=QSqlDatabase.addDatabase('QSQLITE')
             self.db.setDatabaseName("../2_sqlite3_implement/data/test.db")
+        self.db.open()
+        self.db.exec("PRAGMA foreign_keys=ON;")
 
         self.model = QSqlRelationalTableModel()
         self.model.setTable('responsible')
-        self.model.setRelation(0, QSqlRelation("employee", "employee_id", "name"))
-        self.model.setRelation(1, QSqlRelation("customer", "customer_id", "name"))
+        #self.model.setRelation(0, QSqlRelation("employee", "employee_id", "name"))
+        #self.model.setRelation(1, QSqlRelation("customer", "customer_id", "name"))
         self.model.setEditStrategy(QSqlTableModel.OnFieldChange)
 
         self.model.setHeaderData(0, Qt.Horizontal, "employee_id")
@@ -543,10 +550,12 @@ class Saving_Dialog(QDialog):
         else:
             self.db=QSqlDatabase.addDatabase('QSQLITE')
             self.db.setDatabaseName("../2_sqlite3_implement/data/test.db")
+        self.db.open()
+        self.db.exec("PRAGMA foreign_keys=ON;")
 
         self.model = QSqlRelationalTableModel()
         self.model.setTable('saving_account')
-        self.model.setRelation(1, QSqlRelation("branch", "branch_name", "branch_name"))
+        #self.model.setRelation(1, QSqlRelation("branch", "branch_name", "branch_name"))
         self.model.setEditStrategy(QSqlTableModel.OnFieldChange)
 
         self.model.setHeaderData(0, Qt.Horizontal, "account_id")
@@ -735,10 +744,12 @@ class Check_Dialog(QDialog):
         else:
             self.db=QSqlDatabase.addDatabase('QSQLITE')
             self.db.setDatabaseName("../2_sqlite3_implement/data/test.db")
+        self.db.open()
+        self.db.exec("PRAGMA foreign_keys=ON;")
 
         self.model = QSqlRelationalTableModel()
         self.model.setTable('check_account')
-        self.model.setRelation(1, QSqlRelation("branch", "branch_name", "branch_name"))
+        #self.model.setRelation(1, QSqlRelation("branch", "branch_name", "branch_name"))
         self.model.setEditStrategy(QSqlTableModel.OnFieldChange)
 
         self.model.setHeaderData(0, Qt.Horizontal, "account_id")
@@ -907,24 +918,28 @@ class Depositor_Dialog(QDialog):
         self.setWindowTitle("Depositor") 
         #ui
         self.tableWidget = QTableView()
+        #self.view= QTableView()
 
         if QSqlDatabase.contains('qt_sql_default_connection'):
             self.db=QSqlDatabase.database('qt_sql_default_connection')
         else:
             self.db=QSqlDatabase.addDatabase('QSQLITE')
             self.db.setDatabaseName("../2_sqlite3_implement/data/test.db")
+        self.db.open()
+        self.db.exec("PRAGMA foreign_keys=ON;")
 
         self.model = QSqlRelationalTableModel()
         self.model.setTable('depositor')
-        self.model.setRelation(0, QSqlRelation("account", "account_id", "account_id"))
-        self.model.setRelation(1, QSqlRelation("customer", "customer_id", "name"))
+        #self.model.setRelation(0, QSqlRelation("account", "account_id", "account_id"))
+        #self.model.setRelation(1, QSqlRelation("customer", "customer_id", "name"))
         self.model.setEditStrategy(QSqlTableModel.OnFieldChange)
 
-        self.model.setHeaderData(0, Qt.Horizontal, "account1")
-        self.model.setHeaderData(1, Qt.Horizontal, "customer1")
+        self.model.setHeaderData(0, Qt.Horizontal, "account")
+        self.model.setHeaderData(1, Qt.Horizontal, "customer")
         self.model.setHeaderData(2, Qt.Horizontal, "access_date")
 
         self.tableWidget.setModel(self.model)
+        #self.view.setModel(self.model)
         self.tableWidget.setItemDelegate(QSqlRelationalDelegate(self.tableWidget))
 
         self.account_id_label=QLabel("account_id")
@@ -965,6 +980,10 @@ class Depositor_Dialog(QDialog):
         self.layout=QVBoxLayout()
         self.layout.addLayout(self.head_layout)
         self.layout.addLayout(self.button_layout)
+        #self.tableLayout=QHBoxLayout()
+        #self.tableLayout.addWidget(self.tableWidget)
+        #self.tableLayout.addWidget(self.view)
+        #self.layout.addLayout(self.tableLayout)
         self.layout.addWidget(self.tableWidget)
         self.setLayout(self.layout)
         self.setMinimumSize(800, 600)
@@ -1046,10 +1065,12 @@ class Loan_Dialog(QDialog):
         else:
             self.db=QSqlDatabase.addDatabase('QSQLITE')
             self.db.setDatabaseName("../2_sqlite3_implement/data/test.db")
+        self.db.open()
+        self.db.exec("PRAGMA foreign_keys=ON;")
 
         self.model = QSqlRelationalTableModel()
         self.model.setTable('loan')
-        self.model.setRelation(1, QSqlRelation("branch", "branch_name", "branch_name"))
+        #self.model.setRelation(1, QSqlRelation("branch", "branch_name", "branch_name"))
         self.model.setEditStrategy(QSqlTableModel.OnFieldChange)
 
         self.model.setHeaderData(0, Qt.Horizontal, "loan_id")
@@ -1186,16 +1207,19 @@ class Payment_Dialog(QDialog):
         else:
             self.db=QSqlDatabase.addDatabase('QSQLITE')
             self.db.setDatabaseName("../2_sqlite3_implement/data/test.db")
+        self.db.open()
+        self.db.exec("PRAGMA foreign_keys=ON;")
 
         self.model = QSqlRelationalTableModel()
         self.model.setTable('payment')
-        self.model.setRelation(0, QSqlRelation("loan", "loan_id", "loan_id"))
+        #self.model.setRelation(0, QSqlRelation("loan", "loan_id", "loan_id"))
         self.model.setEditStrategy(QSqlTableModel.OnFieldChange)
 
         self.model.setHeaderData(0, Qt.Horizontal, "loan_id")
         self.model.setHeaderData(1, Qt.Horizontal, "payment_id")
         self.model.setHeaderData(2, Qt.Horizontal, "payment_date")
         self.model.setHeaderData(3, Qt.Horizontal, "amount")
+        self.model.setHeaderData(4, Qt.Horizontal, "total")
 
         self.tableWidget.setModel(self.model)
         self.tableWidget.setItemDelegate(QSqlRelationalDelegate(self.tableWidget))
@@ -1340,11 +1364,13 @@ class Borrow_Dialog(QDialog):
         else:
             self.db=QSqlDatabase.addDatabase('QSQLITE')
             self.db.setDatabaseName("../2_sqlite3_implement/data/test.db")
+        self.db.open()
+        self.db.exec("PRAGMA foreign_keys=ON;")
 
         self.model = QSqlRelationalTableModel()
         self.model.setTable('borrow')
-        self.model.setRelation(0, QSqlRelation("customer", "customer_id", "name"))
-        self.model.setRelation(1, QSqlRelation("loan", "loan_id", "loan_id"))
+        #self.model.setRelation(0, QSqlRelation("customer", "customer_id", "name"))
+        #self.model.setRelation(1, QSqlRelation("loan", "loan_id", "loan_id"))
         self.model.setEditStrategy(QSqlTableModel.OnFieldChange)
 
         self.model.setHeaderData(0, Qt.Horizontal, "customer_id")
@@ -1449,6 +1475,7 @@ class Statistics_Dialog(QDialog):
     def __init__(self, *args, **kwargs):
         super(Statistics_Dialog, self).__init__(*args, **kwargs) 
         self.setWindowTitle("Statistics") 
+        self.setMinimumSize(1600, 600)
         #ui 
         self.tableWidget = QTableView()
 
@@ -1457,7 +1484,88 @@ class Statistics_Dialog(QDialog):
         else:
             self.db=QSqlDatabase.addDatabase('QSQLITE')
             self.db.setDatabaseName("../2_sqlite3_implement/data/test.db") 
+        self.db.open()
+        self.db.exec("PRAGMA foreign_keys=ON;")
+        
+        #sum(loan) for each branch
+        query_loan=QSqlQuery()
+        query_loan.exec("select branch_name,sum(amount) from loan group by branch_name;")
 
+        result_loan=[]
+        while query_loan.next():# branch_name,sum(amount)
+            result_loan.append((query_loan.value(0),query_loan.value(1)))
+        
+        series_loan=QPieSeries()
+        for r in result_loan:
+            series_loan.append(r[0],r[1])
+        series_loan.setLabelsVisible()
+
+        chart_loan=QChart()
+        chart_loan.addSeries(series_loan)
+        chart_loan.setTitle("Toal Loan for every Branch")
+        chart_loan.setAnimationOptions(QChart.AllAnimations)
+        chart_loan.legend().hide()
+
+        chart_view_loan=QChartView(chart_loan)
+        chart_view_loan.setRenderHint(QPainter.Antialiasing)
+
+        #sum(saving_account)
+        query_saving=QSqlQuery()
+        query_saving.exec("select branch_name,sum(balance) from saving_account group by branch_name;")
+
+        result_saving=[]
+        while query_saving.next():# branch_name,sum(amount)
+            result_saving.append((query_saving.value(0),query_saving.value(1)))
+        
+        series_saving=QPieSeries()
+        for r in result_saving:
+            series_saving.append(r[0],r[1])
+        series_saving.setLabelsVisible()
+
+        chart_saving=QChart()
+        chart_saving.addSeries(series_saving)
+        chart_saving.setTitle("Saving Account for every Branch")
+        chart_saving.setAnimationOptions(QChart.AllAnimations)
+        chart_saving.legend().hide()
+
+        chart_view_saving=QChartView(chart_saving)
+        chart_view_saving.setRenderHint(QPainter.Antialiasing)
+
+        #sum(check_account)
+        query_check=QSqlQuery()
+        query_check.exec("select branch_name,sum(balance) from saving_account group by branch_name;")
+
+        result_check=[]
+        while query_check.next():# branch_name,sum(amount)
+            result_check.append((query_check.value(0),query_check.value(1)))
+        
+        series_check=QPieSeries()
+        for r in result_check:
+            series_check.append(r[0],r[1])
+        series_check.setLabelsVisible()
+
+        chart_check=QChart()
+        chart_check.addSeries(series_check)
+        chart_check.setTitle("Check Account for every Branch")
+        chart_check.setAnimationOptions(QChart.AllAnimations)
+        chart_check.legend().hide()
+
+        chart_view_check=QChartView(chart_check)
+        chart_view_check.setRenderHint(QPainter.Antialiasing)
+
+        
+
+        self.layout=QGridLayout()
+        self.layout.addWidget(chart_view_loan,0,0)
+        self.layout.addWidget(chart_view_saving,0,1)
+        self.layout.addWidget(chart_view_check,0,2)
+        self.setLayout(self.layout)
+        
+        #slice_loan=series_loan.slices()[1]
+        #slice_loan.setExploded()
+        #slice_loan.setLabelVisible()
+        #slice_loan.setPen(QPen(Qt.darkGreen,2))
+        #slice_loan.setBrush(Qt.green)
 
 
 

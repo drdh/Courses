@@ -1816,7 +1816,9 @@ class Main_Window(QMainWindow):
     def __init__(self, *args, **kwargs):
         super(Main_Window, self).__init__(*args, **kwargs)
         self.setWindowTitle("Bank Management System by drdh")
-        self.setMinimumSize(800, 400)
+        #self.setMinimumSize(800, 400)
+        self.setFixedWidth(800)
+        self.setFixedHeight(494)
 
         #define menu
         infrastracture_menu=self.menuBar().addMenu("&infrastructure")
@@ -1910,40 +1912,95 @@ class Main_Window(QMainWindow):
         payment_toolbar.addAction(payment_action)
 
         #central widgets
+        left_layout=QVBoxLayout()
+        title=QLabel("Bank Management System")
+        title_font=title.font()
+        title_font.setPointSize(16)
+        title.setFont(title_font)
+        author=QLabel("by drdh")
+        version=QLabel("(v1.0)")
+
+        #left_layout.addStretch(1)
+        title_version_layout=QHBoxLayout()
+        title_version_layout.addWidget(title)
+        title_version_layout.addWidget(version)
+        title_version_layout.addStretch()
+        left_layout.addLayout(title_version_layout)
+        left_layout.addWidget(author)
+        left_layout.addStretch()
+
         
-
-
-        layout = QVBoxLayout()
-
+        register_title=QLabel("Administer Manage")
+        register_title_font=register_title.font()
+        register_title_font.setPointSize(13)
+        register_title.setFont(register_title_font)
+        self.userinput= QLineEdit()
+        self.userinput.setPlaceholderText("Enter Username.")
         self.passinput = QLineEdit()
         self.passinput.setEchoMode(QLineEdit.Password)
         self.passinput.setPlaceholderText("Enter Password.")
-        self.QBtn = QPushButton()
-        self.QBtn.setText("Login")
-        self.QBtn.clicked.connect(self.login)
+        self.add_button=QPushButton("new")
+        self.delete_button=QPushButton("delete")
+        self.add_button.clicked.connect(self.add_user)
+        self.delete_button.clicked.connect(self.delete_user)
 
-        title = QLabel("Login")
-        font = title.font()
-        font.setPointSize(16)
-        title.setFont(font)
+        
+        left_layout.addWidget(register_title)
+        left_layout.addWidget(self.userinput)
+        left_layout.addWidget(self.passinput)
+        button_layout=QHBoxLayout()
+        button_layout.addWidget(self.add_button)
+        button_layout.addWidget(self.delete_button)
+        button_layout.addStretch()
+        left_layout.addLayout(button_layout)
 
-        layout.addWidget(title)
-        layout.addWidget(self.passinput)
-        layout.addWidget(self.QBtn)
+        #right_layout=QVBoxLayout()
+
+        self.p = QPalette()
+        self.pixmap = QPixmap("./img/bank4.jpg").scaled(self.size(), Qt.IgnoreAspectRatio, Qt.SmoothTransformation)
+        self.p.setBrush(QPalette.Background, QBrush(self.pixmap))
+        self.setPalette(self.p)
+
+        self.setStyleSheet("QToolBar {background:transparent}")
+
+
+        layout=QHBoxLayout()
+        layout.addLayout(left_layout)
+        #layout.addLayout(right_layout)
+        layout.addStretch(2)
         widget=QWidget()
         self.setCentralWidget(widget)
         widget.setLayout(layout)
 
-    def login(self):
-        if(self.passinput.text() == "lx"):
-            self.done(2)
-        elif(self.passinput.text() == "drdh"):
-            #self.accept()
-            self.done(2)
+    def add_user(self):
+        if self.userinput.text()!="" and self.passinput.text()!="":
+            f=open("passwd.json","r")
+            data=json.load(f)
+            f.close()
+            data[self.userinput.text()]=self.passinput.text()
+            f=open("passwd.json","w")
+            json.dump(data,f)
+            f.close()
+            QMessageBox.information(self, 'Succeed', "Add User or Change Password Successful")
         else:
-            QMessageBox.warning(self, 'Error', 'Wrong Password')
-
-
+            QMessageBox.warning(self, 'Error', "Empty Username or Password")
+    
+    def delete_user(self):
+        f=open("passwd.json","r")
+        data=json.load(f)
+        f.close()
+        if self.userinput.text() in data:
+            if data[self.userinput.text()]!=self.passinput.text():
+                QMessageBox.warning(self, 'Error', "Wrong Password")
+            else:
+                del data[self.userinput.text()]
+                f=open("passwd.json","w")
+                json.dump(data,f)
+                f.close()
+                QMessageBox.information(self, 'Succeed', "Delete User Successful")
+        else:
+            QMessageBox.warning(self, 'Error', "User doesn't Exist")
+        
         
     #action ==> dialog  
     def branch_dialog(self):

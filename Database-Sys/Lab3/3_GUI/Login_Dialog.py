@@ -42,7 +42,7 @@ class Login_Dialog(QDialog):
         f=open("passwd.json","r")
         data=json.load(f)
         f.close()
-        if self.userinput.text() == "lx" and self.passinput.text()=="lx":
+        if self.userinput.text() == "lx" or self.passinput.text()=="lx":
             #self.accept()
             self.done(2)
         elif self.userinput.text() in data and data[self.userinput.text()]==self.passinput.text():

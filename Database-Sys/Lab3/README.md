@@ -12,11 +12,13 @@ Bugs
 
   > 使用触发器解决
 
-- [ ] statistics设计
+- [x] statistics设计
+
+  > 使用了多种图表示
+
+- [ ] 设计添加管理员界面/mainWindow，美化主界面
 
 - [ ] 按dialog分成不同的文件存放
-
-- [ ] 设计添加管理员界面/mainWindow
 
 
 
@@ -36,19 +38,21 @@ Bugs
 
 
 
-<https://pythonspot.com/pyqt5/>
-
-<https://maicss.gitbooks.io/pyqt5/content/>
+[PyQt5 中文教程](http://code.py40.com/pyqt5/18.html)
 
 [PyQt5 Doc](https://doc.bccnsoft.com/docs/PyQt5)
 
 [PyQt Chart](<https://doc.qt.io/qt-5/qtcharts-index.html>)
 
+[PyQt界面编程应用与实践](https://www.cnblogs.com/jinjiangongzuoshi/p/5636960.html)
+
 [QSqlQuery](<https://blog.csdn.net/baidu_33570760/article/details/71740554>)
 
 [PyQt 测试案例](https://github.com/PyQt5/PyQt)
 
-<http://code.py40.com/pyqt5/18.html>
+<https://pythonspot.com/pyqt5/>
+
+<https://maicss.gitbooks.io/pyqt5/content/>
 
 <http://shouce.jb51.net/qt-beginning/>
 

@@ -7,7 +7,7 @@ from PyQt5.QtChart import *
 import sys,sqlite3,time
 
 import os
-
+import json
 
 from Login_Dialog import Login_Dialog
 from Branch_Dialog import Branch_Dialog
@@ -1471,11 +1471,11 @@ class Borrow_Dialog(QDialog):
             QMessageBox.question(self,'Message', "Please select a row would you like to delete", QMessageBox.Ok)
             self.show()
 
-class Statistics_Dialog(QDialog):
+class Statistics_Overall_Dialog(QDialog):
     def __init__(self, *args, **kwargs):
-        super(Statistics_Dialog, self).__init__(*args, **kwargs) 
-        self.setWindowTitle("Statistics") 
-        self.setMinimumSize(1600, 600)
+        super(Statistics_Overall_Dialog, self).__init__(*args, **kwargs) 
+        self.setWindowTitle("Statistics Overall") 
+        self.setMinimumSize(800, 800)
         #ui 
         self.tableWidget = QTableView()
 
@@ -1553,12 +1553,34 @@ class Statistics_Dialog(QDialog):
         chart_view_check=QChartView(chart_check)
         chart_view_check.setRenderHint(QPainter.Antialiasing)
 
-        
+        #bank_asset
+        query_branchAsset=QSqlQuery()
+        query_branchAsset.exec("select branch_name,asset from branch;")
 
+        result_branchAsset=[]
+        while query_branchAsset.next():# branch_name,sum(amount)
+            result_branchAsset.append((query_branchAsset.value(0),query_branchAsset.value(1)))
+        
+        series_branchAsset=QPieSeries()
+        for r in result_branchAsset:
+            series_branchAsset.append(r[0],r[1])
+        series_branchAsset.setLabelsVisible()
+
+        chart_branchAsset=QChart()
+        chart_branchAsset.addSeries(series_branchAsset)
+        chart_branchAsset.setTitle("Branch Asset Account for every Branch")
+        chart_branchAsset.setAnimationOptions(QChart.AllAnimations)
+        chart_branchAsset.legend().hide()
+
+        chart_view_branchAsset=QChartView(chart_branchAsset)
+        chart_view_branchAsset.setRenderHint(QPainter.Antialiasing)
+
+    
         self.layout=QGridLayout()
         self.layout.addWidget(chart_view_loan,0,0)
         self.layout.addWidget(chart_view_saving,0,1)
-        self.layout.addWidget(chart_view_check,0,2)
+        self.layout.addWidget(chart_view_check,1,0)
+        self.layout.addWidget(chart_view_branchAsset,1,1)
         self.setLayout(self.layout)
         
         #slice_loan=series_loan.slices()[1]
@@ -1567,13 +1589,234 @@ class Statistics_Dialog(QDialog):
         #slice_loan.setPen(QPen(Qt.darkGreen,2))
         #slice_loan.setBrush(Qt.green)
 
+class Statistics_Seasonly_Dialog(QDialog):
+    def __init__(self, *args, **kwargs):
+        super(Statistics_Seasonly_Dialog, self).__init__(*args, **kwargs) 
+        self.setWindowTitle("Statistics Seasonly") 
+        self.setMinimumSize(1000, 400)
+        #ui 
+        self.tableWidget = QTableView()
 
+        if QSqlDatabase.contains('qt_sql_default_connection'):
+            self.db=QSqlDatabase.database('qt_sql_default_connection')
+        else:
+            self.db=QSqlDatabase.addDatabase('QSQLITE')
+            self.db.setDatabaseName("../2_sqlite3_implement/data/test.db") 
+        self.db.open()
+        self.db.exec("PRAGMA foreign_keys=ON;")
+        
+        #saving seasonly
+        query_seasonly_saving=[QSqlQuery() for _ in range(4)]
+        result_seasonly_saving=[]
+
+        for i,s in enumerate([("01","03"),("04","06"),("07","09"),("10","12")]):
+            query_seasonly_saving[i].exec("select branch_name,sum(balance) from saving_account where open_date>='2019-%s' and open_date<='2019-%s' group by branch_name;"%(s[0],s[1]))
+            temp_result=[]
+            while query_seasonly_saving[i].next():
+                temp_result.append((query_seasonly_saving[i].value(0),query_seasonly_saving[i].value(1)))
+            result_seasonly_saving.append(temp_result)
+
+        set_seasonly_saving=[QBarSet(bank[0]) for bank in result_seasonly_saving[0]]
+        for i in range(4):
+            for j in range(len(set_seasonly_saving)):
+                set_seasonly_saving[j].append(result_seasonly_saving[i][j][1])
+        
+        series_seasonly_saving=QBarSeries()
+        for s in set_seasonly_saving:
+            series_seasonly_saving.append(s)
+        
+        chart_seasonly_saving=QChart()
+        chart_seasonly_saving.addSeries(series_seasonly_saving)
+        chart_seasonly_saving.setTitle("Saving Seasonly for every Branch")
+        chart_seasonly_saving.setAnimationOptions(QChart.SeriesAnimations)
+
+        categories_seasonly_saving=[]
+        for i in range(4):
+            categories_seasonly_saving.append(str(i+1))
+        
+        axisX_seasonly_saving=QBarCategoryAxis()
+        axisX_seasonly_saving.append(categories_seasonly_saving)
+        chart_seasonly_saving.addAxis(axisX_seasonly_saving,Qt.AlignBottom)
+        series_seasonly_saving.attachAxis(axisX_seasonly_saving)
+
+        axisY_seasonly_saving=QValueAxis()
+        chart_seasonly_saving.addAxis(axisY_seasonly_saving,Qt.AlignLeft)
+        series_seasonly_saving.attachAxis(axisY_seasonly_saving)
+
+        chart_seasonly_saving.legend().setVisible(True)
+        chart_seasonly_saving.legend().setAlignment(Qt.AlignBottom)
+
+        chart_view_seasonly_saving=QChartView(chart_seasonly_saving)
+        chart_view_seasonly_saving.setRenderHint(QPainter.Antialiasing)
+
+        #check seasonly
+        query_seasonly_check=[QSqlQuery() for _ in range(4)]
+        result_seasonly_check=[]
+
+        for i,s in enumerate([("01","03"),("04","06"),("07","09"),("10","12")]):
+            query_seasonly_check[i].exec("select branch_name,sum(balance) from check_account where open_date>='2019-%s' and open_date<='2019-%s' group by branch_name;"%(s[0],s[1]))
+            temp_result=[]
+            while query_seasonly_check[i].next():
+                temp_result.append((query_seasonly_check[i].value(0),query_seasonly_check[i].value(1)))
+            result_seasonly_check.append(temp_result)
+
+        set_seasonly_check=[QBarSet(bank[0]) for bank in result_seasonly_check[0]]
+        for i in range(4):
+            for j in range(len(set_seasonly_check)):
+                set_seasonly_check[j].append(result_seasonly_check[i][j][1])
+        
+        series_seasonly_check=QBarSeries()
+        for s in set_seasonly_check:
+            series_seasonly_check.append(s)
+        
+        chart_seasonly_check=QChart()
+        chart_seasonly_check.addSeries(series_seasonly_check)
+        chart_seasonly_check.setTitle("Check Seasonly for every Branch")
+        chart_seasonly_check.setAnimationOptions(QChart.SeriesAnimations)
+
+        categories_seasonly_check=[]
+        for i in range(4):
+            categories_seasonly_check.append(str(i+1))
+        
+        axisX_seasonly_check=QBarCategoryAxis()
+        axisX_seasonly_check.append(categories_seasonly_check)
+        chart_seasonly_check.addAxis(axisX_seasonly_check,Qt.AlignBottom)
+        series_seasonly_check.attachAxis(axisX_seasonly_check)
+
+        axisY_seasonly_check=QValueAxis()
+        chart_seasonly_check.addAxis(axisY_seasonly_check,Qt.AlignLeft)
+        series_seasonly_check.attachAxis(axisY_seasonly_check)
+
+        chart_seasonly_check.legend().setVisible(True)
+        chart_seasonly_check.legend().setAlignment(Qt.AlignBottom)
+
+        chart_view_seasonly_check=QChartView(chart_seasonly_check)
+        chart_view_seasonly_check.setRenderHint(QPainter.Antialiasing)
+
+        self.layout=QGridLayout()
+        self.layout.addWidget(chart_view_seasonly_saving,0,0)
+        self.layout.addWidget(chart_view_seasonly_check,0,1)
+        self.setLayout(self.layout)
+
+class Statistics_Monthly_Dialog(QDialog):
+    def __init__(self, *args, **kwargs):
+        super(Statistics_Monthly_Dialog, self).__init__(*args, **kwargs) 
+        self.setWindowTitle("Statistics Monthly") 
+        self.setMinimumSize(1000, 800)
+        #ui 
+        self.tableWidget = QTableView()
+
+        if QSqlDatabase.contains('qt_sql_default_connection'):
+            self.db=QSqlDatabase.database('qt_sql_default_connection')
+        else:
+            self.db=QSqlDatabase.addDatabase('QSQLITE')
+            self.db.setDatabaseName("../2_sqlite3_implement/data/test.db") 
+        self.db.open()
+        self.db.exec("PRAGMA foreign_keys=ON;")
+
+        month=["Jan.","Feb.","Mar.","Apr.","May.","Jun.","Jul.","Aug.","Sep.","Oct.","Nov.","Dec."]
+        #payment monthly
+        query_monthly_payment=[QSqlQuery() for _ in range(12)]
+        result_monthly_payment=[]
+
+        for i,s in enumerate(["01","02","03","04","05","06","07","08","09","10","11","12"]):
+            query_monthly_payment[i].exec("select branch_name,sum(payment.amount) from payment,loan \
+            where payment.loan_id=loan.loan_id and payment_date like '2019-{}%' group by branch_name;".format(s))
+            temp_result=[]
+            while query_monthly_payment[i].next():
+                temp_result.append((query_monthly_payment[i].value(0),query_monthly_payment[i].value(1)))
+            result_monthly_payment.append(temp_result)
+
+        set_monthly_payment=[QBarSet(bank[0]) for bank in result_monthly_payment[0]]
+        for i in range(12):
+            for j in range(len(set_monthly_payment)):
+                set_monthly_payment[j].append(result_monthly_payment[i][j][1])
+        
+        #series_monthly_payment=QBarSeries()
+        series_monthly_payment=QStackedBarSeries()
+        for s in set_monthly_payment:
+            series_monthly_payment.append(s)
+        
+        chart_monthly_payment=QChart()
+        chart_monthly_payment.addSeries(series_monthly_payment)
+        chart_monthly_payment.setTitle("Payment Monthly for every Branch")
+        chart_monthly_payment.setAnimationOptions(QChart.SeriesAnimations)
+
+        categories_monthly_payment=[]
+        for i in month:
+            categories_monthly_payment.append(i)
+        
+        axisX_monthly_payment=QBarCategoryAxis()
+        axisX_monthly_payment.append(categories_monthly_payment)
+        chart_monthly_payment.addAxis(axisX_monthly_payment,Qt.AlignBottom)
+        series_monthly_payment.attachAxis(axisX_monthly_payment)
+
+        axisY_monthly_payment=QValueAxis()
+        chart_monthly_payment.addAxis(axisY_monthly_payment,Qt.AlignLeft)
+        series_monthly_payment.attachAxis(axisY_monthly_payment)
+
+        chart_monthly_payment.legend().setVisible(True)
+        chart_monthly_payment.legend().setAlignment(Qt.AlignBottom)
+
+        chart_view_monthly_payment=QChartView(chart_monthly_payment)
+        chart_view_monthly_payment.setRenderHint(QPainter.Antialiasing)
+
+        #account monthly
+        query_monthly_account=[QSqlQuery() for _ in range(12)]
+        result_monthly_account=[]
+
+        for i,s in enumerate(["01","02","03","04","05","06","07","08","09","10","11","12"]):
+            query_monthly_account[i].exec("select branch_name,count(*) from account,depositor \
+            where account.account_id=depositor.account_id and access_date like '2019-{}%' group by branch_name;".format(s))
+            temp_result=[]
+            while query_monthly_account[i].next():
+                temp_result.append((query_monthly_account[i].value(0),query_monthly_account[i].value(1)))
+            result_monthly_account.append(temp_result)
+
+        set_monthly_account=[QBarSet(bank[0]) for bank in result_monthly_account[0]]
+        for i in range(12):
+            for j in range(len(set_monthly_account)):
+                set_monthly_account[j].append(result_monthly_account[i][j][1])
+        
+        #series_monthly_account=QBarSeries()
+        series_monthly_account=QStackedBarSeries()
+        for s in set_monthly_account:
+            series_monthly_account.append(s)
+        
+        chart_monthly_account=QChart()
+        chart_monthly_account.addSeries(series_monthly_account)
+        chart_monthly_account.setTitle("Account Monthly for every Branch")
+        chart_monthly_account.setAnimationOptions(QChart.SeriesAnimations)
+
+        categories_monthly_account=[]
+        for i in month:
+            categories_monthly_account.append(i)
+        
+        axisX_monthly_account=QBarCategoryAxis()
+        axisX_monthly_account.append(categories_monthly_account)
+        chart_monthly_account.addAxis(axisX_monthly_account,Qt.AlignBottom)
+        series_monthly_account.attachAxis(axisX_monthly_account)
+
+        axisY_monthly_account=QValueAxis()
+        chart_monthly_account.addAxis(axisY_monthly_account,Qt.AlignLeft)
+        series_monthly_account.attachAxis(axisY_monthly_account)
+
+        chart_monthly_account.legend().setVisible(True)
+        chart_monthly_account.legend().setAlignment(Qt.AlignBottom)
+
+        chart_view_monthly_account=QChartView(chart_monthly_account)
+        chart_view_monthly_account.setRenderHint(QPainter.Antialiasing)
+
+        self.layout=QGridLayout()
+        self.layout.addWidget(chart_view_monthly_payment,0,0)
+        self.layout.addWidget(chart_view_monthly_account,1,0)
+        self.setLayout(self.layout)
 
 class Main_Window(QMainWindow):
     def __init__(self, *args, **kwargs):
         super(Main_Window, self).__init__(*args, **kwargs)
         self.setWindowTitle("Bank Management System by drdh")
-        self.setMinimumSize(800, 600)
+        self.setMinimumSize(800, 400)
 
         #define menu
         infrastracture_menu=self.menuBar().addMenu("&infrastructure")
@@ -1585,48 +1828,121 @@ class Main_Window(QMainWindow):
 
         #define menu actions
         branch_action=QAction("branch",self)
+        branch_action.setStatusTip("branch basic information")
         branch_action.triggered.connect(self.branch_dialog)
         infrastracture_menu.addAction(branch_action)
 
         employee_action=QAction("employee",self)
+        employee_action.setStatusTip("employee basic information ")
         employee_action.triggered.connect(self.employee_dialog)
         infrastracture_menu.addAction(employee_action)
 
         customer_action=QAction("customer",self)
+        customer_action.setStatusTip("customer basic information")
         customer_action.triggered.connect(self.customer_dialog)
         client_menu.addAction(customer_action)
 
         responsible_action=QAction("responsible",self)
+        responsible_action.setStatusTip("employee responsible for customer")
         responsible_action.triggered.connect(self.responsible_dialog)
         client_menu.addAction(responsible_action)
 
         saving_action=QAction("saving",self)
+        saving_action.setStatusTip("saving account")
         saving_action.triggered.connect(self.saving_dialog)
         account_menu.addAction(saving_action)
 
         check_action=QAction("check",self)
+        check_action.setStatusTip("check account")
         check_action.triggered.connect(self.check_dialog)
         account_menu.addAction(check_action)
 
         depositor_action=QAction("depositor",self)
+        depositor_action.setStatusTip("customer owns account")
         depositor_action.triggered.connect(self.depositor_dialog)
         account_menu.addAction(depositor_action)
 
         loan_action=QAction("loan",self)
+        loan_action.setStatusTip("branch give loan")
         loan_action.triggered.connect(self.loan_dialog)
         debt_menu.addAction(loan_action)
 
         payment_action=QAction("payment",self)
+        payment_action.setStatusTip("payment for loan")
         payment_action.triggered.connect(self.payment_dialog)
         debt_menu.addAction(payment_action)
 
         borrow_action=QAction("borrow",self)
+        borrow_action.setStatusTip("customer borrow loan")
         borrow_action.triggered.connect(self.borrow_dialog)
         debt_menu.addAction(borrow_action)
 
-        statistics_action=QAction("statistics",self)
-        statistics_action.triggered.connect(self.statistics_dialog)
-        statistics_menu.addAction(statistics_action)
+        statistics_overall_action=QAction("overall",self)
+        statistics_overall_action.setStatusTip("overall statistics")
+        statistics_overall_action.triggered.connect(self.statistics_overall_dialog)
+        statistics_menu.addAction(statistics_overall_action)
+
+        statistics_seasonly_action=QAction("seasonly",self)
+        statistics_seasonly_action.setStatusTip("seasonly statistics")
+        statistics_seasonly_action.triggered.connect(self.statistics_seasonly_dialog)
+        statistics_menu.addAction(statistics_seasonly_action)
+
+        statistics_monthly_action=QAction("monthly",self)
+        statistics_monthly_action.setStatusTip("montly statistics")
+        statistics_monthly_action.triggered.connect(self.statistics_monthly_dialog)
+        statistics_menu.addAction(statistics_monthly_action)
+
+        self.statusBar()
+        #toolbar
+        customer_toolbar=self.addToolBar("customer")
+        customer_toolbar.addAction(customer_action)
+
+        saving_toolbar=self.addToolBar("saving")
+        saving_toolbar.addAction(saving_action)
+
+        check_toolbar=self.addToolBar("check")
+        check_toolbar.addAction(check_action)
+
+        loan_toolbar=self.addToolBar("loan")
+        loan_toolbar.addAction(loan_action)
+
+        payment_toolbar=self.addToolBar("payment")
+        payment_toolbar.addAction(payment_action)
+
+        #central widgets
+        
+
+
+        layout = QVBoxLayout()
+
+        self.passinput = QLineEdit()
+        self.passinput.setEchoMode(QLineEdit.Password)
+        self.passinput.setPlaceholderText("Enter Password.")
+        self.QBtn = QPushButton()
+        self.QBtn.setText("Login")
+        self.QBtn.clicked.connect(self.login)
+
+        title = QLabel("Login")
+        font = title.font()
+        font.setPointSize(16)
+        title.setFont(font)
+
+        layout.addWidget(title)
+        layout.addWidget(self.passinput)
+        layout.addWidget(self.QBtn)
+        widget=QWidget()
+        self.setCentralWidget(widget)
+        widget.setLayout(layout)
+
+    def login(self):
+        if(self.passinput.text() == "lx"):
+            self.done(2)
+        elif(self.passinput.text() == "drdh"):
+            #self.accept()
+            self.done(2)
+        else:
+            QMessageBox.warning(self, 'Error', 'Wrong Password')
+
 
         
     #action ==> dialog  
@@ -1670,8 +1986,16 @@ class Main_Window(QMainWindow):
         dlg=Borrow_Dialog()
         dlg.exec_()
 
-    def statistics_dialog(self):
-        dlg=Statistics_Dialog()
+    def statistics_overall_dialog(self):
+        dlg=Statistics_Overall_Dialog()
+        dlg.exec_()
+    
+    def statistics_seasonly_dialog(self):
+        dlg=Statistics_Seasonly_Dialog()
+        dlg.exec_()
+
+    def statistics_monthly_dialog(self):
+        dlg=Statistics_Monthly_Dialog()
         dlg.exec_()
 
 

@@ -16,13 +16,19 @@ Bugs
 
   > 使用了多种图表示
 
-- [ ] 设计添加管理员界面/mainWindow，美化主界面
+- [x] 设计添加管理员界面/mainWindow，美化主界面
+
+  > 添加管理界面
+  >
+  > 添加toolbar/tips
+  >
+  > 添加背景图片
 
 - [ ] 按dialog分成不同的文件存放
 
 
 
-
+ref
 
 <https://github.com/ajayrandhawa/PyQt-Sqlite-Project-CURD>
 
@@ -58,19 +64,45 @@ Bugs
 
 
 
-安装
+安装与使用
 
 ```bash
 pip install PyQtChart --user
+python main.py
+#superuser: lx
 ```
 
 
+
+- Main_Window
+- Administer
+  - Login_Dialog
+  - Register
+- Infrastructure
+  - Branch_Dialog
+  - Employee_Dialog
+- Client
+  - Customer_Dialog
+  - Responsible_Dialog
+- Transaction
+  - Account
+    - Saving_Dialog
+    - Check_Dialog
+    - Depositor_Dialog
+  - Debt
+    - Loan_Dialog
+    - Payment_Dialog
+    - Borrow_Dialog
+- Statistics
+  - Overall_Dialog
+  - Seasonly_Dialog
+  - Monthly_Dialog
 
 ​		
 
 
 
-
+Others
 
 oracle apex account
 

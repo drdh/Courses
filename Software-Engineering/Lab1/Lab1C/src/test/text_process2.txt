@@ -1,0 +1,6 @@
+ab
+bc
+cA
+ab
+bc
+Ca

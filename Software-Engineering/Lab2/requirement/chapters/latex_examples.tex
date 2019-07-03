@@ -1,0 +1,248 @@
+\chapter{Latex使用例子}
+
+\section{图}
+\subsection{示例}
+\begin{figure}[ht]
+\centering
+\includegraphics[width=10cm]{ustc_logo_fig}
+\caption{测试图片} \label{fig:figure1}
+\end{figure}
+
+\subsection{带图注的图}
+\begin{figure}[ht]
+\centering
+\includegraphics[width=10cm]{ustc_logo_fig}
+\caption{带图注的图片}\label{fig:noted-figure}
+\note{the solid lines represent the time histogram of the spontaneous activities of an old monkey cell(gray) and a young monkey cell (black). The bin-width is 1}
+\end{figure}
+
+\section{表格}
+
+\subsection{A Simple Table}
+\begin{table}[htbp]
+\centering
+\caption{这里是表的标题} \label{tab:simpletable}
+\begin{tabular}{|c|c|}
+    \hline
+    a & b \\
+    \hline
+    c & d \\
+    \hline
+\end{tabular}
+\note{这里是表的注释}
+\end{table}
+
+\subsection{长表格}
+\begin{longtable}{ccc}
+% 首页表头
+\caption[长表格演示]{长表格演示} \label{tab:longtable} \\
+\toprule[1.5pt]
+名称  & 说明 & 备注\\
+\midrule[1pt]
+\endfirsthead
+% 续页表头
+\caption[]{长表格演示（续）} \\
+\toprule[1.5pt]
+名称  & 说明 & 备注 \\
+\midrule[1pt]
+\endhead
+% 首页表尾
+\hline
+\multicolumn{3}{r}{\small 续下页}
+\endfoot
+% 续页表尾
+\bottomrule[1.5pt]
+\endlastfoot
+
+AAAAAAAAAAAA   &   BBBBBBBBBBB   &   CCCCCCCCCCCCCC   \\
+AAAAAAAAAAAA   &   BBBBBBBBBBB   &   CCCCCCCCCCCCCC   \\
+AAAAAAAAAAAA   &   BBBBBBBBBBB   &   CCCCCCCCCCCCCC   \\
+AAAAAAAAAAAA   &   BBBBBBBBBBB   &   CCCCCCCCCCCCCC   \\
+AAAAAAAAAAAA   &   BBBBBBBBBBB   &   CCCCCCCCCCCCCC   \\
+AAAAAAAAAAAA   &   BBBBBBBBBBB   &   CCCCCCCCCCCCCC   \\
+AAAAAAAAAAAA   &   BBBBBBBBBBB   &   CCCCCCCCCCCCCC   \\
+AAAAAAAAAAAA   &   BBBBBBBBBBB   &   CCCCCCCCCCCCCC   \\
+AAAAAAAAAAAA   &   BBBBBBBBBBB   &   CCCCCCCCCCCCCC   \\
+AAAAAAAAAAAA   &   BBBBBBBBBBB   &   CCCCCCCCCCCCCC   \\
+AAAAAAAAAAAA   &   BBBBBBBBBBB   &   CCCCCCCCCCCCCC   \\
+AAAAAAAAAAAA   &   BBBBBBBBBBB   &   CCCCCCCCCCCCCC   \\
+AAAAAAAAAAAA   &   BBBBBBBBBBB   &   CCCCCCCCCCCCCC   \\
+AAAAAAAAAAAA   &   BBBBBBBBBBB   &   CCCCCCCCCCCCCC   \\
+AAAAAAAAAAAA   &   BBBBBBBBBBB   &   CCCCCCCCCCCCCC   \\
+AAAAAAAAAAAA   &   BBBBBBBBBBB   &   CCCCCCCCCCCCCC   \\
+AAAAAAAAAAAA   &   BBBBBBBBBBB   &   CCCCCCCCCCCCCC   \\
+AAAAAAAAAAAA   &   BBBBBBBBBBB   &   CCCCCCCCCCCCCC   \\
+AAAAAAAAAAAA   &   BBBBBBBBBBB   &   CCCCCCCCCCCCCC   \\
+AAAAAAAAAAAA   &   BBBBBBBBBBB   &   CCCCCCCCCCCCCC   \\
+AAAAAAAAAAAA   &   BBBBBBBBBBB   &   CCCCCCCCCCCCCC   \\
+AAAAAAAAAAAA   &   BBBBBBBBBBB   &   CCCCCCCCCCCCCC   \\
+AAAAAAAAAAAA   &   BBBBBBBBBBB   &   CCCCCCCCCCCCCC   \\
+AAAAAAAAAAAA   &   BBBBBBBBBBB   &   CCCCCCCCCCCCCC   \\
+AAAAAAAAAAAA   &   BBBBBBBBBBB   &   CCCCCCCCCCCCCC   \\
+AAAAAAAAAAAA   &   BBBBBBBBBBB   &   CCCCCCCCCCCCCC   \\
+AAAAAAAAAAAA   &   BBBBBBBBBBB   &   CCCCCCCCCCCCCC   \\
+AAAAAAAAAAAA   &   BBBBBBBBBBB   &   CCCCCCCCCCCCCC   \\
+AAAAAAAAAAAA   &   BBBBBBBBBBB   &   CCCCCCCCCCCCCC   \\
+AAAAAAAAAAAA   &   BBBBBBBBBBB   &   CCCCCCCCCCCCCC   \\
+AAAAAAAAAAAA   &   BBBBBBBBBBB   &   CCCCCCCCCCCCCC   \\
+AAAAAAAAAAAA   &   BBBBBBBBBBB   &   CCCCCCCCCCCCCC   \\
+AAAAAAAAAAAA   &   BBBBBBBBBBB   &   CCCCCCCCCCCCCC   \\
+AAAAAAAAAAAA   &   BBBBBBBBBBB   &   CCCCCCCCCCCCCC   \\
+AAAAAAAAAAAA   &   BBBBBBBBBBB   &   CCCCCCCCCCCCCC   \\
+AAAAAAAAAAAA   &   BBBBBBBBBBB   &   CCCCCCCCCCCCCC   \\
+\end{longtable}
+
+
+\section{算法环境}
+模板中使用 \texttt{algorithm2e} 宏包实现算法环境。关于该宏包的具体用法，
+请阅读宏包的官方文档。
+
+\begin{algorithm}[htbp]
+\SetAlgoLined
+\KwData{this text}
+\KwResult{how to write algorithm with \LaTeX2e }
+
+initialization\;
+\While{not at end of this document}{
+    read current\;
+    \eIf{understand}{
+        go to next section\;
+        current section becomes this one\;
+    }{
+        go back to the beginning of current section\;
+    }
+}
+\caption{算法示例1}
+\label{algo:algorithm1}
+\end{algorithm}
+
+\IncMargin{1em}
+\begin{algorithm}
+\SetKwData{Left}{left}\SetKwData{This}{this}\SetKwData{Up}{up}
+\SetKwFunction{Union}{Union}\SetKwFunction{FindCompress}{FindCompress}
+\SetKwInOut{Input}{input}\SetKwInOut{Output}{output}
+
+\Input{A bitmap $Im$ of size $w\times l$}
+\Output{A partition of the bitmap}
+\BlankLine
+\emph{special treatment of the first line}\;
+\For{$i\leftarrow 2$ \KwTo $l$}{
+    \emph{special treatment of the first element of line $i$}\;
+    \For{$j\leftarrow 2$ \KwTo $w$}{\label{forins}
+        \Left$\leftarrow$ \FindCompress{$Im[i,j-1]$}\;
+        \Up$\leftarrow$ \FindCompress{$Im[i-1,]$}\;
+        \This$\leftarrow$ \FindCompress{$Im[i,j]$}\;
+        \If(\tcp*[h]{O(\Left,\This)==1}){\Left compatible with \This}{\label{lt}
+            \lIf{\Left $<$ \This}{\Union{\Left,\This}}
+            \lElse{\Union{\This,\Left}}
+        }
+        \If(\tcp*[f]{O(\Up,\This)==1}){\Up compatible with \This}{\label{ut}
+        \lIf{\Up $<$ \This}{\Union{\Up,\This}}
+        \tcp{\This is put under \Up to keep tree as flat as possible}\label{cmt}
+        \lElse{\Union{\This,\Up}}\tcp*[h]{\This linked to \Up}\label{lelse}
+        }
+    }
+    \lForEach{element $e$ of the line $i$}{\FindCompress{p}}
+}
+\caption{算法示例2}\label{algo_disjdecomp}
+\label{alog:algorithm2}
+\end{algorithm}\DecMargin{1em}
+
+
+\section{代码环境}
+模板中使用 \texttt{listings} 宏包实现代码环境。详细用法见宏包的官方说明文档。
+
+以下是代码示例，可以在文中任意位置引用\autoref{first-code} 。
+\begin{lstlisting}[language=C, caption=示例代码, label={code:first-code}]
+#include <stdio.h>
+
+int main( )
+{
+    printf("hello, world\n");
+    return 0;
+}
+\end{lstlisting}
+
+
+
+
+\section{引用文献标注}
+
+\subsection{著者-出版年制标注法}
+
+\noindent
+\verb|\citestyle{ustcauthoryear}|
+\citestyle{ustcauthoryear}
+
+\noindent
+\begin{tabular}{l@{\quad$\Rightarrow$\quad}l}
+  \verb|\cite{knuth86a}| & \cite{knuth86a}\\
+  \verb|\citet{knuth86a}| & \citet{knuth86a}\\
+  \verb|\citet[chap.~2]{knuth86a}| & \citet[chap.~2]{knuth86a}\\[0.5ex]
+  \verb|\citep{knuth86a}| & \citep{knuth86a}\\
+  \verb|\citep[chap.~2]{knuth86a}| & \citep[chap.~2]{knuth86a}\\
+  \verb|\citep[see][]{knuth86a}| & \citep[see][]{knuth86a}\\
+  \verb|\citep[see][chap.~2]{knuth86a}| & \citep[see][chap.~2]{knuth86a}\\[0.5ex]
+  \verb|\citet*{knuth86a}| & \citet*{knuth86a}\\
+  \verb|\citep*{knuth86a}| & \citep*{knuth86a}\\
+\end{tabular}
+
+\noindent
+\begin{tabular}{l@{\quad$\Rightarrow$\quad}l}
+  \verb|\citet{knuth86a,tlc2}| & \citet{knuth86a,tlc2}\\
+  \verb|\citep{knuth86a,tlc2}| & \citep{knuth86a,tlc2}\\
+  \verb|\cite{knuth86a,knuth84}| & \cite{knuth86a,knuth84}\\
+  \verb|\citet{knuth86a,knuth84}| & \citet{knuth86a,knuth84}\\
+  \verb|\citep{knuth86a,knuth84}| & \citep{knuth86a,knuth84}\\
+\end{tabular}
+
+\subsection{顺序编码制标注法}
+
+\noindent
+\verb|\citestyle{ustcnumerical}|
+\citestyle{ustcnumerical}
+
+\noindent
+\begin{tabular}{l@{\quad$\Rightarrow$\quad}l}
+  \verb|\cite{knuth86a}| & \cite{knuth86a}\\
+  \verb|\citet{knuth86a}| & \citet{knuth86a}\\
+  \verb|\citet[chap.~2]{knuth86a}| & \citet[chap.~2]{knuth86a}\\[0.5ex]
+  \verb|\citep{knuth86a}| & \citep{knuth86a}\\
+  \verb|\citep[chap.~2]{knuth86a}| & \citep[chap.~2]{knuth86a}\\
+  \verb|\citep[see][]{knuth86a}| & \citep[see][]{knuth86a}\\
+  \verb|\citep[see][chap.~2]{knuth86a}| & \citep[see][chap.~2]{knuth86a}\\[0.5ex]
+  \verb|\citet*{knuth86a}| & \citet*{knuth86a}\\
+  \verb|\citep*{knuth86a}| & \citep*{knuth86a}\\
+\end{tabular}
+
+\noindent
+\begin{tabular}{l@{\quad$\Rightarrow$\quad}l}
+  \verb|\citet{knuth86a,tlc2}| & \citet{knuth86a,tlc2}\\
+  \verb|\citep{knuth86a,tlc2}| & \citep{knuth86a,tlc2}\\
+  \verb|\cite{knuth86a,knuth84}| & \cite{knuth86a,knuth84}\\
+  \verb|\citet{knuth86a,knuth84}| & \citet{knuth86a,knuth84}\\
+  \verb|\citep{knuth86a,knuth84}| & \citep{knuth86a,knuth84}\\
+  \verb|\cite{knuth86a,knuth84,tlc2}| & \cite{knuth86a,knuth84,tlc2}\\
+\end{tabular}
+
+\subsection{其他形式的标注}
+
+\noindent
+\begin{tabular}{l@{\quad$\Rightarrow$\quad}l}
+  \verb|\citealt{tlc2}| & \citealt{tlc2}\\
+  \verb|\citealt*{tlc2}| & \citealt*{tlc2}\\
+  \verb|\citealp{tlc2}| & \citealp{tlc2}\\
+  \verb|\citealp*{tlc2}| & \citealp*{tlc2}\\
+  \verb|\citealp{tlc2,knuth86a}| & \citealp{tlc2,knuth86a}\\
+  \verb|\citealp[pg.~32]{tlc2}| & \citealp[pg.~32]{tlc2}\\
+  \verb|\citenum{tlc2}| & \citenum{tlc2}\\
+  \verb|\citetext{priv.\ comm.}| & \citetext{priv.\ comm.}\\
+\end{tabular}
+
+\noindent
+\begin{tabular}{l@{\quad$\Rightarrow$\quad}l}
+  \verb|\citeauthor{tlc2}| & \citeauthor{tlc2}\\
+  \verb|\citeauthor*{tlc2}| & \citeauthor*{tlc2}\\
+  \verb|\citeyear{tlc2}| & \citeyear{tlc2}\\
+  \verb|\citeyearpar{tlc2}| & \citeyearpar{tlc2}\\
+\end{tabular}

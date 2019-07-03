@@ -1,0 +1,65 @@
+\chapter{数据结构设计}
+\section{逻辑结构设计}
+\subsection{客户端数据结构}
+客户端在运行过程中，需要维护的信息如下：
+
+生命周期为整个程序运行过程的信息有：
+
+\begin{itemize}
+    \item 用户名，如果尚未登录则为空
+    \item 当前请求
+    \item 请求结果
+\end{itemize}
+
+生命周期为某个请求处理过程的信息有：
+
+\begin{enumerate}
+    \item 普通用户应用管理：数据结构1\\
+        \begin{itemize}
+            \item 目标应用名
+        \end{itemize}
+    \item 普通用户信息反馈：数据结构2\\
+        \begin{itemize}
+            \item 目标应用名
+            \item 评价或评分
+        \end{itemize}
+    \item 开发者应用管理：数据结构3\\
+        \begin{itemize}
+            \item 目标应用名
+        \end{itemize}
+    \item 开发者信息反馈：数据结构4\\
+        \begin{itemize}
+            \item 目标应用名
+            \item 回复的评论
+            \item 银行账号
+        \end{itemize}
+\end{enumerate}
+
+根据具体的请求，以上的数据结构还可再进一步细化。
+
+\subsection{服务器端数据结构}
+数据部分使用Oracle数据库存储，并不需要特别的数据结构。
+
+\section{物理结构设计}
+各数据结构无特殊物理结构要求。
+
+\section{数据结构与程序模块的关系}
+[此处指的是不同的数据结构分配到哪些模块去实现。可按不同的端拆分此表]
+\begin{table}[htbp]
+\centering
+\caption{数据结构与程序代码的关系表} \label{tab:datastructure-module}
+\begin{tabular}{|c|c|c|c|c|}
+    \hline
+    · & 普通用户应用管理 & 普通用户信息反馈 & 开发者应用管理 & 开发者信息反馈\\
+    \hline
+    数据结构1 & Y & · & · & ·\\
+    \hline
+    数据结构2 & · & Y & · & ·\\
+    \hline
+    数据结构3 & · & · & Y & ·\\
+    \hline
+    数据结构4 & · & · & · & Y\\
+    \hline
+\end{tabular}
+\note{各项数据结构的实现与各个程序模块的分配关系}
+\end{table}

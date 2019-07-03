@@ -1,0 +1,78 @@
+%!TEX encoding = UTF-8 Unicode
+%!TEX program = xelatex
+
+\documentclass[bachelor]{ustcthesis}
+% bachelor|master|doctor
+\usepackage{ustcextra}
+\graphicspath{{figures/}}
+\bibliographystyle{ustcauthoryear}
+% \bibliographystyle{ustcnumerical}
+
+
+\newcommand{\docname}{应用商店系统}
+\renewpagestyle{front}[\zihao{-5}]{
+    \sethead{}{\docname 需求规格说明书}{}
+    \setfoot{}{\thepage}{}
+    \headrule
+}
+\renewpagestyle{main}[\zihao{-5}]{
+    \sethead{}{\docname 需求规格说明书}{}
+    \setfoot{}{\thepage}{}
+    \headrule
+}
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
+
+\begin{document}
+
+
+
+
+\begin{titlepage}
+\begin{center}
+~\\[5cm]
+\HRule \\[0.4cm]
+{\huge \bfseries \docname\\需求规格说明书}\\[0.4cm]
+\HRule \\[1.5cm]
+
+\begin{tabular}{ccc}
+  & 人员 & 日期 \\ 
+  & 董恒 & 2019-4-12 \\
+  & 李楠 & 2019-4-12 \\
+%拟制 & 张三\ 李四\ 王五 & yyyy-mm-dd \\ 
+%评审人 & • & yyyy-mm-dd \\ 
+%批准 & • & yyyy-mm-dd \\ 
+%签发 & • & yyyy-mm-dd \\ 
+\end{tabular} 
+
+\end{center}
+\end{titlepage}
+
+
+
+\frontmatter
+\input{chapters/abstract}
+\tableofcontents
+\listoffigures
+\listoftables
+% \listofalgorithms  % 算法索引，如不需要，可直接注释掉本行
+% \input{chapters/notation}
+
+\mainmatter
+\input{chapters/intro}
+\input{chapters/overview}
+\input{chapters/concrete_requirement}
+\input{chapters/design_constraint}
+\input{chapters/quality_characteristics}
+\input{chapters/others}
+\input{chapters/dependency}
+\input{chapters/importance_of_requirements}
+\input{chapters/to_be_determined}
+%\input{chapters/latex_examples}
+\bibliography{bib/tex}
+
+\appendix
+\input{chapters/appendixA}
+\input{chapters/appendixB}
+
+
+\end{document}

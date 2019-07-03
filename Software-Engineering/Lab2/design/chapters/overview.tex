@@ -1,0 +1,176 @@
+\chapter{任务概述}
+本系统的目标是实现一个应用商店系统，包括客户端、服务器端两个部分。
+
+在需求分析文档中，我们提到，不应严格区分普通用户和开发者，即普通用户和开发者共用一个客户端。
+
+客户端面向普通用户和开发者，服务器端面向管理者。
+
+\section{目标}
+实现应用商店系统，实现需求规格说明书中所描述的开发者端应用管理功能、开发者端信息反馈功能、服务器端开发者管理系统功能、服务器端应用管理系统功能、服务器端用户管理系统功能、服务器端第三方管理系统功能、客户端应用管理功能、客户端信息反馈功能等等，并且保证系统的健壮性和数据安全。
+
+\section{开发与运行环境}
+
+\subsection{开发环境的配置}
+\begin{table}[htbp]
+\centering
+\caption{开发环境的配置} \label{tab:development-environment}
+\begin{tabular}{|c|c|c|}
+    \hline
+    类别 & 标准配置 & 最低配置 \\
+    \hline
+    计算机硬件 & \tabincell{c}{基于x86结构的CPU\\ 主频>=2.4GHz\\ 内存>=8G\\ 硬盘>=200G} & \tabincell{c}{基于x86结构的CPU\\ 主频>=1.6GHz\\ 内存>=512M\\ 硬盘>=2G} \\
+    \hline
+    计算机软件 & \tabincell{c}{Linux >=4.10)\\ GNU gcc (version>=6.3.1)} & \tabincell{c}{Linux (kernel version>=3.10)\\ GNU gcc (version>=5.4)} \\
+    \hline
+    网络通信 & \tabincell{c}{至少要有一块可用网卡\\ 能运行IP协议栈即可} & \tabincell{c}{至少要有一块可用网卡\\ 能运行IP协议栈即可} \\
+    \hline
+    其他 & 采用Oracle 数据库 & 采用Oracle数据库 \\
+    \hline
+\end{tabular}
+\note{对操作系统不做特殊要求 但要求代码能够跨平台编译 或者为不同的平台分别编写代码}
+\end{table}
+
+开发环境配置见表\ref{tab:development-environment}
+
+\subsection{测试环境的配置}
+\begin{table}[htbp]
+\centering
+\caption{测试环境的配置} \label{tab:test-environment}
+\begin{tabular}{|c|c|c|}
+    \hline
+    类别 & 标准配置 & 最低配置 \\
+    \hline
+    计算机硬件 & \tabincell{c}{基于x86结构的CPU\\ 主频>=2.4GHz\\ 内存>=8G\\ 硬盘>=200G} & \tabincell{c}{基于x86结构的CPU\\ 主频>=1.6GHz\\ 内存>=512M\\ 硬盘>=2G} \\
+    \hline
+    计算机软件 & \tabincell{c}{应用商店所支持的操作系统平台\\ GNU gcc (version>=6.3.1)} & \tabincell{c}{应用商店所支持的操作系统平台\\ GNU gcc (version>=5.4)} \\
+    \hline
+    网络通信 & \tabincell{c}{至少要有一块可用网卡\\ 能运行IP协议栈即可} & \tabincell{c}{至少要有一块可用网卡\\ 能运行IP协议栈即可} \\
+    \hline
+    其他 & 服务器端：采用MySQL数据库 & 服务器端：采用MySQL数据库 \\
+    \hline
+
+\end{tabular}
+%\note{}
+\end{table}
+
+测试环境见表\ref{tab:test-environment}
+
+\subsection{运行环境的配置}
+\begin{table}[htbp]
+\centering
+\caption{运行环境的配置} \label{tab:operation-environment}
+\begin{tabular}{|c|c|c|}
+    \hline
+    类别 & 标准配置 & 最低配置 \\
+    \hline
+    计算机硬件 & \tabincell{c}{基于x86结构的CPU\\ 主频>=2.4GHz\\ 内存>=8G\\ 硬盘>=200G} & \tabincell{c}{基于x86结构的CPU\\ 主频>=1.6GHz\\ 内存>=512M\\ 硬盘>=2G} \\
+    \hline
+    计算机软件 & \tabincell{c}{应用商店所支持的操作系统平台\\ GNU gcc (version>=6.3.1)} & \tabincell{c}{应用商店所支持的操作系统平台\\ GNU gcc (version>=5.4)} \\
+    \hline
+    网络通信 & \tabincell{c}{至少要有一块可用网卡\\ 能运行IP协议栈即可} & \tabincell{c}{至少要有一块可用网卡\\ 能运行IP协议栈即可} \\
+    \hline
+    其他 & 服务器端：采用MySQL数据库 & 服务器端：采用MySQL数据库 \\
+    \hline
+
+\end{tabular}
+% \note{这里是表的注释}
+\end{table}
+
+运行环境配置见表\ref{tab:operation-environment}
+
+\section{需求概述}
+功能需求包括：
+
+\begin{longtable}{|p{4cm}|p{4cm}|p{6cm}}
+    \caption{功能需求概述}\label{tab:requirements} \\
+    \hline
+\textbf{需求编码} & \textbf{需求名称} & \textbf{解释}\\
+\hline
+\endfirsthead
+\hline
+\textbf{需求编码} & \textbf{需求名称} & \textbf{解释}\\
+\hline
+\endhead
+\hline 
+\endfoot
+\hline
+\endlastfoot
+        \hline
+        SRS\_Dev\_App\_P01 & 开发者端.应用管理 & 实现开发者的应用上传、更新、删除等功能\\
+        \hline
+        SRS\_Dev\_Info\_P01 & 开发者端.信息反馈 & 实现开发者查询收入、收入提现或转账、评论查看或回复等功能\\
+        \hline
+        SRS\_Server\_Dev\_P01 & 服务器端.开发者管理系统 & 实现对开发者的活动进行管理和响应的功能\\
+        \hline
+        SRS\_Server\_App\_P01 & 服务器端.应用管理系统 & 实现对应用的管理，包括应用信息的维护与更新、应用的上传、下载、删除等等\\
+        \hline
+        SRS\_Server\_User\_P01 & 服务器端.用户管理系统 & 实现对用户的活动进行管理和响应的功能\\
+        \hline
+        SRS\_Server\_Other\_P01 & 服务器端.第三方管理系统 & 实现第三方的广告投放、资助等功能\\
+        \hline
+        SRS\_User\_App\_P01 & 客户端.应用管理 & 实现普通用户的应用查询、购买、安装、删除等功能\\
+        \hline
+        SRS\_User\_Info\_P01 & 客户端.信息反馈 & 实现普通用户对应用的评分、评价等功能\\
+\end{longtable}
+
+
+\section{条件与限制}
+可参照需求分析文档中的总体设计约束部分，具体如下：
+
+\subsection{标准符合性}
+开发过程中的以下内容应遵从如下标准：\\
+\begin{longtable}{|p{4cm}|p{6cm}|}
+\caption{采用的标准和规范}\label{tab:standards_constraints} \\
+\hline
+内容 & 标准或规范\\
+\hline
+字符集 & utf-8\\
+网络协议 & RFC\\
+\hline
+\end{longtable}
+
+\subsection{硬件限制}
+该应用商店可在Windows、Macintosh、Linux、Android、iOS等多种平台上运行，在不同平台上的约束要求如下：\\
+
+\begin{longtable}{|p{4cm}|p{10cm}|}
+\caption{在不同平台运行的需求}\label{tab:hardware_constraints} \\
+\hline
+\textbf{平台} & \textbf{需求}     \\
+\hline
+\endfirsthead
+\hline
+\textbf{平台} & \textbf{需求}    \\
+\hline
+\endhead
+\hline 
+\endfoot
+\hline
+\endlastfoot
+Windows & 内存占用不超过100MB，存储空间占用不超过100MB \\
+Macintosh & 内存占用不超过100MB，存储空间占用不超过100MB \\
+Linux & 内存占用不超过100MB，存储空间占用不超过100MB \\
+Android & 内存占用不超过200MB，存储空间占用不超过100MB\\
+iOS & 内存占用不超过100MB，存储空间占用不超过200MB\\
+\end{longtable}
+
+\subsection{技术限制}
+本节描述了开发人员在开发该应用商店系统时使用的技术限制。\\
+\begin{longtable}{|p{4cm}|p{10cm}|}
+\caption{技术限制}\label{tab:technical_constraints} \\
+\hline
+\textbf{技术} & \textbf{限制} \\
+\hline
+\endfirsthead
+\hline
+\textbf{技术} & \textbf{限制} \\
+\hline
+\endhead
+\hline 
+\endfoot
+\hline
+\endlastfoot
+数据库 & Oracle数据库\\
+通讯协议 & 客户端、服务器、开发者端之间的通信均采用TCP协议\\
+编程规范 & 采用Google代码规范，详见https://zh-google-styleguide.readthedocs.io/en/latest/contents/\\
+\hline
+\end{longtable}

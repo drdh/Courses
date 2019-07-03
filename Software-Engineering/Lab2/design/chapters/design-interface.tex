@@ -1,0 +1,158 @@
+\chapter{接口设计}
+\section{外部接口}
+
+\subsection{账户接口}
+账户的接口应该可以包括常见的电子账户，比如支付宝、微信、银行卡、Paypal等等，
+在服务器内部形成统一的接口。需要实现的功能包括：电子账户添加、电子账户认证、
+电子账户余额查询、电子账户充值到商店虚拟账户、商店虚拟账户转账到电子账户。
+
+提供给内部的接口应该针对开发者管理系统和用户管理系统。
+
+{\color{red}
+	接口的具体定义为
+	
+\begin{lstlisting}[language=C, caption=账户接口, label={code:first-code}]
+{
+	string username //用户名
+	string passwd //密码
+	string account //账户
+	vector<int> code //验证码
+	float money //转账金额
+	int error //错误码
+}
+\end{lstlisting}
+}
+
+
+\subsection{安装/卸载接口}
+该接口用于客户端安装或卸载某个应用，只需提供该应用的安装/卸载程序的文件描述符或文件路径以及安装目录（如果是安装的话）即可。
+
+{\color{red}
+	接口的具体定义为
+	
+\begin{lstlisting}[language=C, caption=安装/卸载接口, label={code:first-code}]
+{
+	string username //用户名
+	vector<int> code //验证码
+	string file //文件路径
+}	
+\end{lstlisting}
+}
+
+\subsection{用户接口}
+用户接口分为提供给普通用户和开发者的接口。
+
+提供给普通用户的接口包括登录、注册、应用查询、应用购买、应用安装、应用删除、应用评分等等。
+
+提供给开发者的接口包括登录、注册、应用上传、应用更新、应用删除、收入查询、转账提现、评论查看、评论回复等等。
+
+分别参见表\ref{tab:developer_interface}和表\ref{tab:client_interface}。
+
+\begin{longtable}{|p{4cm}|p{5cm}|p{5cm}|}
+	\caption{开发者与应用商店系统的接口}\label{tab:developer_interface} \\
+	\hline
+	\textbf{开发者需求} & \textbf{输入} & \textbf{输出}\\
+	\hline
+	\endfirsthead
+	\hline
+	\textbf{开发者需求} & \textbf{输入} & \textbf{输出}\\
+	\hline
+	\endhead
+	\hline 
+	\endfoot
+	\hline
+	\endlastfoot
+	登录 & 账号、密码 & 登录成功与否\\
+	注册 & 账号、密码 & 注册成功与否\\
+	应用上传 & 本地应用 & 上传成功与否\\
+	应用更新 & 本地应用和待更新应用id & 更新成功与否\\
+	应用删除 & 待删除应用id & 删除成功与否\\
+    收入查询 & 无 & 收入\\
+    转账提现 & 银行账号 & 转账或提现成功与否\\
+	评论回复 & 回复内容 & 回复成功与否\\
+	\end{longtable}
+
+\begin{longtable}{|p{4cm}|p{5cm}|p{5cm}|}
+	\caption{普通用户与应用商店系统的接口}\label{tab:client_interface} \\
+	\hline
+	\textbf{用户需求} & \textbf{输入} & \textbf{输出}\\
+	\hline
+	\endfirsthead
+	\hline
+	\textbf{用户需求} & \textbf{输入} & \textbf{输出}\\
+	\hline
+	\endhead
+	\hline 
+	\endfoot
+	\hline
+	\endlastfoot
+	登录 & 账号、密码 & 登录成功与否\\
+	注册 & 账号、密码 & 注册成功与否\\
+	应用查询 & 应用id & 相关的应用，以列表呈现\\
+	应用购买 & 待购买应用id和银行账户 & 购买成功与否\\
+	应用安装 & 待安装应用id & 安装成功与否\\
+    应用删除 & 待删除应用id & 删除成功与否\\
+	应用评分 & 待评价应用id和评分 & 评分成功与否\\
+	应用评价 & 待评价应用id和评论 & 评论成功与否\\
+	\end{longtable}
+
+用户接口最终将以图形界面呈现。
+
+
+{\color{red}
+	接口的具体定义为
+	
+\begin{lstlisting}[language=C, caption=安装/卸载接口, label={code:first-code}]
+{
+	string username //用户名
+	string passwd //密码
+	string command //指令
+	string permission //权限等级
+}
+\end{lstlisting}
+}
+
+\section{内部接口}
+
+\subsection{客户端}
+如第三章的描述，客户端主要有这几个模块：注册或登录模块、普通用户应用管理模块、普通用户信息反馈模块、开发者应用管理模块、开发者信息反馈模块。
+
+后面4个模块相对独立，相互之间没有交互。注册或登录模块会作为子模块被后面4个模块调用。
+
+
+{\color{red}
+	接口的具体定义为
+	
+\begin{lstlisting}[language=C, caption=安装/卸载接口, label={code:first-code}]
+{
+	vector<int> number //终端编码
+	vector<int> code //验证码
+	int command //指令编号
+	data_type data //数据
+}
+\end{lstlisting}
+}
+
+\subsection{服务器端与数据库}
+服务器端内部提供数据库统一接口，提供给开发者管理系统、应用管理系统、用户管理系统、第三方管理系统
+使用，目的是提高安全性与简便。
+
+提供高阶的增删改查接口，不需要直接使用PL/SQL.
+
+不同的功能需要有不同的权限，比如修改删除需要的权限高于查询，同时，只有管理员才有直接使用PL/SQL查询
+的权限。另外，应该提供方便的增加高阶功能的接口。
+
+
+{\color{red}
+	接口的具体定义为
+	
+\begin{lstlisting}[language=C, caption=安装/卸载接口, label={code:first-code}]
+{
+	vector<int> number //服务器编码
+	vector<int> code //验证码
+	int permission //权限等级
+	string command //指令
+	data_type data //数据
+}
+\end{lstlisting}
+}

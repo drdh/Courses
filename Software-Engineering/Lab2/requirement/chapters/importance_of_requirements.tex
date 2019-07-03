@@ -1,0 +1,68 @@
+\chapter{需求分级}
+
+\begin{longtable}{|p{6cm}|p{6cm}|c|}
+\caption{需求分级表} \label{tab:classification}\\
+\hline
+\textbf{需求ID} & \textbf{需求名称} & \textbf{需求分级}\\
+\hline
+\endfirsthead
+
+\hline
+\textbf{需求ID} & \textbf{需求名称} & \textbf{需求分级}\\
+\hline
+\endhead
+\hline 
+\endfoot
+\hline
+\endlastfoot
+SRS\_Dev\_App\_P01 & 开发者端的应用管理 & A \\
+\hline
+SRS\_Dev\_Info\_P01 & 开发者端的信息反馈 & B \\
+\hline
+{\color{red}SRS\_Dev\_Dev\_P01} & {\color{red}开发者端应用开发界面} & {\color{red}A} \\
+\hline
+SRS\_Server\_Dev\_P01 & 服务器端的开发者管理 & A \\
+\hline
+SRS\_Server\_User\_P01 & 服务器端的用户管理 & A \\
+\hline
+SRS\_Server\_Other\_P01 & 服务器端的第三方管理 & B \\
+\hline
+{\color{red}SRS\_Server\_DevSys\_P01} & {\color{red}服务器端应用开发管理系统} & {\color{red}A} \\
+\hline
+SRS\_User\_App\_P01 & 用户端的应用管理 & A \\
+\hline
+SRS\_User\_Info\_P01 & 用户端的信息反馈 & B \\
+\hline
+{\color{red}SRS\_User\_Dev\_P01} & {\color{red}客户端应用个性化系统} & {\color{red}A} \\
+\hline
+SRS\_NF\_P1\_E01 & 开发者端性能 & B \\
+\hline
+SRS\_NF\_P1\_E02 & 客户端性能 & B \\
+\hline
+SRS\_NF\_P1\_E03 & 服务器性能 & B \\
+\hline
+SRS\_UserInter\_01 & 用户接口 & A \\
+\hline
+SRS\_SoftInter\_01 & 软件接口 & A \\
+\hline
+SRS\_HardInter\_01 & 硬件接口 & A \\
+\hline
+SRS\_CommInter\_01 & 通讯接口 & A \\
+\hline
+SRS\_NF\_P02\_E01 & 数据库 & C \\
+\hline
+SRS\_NF\_P02\_L01 & 本地化 & C \\
+\hline
+SRS\_NF\_P02\_S01 & 扩展性 & C \\
+\hline
+SRS\_NF\_P02\_K01 & 开源性 & C \\
+\hline
+SRS\_NF\_P02\_R01 & 开发者与用户关系 & C \\
+\end{longtable}
+
+重要性分类如下：
+\begin{itemize}
+\item A:(必须的)		绝对基本的特性；如果不包含，产品就会被取消。
+\item B:(重要的)		不是基本的特性，但这些特性会影响产品的生存能力。
+\item C:(最好有的)		期望的特性；但省略一个或多个这样的特性不会影响产品的生存能力
+\end{itemize}

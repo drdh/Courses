@@ -1,0 +1,43 @@
+QLineEdit
+{
+    font-family: consolas;
+    font: bold 10pt;
+    color: rgb(127, 0, 63);
+    border: 1px groove gray;
+    border-radius: 8px;
+    padding: 1px 1px;
+}
+
+QLabel
+{
+    font-family: consolas;
+    font: bold 10pt;
+}
+
+QPushButton
+{
+    font-family:consolas;
+    font: bold 10pt;
+    border-width: 16px;
+    padding: -16px 0px;
+    min-height: 32px;
+    min-width: 60px;
+}
+
+QPushButton:pressed
+{
+    color: lightgray;
+}
+
+QRadioButton,QMessageBox
+{
+    font-family:consolas;
+    font: bold 10pt;
+}
+
+QTextEdit,QTextBrowser
+{
+    font-family:consolas;
+    font: bold 10pt;
+    color:blue;
+}

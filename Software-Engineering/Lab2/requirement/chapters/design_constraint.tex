@@ -1,0 +1,56 @@
+\chapter{总体设计约束}
+本节描述了对开发人员开发本系统的一些限制。
+ 
+\section{标准符合性}
+开发过程中的以下内容应遵从如下标准：\\
+\begin{longtable}{|p{4cm}|p{10cm}|}
+\caption{采用的标准和规范}\label{tab:standards_constraints} \\
+\hline
+内容 & 标准或规范\\
+\hline
+字符集 & utf-8\\
+网络协议 & RFC\\
+\hline
+\end{longtable}
+
+
+
+
+
+\section{硬件约束}
+该应用商店可在Windows、Macintosh、Linux、Android、iOS、web等多种平台上运行，在不同平台上的约束要求如下：\\
+
+\begin{longtable}{|p{4cm}|p{10cm}|}
+\caption{在不同平台运行的需求}\label{tab:hardware_constraints} \\
+\hline
+\textbf{平台} & \textbf{需求}     \\
+\hline
+\endfirsthead
+\hline
+\textbf{平台} & \textbf{需求}    \\
+\hline
+\endhead
+\hline 
+\endfoot
+\hline
+\endlastfoot
+Windows & 内存占用不超过100MB，存储空间占用不超过100MB \\
+Macintosh & 内存占用不超过100MB，存储空间占用不超过100MB \\
+Linux & 内存占用不超过100MB，存储空间占用不超过100MB \\
+Android & 内存占用不超过200MB，存储空间占用不超过100MB\\
+iOS & 内存占用不超过100MB，存储空间占用不超过200MB\\
+web & 内存占用不超过100MB \\
+\end{longtable}
+
+\section{技术限制}
+本节描述了开发人员在开发该应用商店系统时使用的技术限制。\\
+\begin{longtable}{|p{4cm}|p{10cm}|}
+\caption{技术限制}\label{tab:technical_constraints} \\
+\hline
+技术 & 限制\\
+\hline
+数据库 & Oracle数据库\\
+通讯协议 & 客户端、服务器、开发者端之间的通信均采用TCP协议\\
+编程规范 & 采用Google代码规范，详见https://zh-google-styleguide.readthedocs.io/en/latest/contents/\\
+\hline
+\end{longtable}

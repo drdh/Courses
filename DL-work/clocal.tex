@@ -1,0 +1,53 @@
+%段落缩进
+\usepackage{indentfirst}
+\setlength{\parindent}{20pt}
+%中文设置
+% \usepackage[cm-default]{fontspec}
+% \usepackage{xeCJK}
+% \defaultfontfeatures{Mapping=tex-text}
+% 中文断行
+% \XeTeXlinebreaklocale "zh"
+% \XeTeXlinebreakskip = 0pt plus 1pt minus 0.1pt
+% 行距
+% \linespread{1.25} 
+%将系统字体名映射为逻辑字体名称
+% \newcommand\fontnamesong{Songti SC}
+% \newcommand\fontnamehei{PingFang SC}
+% \newcommand\fontnamekai{Kaiti SC}
+% \setCJKmainfont{Kaiti SC}
+%\setsansfont{LMSans10}
+%楷体
+% \newcommand{\kai}[1]{{\KAI#1}}
+%黑体
+% \setCJKfamilyfont{HEI}{PingFang SC}
+% \newcommand\hei[1]{{\CJKfamily{HEI}#1}}
+% \newcommand\bhei[1]{{\CJKfontspec{PingFang SC Heavy}{#1}}}
+%英文
+\newcommand{\en}[1]{\,{\ENF#1}\,}
+\newcommand{\ensf}[1]{\,{\ENSF#1}\,}
+%减少itemize的行间距
+\usepackage{paralist} 
+\let\itemize\compactitem 
+\let\enditemize\endcompactitem 
+\let\enumerate\compactenum 
+\let\endenumerate\endcompactenum 
+\let\description\compactdesc 
+\let\enddescription\endcompactdesc
+%作者之间的连接
+\renewcommand\Authand{ \quad }
+%目录
+\renewcommand\contentsname{\textbf{目 录}} 
+\if\hasalgo
+\floatname{algorithm}{\textbf{算 法}} 
+\fi
+\renewcommand\figurename{\textbf{图}} 
+\renewcommand\figureautorefname{图} 
+
+\renewcommand\tablename{\textbf{表}} 
+\renewcommand{\refname}{\textbf{参 考}}
+\renewcommand{\lstlistingname}{\textbf{代码}} %% 重命名Listings标题头
+%
+
+\newcommand\sect[1]{\paragraph{\textbf{#1}}~~}
+\newcommand\subsect[1]{\vspace{.2cm}{\noindent\textbf{#1}}\vspace{.2cm}}
+

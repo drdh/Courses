@@ -1,0 +1,284 @@
+\subsection{pytorch 内存管理和并发}
+
+\subsubsection{cpu allocator}
+
+位于\href{https://github.com/pytorch/pytorch/blob/master/c10/core/CPUAllocator.cpp}{c10/core/CPUAllocator.cpp}
+
+\begin{itemize}
+\tightlist
+\item
+  malloc：位于：\href{https://github.com/pytorch/pytorch/blob/master/c10/core/CPUAllocator.cpp\#L40}{alloc\_cpu}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    如果是Linux：使用系统函数posix\_memalign，以gAlignment=64 byte对齐
+  \item
+    同时如果是\href{http://www.cnblogs.com/shanyou/archive/2009/12/26/1633052.html}{NUMA架构}，那么还会将分配的内存移到对应的节点
+  \item
+    \href{http://www.cnblogs.com/shanyou/archive/2009/12/26/1633052.html}{NUMA架构}：一种非一致存储器访问架构，访问本节点(CPU)内的存储器所需要的时间，比访问某些远程节点内的存储器所花的时间要少得多。
+  \end{itemize}
+\item
+  free：位于：\href{https://github.com/pytorch/pytorch/blob/master/c10/core/CPUAllocator.cpp\#L79}{free\_cpu}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    直接free
+  \end{itemize}
+\end{itemize}
+
+\subsubsection{cuda caching allocator}
+
+位于\href{https://github.com/pytorch/pytorch/blob/master/c10/cuda/CUDACachingAllocator.cpp}{c10/cuda/CUDACachingAllocator.cpp}
+
+\begin{itemize}
+\item
+  cuda的内存管理器
+\item
+  内存分配是跟stream相关的，一个stream中被释放的内存只会再次分配给这个stream
+
+  \begin{itemize}
+  \tightlist
+  \item
+    stream是对cuda的cuStream的包装，对cuStream做了一些额外处理
+  \item
+    位于：\href{https://github.com/pytorch/pytorch/blob/master/c10/cuda/CUDAStream.h}{c10/cuda/CUDAStream.h}
+  \end{itemize}
+\item
+  分成两种block，small block，large block
+
+  \begin{itemize}
+  \tightlist
+  \item
+    small
+    block：最大：kSmallSize=1MB，一开始使用\texttt{cudaMalloc}分配时为kSmallBuffer
+    = 2MB
+  \item
+    large block：一开始使用\texttt{cudaMalloc}最少被分配kLargeBuffer=
+    20MB，或者是kRoundLarge = 2MB的倍数，取决于需要的内存大小
+  \item
+    一开始分配内存大小，具体见：\href{https://github.com/pytorch/pytorch/blob/master/c10/cuda/CUDACachingAllocator.cpp\#L454}{get\_allocation\_size}
+  \end{itemize}
+\item
+  large block和small block是在不同的存储池(pool)里
+\item
+  这些block的创建只在第1次请求block时创建，也即为lazily created
+\item
+  malloc：位于：\href{https://github.com/pytorch/pytorch/blob/master/c10/cuda/CUDACachingAllocator.cpp\#L192}{malloc}
+
+  \begin{itemize}
+  \item
+    分配器先试图找到满足需求的small block，如果没有，再找large
+    block，如果block比需要的大，那么它可能会被分成两块
+  \item
+    如果找不到，使用FreeCudaMemoryCallbacksRegistry
+
+    \begin{quote}
+    Caching allocator will execute every registered callback if it
+    unable to find
+
+    block inside of already allocated area.
+    \end{quote}
+  \item
+    不行的话使用
+    \texttt{cudaMalloc}，如果失败，free所有cache的block（只free当前需要分配内存的设备内存），再试一次，失败，报错
+  \item
+    分成两块
+
+    \begin{itemize}
+    \tightlist
+    \item
+      small block分块：如果剩下的大于最小分配单元(512byte)
+    \item
+      large block分块：如果剩下的大于最大的small block(1MB)
+    \item
+      分成两块时：剩下的块在被分配的块后面，以链表组织
+    \end{itemize}
+  \end{itemize}
+\item
+  free：位于：\href{https://github.com/pytorch/pytorch/blob/master/c10/cuda/CUDACachingAllocator.cpp\#L303}{free}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    分配器会试图将被释放的块和其前驱或后继进行合并，如果存在前驱或后继且没有被分配的话
+  \end{itemize}
+\item
+  所有block以512 byte (kMinBlockSize)为单元进行分配
+\item
+  一些参数
+\end{itemize}
+
+\begin{lstlisting}
+constexpr size_t kMinBlockSize = 512;       // all sizes are rounded to at least 512 bytes
+constexpr size_t kSmallSize = 1048576;      // largest "small" allocation is 1 MiB
+constexpr size_t kSmallBuffer = 2097152;    // "small" allocations are packed in 2 MiB blocks
+constexpr size_t kLargeBuffer = 20971520;   // "large" allocations may be packed in 20 MiB blocks
+constexpr size_t kMinLargeAlloc = 10485760; // allocations between 1 and 10 MiB may use kLargeBuffer
+constexpr size_t kRoundLarge = 2097152;     // round up large allocs to 2 MiB
+\end{lstlisting}
+
+\subsubsection{pinned(Page-Locked) memory allocator}
+
+位于\href{https://github.com/pytorch/pytorch/blob/master/aten/src/THC/THCCachingHostAllocator.h}{aten/src/THC/THCCachingHostAllocator.h}和\href{https://github.com/pytorch/pytorch/blob/master/aten/src/THC/THCCachingHostAllocator.cpp}{aten/src/THC/THCCachingHostAllocator.cpp}
+
+\begin{itemize}
+\item
+  pin memory 使用DMA
+  engines进行数据传输，在cuda上面对不同stream进行数据传输时可以overlap(重叠，即同时进行)，而且os不会对这块内存进行分页
+\item
+  官方有一个note：\href{https://pytorch.org/docs/stable/notes/cuda.html\#use-pinned-memory-buffers}{Use
+  pinned memory buffers}
+\item
+  这个allocator如果频繁使用可能会造成严重的性能问题，pinning是一个expensive
+  operation
+
+  \begin{itemize}
+  \item
+    在\href{https://www.cs.virginia.edu/~mwb7w/cuda_support/pinned_tradeoff.html}{这篇文章}中提到：
+
+    \begin{quote}
+    pinned memory is much more expensive to allocate and deallocate but
+    provides higher transfer throughput for large memory transfers.
+    \end{quote}
+  \end{itemize}
+\item
+  和caching allocator相同之处：
+
+  \begin{itemize}
+  \tightlist
+  \item
+    都会把之前alloc然后被free的内存cache下来，而不会立即free掉
+  \item
+    每次请求内存时先从cache的内存里面找有没有满足的，没有再使用cudaHostAlloc分配内存
+  \end{itemize}
+\item
+  和caching allocator不同之处在于：
+
+  \begin{itemize}
+  \tightlist
+  \item
+    使用cudaHostAlloc分配内存而不是cudaMalloc
+  \item
+    没有对请求的size进行对齐操作，而且也不会把大的block(cache的)分成小的block
+  \end{itemize}
+\end{itemize}
+
+\hypertarget{cuda-stream}{%
+\subsubsection{CUDA Stream}\label{cuda-stream}}
+
+\begin{itemize}
+\item
+  stream目前的理解是对应GPU设备的一个任务队列，在相同流的任务是隐式同步的(Implicit
+  Synchronization)，在不同的流之中任务可以异步执行(并发，concurrent)
+\item
+  异步或者说并发性取决于硬件的支持(下面的数据传输如果要支持这种特性，host
+  memory必须是page-locked，也即上面的pin memory)
+
+  \begin{itemize}
+  \tightlist
+  \item
+    是否支持并发的kernel执行
+  \item
+    是否支持并发的数据传输
+  \item
+    是否支持kernel执行和数据传输重叠(overlap)
+  \end{itemize}
+\item
+  stream还有优先级(priority)之分
+
+  \begin{itemize}
+  \item
+    按照\href{https://docs.nvidia.com/cuda/cuda-runtime-api/group__CUDART__STREAM.html\#group__CUDART__STREAM_1ge2be9e9858849bf62ba4a8b66d1c3540}{官方cudaStreamCreateWithPriority
+    API的说法}
+
+    \begin{quote}
+    Work in a higher priority stream may preempt work already executing
+    in a low priority stream.
+    \end{quote}
+
+    \begin{quote}
+    In the current implementation, only compute kernels launched in
+    priority streams are affected by the stream's priority. Stream
+    priorities have no effect on host-to-device and device-to-host
+    memory operations.
+    \end{quote}
+  \item
+    在调度时，优先级高的可能会preempt(占据，先于)正在执行的低优先级任务
+  \item
+    对于内存操作没有影响
+  \end{itemize}
+\item
+  一个thread如果没有创建stream，那么会有一个default stream
+
+  \begin{itemize}
+  \tightlist
+  \item
+    这个default stream是隐式同步的(Implicit Synchronization)
+  \item
+    这个stream不会和其他stream overlap(同时执行)
+  \end{itemize}
+\end{itemize}
+
+\hypertarget{pytorch-cuda-stream}{%
+\subsubsection{pytorch cuda stream}\label{pytorch-cuda-stream}}
+
+位于\href{https://github.com/pytorch/pytorch/blob/master/c10/cuda/CUDAStream.h}{c10/cuda/CUDAStream.h}和\href{https://github.com/pytorch/pytorch/blob/master/c10/cuda/CUDAStream.cpp}{c10/cuda/CUDAStream.cpp}
+
+\begin{itemize}
+\tightlist
+\item
+  每个device有3个stream pool（为了降低stream创建和销毁的开销）
+
+  \begin{itemize}
+  \tightlist
+  \item
+    default pool：只包含default stream，由于default
+    stream是默认存在的，所以并不用创建(nullptr 的stream即为default
+    stream)
+  \item
+    low priority pool：包含32个low
+    priority的stream，创建时使用的优先级为low，在请求一个stream时返回的是一个循环的index，即33次请求过程中，第1次index=0，第2次index=1，第32次index=31，第33次index=0
+  \item
+    high priority pool：同low priority
+    pool，只不过创建时使用的优先级为high
+  \item
+    这些stream的创建只在第1次请求stream时创建，也即为lazily created
+  \end{itemize}
+\item
+  HIP(ROCm架构，AMD
+  GPU)，不支持priority的stream，所以high和low的pool是一样的
+\item
+  不同的thread对于这些stream是共享的(除了default
+  stream)，不同thread可以enqueue
+  kernel到同一个stream，这使得可以同步这些kernel，当然，由于kernel的enqueue顺序不定，所以如果想达到这个目标需要在host端进行同步的enqueue操作
+\end{itemize}
+
+\subsubsection{参考文章}
+
+\begin{itemize}
+\tightlist
+\item
+  CUDA官方指南：\href{https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html\#abstract}{CUDA
+  C Programming Guide}
+\item
+  一份比较好的介绍cuda流及其并发的ppt(应该也是CUDA官方的)：
+  \href{http://on-demand.gputechconf.com/gtc/2014/presentations/S4158-cuda-streams-best-practices-common-pitfalls.pdf}{cuda-streams-best-practices-common-pitfalls}
+\item
+  HIP，ROCm架构：https://rocm.github.io/和https://github.com/ROCm-Developer-Tools/HIP
+\end{itemize}
+
+\subsubsection{在看源码时遇到的一些问题}
+
+\begin{itemize}
+\item
+  源码里面使用了很多macro，registry，dispatcher，hook之类的一些东西(我觉得应该是一些编程模型)，还有使用了很多c++
+  11的新特性，导致我看不太懂，打算了解一下
+\item
+  dispatcher：\href{https://github.com/pytorch/pytorch/blob/master/aten/src/ATen/core/dispatch/README.md}{aten/src/ATen/core/dispatch/README.md}
+\item
+  registry：\href{https://github.com/pytorch/pytorch/blob/master/c10/util/Registry.h}{c10/util/Registry.h}
+\item
+  hook：\href{https://github.com/pytorch/pytorch/blob/master/torch/csrc/autograd/function_hook.h}{torch/csrc/autograd/function\_hook.h}，\href{https://github.com/pytorch/pytorch/blob/master/torch/csrc/autograd/python_hook.cpp}{torch/csrc/autograd/python\_hook.cpp}
+\end{itemize}

@@ -1,0 +1,76 @@
+\subsection{郭兴}
+
+\subsubsection{小组进展}
+
+\begin{itemize}
+	\item
+	      黄奕桐
+	      \begin{itemize}
+              \item
+                  对 tree-LSTM.pytorch 的应用代码进行修改, 统计各步骤的耗时变化.
+                  \begin{itemize}
+                      \item 尝试 CUDA Streams, 没有得到显著的速度提升.
+                      \item 在训练的一个 batch 里面 先计算 25 个 forward, 再计算 25 次
+                          backward. 而不是原来的(计算一个 froward, 计算一个backward,
+				  重复25次). 得到的速度有明显提升.
+
+				  为什么可以这么做是因为, 每次 forward 算出 loss 值后, 计算
+				  这个 loss 值的过程中产生的计算图以及图上的中间变量在执行 loss.backward 之前不会被释放
+				  (垃圾回收). 每计算一次 forward 都会创建一个新的计算图.
+
+				  为什么会有提升原因不明. 但是显然这样会导致内存消耗乘以
+				  25 倍. 这样修改后 GPU 使用情况还不清楚, 有待进一步研究.
+			   \item 使用 GPU 反而比不使用 GPU 更慢. 后来发现在测试时, 两
+			   种方式使用的 CPU 线程数不一样. 该评测结果无效.
+                  \end{itemize}
+          \end{itemize}
+
+	\item
+	      郭兴
+	      \begin{itemize}
+		      \item
+                    GPU 服务器环境搭建, 安装 Ubuntu 系统和基础软件
+		      \item
+			考虑用 mini-batch 的方式改进 Tree-LSTM 的训练过程.
+
+			对于一般的变长输入的线性 RNN 网络, 在训练时, 可以将多个数据(每个数
+			据为一个句子, 一个句子用一个词向量的向量表示, 长度为句子长度)
+			放在一个 mini-batch 中同时计算. 即将句1的第一个词向量, 与句2的
+			第一个词向量, 与句n的第一个词向量放在一起组成一个矩阵, 作为
+			RNN 单元的输入.  即将句1的第二个词向量, 与句2的
+			第二个词向量, 与句n的第二个词向量放在一起组成一个矩阵, 作为
+			RNN 单元的输入. 由于各个句子长度不相等, 需要以这个 batch 中最
+			长的为准, 使用 padding 或者 mask 的方式将较短的句子补长.
+
+			这要做的好处是, 将向量与矩阵相乘变为矩阵与矩阵相乘, 提高 GPU
+			利用率. 其中还可能涉及尽量将长度相近的数据放在一个 mini-batch
+			的问题.
+
+			对于类似 Tree-LSTM 这样递归计算的网络, 其对一个数据(一个 parse
+			tree) 的计算顺序即对树的拓扑排序顺序. 这样可以将其规约为与线性
+			的 RNN 网络同样的问题.
+
+			目前不了解是否已有类似的工作, 带来的额外开销会多大.
+
+	      \end{itemize}
+\end{itemize}
+
+\subsubsection{工作计划}
+
+\begin{itemize}
+	\item
+	      郭兴
+	      \begin{itemize}
+			 \item
+		            了解 RNN 中的 minibatch 并行化计算的相关工作.
+	      \end{itemize}
+	\item
+	      黄奕桐
+	      \begin{itemize}
+		      \item
+		            对于 treelstm 例子的测试的几个结果, 进一步解释其原因.
+	      \end{itemize}
+\end{itemize}
+
+
+

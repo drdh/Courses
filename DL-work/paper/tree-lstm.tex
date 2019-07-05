@@ -1,0 +1,72 @@
+\section{Improved Semantic Representations From Tree-Structured Long Short-Term Memory Networks}
+
+\textbf{Tree-LSTM}\cite{tai2015improved}. 因为传统的 LSTM 网络只能接受线性结构的输入, 对于树形结构的数据, 不能捕捉其结构信息.
+本文提出的 Tree-LSTM 能够接受树形结构的输入, 在句子相似度和情感分析上都得到了更
+好的效果.
+
+\subsection{原 LSTM 模型}
+
+LSTM 单元接受一个 $\mathbf{x}_t$ 输入, 一个 来自上LSTM 单元的记忆细胞输入
+$\mathbf{c}_{t-1}$,  一个来自上一 LSTM  单元的隐藏状态输入 $\mathbf{h}_{t-1}$.
+输出   $h_t$ 和 $c_t$
+
+LSTM 内部有三个 "门", 输入门(input, $i_t$), 遗忘门(forget, $f_t$), 输入门
+(output, $o_t$). 门的取值范围为0到1.
+输入门控制 $x_t$ 和 $h_{t-1}$ 有多少会进入本次的记忆细胞 $c_t$. 遗忘门控制上一次
+的记忆细胞输入$c_{t-1}$ 有多少会进入本次的记忆细胞 $c_t$.  输出门控制本次的记忆
+细胞有多少会作为本次的输出$h_t$. 其计算公式如下.
+
+\begin{equation}
+\begin{aligned}
+ i_{t} &=\sigma\left(W^{(i)} x_{t}+U^{(i)} h_{t-1}+b^{(i)}\right) \\
+ f_{t} &=\sigma\left(W^{(f)} x_{t}+U^{(f)} h_{t-1}+b^{(f)}\right) \\
+ o_{t} &=\sigma\left(W^{(o)} x_{t}+U^{(o)} h_{t-1}+b^{(o)}\right) \\
+ u_{t} &=\tanh \left(W^{(u)} x_{t}+U^{(u)} h_{t-1}+b^{(u)}\right) \\
+ c_{t} &=i_{t} \odot u_{t}+f_{t} \odot c_{t-1} \\
+ h_{t} &=o_{t} \odot \tanh \left(c_{t}\right) \end{aligned}
+\end{equation}
+
+\subsection{Tree-LSTM 模型}
+
+相比 LSTM 只能接受上一个单元的隐藏状态$h_{t-1}$ 和 记忆细胞$c_{t-1}$ 的输入,
+Tree-LSTM 能接受多个单元的隐藏状态 和 记忆细胞信息, 这使得 Tree-LSTM 单元可以组
+成一个树形结构. Tree-LSTM 在接受一个树形输入时, 会构建一个与输入的树形状相同的
+网络, 网络上每个单元接受输入树上对应的输入 $x$ 和孩子 Tree-LSTM单元的 隐藏状态
+和 记忆细胞输入.
+
+本文提出两种 Tree-LSTM. 一种是不区分树中孩子的顺序的, Child-Sum Tree-LSTM,
+另一种是区分孩子顺序的  N-ary Tree-LSTM.
+
+Child-Sum Tree-LSTM 把来自孩子的
+隐藏状态 和 记忆细胞 输入直接求和. $C(j)$表示 $j$ 的孩子.
+
+\begin{equation}
+\begin{aligned} \tilde{h}_{j} &=\sum_{k \in C(j)} h_{k} \\
+i_{j} &=\sigma\left(W^{(i)} x_{j}+U^{(i)} \tilde{h}_{j}+b^{(i)}\right) \\
+f_{j k} &=\sigma\left(W^{(f)} x_{j}+U^{(i)} h_{k}+b^{(f)}\right) \\
+o_{j} &=\sigma\left(W^{(o)} x_{j}+U^{(o)} \tilde{h}_{j}+b^{(o)}\right) \\
+u_{j} &=\tanh \left(W^{(u)} x_{j}+U^{(o)} \tilde{h}_{j}+b^{(o)}\right) \\
+c_{j} &=i_{j} \odot u_{j}+\sum_{k \in C(j)} f_{j k} \odot c_{k} \\
+h_{j} &=o_{j} \odot \tanh \left(c_{j}\right)
+\end{aligned}
+\end{equation}
+
+N-ary Tree-LSTM 对每个孩子都使用不同的参数矩阵.
+
+\begin{equation}
+\begin{aligned} i_{j} &=\sigma\left(W^{(i)} x_{j}+\sum_{\ell=1}^{N} U_{\ell}^{(i)} h_{j \ell}+b^{(i)}\right) \\
+f_{j k} &=\sigma\left(W^{(f)} x_{j}+\sum_{\ell=1}^{N} U_{k \ell}^{(f)} h_{j \ell}+b^{(f)}\right) \\
+o_{j} &=\sigma\left(W^{(o)} x_{j}+\sum_{\ell=1}^{N} U_{\ell}^{(o)} h_{j \ell}+b^{(o)}\right) \\
+u_{j} &=\tanh \left(W^{(u)} x_{j}+\sum_{\ell=1}^{N} U_{\ell}^{(u)} h_{j \ell}+b^{(u)}\right) \\
+c_{j} &=i_{j} \odot \sum_{l-1}^N f_{j \ell} \odot c_{j \ell} \\
+h_{j} &=o_{j} \odot \tanh \left(c_{j}\right)
+\end{aligned}
+\end{equation}
+
+\subsection{Tree-LSTM 在 NLP 中的应用}
+
+
+
+
+
+

@@ -1,0 +1,37 @@
+\subsection{\ZhangYX}
+
+\subsubsection{小组进展}
+
+\begin{itemize}
+\item 任正行
+  \begin{itemize}
+    \item 时间主要花在华为的比赛上，28号比赛结束
+    \item 梳理大致的思路，主要参考popl13文章模型实现思路
+    \item 没有书面总结，todo list和时间安排会在今晚发到群里
+  \end{itemize}
+\item 董恒
+  \begin{itemize}
+    \item 详细阅读上周组会中提到的相关工作，比较各工作的特点并记录了文档，包括RI、CPO、SRL、AutoRL等
+    \item 工作量太大，需要整理下工作层次，增量实现
+    \item 思路并不完善，暂时没有和陈广大进一步交流
+  \end{itemize}
+\end{itemize}
+
+\subsubsection{个人进展}
+
+\begin{itemize}
+  \item 阅读\href{https://groups.csail.mit.edu/graphics/hdrnet/data/hdrnet.pdf}{Deep Bilateral Learning for Real-Time Image Enhancement\cite{gharbi2017deep}}，补充工作动机、贡献和效果评估，详见\autoref{sec:gharbi2017deep}
+  \item 了解Pytorch的算子扩展机制
+  \begin{itemize}
+    \item \href{https://pytorch.org/docs/master/notes/extending.html}{EXTENDING PYTORCH}
+    \item \href{https://pytorch.org/tutorials/advanced/cpp_extension.html}{CUSTOM C++ AND CUDA EXTENSIONS}
+    \item 尝试基于Pytorch扩展切片算子
+  \end{itemize}
+\end{itemize}
+
+\subsubsection{工作计划}
+
+\begin{itemize}
+  \item 阅读Gradient Halide源码，查看是否有提供切片算子实现，尝试复现文章中的Evaluation
+  \item 完成切片算子基于Pytorch提供的python扩展和C++/CUDA扩展实现
+\end{itemize}

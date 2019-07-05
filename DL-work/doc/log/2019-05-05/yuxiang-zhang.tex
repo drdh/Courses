@@ -1,0 +1,42 @@
+\subsection{\ZhangYX}
+
+\subsubsection{小组进展}
+
+\begin{itemize}
+\item 任正行
+  \begin{itemize}
+    \item 整理\href{http://wiki.ros.org/gmapping}{gmapping}和\href{http://wiki.ros.org/amcl}{amcl}的模型，梳理两个包的源代码实现思路
+    \item gmapping是amcl实现的子集。两者在重采样方法上有所区别，amcl直接重采样，而gmapping迭代地改变权重并重采样
+  \end{itemize}
+\item 董恒
+  \begin{itemize}
+    \item 在本地笔记本电脑上搭建了reinforced imitation的基础环境
+  \end{itemize}
+\end{itemize}
+
+\subsubsection{个人进展}
+
+\begin{itemize}
+  \item 基于Pytorch的纯Python实现的\href{https://github.com/yuxi-zh/auto-gredient/blob/master/pytorch/slice.py}{Slice Function}。
+  明确slice算子基于numpy风格算术算子实现的难点在于和张量绑定的索引变量独立于张量存在，需要将索引变量的取值范围显式存储为张量后操作。
+  \item 基于Pytorch实现的\href{https://github.com/yuxi-zh/auto-gredient/blob/master/pytorch/deep_bilateral.py}{Deep Bilateral Network}，尚未完成
+\end{itemize}
+
+\subsubsection{工作计划}
+
+\ZhangYX
+\begin{itemize}
+  \item 阅读Gradient Halide源码，查看是否有提供切片算子实现，尝试复现文章中的Evaluation
+  \item 完成切片算子基于Pytorch提供C++/CUDA扩展实现
+\end{itemize}
+
+\DongH
+\begin{itemize}
+  \item 实验环境还是有些小问题，新环境Ubuntu 18.04不支持kinetic版本（ROS的一个发行版），需要从源码编译安装
+  \item 搭建Reinforced Imitation的基础实验，添加SRL层测试是否性能提升
+\end{itemize}
+
+\RenZH
+\begin{itemize}
+  \item 着手元模型的构建工作
+\end{itemize}

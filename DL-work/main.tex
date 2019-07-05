@@ -1,0 +1,28 @@
+\newcommand\showchange{TT}%{TT FL}%
+\newcommand\hasalgo{FL}%{TT FL}%
+\documentclass[a4paper]{ctexart}
+
+\input{local}    % common local setting
+\input{clocal}   % common Chinese settinig
+\input{people}   % people information
+
+\begin{document}
+
+\title{深度学习相关工作调研}
+\author{
+\rm 张 昱 (yuzhang@ustc.edu.cn) 课题组\\
+中国科学技术大学 计算机科学与技术学院
+}
+
+\maketitle
+\pagenumbering{arabic}
+\newpage
+\tableofcontents
+\newpage
+\subimport{doc/}{part}
+\begin{small}
+\bibliography{pa}
+\bibliographystyle{plain}
+\end{small}
+
+\end{document}

@@ -1,0 +1,19 @@
+int i = 10, j = 10;
+float a = 10;
+void main() {
+	int i = j-1;
+	output_fvar = a;
+	outputFloat();
+	{
+		float i = a;
+		a = i + a;
+		output_fvar = a;
+		outputFloat();
+	}
+	{
+		int i = j-2;
+		a = a + i;
+		output_fvar = a;
+		outputFloat();
+	}
+}

@@ -1,0 +1,2 @@
+Error at position 3:18 Index cannot be float
+Semantic failed. Exiting.

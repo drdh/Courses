@@ -1,0 +1,27 @@
+\begin{figure}[p]
+\begin{tabular}{l}
+$[[Entry]]: $\\
+$\qquad S_1 = \phi, S_2=\phi; $\\
+$[[ParmDecl\ X]]: $\\
+$\qquad S_1[Value(X) \mapsto IsStatic(Func)\ ?\ T : U]; $\\
+$[[VarDecl\ X]]: $\\
+$\qquad S_1[Value(X) \mapsto U]; $\\
+$[[Condition\ E]]: $\\
+$\qquad \forall RV \in DependentRegionValues(E), S_1[RV \mapsto T]; $\\
+$\qquad \forall RV' \in S_2(RV), S_1[RV' \mapsto T]; $\\
+$Pre.[[E(E_1,E_2,...,E_n)]]: $\\
+$\qquad \text{if}\ IsNotExtern(E),$\\
+$\qquad \text{then} \forall E_i \in \{E_1,E_2,...,E_n\} \land S_1(E_i) = U,
+\text{report unchecked argument}\ E_i; $\\
+$Post.[[E(E_1,E_2,...,E_n)]]: $\\
+$\qquad \text{if}\ NeedHandleError(E), $\\
+$\qquad \text{then}\ \forall E_i \in \{E_1,E_2,...,E_n\} \land IsOutput(E, E_i), S_1[Value(E_i) \mapsto U]; $\\
+$\qquad S_2[Value(E(E_1,E_2,...,E_n)) \mapsto DependentRegionValues(E(E_1,E_2,...,E_n))] $\\
+$[[E_1 = E_2]]: $\\
+$\qquad S_1[Value(E_1) \mapsto \forall RV \in DependentRegionValues(E), S_1(RV) = T\ ?\ T : U]; $\\
+$\qquad S_2[Value(E_1) \mapsto DependentRegionValues(E_2)] $\\
+$[[Read\ E]]: $\\
+$\qquad \text{if}\ S_1(Value(E)) = U,\text{then report read before check};$
+\end{tabular}
+\caption{函数参数合法性检查状态转移与检查动作} \label{fig:module_check} 
+\end{figure}

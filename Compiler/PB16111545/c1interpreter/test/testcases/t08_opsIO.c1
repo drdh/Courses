@@ -1,0 +1,24 @@
+void main() {
+	int x;
+	inputInt();
+	x = input_ivar;
+
+	x = x * (x / x);
+	output_ivar = x;
+	outputInt();
+	x = x * x / x;
+	output_ivar = x;
+	outputInt();
+	x = x % x + x;
+	output_ivar = x;
+	outputInt();
+	x = x + x % x;
+	output_ivar = x;
+	outputInt();
+	x = x + x % x / x;
+	output_ivar = x;
+	outputInt();
+	x = x + x % (x / x);
+	output_ivar = x;
+	outputInt();
+}

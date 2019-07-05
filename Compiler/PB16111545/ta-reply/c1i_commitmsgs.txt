@@ -1,0 +1,8 @@
+[HW]H10, part1: answer question
+[lab2-2]finish docs; DONE
+[lab2-2]fully tested; and add some docs
+[lab2-2]fixup bugs of default testcases in github; still remains some bugs & tests
+[lab2-2]last 2 bugs solved;add testcases: many bugs to be solved
+[lab2-2]done some tests & add docs(not finish) & 2 bugs unsolved
+[lab2-2]finished some functions,with no testing. NOT finish yet
+[lab2-2]start coding, with no testing. NOT finish yet

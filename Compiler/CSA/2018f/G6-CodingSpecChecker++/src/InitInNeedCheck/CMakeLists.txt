@@ -1,0 +1,1 @@
+add_library(init-in-need-check STATIC InitInNeedCheck.cpp)

@@ -1,0 +1,10 @@
+void main(){
+    int a=12;
+    int b;
+    if(a>12)
+        b=a;
+    else if(a==12)
+        b=1;
+    else 
+        b=0;
+}

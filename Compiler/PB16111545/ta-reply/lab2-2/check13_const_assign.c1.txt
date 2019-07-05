@@ -1,0 +1,2 @@
+Error at position 3:4 Assign to a const a
+Semantic failed. Exiting.

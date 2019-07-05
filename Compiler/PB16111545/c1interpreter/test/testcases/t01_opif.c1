@@ -1,0 +1,9 @@
+void main() {
+	int x=3;
+	float y=3.1;
+	if (y-x < 0.1)
+		x = y;
+	else
+		y = x;
+	x = x * (x+2*x);
+}

@@ -1,0 +1,316 @@
+{
+    "type": "assembly",
+    "line": 2,
+    "pos": 0,
+    "global_defs": [
+        {
+            "type": "var_def_stmt_syntax",
+            "line": 2,
+            "pos": 4,
+            "is_const": false,
+            "is_int": true,
+            "name": "in_fib"
+        },
+        {
+            "type": "var_def_stmt_syntax",
+            "line": 3,
+            "pos": 4,
+            "is_const": false,
+            "is_int": true,
+            "name": "ret_fib"
+        },
+        {
+            "type": "func_def_syntax",
+            "line": 4,
+            "pos": 0,
+            "name": "fib",
+            "body": {
+                "type": "block_syntax",
+                "line": 4,
+                "pos": 11,
+                "body": [
+                    {
+                        "type": "if_stmt_syntax",
+                        "line": 5,
+                        "pos": 4,
+                        "pred": {
+                            "type": "cond_syntax",
+                            "line": 5,
+                            "pos": 8,
+                            "op": "equal",
+                            "lhs": {
+                                "type": "lval_syntax",
+                                "line": 5,
+                                "pos": 8,
+                                "name": "in_fib"
+                            },
+                            "rhs": {
+                                "type": "literal_syntax",
+                                "line": 5,
+                                "pos": 18,
+                                "is_int": true,
+                                "value": 0
+                            }
+                        },
+                        "thenbody": {
+                            "type": "assign_stmt_syntax",
+                            "line": 5,
+                            "pos": 21,
+                            "target": {
+                                "type": "lval_syntax",
+                                "line": 5,
+                                "pos": 21,
+                                "name": "ret_fib"
+                            },
+                            "value": {
+                                "type": "literal_syntax",
+                                "line": 5,
+                                "pos": 31,
+                                "is_int": true,
+                                "value": 0
+                            }
+                        },
+                        "elsebody": {
+                            "type": "if_stmt_syntax",
+                            "line": 6,
+                            "pos": 9,
+                            "pred": {
+                                "type": "cond_syntax",
+                                "line": 6,
+                                "pos": 13,
+                                "op": "equal",
+                                "lhs": {
+                                    "type": "lval_syntax",
+                                    "line": 6,
+                                    "pos": 13,
+                                    "name": "in_fib"
+                                },
+                                "rhs": {
+                                    "type": "literal_syntax",
+                                    "line": 6,
+                                    "pos": 23,
+                                    "is_int": true,
+                                    "value": 1
+                                }
+                            },
+                            "thenbody": {
+                                "type": "assign_stmt_syntax",
+                                "line": 6,
+                                "pos": 26,
+                                "target": {
+                                    "type": "lval_syntax",
+                                    "line": 6,
+                                    "pos": 26,
+                                    "name": "ret_fib"
+                                },
+                                "value": {
+                                    "type": "literal_syntax",
+                                    "line": 6,
+                                    "pos": 36,
+                                    "is_int": true,
+                                    "value": 0
+                                }
+                            },
+                            "elsebody": {
+                                "type": "block_syntax",
+                                "line": 7,
+                                "pos": 9,
+                                "body": [
+                                    {
+                                        "type": "var_def_stmt_syntax",
+                                        "line": 8,
+                                        "pos": 12,
+                                        "is_const": false,
+                                        "is_int": true,
+                                        "name": "self_in",
+                                        "vardef_initializer": {
+                                            "type": "lval_syntax",
+                                            "line": 8,
+                                            "pos": 22,
+                                            "name": "in_fib"
+                                        }
+                                    },
+                                    {
+                                        "type": "assign_stmt_syntax",
+                                        "line": 9,
+                                        "pos": 8,
+                                        "target": {
+                                            "type": "lval_syntax",
+                                            "line": 9,
+                                            "pos": 8,
+                                            "name": "in_fib"
+                                        },
+                                        "value": {
+                                            "type": "binop_expr_syntax",
+                                            "line": 9,
+                                            "pos": 17,
+                                            "op": "minus",
+                                            "lhs": {
+                                                "type": "lval_syntax",
+                                                "line": 9,
+                                                "pos": 17,
+                                                "name": "self_in"
+                                            },
+                                            "rhs": {
+                                                "type": "literal_syntax",
+                                                "line": 9,
+                                                "pos": 27,
+                                                "is_int": true,
+                                                "value": 1
+                                            }
+                                        }
+                                    },
+                                    {
+                                        "type": "func_call_stmt_syntax",
+                                        "line": 10,
+                                        "pos": 8,
+                                        "name": "fib"
+                                    },
+                                    {
+                                        "type": "var_def_stmt_syntax",
+                                        "line": 11,
+                                        "pos": 12,
+                                        "is_const": false,
+                                        "is_int": true,
+                                        "name": "tmp",
+                                        "vardef_initializer": {
+                                            "type": "lval_syntax",
+                                            "line": 11,
+                                            "pos": 18,
+                                            "name": "ret_fib"
+                                        }
+                                    },
+                                    {
+                                        "type": "assign_stmt_syntax",
+                                        "line": 12,
+                                        "pos": 8,
+                                        "target": {
+                                            "type": "lval_syntax",
+                                            "line": 12,
+                                            "pos": 8,
+                                            "name": "in_fib"
+                                        },
+                                        "value": {
+                                            "type": "binop_expr_syntax",
+                                            "line": 12,
+                                            "pos": 17,
+                                            "op": "minus",
+                                            "lhs": {
+                                                "type": "lval_syntax",
+                                                "line": 12,
+                                                "pos": 17,
+                                                "name": "self_in"
+                                            },
+                                            "rhs": {
+                                                "type": "literal_syntax",
+                                                "line": 12,
+                                                "pos": 27,
+                                                "is_int": true,
+                                                "value": 2
+                                            }
+                                        }
+                                    },
+                                    {
+                                        "type": "func_call_stmt_syntax",
+                                        "line": 13,
+                                        "pos": 8,
+                                        "name": "fib"
+                                    },
+                                    {
+                                        "type": "assign_stmt_syntax",
+                                        "line": 14,
+                                        "pos": 8,
+                                        "target": {
+                                            "type": "lval_syntax",
+                                            "line": 14,
+                                            "pos": 8,
+                                            "name": "ret_fib"
+                                        },
+                                        "value": {
+                                            "type": "binop_expr_syntax",
+                                            "line": 14,
+                                            "pos": 18,
+                                            "op": "plus",
+                                            "lhs": {
+                                                "type": "lval_syntax",
+                                                "line": 14,
+                                                "pos": 18,
+                                                "name": "tmp"
+                                            },
+                                            "rhs": {
+                                                "type": "lval_syntax",
+                                                "line": 14,
+                                                "pos": 24,
+                                                "name": "ret_fib"
+                                            }
+                                        }
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "type": "func_def_syntax",
+            "line": 18,
+            "pos": 0,
+            "name": "main",
+            "body": {
+                "type": "block_syntax",
+                "line": 18,
+                "pos": 12,
+                "body": [
+                    {
+                        "type": "assign_stmt_syntax",
+                        "line": 19,
+                        "pos": 4,
+                        "target": {
+                            "type": "lval_syntax",
+                            "line": 19,
+                            "pos": 4,
+                            "name": "in_fib"
+                        },
+                        "value": {
+                            "type": "literal_syntax",
+                            "line": 19,
+                            "pos": 13,
+                            "is_int": true,
+                            "value": 10
+                        }
+                    },
+                    {
+                        "type": "func_call_stmt_syntax",
+                        "line": 20,
+                        "pos": 4,
+                        "name": "fib"
+                    },
+                    {
+                        "type": "assign_stmt_syntax",
+                        "line": 21,
+                        "pos": 4,
+                        "target": {
+                            "type": "lval_syntax",
+                            "line": 21,
+                            "pos": 4,
+                            "name": "output_var"
+                        },
+                        "value": {
+                            "type": "lval_syntax",
+                            "line": 21,
+                            "pos": 17,
+                            "name": "ret_fib"
+                        }
+                    },
+                    {
+                        "type": "func_call_stmt_syntax",
+                        "line": 22,
+                        "pos": 4,
+                        "name": "output"
+                    }
+                ]
+            }
+        }
+    ]
+}

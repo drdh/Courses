@@ -1,0 +1,100 @@
+{
+    "type": "assembly",
+    "line": 1,
+    "pos": 0,
+    "global_defs": [
+        {
+            "type": "var_def_stmt_syntax",
+            "line": 1,
+            "pos": 6,
+            "is_const": false,
+            "is_int": false,
+            "name": "v1"
+        },
+        {
+            "type": "var_def_stmt_syntax",
+            "line": 2,
+            "pos": 6,
+            "is_const": false,
+            "is_int": false,
+            "name": "v2"
+        },
+        {
+            "type": "var_def_stmt_syntax",
+            "line": 2,
+            "pos": 10,
+            "is_const": false,
+            "is_int": false,
+            "name": "v3"
+        },
+        {
+            "type": "var_def_stmt_syntax",
+            "line": 2,
+            "pos": 14,
+            "is_const": false,
+            "is_int": false,
+            "name": "v4"
+        },
+        {
+            "type": "var_def_stmt_syntax",
+            "line": 2,
+            "pos": 18,
+            "is_const": false,
+            "is_int": false,
+            "name": "v5"
+        },
+        {
+            "type": "var_def_stmt_syntax",
+            "line": 3,
+            "pos": 6,
+            "is_const": false,
+            "is_int": false,
+            "name": "v6",
+            "vardef_initializer": {
+                "type": "literal_syntax",
+                "line": 3,
+                "pos": 11,
+                "is_int": false,
+                "value": 1.0
+            }
+        },
+        {
+            "type": "var_def_stmt_syntax",
+            "line": 4,
+            "pos": 6,
+            "is_const": false,
+            "is_int": false,
+            "name": "v7"
+        },
+        {
+            "type": "var_def_stmt_syntax",
+            "line": 4,
+            "pos": 10,
+            "is_const": false,
+            "is_int": false,
+            "name": "v8",
+            "vardef_initializer": {
+                "type": "literal_syntax",
+                "line": 4,
+                "pos": 15,
+                "is_int": false,
+                "value": 2.0
+            }
+        },
+        {
+            "type": "var_def_stmt_syntax",
+            "line": 4,
+            "pos": 19,
+            "is_const": false,
+            "is_int": false,
+            "name": "v9",
+            "vardef_initializer": {
+                "type": "literal_syntax",
+                "line": 4,
+                "pos": 24,
+                "is_int": false,
+                "value": 0.3
+            }
+        }
+    ]
+}

@@ -1,0 +1,39 @@
+void main(){
+    int a=1.2;
+    
+    float b=2;
+    int c=a+b;
+    float d=a+b;
+    int e=a+1.2;
+    int f=b+1;
+    float g=1+2.3;
+    int h=-2.3;
+    float i=2/1;
+    //float j=2.2%2.3;
+    //int l=a%b;
+    int m=-2.3;
+    int n=+2.3;
+    {
+        int a=9;
+        {
+            float a=9;
+            output_fvar=a;
+            outputFloat();
+        }
+    }
+    a=a-1;
+    a=b-1;
+
+    int a1[4]={1,2.2};
+    a1[2]=3.1;
+    float a2[2]={2,3};
+
+    float b1=2.3;
+    float b2=3.4;
+    //float b3=b1%b2;
+
+    if(b1==b2)
+        b1=2;
+
+
+}

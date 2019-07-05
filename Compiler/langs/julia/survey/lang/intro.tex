@@ -1,0 +1,29 @@
+\section{Julia概述}
+\label{sec:julia:intro}
+\cite{bezanson2018Julia}
+(\href{https://dl.acm.org/citation.cfm?id=3276490}{OOPSLA2018}, 
+\S\ref{paper:oopsla2018Julia})
+(details the design choices made by the creators of Julia and 
+reflects on the implications of those choices for performance
+and usability)
+详细介绍Julia的创作者所做出的设计选择，并反映这些选择对性能和可用性的影响。
+该文在\cite{bezanson2017Julia}(\href{https://epubs.siam.org/doi/10.1137/141000671}{SIAM2017})
+的工作之上进一步细化了贯穿语言设计和编程风格之间的
+完整编译流水线的协同作用
+（by detailing the synergies at work through the entire compilation pipeline between the design and the programming style of the language）。
+在包含10个小应用的测试基准程序集\href{https://benchmarksgame-team.pages.debian.net/benchmarksgame/}{PLBG}上的测试结果表明，
+Julia的性能是优化的C代码的0.9到6.1倍，
+Julia在所有测试程序上都优于JavaScript和Python
+(we give results obtained on
+a benchmark suite of 10 small applications where Julia performs between 0.9x and 6.1x from
+optimized C code. On our benchmarks, Julia outperforms JavaScript and Python in all cases) 。
+最后，\cite{bezanson2018Julia}还分析了GitHub上的50个流行项目
+以了解实际的库开发者使用哪些Julia语言特征和底层设计选择;
+分析(corpus analysis)表明\textbf{多分派}(multiple dispatch)和\textbf{类型标注}(type annotation)被Julia程序员广泛使用,
+并且被分析的库中绝大多数是\textbf{类型稳定}(type stable)的代码
+\footnote{一个方法/函数是\textbf{类型稳定}的,是指当它被特化成一组具体类型时,
+数据流分析可以将具体类型指派到该函数的所有变量}。
+
+\cite{nardelli2018JuliaSubtyping}(\href{https://dl.acm.org/citation.cfm?doid=3288538.3276483}{OOPSLA2018}, \S\ref{paper:oopsla2018JuliaSubtyping})
+
+\cite{fischer2018juliaMLtoTPU}(\href{https://arxiv.org/abs/1810.09868}{arXiv1810}, \S\label{paper:arxiv1810JuliaMLtoTPU})

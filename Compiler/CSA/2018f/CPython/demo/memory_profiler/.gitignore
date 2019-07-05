@@ -1,0 +1,13 @@
+.idea
+dist
+build
+MANIFEST
+*.egg-info
+*.pyc
+*~
+
+# Ignore mprof generated files
+mprofile_*.dat
+
+# virtual environment
+venv/

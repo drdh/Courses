@@ -1,0 +1,2 @@
+Error at position 3:18 Type mismatch, expect a non-array
+Semantic failed. Exiting.

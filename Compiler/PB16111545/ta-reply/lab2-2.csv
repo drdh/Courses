@@ -1,0 +1,26 @@
+DirectoryStructure, A, good job
+CommitMessage, A, good job
+CommitMessage, A, good job
+CodeStyle, A, good job
+Doc - 遇到的问题、分析和设计 ,A ,good job
+function01_binops.c1 ,passed  
+function02_unary.c1 ,passed  
+function03_relops.c1 ,passed  
+function04_while.c1 ,passed  
+function05_if.c1 ,passed  
+function06_func.c1 ,passed  
+function07_arr.c1 ,passed  
+function08_block_scope.c1 ,passed  
+function09_const.c1 ,failed  
+function10_conversion_define.c1 ,passed  
+function11_conversion_assign.c1 ,passed  
+function12_conversion_binop.c1 ,passed  
+check13_const_assign.c1 ,passed  
+check14_index_not_array.c1 ,passed  
+check15_index_not_int.c1 ,passed  
+check16_no_function.c1 ,passed  
+check17_float_equal_unequal_2_errors.c1 ,passed  
+check18_function_duplicate.c1 ,passed  
+check19_variable_duplicate.c1 ,passed  
+check20_array_length.c1 ,passed  
+Testcases - failed number , 1

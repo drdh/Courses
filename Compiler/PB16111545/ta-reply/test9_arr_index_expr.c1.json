@@ -1,0 +1,113 @@
+{
+    "type": "assembly",
+    "line": 2,
+    "pos": 0,
+    "global_defs": [
+        {
+            "type": "func_def_syntax",
+            "line": 2,
+            "pos": 0,
+            "name": "main",
+            "body": {
+                "type": "block_syntax",
+                "line": 2,
+                "pos": 12,
+                "body": [
+                    {
+                        "type": "var_def_stmt_syntax",
+                        "line": 3,
+                        "pos": 8,
+                        "is_const": false,
+                        "is_int": true,
+                        "name": "x"
+                    },
+                    {
+                        "type": "var_def_stmt_syntax",
+                        "line": 5,
+                        "pos": 8,
+                        "is_const": false,
+                        "is_int": true,
+                        "name": "a",
+                        "array_length": {
+                            "type": "literal_syntax",
+                            "line": 5,
+                            "pos": 10,
+                            "is_int": true,
+                            "value": 1
+                        },
+                        "array_initializers": [
+                            {
+                                "type": "literal_syntax",
+                                "line": 5,
+                                "pos": 16,
+                                "is_int": true,
+                                "value": 2
+                            }
+                        ]
+                    },
+                    {
+                        "type": "assign_stmt_syntax",
+                        "line": 6,
+                        "pos": 4,
+                        "target": {
+                            "type": "lval_syntax",
+                            "line": 6,
+                            "pos": 4,
+                            "name": "x"
+                        },
+                        "value": {
+                            "type": "lval_syntax",
+                            "line": 6,
+                            "pos": 8,
+                            "name": "a",
+                            "array_index": {
+                                "type": "literal_syntax",
+                                "line": 6,
+                                "pos": 10,
+                                "is_int": true,
+                                "value": 0
+                            }
+                        }
+                    },
+                    {
+                        "type": "assign_stmt_syntax",
+                        "line": 7,
+                        "pos": 4,
+                        "target": {
+                            "type": "lval_syntax",
+                            "line": 7,
+                            "pos": 4,
+                            "name": "x"
+                        },
+                        "value": {
+                            "type": "binop_expr_syntax",
+                            "line": 7,
+                            "pos": 8,
+                            "op": "plus",
+                            "lhs": {
+                                "type": "literal_syntax",
+                                "line": 7,
+                                "pos": 8,
+                                "is_int": true,
+                                "value": 1
+                            },
+                            "rhs": {
+                                "type": "lval_syntax",
+                                "line": 7,
+                                "pos": 12,
+                                "name": "a",
+                                "array_index": {
+                                    "type": "literal_syntax",
+                                    "line": 7,
+                                    "pos": 14,
+                                    "is_int": true,
+                                    "value": 0
+                                }
+                            }
+                        }
+                    }
+                ]
+            }
+        }
+    ]
+}

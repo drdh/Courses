@@ -1,0 +1,88 @@
+\section{使用说明}
+\label{sec:usage}
+
+\subsection{检测示例}
+由于篇幅的限制，工具的检测示例和检测效果存放在 \href{https://github.com/clarazhang/CSpecChecker}{Github} 仓库中。
+该仓库中包含了针对各需求单独测试的简单示例与整体测试的工程示例。
+
+\subsection{工具构建基础}
+
+\subsubsection{依赖的软件}
+\begin{itemize}
+\item Cmake: 版本不小于3.4
+\item Clang: 版本为7.0.0
+\item LLVM: 版本为7.0.0
+\end{itemize}
+
+\subsubsection{工具的编译}
+\begin{itemize}
+\item 使用Cmake生成Makefiles文件，首先应当切换到build目录并调用Cmake: \newline
+\indent \qquad \verb|cmake your/source/path|
+\item 然后直接使用make进行编译: \newline
+\indent \qquad \verb|make|
+\item 如果编译时没有错误产生, 那么此时会产生可执行文件code-spec-checker。
+\end{itemize}
+
+\subsubsection{支持平台}
+\begin{itemize}
+\item Windows
+\item Linux
+\end{itemize}
+
+
+\subsection{工具的使用}
+\label{sec:usage}
+
+code-spec-checker: 程序运行入口
+
+\subsubsection{使用摘要}
+
+code-spec-checker [-checkOption]
+
+\indent \qquad \qquad \qquad \qquad [-b build-path]
+
+\indent \qquad \qquad \qquad \qquad [project-path | source-path]
+
+\subsubsection{简要描述}
+
+由于本工具内含有多个模块检查功能，
+调用者可以通过指定特定的参数来实现一个或多个检查。
+
+\subsubsection{参数描述}
+模块检查参数介绍如下:
+
+\qquad -no-module-check: 函数参数合法性检查
+
+\qquad -no-error-handling-check: 函数错误返回码处理检查 
+
+\qquad -no-init-in-need-check: 变量按需初始化检查
+
+\qquad -no-header-check: 头文件自包含及循环包含检查
+
+\qquad -no-full-comment-check: 函数头注释检查
+
+\qquad -no-naming-check: 标识符命名检查 \newline
+
+构建路径指定及检查目标指定: \newline
+
+\qquad -b <build-path>: 指定构建路径。使用当前路径作为默认路径，或者调用者也可以通过指定路径进行更改。\newline
+
+\qquad <project-path> | <source-path>: 指定检查文件或路径，当指定检查对象为目录时，则会对所在目录下所有文件进行检查。 \newline
+
+
+\subsubsection{词典配置}
+
+\qquad -naming-dict-directory=<string>:  
+指定命名检查词典。命名检查功能使用了外置的英文词典和缩写词典。
+目前英文词典和缩写词典与二进制文件存放于同一目录，分别命名为 word\_dict.txt 和 abbr\_dict.txt，均为纯文本格式。
+其中，英文词典的格式为每行一词，缩写词典的格式为每行“原始单词: 缩写”。
+用户可根据需要自行删减、扩充。
+
+\subsubsection{函数名配置}
+
+\qquad -error-function-list=<string>: 
+指定返回值函数文件。
+函数返回码检查使用了单独的文件来对特定库, 或自定义函数进行定义
+每行存储单独一个函数, 用户可以自行进行扩充。\newline
+
+更多完整使用请参见 \quad \verb|code-spec-checker -help|

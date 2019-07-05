@@ -1,0 +1,11 @@
+float a=12;
+void main(){   
+    a=2.2;
+    output_fvar=2;
+    output_ivar=2;
+    a=2.2;
+    float b=1.2;
+    outputFloat(); 
+    outputInt(); 
+    const int c=12;
+}

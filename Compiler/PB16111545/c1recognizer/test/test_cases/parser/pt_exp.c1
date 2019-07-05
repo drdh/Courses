@@ -1,0 +1,11 @@
+void main(){
+    int a=10;
+    int b=1;
+    int c=2;
+    int d=5+8*2;
+    while(a>0){
+        d=d+-a*b/c;
+        b=c+(-b);
+        a=a-1;
+    }
+}

@@ -1,0 +1,6 @@
+void main()
+{
+  output_ivar = 10;
+  outputInt();
+  inputFloat();
+}

@@ -1,0 +1,45 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+/*
+ * Compare two numbers
+ * Input: number1 and number2
+ * Output: 0 means number1 is equal to number2
+ *         1 means number1 is smaller than number2
+ *         2 means number1 is bigger than number2
+ */
+int judge(int number1, int number2) {
+	if (number1 == number2) 
+		return 0;
+	if (number1 < number2)
+		return 1;
+	return -1;
+} 
+
+/*
+ * Compare two numbers
+ * Input: number1 and number2
+ * Output: compare result
+ */
+int main() {
+	int number1, number2;
+	if (scanf("%d %d\n", &number1, &number2) == 2) {
+		int result = judge(number1, number2);
+		if (result == 0) { // check all return values correctly
+			printf("%d is equal to %d", number1, number2);
+		}
+		else {
+			if (result == 1) {
+				printf("%d is smaller to %d", number1, number2);
+			}
+			else {
+				printf("%d is bigger to %d", number1, number2);
+			}
+		}
+	}
+	else {
+		printf("Input Wrong!\n");
+		exit(1);
+	}
+	return 0;
+}

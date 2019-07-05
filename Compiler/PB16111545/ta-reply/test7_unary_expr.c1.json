@@ -1,0 +1,75 @@
+{
+    "type": "assembly",
+    "line": 2,
+    "pos": 0,
+    "global_defs": [
+        {
+            "type": "func_def_syntax",
+            "line": 2,
+            "pos": 0,
+            "name": "main",
+            "body": {
+                "type": "block_syntax",
+                "line": 2,
+                "pos": 12,
+                "body": [
+                    {
+                        "type": "var_def_stmt_syntax",
+                        "line": 3,
+                        "pos": 8,
+                        "is_const": false,
+                        "is_int": true,
+                        "name": "x"
+                    },
+                    {
+                        "type": "assign_stmt_syntax",
+                        "line": 5,
+                        "pos": 4,
+                        "target": {
+                            "type": "lval_syntax",
+                            "line": 5,
+                            "pos": 4,
+                            "name": "x"
+                        },
+                        "value": {
+                            "type": "unaryop_expr_syntax",
+                            "line": 5,
+                            "pos": 8,
+                            "op": "minus",
+                            "rhs": {
+                                "type": "lval_syntax",
+                                "line": 5,
+                                "pos": 9,
+                                "name": "x"
+                            }
+                        }
+                    },
+                    {
+                        "type": "assign_stmt_syntax",
+                        "line": 6,
+                        "pos": 4,
+                        "target": {
+                            "type": "lval_syntax",
+                            "line": 6,
+                            "pos": 4,
+                            "name": "x"
+                        },
+                        "value": {
+                            "type": "unaryop_expr_syntax",
+                            "line": 6,
+                            "pos": 8,
+                            "op": "plus",
+                            "rhs": {
+                                "type": "literal_syntax",
+                                "line": 6,
+                                "pos": 9,
+                                "is_int": true,
+                                "value": 1
+                            }
+                        }
+                    }
+                ]
+            }
+        }
+    ]
+}

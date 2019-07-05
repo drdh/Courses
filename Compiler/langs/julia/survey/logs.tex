@@ -1,0 +1,16 @@
+\section{日志记录}
+\label{sec:logs}
+
+\subsection{20181214}
+
+\redt{[TODO:\ZY 20181214]} 
+\begin{enumerate}[T1.]
+    \item \CaiWT、\HeLY、\YuCD 阅读\cite{fischer2018juliaMLtoTPU}(\href{https://arxiv.org/abs/1810.09868}{arXiv1810})并写笔记(中英文要点)到\S\ref{paper:arxiv1810JuliaMLtoTPU};
+    \\Julia=>XLA, \href{http://arxiv.org/abs/1409.1556}{VGG19}(ICLR2015\href{https://www.iclr.cc/archive/www/lib/exe/fetch.php%3Fmedia=iclr2015:simonyan-iclr2015.pdf}{slides},\href{https://youtu.be/OQe-9P51Z0s}{video}):forward pass - \href{https://github.com/FluxML/Metalhead.jl}{Metalhead.jl}, backward pass \href{https://github.com/FluxML/Zygote.jl}{Zygote.jl}
+    \item \DaiL、\HeJY 阅读\cite{innes2018diffZygote}(\href{https://arxiv.org/abs/1810.07951}{arXiv1810})并写笔记(中英文要点)到\S\ref{paper:arxiv1810diffZygote}, \href{https://github.com/FluxML/Zygote.jl}{Zygote.jl} - source-to-source automatic differentiation (AD) in Julia;
+%    \item 用Julia构建ML模型,如图像处理或语音识别;
+    \item \HeLY、\YuCD 测试评估v1.0和v1.0.2
+    \item \CaiWT、\HeLY、\YuCD Julia编译运行机制：类型推断、类型特化
+    \item \HeJY 进一步调研：1）libuv.jl是人工写的，还是对jl\_uv.c采取某种方式来 wrapper的；2）Julia支持C/C++扩展的约定？3）Channel.jl被使用的情况及其分析
+    \item \ZhangLF 调研threads被上层使用的情况，结合应用进行分析
+\end{enumerate}

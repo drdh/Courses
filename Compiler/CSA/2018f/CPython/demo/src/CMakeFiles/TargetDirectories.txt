@@ -1,0 +1,3 @@
+/home/star/Desktop/hook/demo/src/CMakeFiles/rebuild_cache.dir
+/home/star/Desktop/hook/demo/src/CMakeFiles/hook.dir
+/home/star/Desktop/hook/demo/src/CMakeFiles/edit_cache.dir

@@ -1,0 +1,9 @@
+lab2/fibTest.c
+lab2/fibTest.ll
+lab2/run
+lab2/llvm-irgen-example.cpp
+lab2/llvm-irgen-example
+lab2/fib_gen
+lab2/fib_gen.ll
+.vscode/*
+c1interpreter/build/*

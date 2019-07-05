@@ -1,0 +1,26 @@
+int a=2.2;
+int b[7]={1.2,2.4,3.2};
+float c=2;
+float d=2.3;
+float e[3]={2.2,3.3,4.2};
+float f[3]={1,2,3};
+
+void main(){
+    int a;
+    float b;
+    a=1;
+    b=1;
+    int c=a+b;
+    int d=1;
+    float f=1;
+    int e=d+f;
+    int g=12+1;
+    int h=1.2;
+
+    const int i=12;
+    const float j=12;
+
+    int k[7]={1,2,3};
+    g=k[3];
+    k[3]=8;
+}

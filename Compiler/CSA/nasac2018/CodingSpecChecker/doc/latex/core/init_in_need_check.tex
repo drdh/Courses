@@ -1,0 +1,46 @@
+\subsection{按需初始化检测}
+\label{sec:core:init}
+
+按需初始化检测本质上关注的是避免对内存区域的冗余写操作，
+即，如果对一内存区域的连续两次访问操作均为写操作，
+那么前一次写操作就是冗余的。
+
+本工具采用基于符号执行的路径敏感的过程内分析完成该类检测。
+在分析过程中，本工具追踪的程序点状态定义如\autoref{equ:init_state}所示，
+意为各内存区域（Memory Region，简记$MR$）的上一次访问操作类型，
+$R$ 表示读操作，$W$ 表示写操作。
+
+\begin{equation}
+\label{equ:init_state}
+S : MRs \mapsto \{ R, W \}
+\end{equation}
+
+在上述程序状态基础上，转换规则和检查动作定义如\autoref{fig:init_check} 所示。
+其中函数 $Value()$ 接收一个左值并返回对应右值。
+
+\begin{figure}[htbp]
+\begin{tabular}{l}
+$[[entry]]:$\\
+$\qquad S = \phi;$\\
+$[[read\ Region]]:$\\
+$\qquad S[Region \mapsto R];$\\
+$[[write\ Region]]:$\\
+$\qquad \text{if}\ S(Region)=W,\text{then report reduntant write}; S[Region\mapsto W];$\\
+$Post.[[E(E_1,E_2,...,E_n)]]:$\\
+$\qquad \forall E_i \in \{E_1,E_2,...,E_n\} \land IsLValue(E_i),
+S[Value(E_i) \mapsto IsOutput(E, E_i)\ ?\ W : R]$
+\end{tabular}
+\caption{按需初始化检查状态转移与动作检查} \label{fig:init_check}
+\end{figure}
+
+% \begin{flalign*}
+% &[[entry]]: \\
+% &\qquad S = \phi; \\
+% &[[read\ Region]]: \\
+% &\qquad S[Region \mapsto R]; \\
+% &[[write\ Region]]: \\
+% &\qquad \text{if}\ S(Region)=W,\text{then report reduntant write}; S[Region\mapsto W] \\
+% &Post.[[E(E_1,E_2,...,E_n)]]: \\
+% &\qquad \forall E_i \in \{E_1,E_2,...,E_n\} \land IsLValue(E_i),
+% S[Value(E_i) \mapsto IsOutput(E, E_i)\ ?\ W : R]
+% \end{flalign*}

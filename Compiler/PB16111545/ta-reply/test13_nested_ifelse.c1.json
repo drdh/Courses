@@ -1,0 +1,164 @@
+{
+    "type": "assembly",
+    "line": 2,
+    "pos": 0,
+    "global_defs": [
+        {
+            "type": "func_def_syntax",
+            "line": 2,
+            "pos": 0,
+            "name": "main",
+            "body": {
+                "type": "block_syntax",
+                "line": 2,
+                "pos": 12,
+                "body": [
+                    {
+                        "type": "var_def_stmt_syntax",
+                        "line": 3,
+                        "pos": 8,
+                        "is_const": false,
+                        "is_int": true,
+                        "name": "i",
+                        "vardef_initializer": {
+                            "type": "literal_syntax",
+                            "line": 3,
+                            "pos": 12,
+                            "is_int": true,
+                            "value": 0
+                        }
+                    },
+                    {
+                        "type": "var_def_stmt_syntax",
+                        "line": 3,
+                        "pos": 15,
+                        "is_const": false,
+                        "is_int": true,
+                        "name": "j",
+                        "vardef_initializer": {
+                            "type": "literal_syntax",
+                            "line": 3,
+                            "pos": 19,
+                            "is_int": true,
+                            "value": 1
+                        }
+                    },
+                    {
+                        "type": "if_stmt_syntax",
+                        "line": 6,
+                        "pos": 4,
+                        "pred": {
+                            "type": "cond_syntax",
+                            "line": 6,
+                            "pos": 8,
+                            "op": "equal",
+                            "lhs": {
+                                "type": "lval_syntax",
+                                "line": 6,
+                                "pos": 8,
+                                "name": "i"
+                            },
+                            "rhs": {
+                                "type": "literal_syntax",
+                                "line": 6,
+                                "pos": 13,
+                                "is_int": true,
+                                "value": 10
+                            }
+                        },
+                        "thenbody": {
+                            "type": "assign_stmt_syntax",
+                            "line": 6,
+                            "pos": 17,
+                            "target": {
+                                "type": "lval_syntax",
+                                "line": 6,
+                                "pos": 17,
+                                "name": "i"
+                            },
+                            "value": {
+                                "type": "literal_syntax",
+                                "line": 6,
+                                "pos": 21,
+                                "is_int": true,
+                                "value": 20
+                            }
+                        },
+                        "elsebody": {
+                            "type": "if_stmt_syntax",
+                            "line": 7,
+                            "pos": 9,
+                            "pred": {
+                                "type": "cond_syntax",
+                                "line": 7,
+                                "pos": 13,
+                                "op": "greater",
+                                "lhs": {
+                                    "type": "lval_syntax",
+                                    "line": 7,
+                                    "pos": 13,
+                                    "name": "i"
+                                },
+                                "rhs": {
+                                    "type": "literal_syntax",
+                                    "line": 7,
+                                    "pos": 17,
+                                    "is_int": true,
+                                    "value": 10
+                                }
+                            },
+                            "thenbody": {
+                                "type": "assign_stmt_syntax",
+                                "line": 7,
+                                "pos": 21,
+                                "target": {
+                                    "type": "lval_syntax",
+                                    "line": 7,
+                                    "pos": 21,
+                                    "name": "i"
+                                },
+                                "value": {
+                                    "type": "binop_expr_syntax",
+                                    "line": 7,
+                                    "pos": 25,
+                                    "op": "multiply",
+                                    "lhs": {
+                                        "type": "lval_syntax",
+                                        "line": 7,
+                                        "pos": 25,
+                                        "name": "i"
+                                    },
+                                    "rhs": {
+                                        "type": "literal_syntax",
+                                        "line": 7,
+                                        "pos": 29,
+                                        "is_int": true,
+                                        "value": 2
+                                    }
+                                }
+                            },
+                            "elsebody": {
+                                "type": "assign_stmt_syntax",
+                                "line": 8,
+                                "pos": 9,
+                                "target": {
+                                    "type": "lval_syntax",
+                                    "line": 8,
+                                    "pos": 9,
+                                    "name": "i"
+                                },
+                                "value": {
+                                    "type": "literal_syntax",
+                                    "line": 8,
+                                    "pos": 13,
+                                    "is_int": true,
+                                    "value": 19
+                                }
+                            }
+                        }
+                    }
+                ]
+            }
+        }
+    ]
+}

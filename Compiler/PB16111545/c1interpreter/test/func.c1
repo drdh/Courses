@@ -1,0 +1,9 @@
+void func(){
+    int a=1;
+}
+
+void main(){
+    float a=9;
+    func();
+}
+

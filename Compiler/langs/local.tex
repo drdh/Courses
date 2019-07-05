@@ -1,0 +1,135 @@
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  Including standard latex packages
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+
+\usepackage{stmaryrd}            %more math symbols
+\usepackage{amsmath}             %ams math
+\usepackage{amsfonts}            %ams fonts
+\usepackage{amssymb}             %amsmath
+\usepackage{mathrsfs}            % \mathscr
+\usepackage{latexsym}            %latex symbols
+\usepackage{graphicx}            %grahpicx
+\usepackage{tabularx}
+\usepackage{subfigure}
+\usepackage{wrapfig}
+\usepackage{multirow}
+\usepackage{multicol}
+\usepackage{cite}                % sort citation numbers
+\usepackage{url}
+\usepackage{authblk}
+\usepackage{alltt}
+\usepackage{import}
+\usepackage{rotating}
+\usepackage{fancyvrb}
+
+\usepackage{geometry}
+\geometry{left=2.0cm, right=2.0cm, top=2.5cm, bottom=2.5cm}
+\usepackage{longtable} % table
+\usepackage{booktabs} % table
+\usepackage[bookmarks,colorlinks]{hyperref}
+
+%algorithm
+\if\hasalgo
+\usepackage{algorithmwh}
+\fi
+
+\usepackage[all]{xy}             %various figures
+%\usepackage[amsmath,thmmarks]{ntheorem}%theorems
+\usepackage{float}
+%\usepackage[usenames,dvipsnames]{color}
+\usepackage{xcolor}
+\usepackage{xspace}
+\usepackage[final]{listings}
+%\usepackage[pdftex]{hyperref}
+\usepackage{hyperref}
+\usepackage{listings}
+\hypersetup{
+	bookmarksnumbered,%
+	bookmarksopen,%
+	colorlinks,%
+	citecolor=blue,%
+	filecolor=magenta,%
+	linkcolor=blue,%
+	%urlcolor=green,%
+	hyperindex,%
+	plainpages=false,%
+	pdfstartview=FitH
+}
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
+\if\showchange
+\newcommand\greent[1]{\textcolor{green}{#1}}
+\newcommand\bluet[1]{\textcolor{blue}{#1}}
+\newcommand\redt[1]{\textcolor{red}{#1}}
+\else
+\newcommand\bluet[1]{#1}
+\newcommand\redt[1]{#1}
+\newcommand\greent[1]{#1}
+\fi
+
+\newcommand{\K}[1]{{\bf \textcolor{red}{#1}}}        % keyword
+\newcommand\Q{{\textcolor{red}{Q.~}}}
+\newcommand\A{{\textcolor{red}{A.~}}}
+\newcommand\note[3]{{\textcolor{red}{[#1,#2}}:#3\textcolor{red}{]}}
+\newcommand\codet[1]{\textcolor{brown}{\texttt{#1}}}
+\newlength\savewidth
+\newcommand\whline{\noalign{\global\savewidth\arrayrulewidth
+                            \global\arrayrulewidth 1pt}%
+                   \hline
+                   \noalign{\global\arrayrulewidth\savewidth}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  Including all the local shared latex packages and macros
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\renewcommand{\ttdefault}{cmtt}
+\let\cmttdfl\ttdefault          %what for?
+\let\cmsfdfl\sfdefault          %what for?
+
+\newcommand{\kw}[1]{{\em #1}}        % keyword
+\newcommand\etal{\emph{et al.\ }}
+\newcommand\eg{\emph{e.g.,\ }}
+\newcommand\ie{\emph{i.e.,\ }}
+\newcommand\etc{\emph{etc.\ }}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% THE START OF THE MAIN DOCUMENT
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\lstset{language=C,%
+	basicstyle=\footnotesize\ttfamily,%\small,%
+	columns=flexible,%
+	keepspaces=true,%
+	keywordstyle=\color{blue!70}, 
+	commentstyle=\color{red!50!green!50!blue!90},
+	rulesepcolor=\color{red!20!green!20!blue!20},
+	lineskip=2pt,%
+	%boxpos=c,%
+	tabsize=2,%
+	frame=single,%
+	numbers=left,%
+	numberstyle=\tiny,%
+	xleftmargin=2em,xrightmargin=1em, aboveskip=1em,
+	escapeinside=``,
+	showspaces=false,
+	breaklines=true,%这条命令可以让LaTeX自动将长的代码行换行排版
+	breakautoindent=true,% 
+	breakindent=4em, %
+	extendedchars=false %这一条命令可以解决代码跨页时，章节标题，页眉等汉字>不显示的问题
+}
+
+% Choose abbreviated or long-version alternatives in paper
+\long\def\abbr#1#2{#1}                  % abbreviated version
+%\long\def\abbr#1#2{#2}                 % long version
+
+% Choose abbreviations or long names/titles in bibliography
+%\def\bibbrev#1#2{#1}                    % short version
+%\def\bibbrev#1#2{#2}                   % long version
+\def\bibbrev#1#2{Proceedings of the #2(#1)}                   % long version
+%\def\bibbrev#1#2{\abbr{#1}{#2}}                % follow abbr macro
+
+% Abbreviated or full citation lists: \abcite{basic}{others}
+\newcommand{\abcite}[2]{\abbr{\cite{#1}}{\cite{#1,#2}}}
+
+% Conference abbreviations: \bibconf[Nth]{SOSP}{Symposium on ...}
+\newcommand{\bibconf}[3][]{Proceedings of the #1 #3 (#2)}
+

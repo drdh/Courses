@@ -1,0 +1,10 @@
+#!/bin/bash  
+echo -e "******question 1*******"
+gcc question1.c -o question 
+./question 
+rm question -rf
+
+echo -e "\n\n******question 2*******"
+gcc question2.c -o question 
+./question 
+rm question -rf

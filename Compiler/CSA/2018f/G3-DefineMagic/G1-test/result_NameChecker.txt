@@ -1,0 +1,5 @@
+2 falied / 20 testcases
+
+error:
+	makenewfile
+	trienode

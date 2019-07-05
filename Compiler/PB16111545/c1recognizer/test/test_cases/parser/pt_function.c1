@@ -1,0 +1,10 @@
+void func(){
+    int a=12;
+    float b=1.3;
+    const int c=12;
+    int c[12];
+}
+
+void main(){
+    func();
+}

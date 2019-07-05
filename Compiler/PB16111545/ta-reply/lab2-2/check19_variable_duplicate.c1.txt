@@ -1,0 +1,2 @@
+Error at position 3:10 variable: a has already been declared.
+Semantic failed. Exiting.

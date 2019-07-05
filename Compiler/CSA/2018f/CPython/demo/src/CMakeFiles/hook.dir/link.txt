@@ -1,0 +1,1 @@
+/usr/bin/c++ -fPIC -Wl,--no-as-needed -Wl,--no-undefined  -fPIC -g  -shared -Wl,-soname,libhook.so -o /home/star/Desktop/hook/demo/lib/libhook.so CMakeFiles/hook.dir/hook.o  -L../lib -Wl,-rpath,../lib -lrt -lgvc -lcgraph -lcdt -ldl -lwrapper -leculid 

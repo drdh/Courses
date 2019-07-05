@@ -1,0 +1,54 @@
+\newcommand\showchange{TT}%{TT FL}%
+\newcommand\hasalgo{FL}%{TT FL}%
+%\documentclass[preprint]{../../share/sigplanconf}
+\documentclass[a4paper,11pt,titlepage]{article}
+%\documentclass{sig-alternate}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  Including standard latex packages
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+\usepackage{import}
+\usepackage{pdflscape}
+\subimport{./}{local}
+\subimport{./}{clocal}
+\subimport{./}{people}
+\subimport{./}{url}
+
+\newcommand\mycol[2]{
+    \begin{minipage}{#1\linewidth}
+    \scriptsize {#2}
+    \end{minipage}
+}
+
+%\newcommand{\tabincell}[2]{\begin{tabular}{@{}#1@{}}#2\end{tabular}}
+\newcommand\com[2]{\textcolor{purple}{[#1:#2]}}
+%\theoremstyle{definition}
+%\newtheorem{defn}[thm]{Definition}
+
+\begin{document}
+%\special{papersize=8.5in,11in}
+\title{图形系统研讨会议记录}
+
+\author{
+\rm 张 昱 (yuzhang@ustc.edu.cn) 课题组\\
+中国科学技术大学 计算机科学与技术学院
+%University of Science and Technology of China
+}
+
+\maketitle
+\tableofcontents
+\setcounter{tocdepth}{3}
+\newpage
+\pagenumbering{arabic}
+
+\subimport{group/}{part}
+\newpage
+%\begin{small}
+\begin{footnotesize}
+\nocite{*}
+\bibliography{citation}
+\bibliographystyle{unsrt}%plain}
+\end{footnotesize}
+%\end{small}
+
+\end{document}

@@ -1,0 +1,1 @@
+#define THERE_SHOULD_ERROR

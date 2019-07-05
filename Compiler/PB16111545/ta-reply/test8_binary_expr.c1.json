@@ -1,0 +1,148 @@
+{
+    "type": "assembly",
+    "line": 2,
+    "pos": 0,
+    "global_defs": [
+        {
+            "type": "func_def_syntax",
+            "line": 2,
+            "pos": 0,
+            "name": "main",
+            "body": {
+                "type": "block_syntax",
+                "line": 2,
+                "pos": 12,
+                "body": [
+                    {
+                        "type": "var_def_stmt_syntax",
+                        "line": 3,
+                        "pos": 8,
+                        "is_const": false,
+                        "is_int": true,
+                        "name": "x"
+                    },
+                    {
+                        "type": "assign_stmt_syntax",
+                        "line": 5,
+                        "pos": 4,
+                        "target": {
+                            "type": "lval_syntax",
+                            "line": 5,
+                            "pos": 4,
+                            "name": "x"
+                        },
+                        "value": {
+                            "type": "binop_expr_syntax",
+                            "line": 5,
+                            "pos": 8,
+                            "op": "plus",
+                            "lhs": {
+                                "type": "lval_syntax",
+                                "line": 5,
+                                "pos": 8,
+                                "name": "x"
+                            },
+                            "rhs": {
+                                "type": "literal_syntax",
+                                "line": 5,
+                                "pos": 12,
+                                "is_int": true,
+                                "value": 1
+                            }
+                        }
+                    },
+                    {
+                        "type": "assign_stmt_syntax",
+                        "line": 6,
+                        "pos": 4,
+                        "target": {
+                            "type": "lval_syntax",
+                            "line": 6,
+                            "pos": 4,
+                            "name": "x"
+                        },
+                        "value": {
+                            "type": "binop_expr_syntax",
+                            "line": 6,
+                            "pos": 8,
+                            "op": "minus",
+                            "lhs": {
+                                "type": "lval_syntax",
+                                "line": 6,
+                                "pos": 8,
+                                "name": "x"
+                            },
+                            "rhs": {
+                                "type": "literal_syntax",
+                                "line": 6,
+                                "pos": 12,
+                                "is_int": true,
+                                "value": 1
+                            }
+                        }
+                    },
+                    {
+                        "type": "assign_stmt_syntax",
+                        "line": 7,
+                        "pos": 4,
+                        "target": {
+                            "type": "lval_syntax",
+                            "line": 7,
+                            "pos": 4,
+                            "name": "x"
+                        },
+                        "value": {
+                            "type": "binop_expr_syntax",
+                            "line": 7,
+                            "pos": 8,
+                            "op": "multiply",
+                            "lhs": {
+                                "type": "lval_syntax",
+                                "line": 7,
+                                "pos": 8,
+                                "name": "x"
+                            },
+                            "rhs": {
+                                "type": "literal_syntax",
+                                "line": 7,
+                                "pos": 12,
+                                "is_int": true,
+                                "value": 2
+                            }
+                        }
+                    },
+                    {
+                        "type": "assign_stmt_syntax",
+                        "line": 8,
+                        "pos": 4,
+                        "target": {
+                            "type": "lval_syntax",
+                            "line": 8,
+                            "pos": 4,
+                            "name": "x"
+                        },
+                        "value": {
+                            "type": "binop_expr_syntax",
+                            "line": 8,
+                            "pos": 8,
+                            "op": "divide",
+                            "lhs": {
+                                "type": "lval_syntax",
+                                "line": 8,
+                                "pos": 8,
+                                "name": "x"
+                            },
+                            "rhs": {
+                                "type": "literal_syntax",
+                                "line": 8,
+                                "pos": 12,
+                                "is_int": true,
+                                "value": 3
+                            }
+                        }
+                    }
+                ]
+            }
+        }
+    ]
+}

@@ -1,0 +1,39 @@
+int a=1;
+float b=2.3;
+
+void main(){
+	int a=1;
+	a=a+1;
+	func();
+}
+
+void func(){
+	int a=1.2;
+	int b=1;
+	a=a+b;
+
+	if(a>1)
+		b=2;
+	else b=1;
+	;
+
+	while(a<10){
+		b=b+a;
+		a=a+1;	
+	}
+	const int c=1;
+
+	int d1[3];
+	const int d2[3]={1,2,3};
+	int d3[]={1,2,3};
+
+	int d4[3]={1,2,3};
+
+	int e1;
+	float e2;
+	e2=1.23;
+	e2=.23;
+	e2=-0.23;
+	e2=1.3e-2;
+	e2=3.123232123213212133e-9;
+}

@@ -1,0 +1,26 @@
+DirectoryStructure ,A ,good job
+GitCommit-message ,A ,good job
+GitCommit-files ,A ,good job
+Answer1-antlr机制 ,A ,good job.
+Answer2-三种文法 ,A ,good job.
+Document1-understanding of (编译流程、文件结构) ,A ,good job.
+Document2-understanding of (外部组建、功能模块) ,A ,good job.
+Document3-实验的设计、问题、解决 ,A ,good job.
+CodeStyle ,A ,good job
+OverDue ,- ,good job.
+Functionality-test10_bracket_expr.c1 ,passed 
+Functionality-test11_relops.c1 ,passed 
+Functionality-test12_simple_ifelse.c1 ,passed 
+Functionality-test13_nested_ifelse.c1 ,passed 
+Functionality-test14_while.c1 ,passed 
+Functionality-test15_func.c1 ,passed 
+Functionality-test1_int_decl.c1 ,passed 
+Functionality-test2_float_decl.c1 ,passed 
+Functionality-test3_const_decl.c1 ,passed 
+Functionality-test4_array_decl.c1 ,passed 
+Functionality-test5_blockstmt_decl.c1 ,passed 
+Functionality-test6_simple_assign_expr.c1 ,passed 
+Functionality-test7_unary_expr.c1 ,passed 
+Functionality-test8_binary_expr.c1 ,passed 
+Functionality-test9_arr_index_expr.c1 ,passed 
+Functionality-failed number ,0

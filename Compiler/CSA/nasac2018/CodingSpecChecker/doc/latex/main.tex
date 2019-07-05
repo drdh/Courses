@@ -1,0 +1,76 @@
+% !TEX program = xelatex
+\documentclass[a4paper]{ctexrep}
+
+\usepackage{soul}
+% \newcommand{\mod}[1]{{\color{red} #1}} %teal青色, magenta水红, violet紫
+\newcommand{\yu}[1]{{\color{red} [ZY: #1]}} %teal青色, magenta水红, violet紫
+
+\usepackage{import}
+\usepackage{authblk}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{algorithmicx}
+\usepackage{algpseudocode}
+\usepackage[top=1in, bottom=1in, left=1.25in, right=1.25in]{geometry}
+
+\usepackage{hyperref}
+\hypersetup{
+  colorlinks   = true, %Colours links instead of ugly boxes
+  urlcolor     = cyan, %Colour for external hyperlinks
+  linkcolor    = blue, %Colour of internal links
+  citecolor    = red   %Colour of citations
+}
+
+\def\equationautorefname{式}%
+\def\footnoteautorefname{脚注}%
+\def\itemautorefname{项}%
+\def\figureautorefname{图}%
+\def\tableautorefname{表}%
+\def\partautorefname{篇}%
+\def\appendixautorefname{附录}%
+\def\chapterautorefname{章}%
+\def\sectionautorefname{节}%
+\def\subsectionautorefname{小节}%
+\def\subsubsectionautorefname{小小节}%
+\def\paragraphautorefname{段落}%
+\def\subparagraphautorefname{子段落}%
+\def\FancyVerbLineautorefname{行}%
+\def\theoremautorefname{定理}%
+
+\usepackage{listings}
+\lstset{
+	keywordstyle	= blue,
+	basicstyle		= \footnotesize\ttfamily,
+	tabsize			  = 2,
+	numbers			  = left,
+	breaklines		= true,
+	frame			    = tb
+}
+
+\pagestyle{plain}
+
+\begin{document}
+
+\title{
+NASAC 2018 软件原型竞赛 \\
+~~\\
+\bf 违反编码规范的缺陷检测
+}
+
+\author{{\bf 参赛队员}: 张宇翔\thanks{Email: zyx504@mail.ustc.edu.cn}、邓胜亮、李森\\}
+\author{{\bf 指导教师}：张昱\thanks{Email: yuzhang@ustc.edu.cn}}
+\affil{中国科学技术大学，计算机科学与技术学院}
+
+\maketitle
+\tableofcontents
+\newpage
+
+\renewcommand\thesection{\arabic{section}}
+\input{intro}
+\input{core/list}
+\input{usage}
+
+\end{document}

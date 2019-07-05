@@ -1,0 +1,5 @@
+unix2dos.sh
+dos2unix.sh
+*.pdf
+*/.DS_Store
+

@@ -1,0 +1,30 @@
+void main() {
+	const float a = 3;
+	const int ia = 3;
+	int i = ia, j;
+	float b = a;
+
+	if ( i == ia ) j = 1;
+	if ( i != ia ) j = 0;
+	if ( i >= ia ) j = 1;
+	if ( i > ia ) j = 0;
+	if ( i < ia ) j = 0;
+	if ( i <= ia ) j = 1;
+
+	if ( b - ia > 0 ) {
+		j = 1;
+		if ( b - ia < 0.000001 ) j = 11;
+		else j = 12;
+	} else {
+		j = 2;
+		if ( ia - b < 0.000001 ) j = 21;
+		else j = 22;
+	}
+
+	if ( b - a < 0.000001 ) j = 3;
+	else j = 30;
+
+	// float point numbers cannot be compared by == or !==
+	if ( b == a )	j = 31;
+	if ( b != a )   j = 32;
+}

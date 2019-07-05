@@ -1,0 +1,7 @@
+void main() {
+	int i = 8*3-2, j = i - 1;
+
+	if ( i == j ) i = 3;
+	else if ( i > 10) i = j*2-i;
+	else i = i;
+}

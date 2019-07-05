@@ -1,0 +1,38 @@
+\newcommand\showchange{TT}%{TT FL}%
+\newcommand\hasalgo{FL}%{TT FL}%
+%\documentclass[preprint]{../../share/sigplanconf}
+\documentclass[a4paper]{article}
+
+\input local    % common local setting
+\input clocal   % common Chinese setting
+\input people
+\begin{document}
+
+\title{Julia语言及其对新兴机器学习应用的支持探索}
+\author{
+\rm 张 昱 (yuzhang@ustc.edu.cn) 课题组\\
+中国科学技术大学 计算机科学与技术学院
+}
+
+\maketitle
+% turn on page numbers
+%\pagestyle{empty}
+\pagenumbering{arabic}
+\newpage
+本文介绍Julia语言特征及其编译运行机制、扩展包及其构造机制、
+新兴机器学习应用需求以及现有解决对策（如Ray~\cite{moritz2018ray}），探讨如何用Julia解决新兴机器学习应用带来的一些挑战。
+\subimport{./}{logs}
+\newpage
+\subimport{./}{resources}
+\subimport{lang/}{part}
+\subimport{compiler/}{part}
+\subimport{packages/}{part}
+\subimport{rayRL/}{part}
+\subimport{papers/}{part}
+\newpage
+\begin{small}
+\bibliography{pa,langs}
+\bibliographystyle{plain}
+\end{small}
+
+\end{document}

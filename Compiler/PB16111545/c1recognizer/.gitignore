@@ -1,0 +1,5 @@
+build/*
+.vscode/*
+grammar/.antlr/*
+c1_ref_ubuntu
+c1r_ref_ubuntu

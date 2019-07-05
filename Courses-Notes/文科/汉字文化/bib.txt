@@ -1,0 +1,89 @@
+
+
+@article{bib1,
+
+    author ={黄红梅},
+
+    title= {巧析字理，构建高效识字课堂},
+
+}
+
+@article{bib2,
+
+    author ={傅望华},
+
+    title= {析字诗联拾趣},
+
+}
+
+@article{bib3,
+
+    author ={翔咸},
+
+    title= {析字、借音、寓意},
+
+}
+
+@article{bib4,
+
+    author ={李峥嵘},
+
+    title= {析字技巧在古诗词中的运用},
+
+}
+
+@article{bib5,
+
+    author ={童志国},
+
+    title= {浅谈析字法在文言文教学中的运用},
+
+}
+
+@article{bib6,
+
+    author ={刘百虎},
+
+    title= {解字析字学地理},
+
+}
+
+@article{bib7,
+
+    author ={张冬娜},
+
+    title= {辩义析字在古代汉语词语教学中的重要性},
+
+}
+
+@article{bib8,
+
+    author ={杨璐},
+
+    title= {化形析字浅析},
+
+}
+
+@article{bib9,
+
+    author ={李岩青},
+
+    title= {浅谈析字辞格},
+
+}
+
+@article{bib10,
+
+    title= {http://www.wikiwand.com/zh-sg/%E6%9E%90%E5%AD%97},
+
+}
+
+@article{bib11,
+
+    title= {http://blog.udn.com/ki999mo/6928433},
+
+}
+
+
+
+

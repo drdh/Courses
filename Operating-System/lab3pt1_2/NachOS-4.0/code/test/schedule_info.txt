@@ -1,0 +1,609 @@
+
+
+--------------switch process------------
+running: tid=0	name=main   	status=READY  	priority=197
+
+Ready list contents:
+running: tid=0	name=main   	status=READY  	priority=197
+
+
+--------------switch process------------
+running: tid=0	name=main   	status=READY  	priority=194
+
+Ready list contents:
+running: tid=0	name=main   	status=READY  	priority=194
+
+
+--------------switch process------------
+running: tid=0	name=main   	status=BLOCKED	priority=194
+
+Ready list contents:
+running: tid=1	name=postal worker	status=READY  	priority=202
+
+
+--------------switch process------------
+running: tid=1	name=postal worker	status=BLOCKED	priority=158
+
+Ready list contents:
+running: tid=0	name=main   	status=READY  	priority=196
+
+
+--------------switch process------------
+running: tid=0	name=main   	status=READY  	priority=193
+
+Ready list contents:
+running: tid=0	name=main   	status=READY  	priority=193
+
+
+--------------switch process------------
+running: tid=0	name=main   	status=READY  	priority=176
+
+Ready list contents:
+running: tid=0	name=main   	status=READY  	priority=176
+
+
+--------------switch process------------
+running: tid=0	name=main   	status=READY  	priority=173
+
+Ready list contents:
+running: tid=0	name=main   	status=READY  	priority=173
+
+
+--------------switch process------------
+running: tid=0	name=main   	status=READY  	priority=170
+
+Ready list contents:
+running: tid=0	name=main   	status=READY  	priority=170
+
+
+--------------switch process------------
+running: tid=0	name=main   	status=READY  	priority=167
+
+Ready list contents:
+running: tid=0	name=main   	status=READY  	priority=167
+
+
+--------------switch process------------
+running: tid=0	name=main   	status=READY  	priority=164
+
+Ready list contents:
+running: tid=0	name=main   	status=READY  	priority=164
+
+
+--------------switch process------------
+running: tid=0	name=main   	status=READY  	priority=161
+
+Ready list contents:
+running: tid=0	name=main   	status=READY  	priority=161
+
+
+--------------switch process------------
+running: tid=0	name=main   	status=READY  	priority=158
+
+Ready list contents:
+running: tid=0	name=main   	status=READY  	priority=158
+
+
+--------------switch process------------
+running: tid=0	name=main   	status=READY  	priority=155
+
+Ready list contents:
+running: tid=0	name=main   	status=READY  	priority=155
+
+
+--------------switch process------------
+running: tid=0	name=main   	status=READY  	priority=152
+
+Ready list contents:
+running: tid=0	name=main   	status=READY  	priority=152
+
+
+--------------switch process------------
+running: tid=0	name=main   	status=READY  	priority=149
+
+Ready list contents:
+running: tid=0	name=main   	status=READY  	priority=149
+
+
+--------------switch process------------
+running: tid=0	name=main   	status=READY  	priority=146
+
+Ready list contents:
+running: tid=0	name=main   	status=READY  	priority=146
+
+
+--------------switch process------------
+running: tid=0	name=main   	status=READY  	priority=143
+
+Ready list contents:
+running: tid=0	name=main   	status=READY  	priority=143
+
+
+--------------switch process------------
+running: tid=0	name=main   	status=READY  	priority=140
+
+Ready list contents:
+running: tid=0	name=main   	status=READY  	priority=140
+
+
+--------------switch process------------
+running: tid=0	name=main   	status=READY  	priority=137
+
+Ready list contents:
+running: tid=0	name=main   	status=READY  	priority=137
+
+
+--------------switch process------------
+running: tid=0	name=main   	status=READY  	priority=134
+
+Ready list contents:
+running: tid=0	name=main   	status=READY  	priority=134
+
+
+--------------switch process------------
+running: tid=0	name=main   	status=READY  	priority=131
+
+Ready list contents:
+running: tid=0	name=main   	status=READY  	priority=131
+
+
+--------------switch process------------
+running: tid=0	name=main   	status=READY  	priority=78
+
+Ready list contents:
+running: tid=0	name=main   	status=READY  	priority=78
+
+
+--------------switch process------------
+running: tid=0	name=main   	status=READY  	priority=75
+
+Ready list contents:
+running: tid=0	name=main   	status=READY  	priority=75
+
+
+--------------switch process------------
+running: tid=0	name=main   	status=READY  	priority=-37
+
+Ready list contents:
+running: tid=0	name=main   	status=READY  	priority=-37
+
+
+--------------switch process------------
+running: tid=0	name=main   	status=READY  	priority=-40
+
+Ready list contents:
+running: tid=0	name=main   	status=READY  	priority=-40
+
+
+--------------switch process------------
+running: tid=0	name=main   	status=READY  	priority=-43
+
+Ready list contents:
+running: tid=0	name=main   	status=READY  	priority=-43
+
+
+--------------switch process------------
+running: tid=0	name=main   	status=READY  	priority=-46
+
+Ready list contents:
+running: tid=0	name=main   	status=READY  	priority=-46
+
+
+--------------switch process------------
+running: tid=0	name=main   	status=READY  	priority=-49
+
+Ready list contents:
+running: tid=0	name=main   	status=READY  	priority=-49
+
+
+--------------switch process------------
+running: tid=0	name=main   	status=READY  	priority=-52
+
+Ready list contents:
+running: tid=0	name=main   	status=READY  	priority=-52
+
+
+--------------switch process------------
+running: tid=0	name=main   	status=READY  	priority=-55
+
+Ready list contents:
+running: tid=0	name=main   	status=READY  	priority=-55
+
+
+--------------switch process------------
+running: tid=0	name=main   	status=READY  	priority=-58
+
+Ready list contents:
+running: tid=0	name=main   	status=READY  	priority=-58
+
+
+--------------switch process------------
+running: tid=0	name=main   	status=READY  	priority=-153
+
+Ready list contents:
+running: tid=0	name=main   	status=READY  	priority=-153
+
+
+--------------switch process------------
+running: tid=0	name=main   	status=READY  	priority=-221
+
+Ready list contents:
+running: tid=0	name=main   	status=READY  	priority=-221
+
+
+--------------switch process------------
+running: tid=0	name=main   	status=READY  	priority=-374
+
+Ready list contents:
+running: tid=0	name=main   	status=READY  	priority=-374
+
+
+--------------switch process------------
+running: tid=0	name=main   	status=READY  	priority=-537
+
+Ready list contents:
+running: tid=0	name=main   	status=READY  	priority=-537
+
+
+--------------switch process------------
+running: tid=0	name=main   	status=READY  	priority=-650
+
+Ready list contents:
+running: tid=0	name=main   	status=READY  	priority=-650
+
+
+--------------switch process------------
+running: tid=0	name=main   	status=READY  	priority=-813
+
+Ready list contents:
+running: tid=0	name=main   	status=READY  	priority=-813
+
+
+--------------switch process------------
+running: tid=0	name=main   	status=READY  	priority=-976
+
+Ready list contents:
+running: tid=0	name=main   	status=READY  	priority=-976
+
+
+--------------switch process------------
+running: tid=0	name=main   	status=READY  	priority=-1139
+
+Ready list contents:
+running: tid=0	name=main   	status=READY  	priority=-1139
+
+
+--------------switch process------------
+running: tid=0	name=main   	status=READY  	priority=-1302
+
+Ready list contents:
+running: tid=0	name=main   	status=READY  	priority=-1302
+
+
+--------------switch process------------
+running: tid=0	name=main   	status=READY  	priority=-1465
+
+Ready list contents:
+running: tid=0	name=main   	status=READY  	priority=-1465
+
+
+--------------switch process------------
+running: tid=0	name=main   	status=READY  	priority=-1628
+
+Ready list contents:
+running: tid=0	name=main   	status=READY  	priority=-1628
+
+
+--------------switch process------------
+running: tid=0	name=main   	status=READY  	priority=-1791
+
+Ready list contents:
+running: tid=0	name=main   	status=READY  	priority=-1791
+
+
+--------------switch process------------
+running: tid=0	name=main   	status=READY  	priority=-1794
+
+Ready list contents:
+running: tid=0	name=main   	status=READY  	priority=-1794
+
+
+--------------switch process------------
+running: tid=0	name=main   	status=READY  	priority=-1797
+
+Ready list contents:
+running: tid=0	name=main   	status=READY  	priority=-1797
+
+
+--------------switch process------------
+running: tid=0	name=main   	status=READY  	priority=-1800
+
+Ready list contents:
+running: tid=0	name=main   	status=READY  	priority=-1800
+
+
+--------------switch process------------
+running: tid=0	name=main   	status=READY  	priority=-1803
+
+Ready list contents:
+running: tid=0	name=main   	status=READY  	priority=-1803
+
+
+--------------switch process------------
+running: tid=0	name=main   	status=READY  	priority=-1806
+
+Ready list contents:
+running: tid=0	name=main   	status=READY  	priority=-1806
+
+
+--------------switch process------------
+running: tid=0	name=main   	status=READY  	priority=-1877
+
+Ready list contents:
+running: tid=0	name=main   	status=READY  	priority=-1877
+
+
+--------------switch process------------
+running: tid=0	name=main   	status=READY  	priority=-1955
+
+Ready list contents:
+running: tid=0	name=main   	status=READY  	priority=-1955
+
+
+--------------switch process------------
+running: tid=0	name=main   	status=READY  	priority=-2113
+
+Ready list contents:
+running: tid=0	name=main   	status=READY  	priority=-2113
+
+
+--------------switch process------------
+running: tid=0	name=main   	status=READY  	priority=-2116
+
+Ready list contents:
+running: tid=0	name=main   	status=READY  	priority=-2116
+
+
+--------------switch process------------
+running: tid=0	name=main   	status=READY  	priority=-2119
+
+Ready list contents:
+running: tid=0	name=main   	status=READY  	priority=-2119
+
+
+--------------switch process------------
+running: tid=0	name=main   	status=READY  	priority=-2122
+
+Ready list contents:
+running: tid=0	name=main   	status=READY  	priority=-2122
+
+
+--------------switch process------------
+running: tid=0	name=main   	status=READY  	priority=-2125
+
+Ready list contents:
+running: tid=0	name=main   	status=READY  	priority=-2125
+
+
+--------------switch process------------
+running: tid=0	name=main   	status=READY  	priority=-2128
+
+Ready list contents:
+running: tid=0	name=main   	status=READY  	priority=-2128
+
+
+--------------switch process------------
+running: tid=0	name=main   	status=READY  	priority=-2179
+
+Ready list contents:
+running: tid=0	name=main   	status=READY  	priority=-2179
+
+
+--------------switch process------------
+running: tid=0	name=main   	status=READY  	priority=-2352
+
+Ready list contents:
+running: tid=0	name=main   	status=READY  	priority=-2352
+
+
+--------------switch process------------
+running: tid=0	name=main   	status=READY  	priority=-2355
+
+Ready list contents:
+running: tid=0	name=main   	status=READY  	priority=-2355
+
+
+--------------switch process------------
+running: tid=0	name=main   	status=READY  	priority=-2492
+
+Ready list contents:
+running: tid=0	name=main   	status=READY  	priority=-2492
+
+
+--------------switch process------------
+running: tid=0	name=main   	status=READY  	priority=-2665
+
+Ready list contents:
+running: tid=0	name=main   	status=READY  	priority=-2665
+
+
+--------------switch process------------
+running: tid=0	name=main   	status=READY  	priority=-2828
+
+Ready list contents:
+running: tid=0	name=main   	status=READY  	priority=-2828
+
+
+--------------switch process------------
+running: tid=0	name=main   	status=READY  	priority=-2981
+
+Ready list contents:
+running: tid=0	name=main   	status=READY  	priority=-2981
+
+
+--------------switch process------------
+running: tid=0	name=main   	status=READY  	priority=-3144
+
+Ready list contents:
+running: tid=0	name=main   	status=READY  	priority=-3144
+
+
+--------------switch process------------
+running: tid=0	name=main   	status=READY  	priority=-3307
+
+Ready list contents:
+running: tid=0	name=main   	status=READY  	priority=-3307
+
+
+--------------switch process------------
+running: tid=0	name=main   	status=READY  	priority=-3470
+
+Ready list contents:
+running: tid=0	name=main   	status=READY  	priority=-3470
+
+
+--------------switch process------------
+running: tid=0	name=main   	status=READY  	priority=-3633
+
+Ready list contents:
+running: tid=0	name=main   	status=READY  	priority=-3633
+
+
+--------------switch process------------
+running: tid=0	name=main   	status=READY  	priority=-3796
+
+Ready list contents:
+running: tid=0	name=main   	status=READY  	priority=-3796
+
+
+--------------switch process------------
+running: tid=0	name=main   	status=READY  	priority=-3929
+
+Ready list contents:
+running: tid=0	name=main   	status=READY  	priority=-3929
+
+
+--------------switch process------------
+running: tid=0	name=main   	status=READY  	priority=-4092
+
+Ready list contents:
+running: tid=0	name=main   	status=READY  	priority=-4092
+
+
+--------------switch process------------
+running: tid=0	name=main   	status=READY  	priority=-4245
+
+Ready list contents:
+running: tid=0	name=main   	status=READY  	priority=-4245
+
+
+--------------switch process------------
+running: tid=0	name=main   	status=READY  	priority=-4408
+
+Ready list contents:
+running: tid=0	name=main   	status=READY  	priority=-4408
+
+
+--------------switch process------------
+running: tid=0	name=main   	status=READY  	priority=-4571
+
+Ready list contents:
+running: tid=0	name=main   	status=READY  	priority=-4571
+
+
+--------------switch process------------
+running: tid=0	name=main   	status=READY  	priority=-4734
+
+Ready list contents:
+running: tid=0	name=main   	status=READY  	priority=-4734
+
+
+--------------switch process------------
+running: tid=0	name=main   	status=READY  	priority=-4897
+
+Ready list contents:
+running: tid=0	name=main   	status=READY  	priority=-4897
+
+
+--------------switch process------------
+running: tid=0	name=main   	status=READY  	priority=-5060
+
+Ready list contents:
+running: tid=0	name=main   	status=READY  	priority=-5060
+
+
+--------------switch process------------
+running: tid=0	name=main   	status=READY  	priority=-5193
+
+Ready list contents:
+running: tid=0	name=main   	status=READY  	priority=-5193
+
+
+--------------switch process------------
+running: tid=0	name=main   	status=READY  	priority=-5356
+
+Ready list contents:
+running: tid=0	name=main   	status=READY  	priority=-5356
+
+
+--------------switch process------------
+running: tid=0	name=main   	status=READY  	priority=-5359
+
+Ready list contents:
+running: tid=0	name=main   	status=READY  	priority=-5359
+
+
+--------------switch process------------
+running: tid=0	name=main   	status=READY  	priority=-5362
+
+Ready list contents:
+running: tid=0	name=main   	status=READY  	priority=-5362
+
+
+--------------switch process------------
+running: tid=0	name=main   	status=READY  	priority=-5365
+
+Ready list contents:
+running: tid=0	name=main   	status=READY  	priority=-5365
+
+
+--------------switch process------------
+running: tid=0	name=main   	status=READY  	priority=-5368
+
+Ready list contents:
+running: tid=0	name=main   	status=READY  	priority=-5368
+
+
+--------------switch process------------
+running: tid=0	name=main   	status=READY  	priority=-5371
+
+Ready list contents:
+running: tid=0	name=main   	status=READY  	priority=-5371
+
+
+--------------switch process------------
+running: tid=0	name=main   	status=READY  	priority=-5374
+
+Ready list contents:
+running: tid=0	name=main   	status=READY  	priority=-5374
+
+
+--------------switch process------------
+running: tid=0	name=main   	status=READY  	priority=-5377
+
+Ready list contents:
+running: tid=0	name=main   	status=READY  	priority=-5377
+
+
+--------------switch process------------
+running: tid=0	name=main   	status=READY  	priority=-5380
+
+Ready list contents:
+running: tid=0	name=main   	status=READY  	priority=-5380
+
+
+--------------switch process------------
+running: tid=0	name=main   	status=READY  	priority=-5383
+
+Ready list contents:
+running: tid=0	name=main   	status=READY  	priority=-5383

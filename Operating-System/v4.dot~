@@ -1,0 +1,38 @@
+digraph tt{
+"openfile.h"->"directory.h";
+{"disk.h" "pbitmap.h"}->"filehdr.h";
+{"openfile.h"}->"filesys.h";
+{"bitmap.h" "openfile.h"}->"pbitmap.h";
+{"disk.h" "synch.h" "callback.h"}->"synchdisk.h";
+
+"list.h"->"hash.h";
+"debug.h"->"list.h";
+
+{"callback.h"}->"console.h";
+{"callback.h"}->"disk.h";
+{"list.h" "callback.h"}->"interrupt.h";
+{"translate.h"}->"machine.h";
+{"callback.h"}->"network.h";
+{"callback.h"}->"timer.h";
+
+{"callback.h" "network.h" "synchlist.h" "synch.h"}->"post.h";
+
+{"callback.h" "timer.h"}->"alarm.h";
+{"debug.h" "thread.h" "scheduler.h" "interrupt.h" "stats.h" "alarm.h" "filesys.h" "machine.h"}->"kernel.h";
+{"debug.h" "kernel.h"}->"main.h";
+{"list.h" "thread.h"}->"scheduler.h";
+"switch.h"->"switch.S";
+{"thread.h" "list.h" "main.h"}->"synch.h";
+{"list.h" "synch.h"}->"synchlist.h";
+{"machine.h" "addrspace.h"}->"thread.h";
+
+"filesys.h"->"addrspace.h";
+"kernel.h"->"ksyscall.h";
+{"callback.h" "console.h" "synch.h"}->"synchconsole.h";
+"errno.h"->"syscall.h";
+
+
+
+
+
+}

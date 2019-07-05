@@ -1,0 +1,144 @@
+
+
+-------------------------one switch-------------------------------
+running: tid=1	 name=main            status=RUNNING	 pri=232
+
+Ready list contents:
+         tid=2	 name=postal worker   status=READY  	 pri=238
+         tid=3	 name=SysFork thread  status=READY  	 pri=229
+
+
+-------------------------one switch-------------------------------
+running: tid=2	 name=postal worker   status=BLOCKED	 pri=238
+
+Ready list contents:
+         tid=1	 name=main            status=READY  	 pri=234
+         tid=3	 name=SysFork thread  status=READY  	 pri=231
+
+
+-------------------------one switch-------------------------------
+running: tid=2	 name=postal worker   status=BLOCKED	 pri=237
+
+Ready list contents:
+         tid=1	 name=main            status=READY  	 pri=236
+         tid=3	 name=SysFork thread  status=READY  	 pri=233
+
+
+-------------------------one switch-------------------------------
+running: tid=2	 name=postal worker   status=BLOCKED	 pri=235
+
+Ready list contents:
+         tid=1	 name=main            status=READY  	 pri=238
+         tid=3	 name=SysFork thread  status=READY  	 pri=235
+
+
+-------------------------one switch-------------------------------
+running: tid=1	 name=main            status=RUNNING	 pri=237
+
+Ready list contents:
+         tid=3	 name=SysFork thread  status=READY  	 pri=237
+
+
+-------------------------one switch-------------------------------
+running: tid=1	 name=main            status=RUNNING	 pri=235
+
+Ready list contents:
+         tid=3	 name=SysFork thread  status=READY  	 pri=239
+
+
+-------------------------one switch-------------------------------
+running: tid=3	 name=SysFork thread  status=RUNNING	 pri=238
+
+Ready list contents:
+         tid=1	 name=main            status=READY  	 pri=237
+
+
+-------------------------one switch-------------------------------
+running: tid=3	 name=SysFork thread  status=RUNNING	 pri=236
+
+Ready list contents:
+         tid=1	 name=main            status=READY  	 pri=239
+
+
+-------------------------one switch-------------------------------
+running: tid=1	 name=main            status=RUNNING	 pri=238
+
+Ready list contents:
+         tid=3	 name=SysFork thread  status=READY  	 pri=238
+
+
+-------------------------one switch-------------------------------
+running: tid=1	 name=main            status=RUNNING	 pri=236
+
+Ready list contents:
+         tid=3	 name=SysFork thread  status=READY  	 pri=240
+
+
+-------------------------one switch-------------------------------
+running: tid=3	 name=SysFork thread  status=RUNNING	 pri=239
+
+Ready list contents:
+         tid=1	 name=main            status=READY  	 pri=238
+
+
+-------------------------one switch-------------------------------
+running: tid=3	 name=SysFork thread  status=RUNNING	 pri=237
+
+Ready list contents:
+         tid=1	 name=main            status=READY  	 pri=240
+
+
+-------------------------one switch-------------------------------
+running: tid=1	 name=main            status=RUNNING	 pri=239
+
+Ready list contents:
+         tid=3	 name=SysFork thread  status=READY  	 pri=239
+
+
+-------------------------one switch-------------------------------
+running: tid=1	 name=main            status=RUNNING	 pri=237
+
+Ready list contents:
+         tid=3	 name=SysFork thread  status=READY  	 pri=241
+
+
+-------------------------one switch-------------------------------
+running: tid=3	 name=SysFork thread  status=RUNNING	 pri=240
+
+Ready list contents:
+         tid=1	 name=main            status=READY  	 pri=239
+
+
+-------------------------one switch-------------------------------
+running: tid=3	 name=SysFork thread  status=RUNNING	 pri=238
+
+Ready list contents:
+         tid=1	 name=main            status=READY  	 pri=241
+
+
+-------------------------one switch-------------------------------
+running: tid=1	 name=main            status=RUNNING	 pri=240
+
+Ready list contents:
+         tid=3	 name=SysFork thread  status=READY  	 pri=240
+
+
+-------------------------one switch-------------------------------
+running: tid=1	 name=main            status=RUNNING	 pri=238
+
+Ready list contents:
+         tid=3	 name=SysFork thread  status=READY  	 pri=242
+
+
+-------------------------one switch-------------------------------
+running: tid=3	 name=add             status=BLOCKED	 pri=242
+
+Ready list contents:
+         tid=1	 name=main            status=READY  	 pri=240
+
+
+-------------------------one switch-------------------------------
+running: tid=3	 name=add             status=BLOCKED	 pri=241
+
+Ready list contents:
+         tid=1	 name=main            status=READY  	 pri=242

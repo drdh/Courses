@@ -1,0 +1,11 @@
+.vscode
+.vscode/*
+usr
+usr/*
+nachos-gcc.diff
+NachOS-4.0/COPYRIGHT
+NachOS-4.0/c++example
+NachOS-4.0/coff2noff
+NachOS-4.0/code/README
+NachOS-4.0/code/build.linux
+DISK_0

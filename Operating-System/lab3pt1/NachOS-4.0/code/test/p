@@ -1,0 +1,6 @@
+f=open("h.txt","wb")
+for i in range(3000):
+    f.write(str(i))
+    if i % 50 ==0 :
+        f.write('\n')	
+f.close()

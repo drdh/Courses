@@ -1,0 +1,70 @@
+digraph tt{
+{"filehdr.h" "directory.h"}->"directory.cc";
+"openfile.h"->"directory.h";
+{"filehdr.h" "debug.h" "synchdisk.h" "main.h"}->"filehdr.cc";
+{"disk.h" "pbitmap.h"}->"filehdr.h";
+{"debug.h" "disk.h" "pbitmap.h" "directory.h" "filehdr.h" "filesys.h"}->"filesys.cc";
+{"sysdep.h" "openfile.h"}->"filesys.h";
+{"main.h" "filehdr.h" "openfile.h" "synchdisk.h"}->"openfile.cc";
+{"sysdep.h"}->"openfile.h";
+"pbitmap.h"->"pbitmap.cc";
+{"bitmap.h" "openfile.h"}->"pbitmap.h";
+"synchdisk.h"->"synchdisk.cc";
+{"disk.h" "synch.h" "callback.h"}->"synchdisk.h";
+
+{"debug.h" "bitmap.h"}->"bitmap.cc";
+{"debug.h"}->"debug.cc";
+{"sysdep.h"}->"debug.h";
+"list.h"->"hash.h";
+{"libtest.h" "bitmap.h" "list.h" "hash.h" "sysdep.h"}->"libtest.cc";
+"debug.h"->"list.h";
+{"debug.h" "sysdep.h"}->"sysdep.cc";
+
+{"console.h" "main.h"}->"console.cc";
+{"callback.h"}->"console.h";
+{"disk.h" "debug.h" "sysdep.h" "main.h"}->"disk.cc";
+{"callback.h"}->"disk.h";
+{"interrupt.h" "main.h"}->"interrupt.cc";
+{"list.h" "callback.h"}->"interrupt.h";
+{"machine.h" "main.h"}->"machine.cc";
+{"translate.h"}->"machine.h";
+{"debug.h" "machine.h" "mipssim.h" "main.h"}->"mipssim.cc";
+{"network.h" "main.h"}->"network.cc";
+{"callback.h"}->"network.h";
+{"debug.h" "stats.h"}->"stats.cc";
+{"timer.h" "main.h" "sysdep.h"}->"timer.cc";
+{"callback.h"}->"timer.h";
+"main.h"->"translate.cc";
+
+"post.h"->"post.cc";
+{"callback.h" "network.h" "synchlist.h" "synch.h"}->"post.h";
+
+{"alarm.h" "main.h"}->"alarm.cc";
+{"callback.h" "timer.h"}->"alarm.h";
+{"debug.h" "main.h" "kernel.h" "sysdep.h" "synch.h" "synchlist.h" "libtest.h" "synchconsole.h" "synchdisk.h" "post.h"}->"kernel.cc";
+{"debug.h" "thread.h" "scheduler.h" "interrupt.h" "stats.h" "alarm.h" "filesys.h" "machine.h"}->"kernel.h";
+{"main.h" "filesys.h" "openfile.h" "sysdep.h"}->"main.cc";
+{"debug.h" "kernel.h"}->"main.h";
+{"debug.h" "scheduler.h" "main.h"}->"scheduler.cc";
+{"list.h" "thread.h"}->"scheduler.h";
+"switch.h"->"switch.S";
+{"synch.h" "main.h"}->"synch.cc";
+{"thread.h" "list.h" "main.h"}->"synch.h";
+"synchlist.h"->"synchlist.cc";
+{"list.h" "synch.h"}->"synchlist.h";
+{"thread.h" "switch.h" "synch.h" "sysdep.h"}->"thread.cc";
+{"sysdep.h" "machine.h" "addrspace.h"}->"thread.h";
+
+{"main.h" "addrspace.h" "machine.h" "noff.h"}->"addrspace.cc";
+"filesys.h"->"addrspace.h";
+{"main.h" "syscall.h" "ksyscall.h"}->"exception.cc";
+"kernel.h"->"ksyscall.h";
+"synchconsole.h"->"synchconsole.cc";
+{"callback.h" "console.h" "synch.h"}->"synchconsole.h";
+"errno.h"->"syscall.h";
+
+
+
+
+
+}

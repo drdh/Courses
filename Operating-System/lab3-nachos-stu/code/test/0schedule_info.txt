@@ -1,0 +1,112 @@
+
+
+-------------------------one switch-------------------------------
+running: tid=-1	 name=main            status=READY  	 pri=-1
+
+Ready list contents:
+         tid=0	 name=main            status=READY  	 pri=233
+
+
+-------------------------one switch-------------------------------
+running: tid=-1	 name=main            status=READY  	 pri=-1
+
+Ready list contents:
+         tid=0	 name=main            status=READY  	 pri=233
+
+
+-------------------------one switch-------------------------------
+running: tid=-1	 name=main            status=BLOCKED	 pri=-1
+
+Ready list contents:
+         tid=0	 name=postal worker   status=READY  	 pri=236
+
+
+-------------------------one switch-------------------------------
+running: tid=-1	 name=postal worker   status=BLOCKED	 pri=-1
+
+Ready list contents:
+         tid=0	 name=main            status=READY  	 pri=233
+
+
+-------------------------one switch-------------------------------
+running: tid=-1	 name=main            status=READY  	 pri=-1
+
+Ready list contents:
+         tid=0	 name=main            status=READY  	 pri=233
+
+
+-------------------------one switch-------------------------------
+running: tid=-1	 name=main            status=READY  	 pri=-1
+
+Ready list contents:
+         tid=0	 name=main            status=READY  	 pri=233
+
+
+-------------------------one switch-------------------------------
+running: tid=-1	 name=main            status=READY  	 pri=-1
+
+Ready list contents:
+         tid=0	 name=main            status=READY  	 pri=233
+
+
+-------------------------one switch-------------------------------
+running: tid=-1	 name=main            status=READY  	 pri=-1
+
+Ready list contents:
+         tid=0	 name=main            status=READY  	 pri=233
+
+
+-------------------------one switch-------------------------------
+running: tid=-1	 name=main            status=READY  	 pri=-1
+
+Ready list contents:
+         tid=0	 name=main            status=READY  	 pri=233
+
+
+-------------------------one switch-------------------------------
+running: tid=-1	 name=main            status=READY  	 pri=-1
+
+Ready list contents:
+         tid=0	 name=main            status=READY  	 pri=233
+
+
+-------------------------one switch-------------------------------
+running: tid=-1	 name=main            status=READY  	 pri=-1
+
+Ready list contents:
+         tid=0	 name=main            status=READY  	 pri=233
+
+
+-------------------------one switch-------------------------------
+running: tid=-1	 name=main            status=READY  	 pri=-1
+
+Ready list contents:
+         tid=0	 name=main            status=READY  	 pri=233
+
+
+-------------------------one switch-------------------------------
+running: tid=-1	 name=main            status=READY  	 pri=-1
+
+Ready list contents:
+         tid=0	 name=main            status=READY  	 pri=233
+
+
+-------------------------one switch-------------------------------
+running: tid=-1	 name=main            status=READY  	 pri=-1
+
+Ready list contents:
+         tid=0	 name=main            status=READY  	 pri=233
+
+
+-------------------------one switch-------------------------------
+running: tid=-1	 name=main            status=READY  	 pri=-1
+
+Ready list contents:
+         tid=0	 name=main            status=READY  	 pri=233
+
+
+-------------------------one switch-------------------------------
+running: tid=-1	 name=main            status=READY  	 pri=-1
+
+Ready list contents:
+         tid=0	 name=main            status=READY  	 pri=233

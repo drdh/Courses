@@ -1,0 +1,7 @@
+#! /bin/bash
+cd ../build.linux
+make -j
+cd ../test
+make
+./toTestFileSys.sh >testOutcome.txt
+#cat testOutcome.txt

@@ -1,0 +1,9 @@
+#! /bin/bash
+cd ../build.linux
+make -j
+cd ../test
+make
+#./toTestFileSys.sh >testOutcome.txt
+./toTestDirectoryAndRecovery.sh
+#cat testOutcome.txt
+#cat recovery.txt

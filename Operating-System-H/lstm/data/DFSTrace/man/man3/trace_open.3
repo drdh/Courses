@@ -1,0 +1,43 @@
+.TH TRACE_OPEN 3 "Feb 10, 1992" "Trace_Open"
+
+.SH NAME
+Trace_Open -- open a trace file
+
+
+.SH SYNOPSIS
+
+
+.nf
+
+FILE *Trace_Open(filename)
+char *filename;
+
+.fi 
+
+.PP
+
+.SH DESCRIPTION
+
+Trace_Open opens the file \fIfilename,\fR reads the file
+preamble, and returns a file pointer to the trace file.
+Trace files are always opened read-only.
+
+.PP
+
+.SH DIAGNOSTICS
+
+Trace_Open returns NULL if \fIfilename\fR cannot be accessed, 
+the preamble can't be read, or the associated internal data
+structures for the trace cannot be initialized.
+
+.PP
+
+.SH SEE ALSO
+
+Trace_Close, Trace_Info
+
+.PP
+
+.SH AUTHOR
+
+Lily B.  Mummert

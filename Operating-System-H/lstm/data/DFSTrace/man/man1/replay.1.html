@@ -1,0 +1,74 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML><HEAD><TITLE>Manpage of REPLAY</TITLE>
+</HEAD><BODY>
+<H2>REPLAY</H2>
+Section: User Commands  (1)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Updated: Feb 10, 1992&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="../../README.Reading.Library.html">Return to Library's README</A>
+<HR>
+<P>
+<A NAME="lbAB"></A>
+<H3>NAME</H3>
+replay -- trace prettyprinter
+<P>
+<A NAME="lbAC"></A>
+<H3>SYNOPSIS</H3>
+<PRE>replay [ -v ] [ -d ] [ -l ] [ -f filterfile ] file
+</PRE>
+<P>
+<A NAME="lbAD"></A>
+<H3>DESCRIPTION</H3>
+&nbsp;
+replay reads and pretty-prints the trace in <I>file.</I> The default is
+an abbreviated format of one record per line.   Using the <I>-l</I> switch an exhaustive printout of every field in every record can be
+produced.
+<P>
+<A NAME="lbAE"></A>
+<H3>OPTIONS</H3>
+<P>
+<DL COMPACT>
+<DT><DD>
+<B>-d</B>
+&nbsp;Prints&nbsp;library&nbsp;debugging&nbsp;information.&nbsp;&nbsp;Lots&nbsp;of&nbsp;it.
+<P>
+<DT><DD>
+<B>-f&nbsp;filterfile</B>
+&nbsp;Apply&nbsp;the&nbsp;filter&nbsp;in&nbsp;<I>filterfile</I>&nbsp;to&nbsp;the&nbsp;trace.
+<P>
+<DT><DD>
+<B>-l</B>
+&nbsp;Long-form&nbsp;output&nbsp;of&nbsp;each&nbsp;record.
+<P>
+<DT><DD>
+<B>-v</B>
+&nbsp;Verbose&nbsp;mode.&nbsp;&nbsp;Prints&nbsp;information&nbsp;on&nbsp;what&nbsp;the&nbsp;library&nbsp;is&nbsp;doing.
+<P>
+</DL>
+<P>
+<A NAME="lbAF"></A>
+<H3>DIAGNOSTICS</H3>
+<P>
+The following are frequently encountered errors:
+<P>
+can't process file <I>file</I> -- the file wasn't there or if a filter
+file was specified, it couldn't be applied.
+<P>
+<A NAME="lbAG"></A>
+<H3>AUTHOR</H3>
+&nbsp;
+Lily B.  Mummert
+<HR>
+<A NAME="index"></A><H3>Index</H3>
+<DL>
+<DT><A HREF="#lbAB">NAME</A><DD>
+<DT><A HREF="#lbAC">SYNOPSIS</A><DD>
+<DT><A HREF="#lbAD">DESCRIPTION</A><DD>
+<DT><A HREF="#lbAE">OPTIONS</A><DD>
+<DT><A HREF="#lbAF">DIAGNOSTICS</A><DD>
+<DT><A HREF="#lbAG">AUTHOR</A><DD>
+</DL>
+<HR>
+This document was created on
+
+Time: 05:25:52 GMT, October 10, 1998
+</BODY>
+</HTML>

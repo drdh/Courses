@@ -1,0 +1,53 @@
+                        DFSTrace
+
+This directory contains the code for the DFSTrace system.  There are
+two versions of this archive the first, the trace reading library
+contains only the necessary code to read the binary trace data.  The
+second archive contains the additional components necessary to trace
+file system activity.    This document describes the contents of the
+reading library.
+ 
+
+README.reading.library   -- This readme
+INSTALL.reading.library  -- Directions for installing the reading library
+
+bin/                     -- should hold various trace  analyzing
+                            programs once the library is built
+doc/                     -- further documentation
+etc/                     -- contains a script used to build a comma 
+			    separated table of the summary information
+include/                 -- where the library's include file is installed
+lib/                     -- where the c library (tracelib.a) is installed
+man/                     -- some man pages nroff and html versions
+src/                     -- source code for tracelib, post processing
+
+
+
+Example trace analysis programs: 
+creplay(1)             -- execute commands from an untrace 
+files(1)               -- list file names most frequently accessed in a trace 
+patterns(1)            -- summarize file access patterns in a trace 
+replay(1)              -- trace prettyprinter 
+sessions(1)            -- print active sessions in a trace 
+tstat(1)               -- print trace statistics 
+untrace(1)             -- recreate actions from a trace 
+users(1)               -- print active uids in a trace 
+
+Trace Reading Library API: 
+trace_close(3)         -- close a trace file 
+trace_copyrecord(3)    -- Make a safe copy of a trace record 
+trace_fidsequal(3)     -- Compares fids 
+trace_freerecord(3)    -- deallocate a trace record 
+trace_getfid(3)        -- Get list of fids in a trace record 
+trace_getfileindex(3)  -- get file table index from trace record 
+trace_getfiletype(3)   -- get file type from trace record 
+trace_getpath(3)       -- Get list of pathnames in a trace record 
+trace_getrecord(3)     -- get a record from a trace 
+trace_getrefcount(3)   -- get reference count from trace record 
+trace_getuser(3)       -- return the uid that produced a trace record 
+trace_open(3)          -- open a trace file 
+trace_printpreamble(3) -- print the preamble of a trace 
+trace_printrecord(3)   -- Print contents of trace record 
+trace_setfilter(3)     -- filter a trace 
+trace_stats(3)         -- Get information on an open trace 
+tracetostr(3)          -- Convert trace record fields to strings 

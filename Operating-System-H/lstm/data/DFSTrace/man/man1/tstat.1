@@ -1,0 +1,75 @@
+.TH TSTAT 1 "Feb 10, 1992" "Tstat"
+
+.SH NAME
+tstat -- print trace statistics
+
+
+.SH SYNOPSIS
+ 
+
+.nf
+
+tstat [ -v ] [ -d ] [ -l ] [ -f filterfile ] file
+
+.fi 
+
+.PP
+
+.SH DESCRIPTION
+ 
+tstat reads the trace in \fIfile\fR and prints a variety of basic
+statistics on it, including a breakdown of trace records by opcode.
+Opcodes correspond to system calls traced.  Information about ``pseudo
+operations'' such as name lookup calls and annotations, is printed if
+such operations are present.
+
+.PP
+
+.SH OPTIONS
+
+
+.PD 0
+
+.TP 12
+
+.BR -d
+ Prints library debugging information.  Lots of it.
+
+.TP
+
+.BR -f\ filterfile
+ Apply the filter in \fIfilterfile\fR to the trace.
+
+.TP
+
+.BR -n
+ Print only the table entries on opcodes that occured in the trace.
+
+.TP
+
+.BR -v
+ Verbose mode.  Prints information on what the library is doing.
+
+
+
+.PP
+
+.SH DIAGNOSTICS
+
+The following are frequently encountered errors:
+
+.PP
+can't process file \fIfile\fR -- the file wasn't there or 
+if a filter file was specified, it couldn't be applied.
+
+.PP
+
+.SH SEE ALSO
+
+replay
+
+.PP
+
+.SH AUTHOR
+ 
+Lily B.  Mummert

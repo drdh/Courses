@@ -1,0 +1,95 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML><HEAD><TITLE>Manpage of PATTERNS</TITLE>
+</HEAD><BODY>
+<H2>PATTERNS</H2>
+Section: User Commands  (1)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Updated: Feb 10, 1992&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="../../README.Reading.Library.html">Return to Library's README</A>
+<HR>
+<P>
+<A NAME="lbAB"></A>
+<H3>NAME</H3>
+patterns -- summarize file access patterns in a trace
+<P>
+<A NAME="lbAC"></A>
+<H3>SYNOPSIS</H3>
+<PRE>patterns [ -v ] [ -d ] [ -f filterfile ] file
+</PRE>
+<P>
+<A NAME="lbAD"></A>
+<H3>DESCRIPTION</H3>
+&nbsp;
+patterns reads a trace and prints a summary of file access patterns
+based on close records occurring in the trace <I>file.</I> The summary
+includes the number of read-only, write-only, and read-write accesses
+to files, as well as bytes transferred for each access type.  In
+addition, each of these access type is further broken down into
+whole-file tranfer, other sequential access, and random access.  Only
+close records with a reference count of 1 are used in this summary,
+because the statistics reported on close are cumulative.
+<P>
+<A NAME="lbAE"></A>
+<H3>OPTIONS</H3>
+<P>
+<DL COMPACT>
+<DT><DD>
+<B>-d</B>
+&nbsp;Prints&nbsp;library&nbsp;debugging&nbsp;information.&nbsp;&nbsp;Lots&nbsp;of&nbsp;it.
+<P>
+<DT><DD>
+<B>-f&nbsp;filterfile</B>
+&nbsp;Apply&nbsp;the&nbsp;filter&nbsp;in&nbsp;<I>filterfile</I>&nbsp;to&nbsp;the&nbsp;trace.
+<P>
+<DT><DD>
+<B>-v</B>
+&nbsp;Verbose&nbsp;mode.&nbsp;&nbsp;Prints&nbsp;information&nbsp;on&nbsp;what&nbsp;the&nbsp;library&nbsp;is&nbsp;doing.
+<P>
+</DL>
+<P>
+<A NAME="lbAF"></A>
+<H3>DIAGNOSTICS</H3>
+<P>
+The following are frequently encountered errors:
+<P>
+can't process file <I>file</I> -- the file wasn't there or 
+if a filter file was specified, it couldn't be applied.
+<P>
+<A NAME="lbAG"></A>
+<H3>SEE ALSO</H3>
+<P>
+replay, tstat
+<P>
+<A NAME="lbAH"></A>
+<H3>BUGS</H3>
+<P>
+The summary access information in CLOSE records (number of bytes read,
+written) is cumulative.  For example, if a file is open and the
+descriptor is dup'ed, and then the file is manipulated by both agents,
+the statistics reported will be the sum of their accesses, and there
+is no way to tell from the final close who did which accesses.  (One
+can tell by tracking the intermediate closes, but this program does
+not do that.)  So if one if the agents only reads the file, and the
+other only writes, the complete session, from data in the last CLOSE
+record, will be reported as a read-write access.
+<P>
+<A NAME="lbAI"></A>
+<H3>AUTHOR</H3>
+&nbsp;
+Lily B.  Mummert
+<HR>
+<A NAME="index"></A><H3>Index</H3>
+<DL>
+<DT><A HREF="#lbAB">NAME</A><DD>
+<DT><A HREF="#lbAC">SYNOPSIS</A><DD>
+<DT><A HREF="#lbAD">DESCRIPTION</A><DD>
+<DT><A HREF="#lbAE">OPTIONS</A><DD>
+<DT><A HREF="#lbAF">DIAGNOSTICS</A><DD>
+<DT><A HREF="#lbAG">SEE ALSO</A><DD>
+<DT><A HREF="#lbAH">BUGS</A><DD>
+<DT><A HREF="#lbAI">AUTHOR</A><DD>
+</DL>
+<HR>
+This document was created on
+
+Time: 05:25:52 GMT, October 10, 1998
+</BODY>
+</HTML>

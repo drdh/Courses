@@ -1,0 +1,71 @@
+Content-type: text/html
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML><HEAD><TITLE>Manpage of TRACE-TO-STRING</TITLE>
+</HEAD><BODY>
+<H2>TRACE-TO-STRING</H2>
+Section: C Library Functions (3)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Updated: Feb 10, 1992&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="../../README.Reading.Library.html">Return to Library's README</A>
+<HR>
+<P>
+<A NAME="lbAB"></A>
+<H3>NAME</H3>
+Trace-to-String -- Convert trace record fields to strings
+<P>
+<A NAME="lbAC"></A>
+<H3>SYNOPSIS</H3>
+<P>
+<PRE>
+char *Trace_OpcodeToStr(opcode)
+u_char opcode;
+char *Trace_NodeIdToStr(addr)
+int addr;
+char *Trace_OpenFlagsToStr(flags)
+u_short flags;
+char *Trace_RecTimeToStr(recPtr)
+dfs_header_t *recPtr;
+char *Trace_FileTypeToStr(type)
+u_short type;
+char *Trace_InodeTypeToStr(type)
+int type;
+char *Trace_FlagsToStr(flags)
+u_char flags;
+char *Trace_FidPtrToStr(fidPtr)
+generic_fid_t *fidPtr;
+</PRE>
+<P>
+<A NAME="lbAD"></A>
+<H3>DESCRIPTION</H3>
+<P>
+These functions convert various parts of a trace record to strings.
+Trace_OpcodeToStr converts the opcode (which usually represents a
+system call) to a printable string; if the opcode is unknown, the
+string is ``Unknown!''.  Trace_NodeIdToStr converts an Internet
+address to the form a.b.c.d.  Trace_OpenFlagsToStr converts the
+flags FREAD, FWRITE, etc.  Trace_RecTimeToStr converts the time
+in the record header to a string of the form MMM DD HH:MM:SS YYYY.
+Trace_FileTypeToStr converts the file type (regular file, directory,
+symbolic link, etc.).  Trace_InodeTypeToStr returns a string indicating
+in which file system the object was (AFS inode, etc.) Trace_FlagsToStr
+Interprets the flags in the header of the trace record.  These indicate
+whether or not information such as file attributes, fids, and pathnames
+are missing from the record.   Trace_FidPtrToStr formats a fid of
+any type in a reasonable way, returning ``INVALID'' if the fid was
+not present or was otherwise bogus.
+<P>
+<A NAME="lbAE"></A>
+<H3>AUTHOR</H3>
+<P>
+Lily B.  Mummert
+<HR>
+<A NAME="index"></A><H3>Index</H3>
+<DL>
+<DT><A HREF="#lbAB">NAME</A><DD>
+<DT><A HREF="#lbAC">SYNOPSIS</A><DD>
+<DT><A HREF="#lbAD">DESCRIPTION</A><DD>
+<DT><A HREF="#lbAE">AUTHOR</A><DD>
+</DL>
+<HR>
+This document was created on
+
+Time: 05:25:53 GMT, October 10, 1998
+</BODY>
+</HTML>

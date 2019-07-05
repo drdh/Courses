@@ -1,0 +1,33 @@
+.TH TRACE_GETFILEINDEX 3 "Feb 10, 1992" "Trace_GetFileIndex"
+
+.SH NAME
+Trace_GetFileIndex -- get file table index from trace record
+
+
+.SH SYNOPSIS
+
+
+.nf
+
+short Trace_GetFileIndex(recPtr)
+dfs_header_t *recPtr;
+
+.fi 
+
+.PP
+
+.SH DESCRIPTION
+
+Trace_GetFileIndex returns the index of the entry in the open file
+table from the record \fIrecPtr,\fR if such a file exists in that
+record.  The file table index is contained in records for system calls
+that manipulate file descriptors, which are OPEN, CREAT, CLOSE, SEEK,
+READ, and WRITE.   The size of the file table varies from machine to
+machine; the library assumes it does not exceed 1024.  If no such field
+exists, or if it is not set, the routine returns -1.
+
+.PP
+
+.SH AUTHOR
+
+Lily B.  Mummert

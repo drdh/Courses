@@ -1,0 +1,39 @@
+.TH TRACE_CLOSE 3 "Feb 10, 1992" "Trace_Close"
+
+.SH NAME
+Trace_Close -- close a trace file
+
+
+.SH SYNOPSIS
+
+
+.nf
+
+int Trace_Close(fp)
+FILE *fp;
+
+.fi 
+
+.SH DESCRIPTION
+
+Trace_Close closes the trace file and deletes the data structures
+associated with it.   
+
+.PP
+
+.SH DIAGNOSTICS
+
+Returns TRACE_FILERECORDNOTFOUND if fp is not an open trace.
+Otherwise, returns TRACE_SUCCESS.
+
+.PP
+
+.SH SEE ALSO
+
+Trace_Open
+
+.PP
+
+.SH AUTHOR
+
+Lily B.  Mummert

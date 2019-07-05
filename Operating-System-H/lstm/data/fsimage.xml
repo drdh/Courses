@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<fsimage><version><layoutVersion>-63</layoutVersion><onDiskVersion>1</onDiskVersion><oivRevision>17e75c2a11685af3e043aa5e604dc831e5b14674</oivRevision></version>
+<NameSection><namespaceId>28309416</namespaceId><genstampV1>1000</genstampV1><genstampV2>1001</genstampV2><genstampV1Limit>0</genstampV1Limit><lastAllocatedBlockId>1073741825</lastAllocatedBlockId><txid>11</txid></NameSection>
+<INodeSection><lastInodeId>16387</lastInodeId><numInodes>3</numInodes><inode><id>16385</id><type>DIRECTORY</type><name></name><mtime>1528633496557</mtime><permission>root:supergroup:0755</permission><nsquota>9223372036854775807</nsquota><dsquota>-1</dsquota></inode>
+<inode><id>16386</id><type>DIRECTORY</type><name>test1</name><mtime>1528629401011</mtime><permission>root:supergroup:0755</permission><nsquota>-1</nsquota><dsquota>-1</dsquota></inode>
+<inode><id>16387</id><type>FILE</type><name>test</name><replication>1</replication><mtime>1528633493058</mtime><atime>1528633385525</atime><preferredBlockSize>134217728</preferredBlockSize><permission>root:supergroup:0644</permission><blocks><block><id>1073741825</id><genstamp>1001</genstamp><numBytes>1259</numBytes></block>
+</blocks>
+<storagePolicyId>0</storagePolicyId></inode>
+</INodeSection>
+<INodeReferenceSection></INodeReferenceSection><SnapshotSection><snapshotCounter>0</snapshotCounter><numSnapshots>0</numSnapshots></SnapshotSection>
+<INodeDirectorySection><directory><parent>16385</parent><child>16387</child><child>16386</child></directory>
+</INodeDirectorySection>
+<FileUnderConstructionSection></FileUnderConstructionSection>
+<SecretManagerSection><currentId>0</currentId><tokenSequenceNumber>0</tokenSequenceNumber><numDelegationKeys>0</numDelegationKeys><numTokens>0</numTokens></SecretManagerSection><CacheManagerSection><nextDirectiveId>1</nextDirectiveId><numDirectives>0</numDirectives><numPools>0</numPools></CacheManagerSection>
+</fsimage>

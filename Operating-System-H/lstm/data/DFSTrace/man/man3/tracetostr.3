@@ -1,0 +1,62 @@
+.TH TRACE-TO-STRING 3 "Feb 10, 1992" "Trace-to-String"
+
+.SH NAME
+Trace-to-String -- Convert trace record fields to strings
+
+
+.SH SYNOPSIS
+
+
+.nf
+
+char *Trace_OpcodeToStr(opcode)
+u_char opcode;
+
+char *Trace_NodeIdToStr(addr)
+int addr;
+
+char *Trace_OpenFlagsToStr(flags)
+u_short flags;
+
+char *Trace_RecTimeToStr(recPtr)
+dfs_header_t *recPtr;
+
+char *Trace_FileTypeToStr(type)
+u_short type;
+
+char *Trace_InodeTypeToStr(type)
+int type;
+
+char *Trace_FlagsToStr(flags)
+u_char flags;
+
+char *Trace_FidPtrToStr(fidPtr)
+generic_fid_t *fidPtr;
+
+.fi 
+
+.PP
+
+.SH DESCRIPTION
+
+These functions convert various parts of a trace record to strings.
+Trace_OpcodeToStr converts the opcode (which usually represents a
+system call) to a printable string; if the opcode is unknown, the
+string is ``Unknown!''.  Trace_NodeIdToStr converts an Internet
+address to the form a.b.c.d.  Trace_OpenFlagsToStr converts the
+flags FREAD, FWRITE, etc.  Trace_RecTimeToStr converts the time
+in the record header to a string of the form MMM DD HH:MM:SS YYYY.
+Trace_FileTypeToStr converts the file type (regular file, directory,
+symbolic link, etc.).  Trace_InodeTypeToStr returns a string indicating
+in which file system the object was (AFS inode, etc.) Trace_FlagsToStr
+Interprets the flags in the header of the trace record.  These indicate
+whether or not information such as file attributes, fids, and pathnames
+are missing from the record.   Trace_FidPtrToStr formats a fid of
+any type in a reasonable way, returning ``INVALID'' if the fid was
+not present or was otherwise bogus.
+
+.PP
+
+.SH AUTHOR
+
+Lily B.  Mummert

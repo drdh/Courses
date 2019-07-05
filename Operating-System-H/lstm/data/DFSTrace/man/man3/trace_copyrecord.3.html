@@ -1,0 +1,46 @@
+Content-type: text/html
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML><HEAD><TITLE>Manpage of TRACE_COPYRECORD</TITLE>
+</HEAD><BODY>
+<H2>TRACE_COPYRECORD</H2>
+Section: C Library Functions (3)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Updated: Feb 10, 1992&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="../../README.Reading.Library.html">Return to Library's README</A>
+<HR>
+<P>
+<A NAME="lbAB"></A>
+<H3>NAME</H3>
+Trace_CopyRecord -- Make a safe copy of a trace record
+<P>
+<A NAME="lbAC"></A>
+<H3>SYNOPSIS</H3>
+<P>
+<PRE>
+void Trace_CopyRecord(sp, dpp)
+dfs_header_t *sp;
+dfs_header_t **dpp;
+</PRE>
+<P>
+<A NAME="lbAD"></A>
+<H3>DESCRIPTION</H3>
+<P>
+Trace_CopyRecord makes a copy of the record pointed to by <I>sp</I> 
+in <I>*dpp</I> .  It allocates the storage for the record, and copies
+all the fields (including pathnames, not just the pointers).
+<P>
+<A NAME="lbAE"></A>
+<H3>AUTHOR</H3>
+<P>
+Lily B.  Mummert
+<HR>
+<A NAME="index"></A><H3>Index</H3>
+<DL>
+<DT><A HREF="#lbAB">NAME</A><DD>
+<DT><A HREF="#lbAC">SYNOPSIS</A><DD>
+<DT><A HREF="#lbAD">DESCRIPTION</A><DD>
+<DT><A HREF="#lbAE">AUTHOR</A><DD>
+</DL>
+<HR>
+This document was created on
+
+Time: 05:25:52 GMT, October 10, 1998
+</BODY>
+</HTML>

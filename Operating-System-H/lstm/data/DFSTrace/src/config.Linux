@@ -1,0 +1,5 @@
+#  Linux specific settings
+# $Id: config.Linux,v 1.1 1998/10/13 21:14:30 tmkr Exp $
+OS_FLAGS = -D__LINUX__=1 -Wall -O -Wuninitialized 
+OS_LIB=
+

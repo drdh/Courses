@@ -1,0 +1,105 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML><HEAD><TITLE>Manpage of SESSIONS</TITLE>
+</HEAD><BODY>
+<H2>SESSIONS</H2>
+Section: User Commands  (1)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Updated: Feb 10, 1992&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="../../README.Reading.Library.html">Return to Library's README</A>
+<HR>
+<P>
+<A NAME="lbAB"></A>
+<H3>NAME</H3>
+sessions -- print active sessions in a trace
+<P>
+<A NAME="lbAC"></A>
+<H3>SYNOPSIS</H3>
+<PRE>sessions [ -v ] [ -d ] [ -f filterfile ] [ -i interval ] [ -s session ]
+         [ -g gap ] [ -a activity ] file
+</PRE>
+<P>
+<A NAME="lbAD"></A>
+<H3>DESCRIPTION</H3>
+&nbsp;
+sessions locates active periods in the trace <I>file.</I> A 
+<I>session</I>  is composed of <I>intervals</I> of time of a specified 
+<I>activity level</I> (measured by number of operations in the interval),
+possibly including a number of intervals below that activity level, or
+<I>gaps.</I> By default, the length of an interval is 900 seconds (15
+minutes), and a session in composed of 16 intervals (4 hours).  An
+active session has at least 16 operations per interval, but it may
+have gaps of up to 4 intervals that fall under that level.   These
+settings will locate long stretches of fairly low activity.  All are
+parameters, and are listed in the options below.
+<P>
+The set of operations used to determine activity is a subset of the
+opcodes in a trace.  That subset is open, close, unlink, creat, chmod,
+rename, rmdir, link, chown, mkdir, symlink, truncate, utimes, stat,
+lstat, access, readlink, lookup, getsymlink, and root.  These are
+further divided into mutations and nonmutations for the purposes
+of reporting.
+<P>
+<A NAME="lbAE"></A>
+<H3>OPTIONS</H3>
+<P>
+<DL COMPACT>
+<DT><DD>
+<B>-a&nbsp;activity</B>
+&nbsp;The&nbsp;desired&nbsp;activity&nbsp;level,&nbsp;in&nbsp;operations&nbsp;per
+interval.  The set of operations is defined above.  This is
+a thresholding parameter.  The default is 16.
+<P>
+<DT><DD>
+<B>-d</B>
+&nbsp;Prints&nbsp;library&nbsp;debugging&nbsp;information.&nbsp;&nbsp;Lots&nbsp;of&nbsp;it.
+<P>
+<DT><DD>
+<B>-f&nbsp;filterfile</B>
+&nbsp;Apply&nbsp;the&nbsp;filter&nbsp;in&nbsp;<I>filterfile</I>&nbsp;to&nbsp;the&nbsp;trace.
+<P>
+<DT><DD>
+<B>-g&nbsp;gap</B>
+&nbsp;Maximum&nbsp;length&nbsp;of&nbsp;a&nbsp;gap&nbsp;allowable&nbsp;in&nbsp;an&nbsp;active&nbsp;session,
+in intervals.  Default is 4.
+<P>
+<DT><DD>
+<B>-i&nbsp;interval</B>
+&nbsp;Length&nbsp;of&nbsp;an&nbsp;interval,&nbsp;in&nbsp;seconds.&nbsp;&nbsp;Default&nbsp;is&nbsp;900.
+<P>
+<DT><DD>
+<B>-s&nbsp;session</B>
+&nbsp;Length&nbsp;of&nbsp;a&nbsp;session,&nbsp;in&nbsp;intervals.&nbsp;&nbsp;Default&nbsp;is&nbsp;16.
+<P>
+<DT><DD>
+<B>-v</B>
+&nbsp;Verbose&nbsp;mode.&nbsp;&nbsp;Prints&nbsp;information&nbsp;on&nbsp;what&nbsp;the&nbsp;library&nbsp;is&nbsp;doing.
+<P>
+</DL>
+<P>
+<A NAME="lbAF"></A>
+<H3>DIAGNOSTICS</H3>
+<P>
+The following are frequently encountered errors:
+<P>
+can't process file <I>file</I> -- the file wasn't there or 
+if a filter file was specified, it couldn't be applied.
+<P>
+<A NAME="lbAG"></A>
+<H3>AUTHOR</H3>
+&nbsp;
+Initial version by James Jay Kistler.  Updated by
+Lily B.  Mummert.
+<HR>
+<A NAME="index"></A><H3>Index</H3>
+<DL>
+<DT><A HREF="#lbAB">NAME</A><DD>
+<DT><A HREF="#lbAC">SYNOPSIS</A><DD>
+<DT><A HREF="#lbAD">DESCRIPTION</A><DD>
+<DT><A HREF="#lbAE">OPTIONS</A><DD>
+<DT><A HREF="#lbAF">DIAGNOSTICS</A><DD>
+<DT><A HREF="#lbAG">AUTHOR</A><DD>
+</DL>
+<HR>
+This document was created on
+
+Time: 05:25:52 GMT, October 10, 1998
+</BODY>
+</HTML>

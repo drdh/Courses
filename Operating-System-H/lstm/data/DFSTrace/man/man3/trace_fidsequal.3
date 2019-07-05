@@ -1,0 +1,30 @@
+.TH TRACE_FIDSEQUAL 3 "Feb 10, 1992" "Trace_FidsEqual"
+
+.SH NAME
+Trace_FidsEqual -- Compares fids
+
+
+.SH SYNOPSIS
+
+
+.nf
+
+int Trace_FidsEqual(fid1Ptr, fid2Ptr)
+generic_fid_t *fid1Ptr;
+generic_fid_t *fid2Ptr;
+
+.fi 
+
+.PP
+
+.SH DESCRIPTION
+
+Trace_FidsEqual compares two fids in pointers \fIfid1Ptr\fR and
+\fIfid2Ptr\fR and returns 1 if the fields match and 0 if they don't.
+Sending in NULL for either argument is tolerated.
+
+.PP
+
+.SH AUTHOR
+
+Lily B.  Mummert

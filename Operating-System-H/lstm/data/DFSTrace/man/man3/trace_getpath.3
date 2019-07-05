@@ -1,0 +1,32 @@
+.TH TRACE_GETPATH 3 "Feb 10, 1992" "Trace_GetPath"
+
+.SH NAME
+Trace_GetPath -- Get list of pathnames in a trace record
+
+
+.SH SYNOPSIS
+
+
+.nf
+
+void Trace_GetPath(recPtr, pathplist, nump)
+dfs_header_t *recPtr;
+char *pathplist[];
+int *nump;
+
+.fi 
+
+.PP
+
+.SH DESCRIPTION
+
+Trace_GetPath returns the number of pathnames in the record in 
+\fInump,\fR and a list of pointers to the pathnames in \fIpathplist.\fR Most of the trace records contain pathnames; there are no more than 2
+pathnames in any record.   If there are no pathnames in a record, 
+\fI*nump\fR will be set to 0.
+
+.PP
+
+.SH AUTHOR
+
+Lily B.  Mummert

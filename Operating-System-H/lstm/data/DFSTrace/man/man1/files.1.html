@@ -1,0 +1,96 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML><HEAD><TITLE>Manpage of FILES</TITLE>
+</HEAD><BODY>
+<H2>FILES</H2>
+Section: User Commands  (1)Updated: Feb 11, 1992<A HREF="../../README.Reading.Library.html">Return to Library's README</A>
+<HR>
+<P>
+<A NAME="lbAB"></A>
+<H3>NAME</H3>
+files -- list file names most frequently accessed in a trace
+<P>
+<A NAME="lbAC"></A>
+<H3>SYNOPSIS</H3>
+<PRE>files [ -a ] [ -i ] [ -v ] [ -d ] [ -n num ] [ -f filterfile ] file
+</PRE>
+<P>
+<A NAME="lbAD"></A>
+<H3>DESCRIPTION</H3>
+&nbsp;
+<I>files</I> reads a trace and prints the list of path names (and
+optionally vnodes) found in the trace, by frequency of access.
+<P>
+<A NAME="lbAE"></A>
+<H3>OPTIONS</H3>
+<P>
+<DL COMPACT>
+<DT><DD>
+<B>-a</B>
+&nbsp;Print&nbsp;absolute&nbsp;path&nbsp;names&nbsp;only.
+<P>
+<DT><DD>
+<B>-d</B>
+&nbsp;Prints&nbsp;library&nbsp;debugging&nbsp;information.&nbsp;&nbsp;Lots&nbsp;of&nbsp;it.
+<P>
+<DT><DD>
+<B>-f&nbsp;filterfile</B>
+&nbsp;Apply&nbsp;the&nbsp;filter&nbsp;in&nbsp;<I>filterfile</I>&nbsp;to&nbsp;the&nbsp;trace.
+<P>
+<DT><DD>
+<B>-i</B>
+&nbsp;Print&nbsp;the&nbsp;inode&nbsp;number&nbsp;(fid)&nbsp;associated&nbsp;with&nbsp;each&nbsp;name.
+<P>
+<DT><DD>
+<B>-n&nbsp;num</B>
+&nbsp;Prints&nbsp;the&nbsp;<I>num</I>&nbsp;most&nbsp;frequently&nbsp;accessed&nbsp;names.
+<P>
+<DT><DD>
+<B>-v</B>
+&nbsp;Verbose&nbsp;mode.&nbsp;&nbsp;Prints&nbsp;information&nbsp;on&nbsp;what&nbsp;the&nbsp;library&nbsp;is&nbsp;doing.
+<P>
+</DL>
+<P>
+<A NAME="lbAF"></A>
+<H3>DIAGNOSTICS</H3>
+<P>
+The following are frequently encountered errors:
+<P>
+can't process file <I>file</I> -- the file wasn't there or 
+if a filter file was specified, it couldn't be applied.
+<P>
+<A NAME="lbAG"></A>
+<H3>SEE ALSO</H3>
+<P>
+replay, tstat
+<P>
+<A NAME="lbAH"></A>
+<H3>BUGS</H3>
+<P>
+This program tallies counts by path name, not fid.  References to the
+same object under different names are listed separately.   In a system
+where users accessed a shared, distributed file system exclusively,
+the fid of an object should be used instead of the path name.
+<P>
+<A NAME="lbAI"></A>
+<H3>AUTHOR</H3>
+&nbsp;
+Lily B.  Mummert
+<HR>
+<A NAME="index"></A><H3>Index</H3>
+<DL>
+<DT><A HREF="#lbAB">NAME</A><DD>
+<DT><A HREF="#lbAC">SYNOPSIS</A><DD>
+<DT><A HREF="#lbAD">DESCRIPTION</A><DD>
+<DT><A HREF="#lbAE">OPTIONS</A><DD>
+<DT><A HREF="#lbAF">DIAGNOSTICS</A><DD>
+<DT><A HREF="#lbAG">SEE ALSO</A><DD>
+<DT><A HREF="#lbAH">BUGS</A><DD>
+<DT><A HREF="#lbAI">AUTHOR</A><DD>
+</DL>
+<HR>
+This document was created on
+
+Time: 05:25:52 GMT, October 10, 1998
+</BODY>
+</HTML>

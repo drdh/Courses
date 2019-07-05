@@ -1,0 +1,42 @@
+.TH TRACE_GETUSER 3 "Feb 10, 1992" "Trace_GetUser"
+
+.SH NAME
+Trace_GetUser -- return the uid that produced a trace record
+
+
+.SH SYNOPSIS
+
+
+.nf
+
+int Trace_GetUser(fp, pid, uidp)
+FILE *fp;
+short pid;
+uid_t *uidp;
+
+.fi 
+
+.PP
+
+.SH DESCRIPTION
+
+Trace_GetUser returns the uid in \fI*uidp\fR of the user that owns
+process \fIpid\fR in the trace \fIfp.\fR If the uid is unknown, it
+returns 65535.   The uid associated with a process is written in the
+FORK record for the process.  If the fork does not occur in the trace,
+and the process forks no children, the library will not be able to
+determine the uid.   These edge effects typically apply to daemons and
+other long-lived processes run as superuser.
+
+.PP
+
+.SH DIAGNOSTICS
+
+Returns TRACE_FILERECORDNOTFOUND if \fIfp\fR is not an open trace.
+Otherwise, returns TRACE_SUCCESS.
+
+.PP
+
+.SH AUTHOR
+
+Lily B.  Mummert

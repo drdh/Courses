@@ -1,0 +1,29 @@
+.TH TRACE_GETREFCOUNT 3 "Feb 10, 1992" "Trace_GetRefCount"
+
+.SH NAME
+Trace_GetRefCount -- get reference count from trace record
+
+
+.SH SYNOPSIS
+
+
+.nf
+
+short Trace_GetRefCount(recPtr)
+dfs_header_t *recPtr;
+
+.fi 
+
+.PP
+
+.SH DESCRIPTION
+
+Trace_GetRefCount returns the reference count of an object in CLOSE
+records.  If the reference count field is not set, or if the record
+does not contain a reference count, the routine returns -1.
+
+.PP
+
+.SH AUTHOR
+
+Lily B.  Mummert

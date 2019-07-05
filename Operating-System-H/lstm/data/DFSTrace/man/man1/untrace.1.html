@@ -1,0 +1,126 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML><HEAD><TITLE>Manpage of UNTRACE</TITLE>
+</HEAD><BODY>
+<H2>UNTRACE</H2>
+Section: User Commands  (1)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Updated: Feb 10, 1992&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="../../README.Reading.Library.html">Return to Library's README</A>
+<HR>
+<P>
+<A NAME="lbAB"></A>
+<H3>NAME</H3>
+untrace -- recreate actions from a trace
+<P>
+<A NAME="lbAC"></A>
+<H3>SYNOPSIS</H3>
+<PRE>untrace [ -d ] [ -f filterfile ] [ -m ] [ -r replayfile ] 
+        [ -s skeletonfile ] [ -v ] [ -xp ] file
+</PRE>
+<P>
+<A NAME="lbAD"></A>
+<H3>DESCRIPTION</H3>
+&nbsp;
+untrace reads the trace in <I>file</I> and attempts to reconstruct the
+actions in the trace.  The program outputs two files -- a <I>skeleton</I> 
+file and a <I>replay</I> file.  The skeleton file contains
+commands to build a skeleton of the file system needed for the trace
+actions to be replayed.  The replay file contains those actions.   The
+command files may be replayed by <I>creplay.</I> 
+The program makes two passes over the input tracefile.  The first simply builds
+data structures which allow the set of skeleton-building commands to be emitted
+at completion.  The second pass emits the replay commands as it processes each
+record.
+<P>
+<A NAME="lbAE"></A>
+<H3>OPTIONS</H3>
+<P>
+<DL COMPACT>
+<DT><DD>
+<B>-d</B>
+&nbsp;Delta&nbsp;for&nbsp;think&nbsp;time,&nbsp;in&nbsp;seconds.&nbsp;&nbsp;If&nbsp;the&nbsp;time&nbsp;difference
+&nbsp;trace&nbsp;records&nbsp;is&nbsp;greated&nbsp;than&nbsp;this&nbsp;value,&nbsp;a&nbsp;delay&nbsp;of&nbsp;the&nbsp;
+&nbsp;difference&nbsp;will&nbsp;be&nbsp;inserted.
+<P>
+<DT><DD>
+<B>-f&nbsp;filterfile</B>
+&nbsp;Apply&nbsp;the&nbsp;filter&nbsp;in&nbsp;<I>filterfile</I>&nbsp;to&nbsp;the&nbsp;trace.
+<P>
+<DT><DD>
+<B>-m</B>
+&nbsp;Consider&nbsp;only&nbsp;mutations&nbsp;to&nbsp;objects&nbsp;in&nbsp;the&nbsp;file&nbsp;system.
+<P>
+<DT><DD>
+<B>-r&nbsp;replayfile</B>
+&nbsp;Name&nbsp;of&nbsp;the&nbsp;file&nbsp;in&nbsp;which&nbsp;to&nbsp;put&nbsp;the&nbsp;commands&nbsp;that
+replay actions in the trace.  Default is <I>replay.cmd.</I> 
+<DT><DD>
+<B>-s&nbsp;skeletonfile</B>
+&nbsp;Name&nbsp;of&nbsp;the&nbsp;file&nbsp;in&nbsp;which&nbsp;to&nbsp;put&nbsp;the&nbsp;commands&nbsp;that
+build the file system structure in which the trace actions occurred.
+Default is <I>skeleton.cmd.</I> 
+<DT><DD>
+<B>-v</B>
+&nbsp;Verbose&nbsp;mode.&nbsp;&nbsp;Prints&nbsp;the&nbsp;number&nbsp;of&nbsp;records&nbsp;handled&nbsp;in&nbsp;units
+of 100, messages about interesting inferences, and the structure of
+the file system skeleton at the end of the first pass.
+<P>
+<DT><DD>
+<B>-x</B>
+&nbsp;Allow&nbsp;cross&nbsp;parent&nbsp;links.&nbsp;&nbsp;Default&nbsp;is&nbsp;to&nbsp;leave
+them out, as they will cause the execution of the command
+file to fail in AFS or CFS.
+<P>
+</DL>
+<P>
+<A NAME="lbAF"></A>
+<H3>DIAGNOSTICS</H3>
+<P>
+The following are frequently encountered errors:
+<P>
+can't process file <I>file</I> -- the file wasn't there or if a filter
+file was specified, it couldn't be applied.
+<P>
+<A NAME="lbAG"></A>
+<H3>SEE ALSO</H3>
+<P>
+creplay
+<P>
+<A NAME="lbAH"></A>
+<H3>BUGS</H3>
+<P>
+Doesn't handle MOUNT or UNMOUNT records.  If either of these is
+encountered, the program assertion fails.
+<P>
+A filter file containing the commands in <I>untrace.fil</I> must 
+be used for correct matching of open and close calls.  These settings
+really should be specified in the program.
+<P>
+Filtering other than that used in <I>untrace.fil</I> should be used
+with extreme care.  It is is helpful only if the filtered actions are
+local.   Otherwise, one might be filtering out information needed to
+build the file system skeleton.
+<P>
+There are <I>many</I> wierd cases that haven't been tested.  The program 
+will assertion fail if it encounters one.
+<P>
+<A NAME="lbAI"></A>
+<H3>AUTHOR</H3>
+&nbsp;
+Original version by James J.  Kistler.  Updates and minor bug
+fixes by Lily B.  Mummert.  
+<HR>
+<A NAME="index"></A><H3>Index</H3><DL>
+<DT><A HREF="#lbAB">NAME</A><DD>
+<DT><A HREF="#lbAC">SYNOPSIS</A><DD>
+<DT><A HREF="#lbAD">DESCRIPTION</A><DD>
+<DT><A HREF="#lbAE">OPTIONS</A><DD>
+<DT><A HREF="#lbAF">DIAGNOSTICS</A><DD>
+<DT><A HREF="#lbAG">SEE ALSO</A><DD>
+<DT><A HREF="#lbAH">BUGS</A><DD>
+<DT><A HREF="#lbAI">AUTHOR</A><DD>
+</DL>
+<HR>
+This document was created on
+
+Time: 05:25:52 GMT, October 10, 1998
+</BODY>
+</HTML>

@@ -1,0 +1,56 @@
+Content-type: text/html
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML><HEAD><TITLE>Manpage of TRACE_STATS</TITLE>
+</HEAD><BODY>
+<H2>TRACE_STATS</H2>
+Section: C Library Functions (3)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Updated: Feb 10, 1992&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="../../README.Reading.Library.html">Return to Library's README</A>
+<HR>
+<P>
+<A NAME="lbAB"></A>
+<H3>NAME</H3>
+Trace_Stats -- Get information on an open trace
+<P>
+<A NAME="lbAC"></A>
+<H3>SYNOPSIS</H3>
+<P>
+<PRE>
+int Trace_Stats(fp, statPtr)
+FILE *fp;
+trace_stat_t *statPtr;
+</PRE>
+<P>
+<A NAME="lbAD"></A>
+<H3>DESCRIPTION</H3>
+<P>
+Trace_Stats returns a structure containing the following information
+on a trace: times of the first and last records, the total number of
+records in the trace, the number of user presentable records read, the
+number of records returned (not filtered out), the total number of
+bytes read in the trace, and the number of bytes in the records read
+thus far.
+<P>
+<A NAME="lbAE"></A>
+<H3>DIAGNOSTICS</H3>
+<P>
+Returns TRACE_FILERECORDNOTFOUND if <I>fp</I> is not
+an open trace.  Otherwise, returns TRACE_SUCCESS.
+<P>
+<A NAME="lbAF"></A>
+<H3>AUTHOR</H3>
+<P>
+Lily B.  Mummert
+<HR>
+<A NAME="index"></A><H3>Index</H3>
+<DL>
+<DT><A HREF="#lbAB">NAME</A><DD>
+<DT><A HREF="#lbAC">SYNOPSIS</A><DD>
+<DT><A HREF="#lbAD">DESCRIPTION</A><DD>
+<DT><A HREF="#lbAE">DIAGNOSTICS</A><DD>
+<DT><A HREF="#lbAF">AUTHOR</A><DD>
+</DL>
+<HR>
+This document was created on
+
+Time: 05:25:53 GMT, October 10, 1998
+</BODY>
+</HTML>

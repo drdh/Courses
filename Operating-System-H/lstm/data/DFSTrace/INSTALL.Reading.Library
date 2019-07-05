@@ -1,0 +1,80 @@
+Trace Reading Instructions:
+
+ To begin reading these traces:
+
+1. unpack the trace reading library on to a disk directory,
+
+2.  Change directory to the base directory for the package
+  (usually DFSTrace)
+
+3. type make to do a complete make and install in the
+   current directory.  This will create a file config.local
+   containing the path of the base directory for this package,
+   and setting the variable OS_NAME appropriately.
+   This information is used by the lower level make files to
+   locate the base lib bin and include directories, and operating
+   system specific flags.
+
+  Once you have completed this the library should be built and
+  exist in the lib directory.  The example analysis programs should
+  be in bin and the main header files should be in include.
+
+For example:
+
+%  gunzip -c < /cdrom/DFSTrace-Reading-Library.tar.gz \
+ 				> DFSTrace-Reading-Library.tar
+
+%  tar xf DFSTrace-Reading-Library.tar
+%  cd DFSTrace
+%  make 
+
+At this point the program replay can be used to play the details of
+individual trace files.  An example trace file with output from replay
+and tstat is provided in the trace reading library's directory
+examples/vi.  One should be able to produce the same output with the
+following commands
+
+%  bin/replay DFSTrace/example/vi/holst.coda.cs.cmu.edu.Dec02.14:28
+%  bin/tstat DFSTrace/example/vi/holst.coda.cs.cmu.edu.Dec02.14:28
+
+(Note: if a trace file ends with .gz the library will automatically
+invoke gzip -c to provide an input stream). However, In order to read
+compressed trace files the trace library requires that the program
+gzip is in your path.
+
+
+---- If this  fails:
+
+1. check in the src directory in the appropriate  target operating
+   system's configuration file src/config{OS_NAME}
+2. confirm the the file config.local does infact set 
+   TRACEDIR to the directory where this code will reside.
+   e.g.   TRACEDIR=/home/tmk/DFSTrace
+   and as set the appropriate operating system name
+3. Check the notes below for your specific platform.
+4. Check the DFSTrace home pages for the most up to date version
+   of this library.
+
+
+ NOTES ON VARIOUS PLATFORMS:
+
+This system has been successful compiled and tested on the following
+systems:
+ SunOS 5.6, SunOS 5.5 (with modifications to congig.SunOS), Linux
+2.1.123 & 2.0.34, and NetBSD
+
+
+Curretnly the following troubles are known of for other platforms:
+
+OSF1 4.0  On Digital Alpha machines:
+ + The code builds and executes correctly however it continually generates
+Unaligned access warnings.  These warnings have been traced to the
+macros DFS_LOG_UNPACK_FOUR and DFS_LOG_UNPACK_FID in 
+DFSTrace/src/tracelib/unpack_private.h.
+
+ SunOS 5.5--The option for including the library xnet in
+config.SunOS should be removed for the library to build.
+
+SunOS 4.1.4--The header file regex.h  should be commented
+out and the  regular expression provided with the standard
+library should be used.

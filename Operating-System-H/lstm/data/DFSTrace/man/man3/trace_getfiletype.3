@@ -1,0 +1,40 @@
+.TH TRACE_GETFILETYPE 3 "Feb 10, 1992" "Trace_GetFileType"
+
+.SH NAME
+Trace_GetFileType -- get file type from trace record
+
+
+.SH SYNOPSIS
+
+
+.nf
+
+short Trace_GetFileType(recPtr)
+dfs_header_t *recPtr;
+
+.fi 
+
+.PP
+
+.SH DESCRIPTION
+
+Trace_GetFileType returns the file type (see ``modes'' in
+sys/inode.h) from record \fIrecPtr,\fR if such a field exists in that
+record.  File types are regular file, directory, symbolic link,
+character special, block special, and socket.   Records that contain
+file type fields are OPEN, CLOSE, RMDIR, UNLINK, STAT, LSTAT, ACCESS,
+CHMOD, CHOWN, RENAME, LINK, LOOKUP, and UTIMES.   If no such field
+exists, or if it is not set, the routine returns IFMT (which would not
+make sense as a file type).
+
+.PP
+
+.SH SEE ALSO
+
+sys/inode.h
+
+.PP
+
+.SH AUTHOR
+
+Lily B.  Mummert

@@ -1,0 +1,109 @@
+.TH TRACE_SETFILTER 3 "Feb 10, 1992" "Trace_SetFilter"
+
+.SH NAME
+Trace_SetFilter -- filter a trace
+
+
+.SH SYNOPSIS
+
+
+.nf
+
+int Trace_SetFilter(fp, fileName)
+FILE *fp;
+char *fileName;
+
+.fi 
+
+.PP
+
+.SH DESCRIPTION
+
+Trace_SetFilter parses the filter specification in \fIfilename\fR and applies it to the trace in file \fIfp.\fR All future calls to
+Trace_GetRecord will be subject to this filter, unless 
+Trace_SetFilter is called again.
+
+.PP
+Filtering commands are as follows.  Those in [] are optional.
+
+.IP \(bu 3
+end \fItime\fR 
+The time after which all records will be filtered out.
+Any time acceptable to parsedate works.
+example: \fIend Feb 25 14:00:00 1991\fR 
+.IP \(bu
+error ...list of error codes...
+example: \fIerror 0\fR 
+.IP \(bu
+inodetype
+Filters based on the inode (vnode) type of the object.
+Valid types are ufs, cfs, nfs, afs, bdev, spec.
+.IP \(bu
+matchfds 
+This command applies to file-descriptor based trace records -- seek,
+close, read, and write.   If matchfds occurs in the filter file,
+only those records that match an open with the same file descriptor
+will be presented.   (Really, the file table index is used.)
+.IP \(bu
+opcode [include/exclude] ...list of opcodes...
+The string name of the desired opcode should be used.
+example: \fIopcode open close read write seek\fR 
+If not set, all opcodes are returned.   Inclusion is
+the default.
+.IP \(bu
+path [include/exclude] ...list of regexps...
+Filter based on the list of paths.   Regular expressions
+of the form accepted by the regexp package work.  For records
+with multiple paths, they are included or excluded if any
+of the paths in the records match.
+.IP \(bu
+pid [include/exclude] ...list of pids...
+Records are included or excluded based on the pid's membership
+in the supplied list.  Include is the default.
+.IP \(bu
+refcount n
+A hack.   Applies to close -- only those with the specified 
+refcount will be presented.  Useful for detecting
+a ``real'' close.
+.IP \(bu
+start time
+Records before time are filtered out.  Any time acceptable to
+Parsedate works.
+.IP \(bu
+type  ...list of file types...
+The file types are regular, directory, link, block, character,
+and socket.  
+.IP \(bu
+user [include/exclude] ...list of numerical user ids...
+If include is specified, only
+those records that can be determined to have been written on behalf
+of the specified users will be presented.  Similarly, The exclude option
+filters out records that can be determined to have been written
+on behalf of the specified user.  Inclusion is the default.
+example: \fIuser include 2208\fR 
+
+.LP
+Use only one of each command in a filter file.
+
+.PP
+Filters are intended to give the trace user a mechanism for processing
+traces in a variety of ways using a given program.   If an analysis
+program only looks at certain types of records (such as CLOSEs), then
+that should be coded into the analysis program (i.e., the program's
+requirements for records should not be specified in a filter).
+
+.PP
+
+.SH DIAGNOSTICS
+
+Returns TRACE_FILERECORDNOTFOUND if fp is not an open trace.
+Returns TRACE_FILENOTFOUND if the filter file cannot be
+opened for read access.  Otherwise, returns TRACE_SUCCESS.
+
+.PP
+
+.SH AUTHOR
+
+Lily B.  Mummert
+
+.PP

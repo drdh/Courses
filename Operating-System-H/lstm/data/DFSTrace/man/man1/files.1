@@ -1,0 +1,91 @@
+.TH FILES 1 "Feb 11, 1992" "Files"
+
+.SH NAME
+files -- list file names most frequently accessed in a trace
+
+
+.SH SYNOPSIS
+ 
+
+.nf
+
+files [ -a ] [ -i ] [ -v ] [ -d ] [ -n num ] [ -f filterfile ] file
+
+.fi 
+
+.PP
+
+.SH DESCRIPTION
+ 
+\fIfiles\fR reads a trace and prints the list of path names (and
+optionally vnodes) found in the trace, by frequency of access.
+
+.PP
+
+.SH OPTIONS
+
+
+.PD 0
+
+.TP 12
+
+.BR -a
+ Print absolute path names only.
+
+.TP
+
+.BR -d
+ Prints library debugging information.  Lots of it.
+
+.TP
+
+.BR -f\ filterfile
+ Apply the filter in \fIfilterfile\fR to the trace.
+
+.TP
+
+.BR -i
+ Print the inode number (fid) associated with each name.
+
+.TP
+
+.BR -n\ num
+ Prints the \fInum\fR most frequently accessed names.
+
+.TP
+
+.BR -v
+ Verbose mode.  Prints information on what the library is doing.
+
+
+
+.PP
+
+.SH DIAGNOSTICS
+
+The following are frequently encountered errors:
+
+.PP
+can't process file \fIfile\fR -- the file wasn't there or 
+if a filter file was specified, it couldn't be applied.
+
+.PP
+
+.SH SEE ALSO
+
+replay, tstat
+
+.PP
+
+.SH BUGS
+
+This program tallies counts by path name, not fid.  References to the
+same object under different names are listed separately.   In a system
+where users accessed a shared, distributed file system exclusively,
+the fid of an object should be used instead of the path name.
+
+.PP
+
+.SH AUTHOR
+ 
+Lily B.  Mummert

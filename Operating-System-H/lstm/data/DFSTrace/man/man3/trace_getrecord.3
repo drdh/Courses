@@ -1,0 +1,42 @@
+.TH TRACE_GETRECORD 3 "Feb 10, 1992" "Trace_GetRecord"
+
+.SH NAME
+Trace_GetRecord -- get a record from a trace
+
+
+.SH SYNOPSIS
+
+
+.nf
+
+dfs_header_t *Trace_GetRecord(fp)
+FILE *fp;
+
+.fi 
+
+.PP
+
+.SH DESCRIPTION
+
+Trace_GetRecord reads data from the trace file \fIfp,\fR and returns
+a pointer to a trace record.   Storage for the record is allocated in
+this routine.  The record must be freed using Trace_FreeRecord.
+
+.PP
+
+.SH DIAGNOSTICS
+
+NULL is returned if the trace file \fIfp\fR cannot be located, or if end of
+file has been reached.
+
+.PP
+
+.SH SEE ALSO
+
+Trace_FreeRecord
+
+.PP
+
+.SH AUTHOR
+
+Lily B.  Mummert

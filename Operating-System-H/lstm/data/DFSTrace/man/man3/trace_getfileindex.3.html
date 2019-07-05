@@ -1,0 +1,49 @@
+Content-type: text/html
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML><HEAD><TITLE>Manpage of TRACE_GETFILEINDEX</TITLE>
+</HEAD><BODY>
+<H2>TRACE_GETFILEINDEX</H2>
+Section: C Library Functions (3)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Updated: Feb 10, 1992&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="../../README.Reading.Library.html">Return to Library's README</A>
+<HR>
+<P>
+<A NAME="lbAB"></A>
+<H3>NAME</H3>
+Trace_GetFileIndex -- get file table index from trace record
+<P>
+<A NAME="lbAC"></A>
+<H3>SYNOPSIS</H3>
+<P>
+<PRE>
+short Trace_GetFileIndex(recPtr)
+dfs_header_t *recPtr;
+</PRE>
+<P>
+<A NAME="lbAD"></A>
+<H3>DESCRIPTION</H3>
+<P>
+Trace_GetFileIndex returns the index of the entry in the open file
+table from the record <I>recPtr,</I> if such a file exists in that
+record.  The file table index is contained in records for system calls
+that manipulate file descriptors, which are OPEN, CREAT, CLOSE, SEEK,
+READ, and WRITE.   The size of the file table varies from machine to
+machine; the library assumes it does not exceed 1024.  If no such field
+exists, or if it is not set, the routine returns -1.
+<P>
+<A NAME="lbAE"></A>
+<H3>AUTHOR</H3>
+<P>
+Lily B.  Mummert
+<HR>
+<A NAME="index"></A><H3>Index</H3>
+<DL>
+<DT><A HREF="#lbAB">NAME</A><DD>
+<DT><A HREF="#lbAC">SYNOPSIS</A><DD>
+<DT><A HREF="#lbAD">DESCRIPTION</A><DD>
+<DT><A HREF="#lbAE">AUTHOR</A><DD>
+</DL>
+<HR>
+This document was created on
+
+Time: 05:25:53 GMT, October 10, 1998
+</BODY>
+</HTML>

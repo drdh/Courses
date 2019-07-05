@@ -1,0 +1,33 @@
+.TH TRACE_PRINTRECORD,TRACE_DUMPRECORD 3 "Feb 10, 1992" "Trace_PrintRecord,Trace_DumpRecord"
+
+.SH NAME
+Trace_PrintRecord,Trace_DumpRecord -- Print contents of trace record
+
+
+.SH SYNOPSIS
+
+
+.nf
+
+void Trace_PrintRecord(recPtr)
+dfs_header_t *recPtr;
+
+void Trace_DumpRecord(recPtr)
+dfs_header_t *recPtr;
+
+.fi 
+
+.PP
+
+.SH DESCRIPTION
+
+These routines print the contents of a trace record \fIrecPtr\fR to
+standard output.  Trace_PrintRecord prints a one-line summary of the
+record.  Trace_DumpRecord prints an exhaustive inventory of
+everything in the record.
+
+.PP
+
+.SH AUTHOR
+
+Lily B.  Mummert

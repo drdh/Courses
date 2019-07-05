@@ -1,0 +1,102 @@
+.TH SESSIONS 1 "Feb 10, 1992" "Sessions"
+
+.SH NAME
+sessions -- print active sessions in a trace
+
+
+.SH SYNOPSIS
+ 
+
+.nf
+
+sessions [ -v ] [ -d ] [ -f filterfile ] [ -i interval ] [ -s session ]
+	 [ -g gap ] [ -a activity ] file
+
+.fi 
+
+.PP
+
+.SH DESCRIPTION
+ 
+sessions locates active periods in the trace \fIfile.\fR A 
+\fIsession\fR  is composed of \fIintervals\fR of time of a specified 
+\fIactivity level\fR (measured by number of operations in the interval),
+possibly including a number of intervals below that activity level, or
+\fIgaps.\fR By default, the length of an interval is 900 seconds (15
+minutes), and a session in composed of 16 intervals (4 hours).  An
+active session has at least 16 operations per interval, but it may
+have gaps of up to 4 intervals that fall under that level.   These
+settings will locate long stretches of fairly low activity.  All are
+parameters, and are listed in the options below.
+
+.PP
+The set of operations used to determine activity is a subset of the
+opcodes in a trace.  That subset is open, close, unlink, creat, chmod,
+rename, rmdir, link, chown, mkdir, symlink, truncate, utimes, stat,
+lstat, access, readlink, lookup, getsymlink, and root.  These are
+further divided into mutations and nonmutations for the purposes
+of reporting.
+
+.PP
+
+.SH OPTIONS
+
+
+.PD 0
+
+.TP 12
+
+.BR -a\ activity
+ The desired activity level, in operations per
+interval.  The set of operations is defined above.  This is
+a thresholding parameter.  The default is 16.
+
+.TP
+
+.BR -d
+ Prints library debugging information.  Lots of it.
+
+.TP
+
+.BR -f\ filterfile
+ Apply the filter in \fIfilterfile\fR to the trace.
+
+.TP
+
+.BR -g\ gap
+ Maximum length of a gap allowable in an active session,
+in intervals.  Default is 4.
+
+.TP
+
+.BR -i\ interval
+ Length of an interval, in seconds.  Default is 900.
+
+.TP
+
+.BR -s\ session
+ Length of a session, in intervals.  Default is 16.
+
+.TP
+
+.BR -v
+ Verbose mode.  Prints information on what the library is doing.
+
+
+
+.PP
+
+.SH DIAGNOSTICS
+
+The following are frequently encountered errors:
+
+.PP
+can't process file \fIfile\fR -- the file wasn't there or 
+if a filter file was specified, it couldn't be applied.
+
+.PP
+
+.SH AUTHOR
+ 
+Initial version by James Jay Kistler.  Updated by
+Lily B.  Mummert.

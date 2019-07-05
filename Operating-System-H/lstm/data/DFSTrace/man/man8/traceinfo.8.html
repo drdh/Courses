@@ -1,0 +1,59 @@
+Content-type: text/html
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML><HEAD><TITLE>Manpage of TRACEINFO</TITLE>
+</HEAD><BODY>
+<H2>TRACEINFO</H2>
+Section: Maintenance Commands (8)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Updated: Feb 10, 1992&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="../../README.Reading.Library.html">Return to Library's README</A>
+<HR>
+<P>
+<A NAME="lbAB"></A>
+<H3>NAME</H3>
+traceinfo -- print information on a tracing kernel
+<P>
+<A NAME="lbAC"></A>
+<H3>SYNOPSIS</H3>
+<PRE>traceinfo
+</PRE>
+<P>
+<A NAME="lbAD"></A>
+<H3>DESCRIPTION</H3>
+&nbsp;
+Traceinfo prints a few statistics on what a tracing kernel has
+done.  It indicates whether or not a tracing kernel is running, and
+if so, whether or not tracing is on, what level operations are being
+traced, and the number of bytes written by the kernel and read by an
+agent.  Traceinfo should be run setuid root.
+<P>
+<A NAME="lbAE"></A>
+<H3>DIAGNOSTICS</H3>
+<P>
+Frequently encountered errors:
+<P>
+``cannot open /dev/dfstrace'' -- /dev/dfstrace was not installed,
+or traceinfo isn't being run as root.  
+<P>
+<A NAME="lbAF"></A>
+<H3>SEE ALSO</H3>
+<P>
+collector, traceinfo, tracelevel
+<P>
+<A NAME="lbAG"></A>
+<H3>AUTHOR</H3>
+&nbsp;
+Lily B.  Mummert
+<HR>
+<A NAME="index"></A><H3>Index</H3>
+<DL>
+<DT><A HREF="#lbAB">NAME</A><DD>
+<DT><A HREF="#lbAC">SYNOPSIS</A><DD>
+<DT><A HREF="#lbAD">DESCRIPTION</A><DD>
+<DT><A HREF="#lbAE">DIAGNOSTICS</A><DD>
+<DT><A HREF="#lbAF">SEE ALSO</A><DD>
+<DT><A HREF="#lbAG">AUTHOR</A><DD>
+</DL>
+<HR>
+This document was created on
+
+Time: 05:25:53 GMT, October 10, 1998
+</BODY>
+</HTML>

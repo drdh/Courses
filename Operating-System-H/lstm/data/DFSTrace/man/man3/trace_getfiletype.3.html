@@ -1,0 +1,56 @@
+Content-type: text/html
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML><HEAD><TITLE>Manpage of TRACE_GETFILETYPE</TITLE>
+</HEAD><BODY>
+<H2>TRACE_GETFILETYPE</H2>
+Section: C Library Functions (3)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Updated: Feb 10, 1992&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="../../README.Reading.Library.html">Return to Library's README</A>
+<HR>
+<P>
+<A NAME="lbAB"></A>
+<H3>NAME</H3>
+Trace_GetFileType -- get file type from trace record
+<P>
+<A NAME="lbAC"></A>
+<H3>SYNOPSIS</H3>
+<P>
+<PRE>
+short Trace_GetFileType(recPtr)
+dfs_header_t *recPtr;
+</PRE>
+<P>
+<A NAME="lbAD"></A>
+<H3>DESCRIPTION</H3>
+<P>
+Trace_GetFileType returns the file type (see ``modes'' in
+sys/inode.h) from record <I>recPtr,</I> if such a field exists in that
+record.  File types are regular file, directory, symbolic link,
+character special, block special, and socket.   Records that contain
+file type fields are OPEN, CLOSE, RMDIR, UNLINK, STAT, LSTAT, ACCESS,
+CHMOD, CHOWN, RENAME, LINK, LOOKUP, and UTIMES.   If no such field
+exists, or if it is not set, the routine returns IFMT (which would not
+make sense as a file type).
+<P>
+<A NAME="lbAE"></A>
+<H3>SEE ALSO</H3>
+<P>
+sys/inode.h
+<P>
+<A NAME="lbAF"></A>
+<H3>AUTHOR</H3>
+<P>
+Lily B.  Mummert
+<HR>
+<A NAME="index"></A><H3>Index</H3>
+<DL>
+<DT><A HREF="#lbAB">NAME</A><DD>
+<DT><A HREF="#lbAC">SYNOPSIS</A><DD>
+<DT><A HREF="#lbAD">DESCRIPTION</A><DD>
+<DT><A HREF="#lbAE">SEE ALSO</A><DD>
+<DT><A HREF="#lbAF">AUTHOR</A><DD>
+</DL>
+<HR>
+This document was created on
+
+Time: 05:25:53 GMT, October 10, 1998
+</BODY>
+</HTML>

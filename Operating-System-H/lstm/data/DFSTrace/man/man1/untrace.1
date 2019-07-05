@@ -1,0 +1,126 @@
+.TH UNTRACE 1 "Feb 10, 1992" "Untrace"
+
+.SH NAME
+untrace -- recreate actions from a trace
+
+
+.SH SYNOPSIS
+ 
+
+.nf
+
+untrace [ -d ] [ -f filterfile ] [ -m ] [ -r replayfile ] 
+	[ -s skeletonfile ] [ -v ] [ -xp ] file
+
+.fi 
+
+.PP
+
+.SH DESCRIPTION
+ 
+untrace reads the trace in \fIfile\fR and attempts to reconstruct the
+actions in the trace.  The program outputs two files -- a \fIskeleton\fR 
+file and a \fIreplay\fR file.  The skeleton file contains
+commands to build a skeleton of the file system needed for the trace
+actions to be replayed.  The replay file contains those actions.   The
+command files may be replayed by \fIcreplay.\fR 
+The program makes two passes over the input tracefile.  The first simply builds
+data structures which allow the set of skeleton-building commands to be emitted
+at completion.  The second pass emits the replay commands as it processes each
+record.
+
+.PP
+
+.SH OPTIONS
+
+
+.PD 0
+
+.TP 12
+
+.BR -d
+ Delta for think time, in seconds.  If the time difference
+ trace records is greated than this value, a delay of the 
+ difference will be inserted.
+
+.TP
+
+.BR -f\ filterfile
+ Apply the filter in \fIfilterfile\fR to the trace.
+
+.TP
+
+.BR -m
+ Consider only mutations to objects in the file system.
+
+.TP
+
+.BR -r\ replayfile
+ Name of the file in which to put the commands that
+replay actions in the trace.  Default is \fIreplay.cmd.\fR 
+.TP
+
+.BR -s\ skeletonfile
+ Name of the file in which to put the commands that
+build the file system structure in which the trace actions occurred.
+Default is \fIskeleton.cmd.\fR 
+.TP
+
+.BR -v
+ Verbose mode.  Prints the number of records handled in units
+of 100, messages about interesting inferences, and the structure of
+the file system skeleton at the end of the first pass.
+
+.TP
+
+.BR -x
+ Allow cross parent links.  Default is to leave
+them out, as they will cause the execution of the command
+file to fail in AFS or CFS.
+
+
+
+.PP
+
+.SH DIAGNOSTICS
+
+The following are frequently encountered errors:
+
+.PP
+can't process file \fIfile\fR -- the file wasn't there or if a filter
+file was specified, it couldn't be applied.
+
+.PP
+
+.SH SEE ALSO
+
+creplay
+
+.PP
+
+.SH BUGS
+
+Doesn't handle MOUNT or UNMOUNT records.  If either of these is
+encountered, the program assertion fails.
+
+.PP
+A filter file containing the commands in \fIuntrace.fil\fR must 
+be used for correct matching of open and close calls.  These settings
+really should be specified in the program.
+
+.PP
+Filtering other than that used in \fIuntrace.fil\fR should be used
+with extreme care.  It is is helpful only if the filtered actions are
+local.   Otherwise, one might be filtering out information needed to
+build the file system skeleton.
+
+.PP
+There are \fImany\fR wierd cases that haven't been tested.  The program 
+will assertion fail if it encounters one.
+
+.PP
+
+.SH AUTHOR
+ 
+Original version by James J.  Kistler.  Updates and minor bug
+fixes by Lily B.  Mummert.  

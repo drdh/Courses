@@ -1,0 +1,67 @@
+.TH REPLAY 1 "Feb 10, 1992" "Replay"
+
+.SH NAME
+replay -- trace prettyprinter
+
+
+.SH SYNOPSIS
+ 
+
+.nf
+
+replay [ -v ] [ -d ] [ -l ] [ -f filterfile ] file
+
+.fi 
+
+.PP
+
+.SH DESCRIPTION
+ 
+replay reads and pretty-prints the trace in \fIfile.\fR The default is
+an abbreviated format of one record per line.   Using the \fI-l\fR switch an exhaustive printout of every field in every record can be
+produced.
+
+.PP
+
+.SH OPTIONS
+
+
+.PD 0
+
+.TP 12
+
+.BR -d
+ Prints library debugging information.  Lots of it.
+
+.TP
+
+.BR -f\ filterfile
+ Apply the filter in \fIfilterfile\fR to the trace.
+
+.TP
+
+.BR -l
+ Long-form output of each record.
+
+.TP
+
+.BR -v
+ Verbose mode.  Prints information on what the library is doing.
+
+
+
+.PP
+
+.SH DIAGNOSTICS
+
+The following are frequently encountered errors:
+
+.PP
+can't process file \fIfile\fR -- the file wasn't there or if a filter
+file was specified, it couldn't be applied.
+
+.PP
+
+.SH AUTHOR
+ 
+Lily B.  Mummert

@@ -1,0 +1,32 @@
+.TH TRACE_GETFID 3 "Feb 10, 1992" "Trace_GetFid"
+
+.SH NAME
+Trace_GetFid -- Get list of fids in a trace record
+
+
+.SH SYNOPSIS
+
+
+.nf
+
+void Trace_GetFid(recPtr, fidplist, nump)
+dfs_header_t *recPtr;
+generic_fid_t *fidplist[];
+int *nump;
+
+.fi 
+
+.PP
+
+.SH DESCRIPTION
+
+Trace_GetFid returns the number of fids in the record in \fInump,\fR and a list of pointers to the fids in \fIfidplist.\fR Most of the
+trace records contain fids, all contain fewer than 5 fids (RENAME
+contains 4).  If there are no fids in a record, \fI*nump\fR will be set
+to 0.
+
+.PP
+
+.SH AUTHOR
+
+Lily B.  Mummert

@@ -1,0 +1,87 @@
+.TH PATTERNS 1 "Feb 10, 1992" "Patterns"
+
+.SH NAME
+patterns -- summarize file access patterns in a trace
+
+
+.SH SYNOPSIS
+ 
+
+.nf
+
+patterns [ -v ] [ -d ] [ -f filterfile ] file
+
+.fi 
+
+.PP
+
+.SH DESCRIPTION
+ 
+patterns reads a trace and prints a summary of file access patterns
+based on close records occurring in the trace \fIfile.\fR The summary
+includes the number of read-only, write-only, and read-write accesses
+to files, as well as bytes transferred for each access type.  In
+addition, each of these access type is further broken down into
+whole-file tranfer, other sequential access, and random access.  Only
+close records with a reference count of 1 are used in this summary,
+because the statistics reported on close are cumulative.
+
+.PP
+
+.SH OPTIONS
+
+
+.PD 0
+
+.TP 12
+
+.BR -d
+ Prints library debugging information.  Lots of it.
+
+.TP
+
+.BR -f\ filterfile
+ Apply the filter in \fIfilterfile\fR to the trace.
+
+.TP
+
+.BR -v
+ Verbose mode.  Prints information on what the library is doing.
+
+
+
+.PP
+
+.SH DIAGNOSTICS
+
+The following are frequently encountered errors:
+
+.PP
+can't process file \fIfile\fR -- the file wasn't there or 
+if a filter file was specified, it couldn't be applied.
+
+.PP
+
+.SH SEE ALSO
+
+replay, tstat
+
+.PP
+
+.SH BUGS
+
+The summary access information in CLOSE records (number of bytes read,
+written) is cumulative.  For example, if a file is open and the
+descriptor is dup'ed, and then the file is manipulated by both agents,
+the statistics reported will be the sum of their accesses, and there
+is no way to tell from the final close who did which accesses.  (One
+can tell by tracking the intermediate closes, but this program does
+not do that.)  So if one if the agents only reads the file, and the
+other only writes, the complete session, from data in the last CLOSE
+record, will be reported as a read-write access.
+
+.PP
+
+.SH AUTHOR
+ 
+Lily B.  Mummert

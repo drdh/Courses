@@ -1,0 +1,28 @@
+.TH TRACE_COPYRECORD 3 "Feb 10, 1992" "Trace_CopyRecord"
+
+.SH NAME
+Trace_CopyRecord -- Make a safe copy of a trace record
+
+
+.SH SYNOPSIS
+
+
+.nf
+
+void Trace_CopyRecord(sp, dpp)
+dfs_header_t *sp;
+dfs_header_t **dpp;
+
+.fi 
+
+.PP
+
+.SH DESCRIPTION
+
+Trace_CopyRecord makes a copy of the record pointed to by \fIsp\fR 
+in \fI*dpp\fR .  It allocates the storage for the record, and copies
+all the fields (including pathnames, not just the pointers).
+
+.SH AUTHOR
+
+Lily B.  Mummert

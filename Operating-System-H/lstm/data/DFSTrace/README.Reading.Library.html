@@ -1,0 +1,101 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+   <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+   <META NAME="GENERATOR" CONTENT="Mozilla/4.06 [en] (Win98; I) [Netscape]">
+   <TITLE>DFSTrace Introduction</TITLE>
+</HEAD>
+<BODY TEXT="#000000" BGCOLOR="#CCCCCC" LINK="#0000FF" VLINK="#FF0000" ALINK="#FF0000">
+
+<CENTER>
+<H1>
+DFSTrace Reading Library Introduction</H1></CENTER>
+This introduces the DFSTrace reading library,&nbsp; a c library&nbsp; for
+reading traces taken with DFSTrace along with several example analysis
+programs.&nbsp; If you are only&nbsp; interested in using existing traces,
+and not in taking more traces then you will only need the&nbsp; trace reading
+library. The entire traces&nbsp; have been put on to a set of several CDs.&nbsp;
+The master CD contains all of the DFSTrace components as well as all of
+the documentation about the system.
+<BR>&nbsp;
+<P><B>Complete up to date details of the DFSTrace system&nbsp; can the
+found at:</B>
+<BR><A HREF="http://coda.cs.cmu.edu/DFSTrace">http://coda.cs.cmu.edu/DFSTrace</A>
+as well as&nbsp; <A HREF="http://csl.cse.ucsc.edu/DFSTrace">http://csl.cse.ucsc.edu/projects/DFSTrace</A>
+<BR>&nbsp;
+<P>The following files should be included with this package:
+<P>README.reading.library&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+-- A text verion of this readme
+<BR><A HREF="INSTALL.Reading.Library">INSTALL.reading.library</A>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+-- Directions for installing the reading library
+<P>bin/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+-- should hold various trace&nbsp; analyzing
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+programs once the library is built
+<BR>doc/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+-- further documentation
+<BR>etc/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+-- some scripts for testing the trace data
+<BR>include/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+-- where the library's include file is installed
+<BR>lib/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+-- where the c library (tracelib.a) is installed
+<BR>man/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+-- some man pages nroff
+<BR>src/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+-- source code for tracelib, post processing
+<P>More documention can be found in the following files:
+<P><B><FONT SIZE=+1>Example trace analysis programs:</FONT></B>
+<BR><A HREF="man/man1/creplay.1.html">creplay(1)</A>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+-- execute commands from an untrace
+<BR><A HREF="man/man1/files.1.html">files(1)</A>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+-- list file names most frequently accessed in a trace
+<BR><A HREF="man/man1/patterns.1.html">patterns(1)</A>&nbsp;&nbsp;&nbsp;&nbsp;
+-- summarize file access patterns in a trace
+<BR><A HREF="man/man1/replay.1.html">replay(1)</A>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+-- trace prettyprinter
+<BR><A HREF="man/man1/sessions.1.html">sessions(1)</A>&nbsp;&nbsp;&nbsp;&nbsp;
+-- print active sessions in a trace
+<BR><A HREF="man/man1/tstat.1.html">tstat(1)</A>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+-- print trace statistics
+<BR><A HREF="man/man1/untrace.1.html">untrace(1)</A>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+-- recreate actions from a trace
+<BR><A HREF="man/man1/users.1.html">users(1)</A>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+-- print active uids in a trace
+<P><B><FONT SIZE=+1>Trace Reading Library API:</FONT></B>
+<BR><A HREF="man/man3/trace_close.3.html">trace_close(3)</A>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+-- close a trace file
+<BR><A HREF="man/man3/trace_copyrecord.3.html">trace_copyrecord(3)</A>&nbsp;&nbsp;
+-- Make a safe copy of a trace record
+<BR><A HREF="man/man3/trace_fidsequal.3.html">trace_fidsequal(3)</A>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+-- Compares fids
+<BR><A HREF="man/man3/trace_freerecord.3.html">trace_freerecord(3)</A>&nbsp;&nbsp;&nbsp;&nbsp;
+-- deallocate a trace record
+<BR><A HREF="man/man3/trace_getfid.3.html">trace_getfid(3)</A>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+-- Get list of fids in a trace record
+<BR><A HREF="man/man3/trace_getfileindex.3.html">trace_getfileindex(3)</A>&nbsp;&nbsp;&nbsp;
+-- get file table index from trace record
+<BR><A HREF="man/man3/trace_getfiletype.3.html">trace_getfiletype(3)</A>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+-- get file type from trace record
+<BR><A HREF="man/man3/trace_getpath.3.html">trace_getpath(3)</A>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+-- Get list of pathnames in a trace record
+<BR><A HREF="man/man3/trace_getrecord.3.html">trace_getrecord(3)</A>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+-- get a record from a trace
+<BR><A HREF="man/man3/trace_getrefcount.3.html">trace_getrefcount(3)</A>&nbsp;&nbsp;&nbsp;&nbsp;
+-- get reference count from trace record
+<BR><A HREF="man/man3/trace_getuser.3.html">trace_getuser(3)</A>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+-- return the uid that produced a trace record
+<BR><A HREF="man/man3/trace_open.3.html">trace_open(3)</A>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+-- open a trace file
+<BR><A HREF="man/man3/trace_printpreamble.3.html">trace_printpreamble(3)</A>
+-- print the preamble of a trace
+<BR><A HREF="man/man3/trace_printrecord.3.html">trace_printrecord(3)</A>&nbsp;&nbsp;&nbsp;&nbsp;
+-- Print contents of trace record
+<BR><A HREF="man/man3/trace_setfilter.3.html">trace_setfilter(3)</A>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+-- filter a trace
+<BR><A HREF="man/man3/trace_stats.3.html">trace_stats(3)</A>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+-- Get information on an open trace
+<BR><A HREF="man/man3/tracetostr.3.html">tracetostr(3)</A>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+-- Convert trace record fields to strings
+</BODY>
+</HTML>

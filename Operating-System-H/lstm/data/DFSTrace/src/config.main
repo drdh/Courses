@@ -1,0 +1,27 @@
+# Configuration file for /usr/cs/bin/make
+#
+# here is kept the basic static configuration data
+#   $Id: config.main,v 1.1 1998/10/13 21:14:30 tmkr Exp $
+#
+
+# this is the base directory for the tracing code
+# Please put and absolute path here using ~my_user_name
+# can cause errors
+#TRACEDIR = /home/tmkr/DFSTrace
+#
+BINDIR = ${TRACEDIR}/bin
+INCLDIR= ${TRACEDIR}/include
+LIBDIR=	 ${TRACEDIR}/lib
+MANDIR = ${TRACEDIR}/man
+SRCDIR = ${TRACEDIR}/src
+DOCDIR = ${TRACEDIR}/doc
+
+#  copy is like cp -p  but avoids gratuitous copying
+INSTALL= cp -p
+
+CPLUSPLUS = g++
+
+# target machine operating system defines 
+INCLFLAGS = -I.. -I$(INCLDIR) -I$(TRACEDIR)/include -I/usr/include
+LIBFLAGS = -L$(LIBDIR) $(OS_LIB)
+

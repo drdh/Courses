@@ -1,0 +1,36 @@
+.TH TRACE_PRINTPREAMBLE 3 "Feb 10, 1992" "Trace_PrintPreamble"
+
+.SH NAME
+Trace_PrintPreamble -- print the preamble of a trace
+
+
+.SH SYNOPSIS
+
+
+.nf
+
+int Trace_PrintPreamble(fp)
+FILE *fp;
+
+.fi 
+
+.PP
+
+.SH DESCRIPTION
+
+Trace_PrintPreamble prints the preamble written for the trace
+represented by \fIfp.\fR  Formats for the preamble vary, hence this
+routine.
+
+.PP
+
+.SH DIAGNOSTICS
+
+Returns TRACE_FILERECORDNOTFOUND if \fIfp\fR is not an open trace,
+otherwise returns TRACE_SUCCESS.
+
+.PP
+
+.SH AUTHOR
+
+Lily B.  Mummert

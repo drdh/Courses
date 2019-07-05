@@ -1,0 +1,93 @@
+Content-type: text/html
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML><HEAD><TITLE>Manpage of COLLECTOR</TITLE>
+</HEAD><BODY>
+<H2>COLLECTOR</H2>
+Section: Maintenance Commands (8)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Updated: Feb 10, 1992&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="../../README.Reading.Library.html">Return to Library's README</A>
+<HR>
+<P>
+<A NAME="lbAB"></A>
+<H3>NAME</H3>
+collector -- dfstrace data collection server
+<P>
+<A NAME="lbAC"></A>
+<H3>SYNOPSIS</H3>
+<P>
+<PRE>
+collector [ -f datadir ] [ -h hostfile ] [ -t summary time ] [ -d RPC2 debug level ] [ -v ]
+</PRE>
+<P>
+<A NAME="lbAD"></A>
+<H3>DESCRIPTION</H3>
+<P>
+Collector receives data from agent programs running on data generating
+clients.  It receives data via RPC2, and stores data in a file in 
+<I>datadir</I> of the form <I>hostname.mmmdd.hh:mm,</I> where the hostname is
+the host from which the data was received, and the time is the file
+creation time.  The maximum file size on the collector is set by a
+compile time variable, set at about 5MB.  In addition to the options
+below, collector responds to the signals SIGTERM (close files and
+shutdown), SIGALRM (print a summary of client activity), SIGEMT (turn
+up RPC2 debugging), and SIGIOT (turn off RPC2 debugging).  
+<P>
+<A NAME="lbAE"></A>
+<H3>OPTIONS</H3>
+<P>
+<DL COMPACT>
+<DT><DD>
+<B>-d&nbsp;num</B>
+&nbsp;Set&nbsp;RPC2&nbsp;debug&nbsp;level&nbsp;to&nbsp;<I>num.</I>&nbsp;
+<DT><DD>
+<B>-f&nbsp;datadir</B>
+&nbsp;Put&nbsp;data&nbsp;files&nbsp;in&nbsp;<I>datadir.</I>&nbsp;
+<DT><DD>
+<B>-h&nbsp;hostfile</B>
+&nbsp;Preload&nbsp;the&nbsp;hosts&nbsp;listed&nbsp;in&nbsp;<I>hostfile.</I>&nbsp;This&nbsp;is&nbsp;simply&nbsp;a&nbsp;list&nbsp;of&nbsp;Internet&nbsp;addresses&nbsp;from&nbsp;which
+we expect to get data.
+<P>
+<DT><DD>
+<B>-t&nbsp;summary&nbsp;time</B>
+&nbsp;Time&nbsp;between&nbsp;client&nbsp;summaries,&nbsp;in&nbsp;hours.
+<P>
+<DT><DD>
+<B>-v</B>
+&nbsp;Verbose&nbsp;mode.&nbsp;&nbsp;Prints&nbsp;among&nbsp;other&nbsp;things&nbsp;messages&nbsp;on&nbsp;
+every transfer, more information on new connections,
+more extensive client summaries.
+<P>
+</DL>
+<P>
+<A NAME="lbAF"></A>
+<H3>DIAGNOSTICS</H3>
+<P>
+If started when a collector is already running,<TT>&nbsp;</TT>will exit.
+<P>
+<A NAME="lbAG"></A>
+<H3>SEE ALSO</H3>
+<P>
+agent, traceinfo, tracelevel
+&nbsp;
+<P>
+<A NAME="lbAH"></A>
+<H3>AUTHOR</H3>
+<P>
+Lily B.  Mummert
+<P>
+
+<HR>
+<A NAME="index"></A><H3>Index</H3>
+<DL>
+<DT><A HREF="#lbAB">NAME</A><DD>
+<DT><A HREF="#lbAC">SYNOPSIS</A><DD>
+<DT><A HREF="#lbAD">DESCRIPTION</A><DD>
+<DT><A HREF="#lbAE">OPTIONS</A><DD>
+<DT><A HREF="#lbAF">DIAGNOSTICS</A><DD>
+<DT><A HREF="#lbAG">SEE ALSO</A><DD>
+<DT><A HREF="#lbAH">AUTHOR</A><DD>
+</DL>
+<HR>
+This document was created on
+
+Time: 05:25:53 GMT, October 10, 1998
+</BODY>
+</HTML>

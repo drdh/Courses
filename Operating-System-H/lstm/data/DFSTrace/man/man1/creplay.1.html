@@ -1,0 +1,66 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML><HEAD><TITLE>Manpage of CREPLAY</TITLE>
+</HEAD><BODY>
+<H2>CREPLAY</H2>
+Section: User Commands  (1)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Updated: Feb 10, 1992&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="../../README.Reading.Library.html">Return to Library's README</A>
+<HR>
+<A NAME="lbAB"></A>
+<H3>NAME</H3>
+creplay -- execute commands from an untrace
+<A NAME="lbAC"></A>
+<H3>SYNOPSIS</H3>
+<PRE>
+creplay file
+</PRE>
+<A NAME="lbAD"></A>
+<H3>DESCRIPTION</H3>
+&nbsp;
+creplay executes the commands in <I>file</I> produced by untrace.  If
+the command file is a skeleton file, it will create a file system
+skeleton under the name ``root'' in the current directory.  For a
+replay file, the action will happen under ``root'' in that directory.
+<P>
+<A NAME="lbAE"></A>
+<H3>OPTIONS</H3>
+<P>
+&nbsp;
+<DL COMPACT>
+<DT><DD>
+<B>-g</B>
+&nbsp;Use&nbsp;if&nbsp;file&nbsp;system&nbsp;does&nbsp;not&nbsp;support&nbsp;chown&nbsp;of&nbsp;group&nbsp;ID.
+<P>
+<DT><DD>
+<B>-v</B>
+&nbsp;Verbose&nbsp;mode.
+<P>
+</DL>
+<P>
+<A NAME="lbAF"></A>
+<H3>DIAGNOSTICS</H3>
+<P>
+If any of the commands in <I>file</I> does not complete successfully,
+creplay dies with an assertion failure.  Any error will do, so make
+sure you have the appropriate permissions to write into the current
+directory, and make sure you have enough space for a (potentially)
+large tree.
+<P>
+<A NAME="lbAG"></A>
+<H3>AUTHOR</H3>
+&nbsp;
+James J.  Kistler
+<HR>
+<A NAME="index"></A><H3>Index</H3>
+<DL>
+<DT><A HREF="#lbAB">NAME</A><DD>
+<DT><A HREF="#lbAC">SYNOPSIS</A><DD>
+<DT><A HREF="#lbAD">DESCRIPTION</A><DD>
+<DT><A HREF="#lbAE">OPTIONS</A><DD>
+<DT><A HREF="#lbAF">DIAGNOSTICS</A><DD>
+<DT><A HREF="#lbAG">AUTHOR</A><DD>
+</DL>
+<HR>
+This document was created on
+
+Time: 05:25:52 GMT, October 10, 1998
+</BODY>
+</HTML>

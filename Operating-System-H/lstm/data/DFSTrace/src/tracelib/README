@@ -1,0 +1,51 @@
+Code notes -- (under construction-- October 98)
+
+The following is a list of the code files in this directory and
+what function they serve.
+==============================================================
+
+atot.c		--
+fold.c		--
+
+filter.c	-- filter implementation
+
+ftable.c	-- file table maintenance
+nxtarg.c	--
+parsedate.c	--
+pid.c		-- builds pid tree from a trace
+rec.c		-- routines for manipulating dfs trace records.
+skipto.c	--
+split.c		-- code for handling split records
+tm.c            -- a program used to combine trace records
+trace.c		-- routines for reading trace records.
+ucb.c		--
+unpack.c	--
+ur.c		--
+v1.c		-- code for unpacking version 1 traces.
+v2.c		-- code for unpacking version 2 traces. 
+v3.c		-- code for unpacking version 2 traces. 
+
+
+Builder's notes
+===============
+
+1. On some systems (notably NetBSD), the yacc of parsedate.y 
+   produces a .c file with the tokens #defined _after_ they
+   are used.  The file parsedate.c.save is provided as a
+   a substitute and reference.
+2. The library depends on the availability of a regular 
+   expression package for filtering.  Where the old regex
+   package (re_comp, re_exec) is unavailable (e.g., NetBSD),
+   we use the POSIX-compliant regex (regcomp, regexec).
+
+
+Include File Organization
+=========================
+
+functions, constants, etc. that are exported to the user are
+	in tracelib.h
+functions, constants, etc. that are library-internal but 
+	used between library modules are in *.h, where
+	* is the defining module name
+functions, constants, etc. private to a module are in *_private.h.
+

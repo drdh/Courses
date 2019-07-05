@@ -1,0 +1,5 @@
+# Configuration file for /usr/cs/bin/make
+# $Id: config.NetBSD,v 1.2 1998/11/07 22:30:18 tmkr Exp $
+OS_FLAGS = -D__NetBSD__=1 -I/usr/include
+OS_LIB=
+

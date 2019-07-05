@@ -1,0 +1,40 @@
+.TH TRACE_STATS 3 "Feb 10, 1992" "Trace_Stats"
+
+.SH NAME
+Trace_Stats -- Get information on an open trace
+
+
+.SH SYNOPSIS
+
+
+.nf
+
+int Trace_Stats(fp, statPtr)
+FILE *fp;
+trace_stat_t *statPtr;
+
+.fi 
+
+.PP
+
+.SH DESCRIPTION
+
+Trace_Stats returns a structure containing the following information
+on a trace: times of the first and last records, the total number of
+records in the trace, the number of user presentable records read, the
+number of records returned (not filtered out), the total number of
+bytes read in the trace, and the number of bytes in the records read
+thus far.
+
+.PP
+
+.SH DIAGNOSTICS
+
+Returns TRACE_FILERECORDNOTFOUND if \fIfp\fR is not
+an open trace.  Otherwise, returns TRACE_SUCCESS.
+
+.PP
+
+.SH AUTHOR
+
+Lily B.  Mummert

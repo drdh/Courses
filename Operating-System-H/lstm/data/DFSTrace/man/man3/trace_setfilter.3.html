@@ -1,0 +1,125 @@
+Content-type: text/html
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML><HEAD><TITLE>Manpage of TRACE_SETFILTER</TITLE>
+</HEAD><BODY>
+<H2>TRACE_SETFILTER</H2>
+Section: C Library Functions (3)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Updated: Feb 10, 1992&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="../../README.Reading.Library.html">Return to Library's README</A>
+<HR>
+<P>
+<A NAME="lbAB"></A>
+<H3>NAME</H3>
+Trace_SetFilter -- filter a trace
+<P>
+<A NAME="lbAC"></A>
+<H3>SYNOPSIS</H3>
+<P>
+<PRE>
+int Trace_SetFilter(fp, fileName)
+FILE *fp;
+char *fileName;
+</PRE>
+<P>
+<A NAME="lbAD"></A>
+<H3>DESCRIPTION</H3>
+<P>
+Trace_SetFilter parses the filter specification in <I>filename</I> and applies it to the trace in file <I>fp.</I> All future calls to
+Trace_GetRecord will be subject to this filter, unless 
+Trace_SetFilter is called again.
+<P>
+Filtering commands are as follows.  Those in [] are optional.
+<P>
+<DL COMPACT>
+<DT>*<DD>
+end <I>time</I> 
+The time after which all records will be filtered out.
+Any time acceptable to parsedate works.
+example: <I>end Feb 25 14:00:00 1991</I> 
+<DT>*<DD>
+error ...list of error codes...
+example: <I>error 0</I> 
+<DT>*<DD>
+inodetype
+Filters based on the inode (vnode) type of the object.
+Valid types are ufs, cfs, nfs, afs, bdev, spec.
+<DT>*<DD>
+matchfds 
+This command applies to file-descriptor based trace records -- seek,
+close, read, and write.   If matchfds occurs in the filter file,
+only those records that match an open with the same file descriptor
+will be presented.   (Really, the file table index is used.)
+<DT>*<DD>
+opcode [include/exclude] ...list of opcodes...
+The string name of the desired opcode should be used.
+example: <I>opcode open close read write seek</I> 
+If not set, all opcodes are returned.   Inclusion is
+the default.
+<DT>*<DD>
+path [include/exclude] ...list of regexps...
+Filter based on the list of paths.   Regular expressions
+of the form accepted by the regexp package work.  For records
+with multiple paths, they are included or excluded if any
+of the paths in the records match.
+<DT>*<DD>
+pid [include/exclude] ...list of pids...
+Records are included or excluded based on the pid's membership
+in the supplied list.  Include is the default.
+<DT>*<DD>
+refcount n
+A hack.   Applies to close -- only those with the specified 
+refcount will be presented.  Useful for detecting
+a ``real'' close.
+<DT>*<DD>
+start time
+Records before time are filtered out.  Any time acceptable to
+Parsedate works.
+<DT>*<DD>
+type  ...list of file types...
+The file types are regular, directory, link, block, character,
+and socket.  
+<DT>*<DD>
+user [include/exclude] ...list of numerical user ids...
+If include is specified, only
+those records that can be determined to have been written on behalf
+of the specified users will be presented.  Similarly, The exclude option
+filters out records that can be determined to have been written
+on behalf of the specified user.  Inclusion is the default.
+example: <I>user include 2208</I> 
+<P>
+</DL>
+<P>
+Use only one of each command in a filter file.
+<P>
+Filters are intended to give the trace user a mechanism for processing
+traces in a variety of ways using a given program.   If an analysis
+program only looks at certain types of records (such as CLOSEs), then
+that should be coded into the analysis program (i.e., the program's
+requirements for records should not be specified in a filter).
+<P>
+<A NAME="lbAE"></A>
+<H3>DIAGNOSTICS</H3>
+<P>
+Returns TRACE_FILERECORDNOTFOUND if fp is not an open trace.
+Returns TRACE_FILENOTFOUND if the filter file cannot be
+opened for read access.  Otherwise, returns TRACE_SUCCESS.
+<P>
+<A NAME="lbAF"></A>
+<H3>AUTHOR</H3>
+<P>
+Lily B.  Mummert
+<P>
+
+<HR>
+<A NAME="index"></A><H3>Index</H3>
+<DL>
+<DT><A HREF="#lbAB">NAME</A><DD>
+<DT><A HREF="#lbAC">SYNOPSIS</A><DD>
+<DT><A HREF="#lbAD">DESCRIPTION</A><DD>
+<DT><A HREF="#lbAE">DIAGNOSTICS</A><DD>
+<DT><A HREF="#lbAF">AUTHOR</A><DD>
+</DL>
+<HR>
+This document was created on
+
+Time: 05:25:53 GMT, October 10, 1998
+</BODY>
+</HTML>

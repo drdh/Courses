@@ -1,0 +1,5 @@
+#  Linux specific settings
+# $Id$
+OS_FLAGS = 
+OS_LIB=
+

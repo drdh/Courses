@@ -1,0 +1,41 @@
+.TH TRACE_FREERECORD 3 "Feb 10, 1992" "Trace_FreeRecord"
+
+.SH NAME
+Trace_FreeRecord -- deallocate a trace record
+
+
+.SH SYNOPSIS
+
+
+.nf
+
+int Trace_FreeRecord(fp, recPtr)
+FILE *fp;
+dfs_header_t *recPtr;
+
+.fi 
+
+.PP
+
+.SH DESCRIPTION
+
+frees the record pointed to by \fIrecPtr\fR in trace file \fIfp\fR .
+
+.PP
+
+.SH DIAGNOSTICS
+
+Returns TRACE_FILERECORDNOTFOUND if \fIfp\fR is not an open trace.
+Otherwise, returns TRACE_SUCCESS.
+
+.PP
+
+.SH SEE ALSO
+
+Trace_GetRecord
+
+.PP
+
+.SH AUTHOR
+
+Lily B.  Mummert

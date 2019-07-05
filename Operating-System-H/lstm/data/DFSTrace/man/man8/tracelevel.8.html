@@ -1,0 +1,68 @@
+Content-type: text/html
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML><HEAD><TITLE>Manpage of TRACELEVEL</TITLE>
+</HEAD><BODY>
+<H2>TRACELEVEL</H2>
+Section: Maintenance Commands (8)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Updated: Feb 10, 1992&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="../../README.Reading.Library.html">Return to Library's README</A>
+<HR>
+<P>
+<A NAME="lbAB"></A>
+<H3>NAME</H3>
+tracelevel -- set dfstrace tracing level
+<P>
+<A NAME="lbAC"></A>
+<H3>SYNOPSIS</H3>
+<PRE>tracelevel level
+</PRE>
+<P>
+<A NAME="lbAD"></A>
+<H3>DESCRIPTION</H3>
+&nbsp;
+Tracelevel sets the level of tracing done by dfstrace.   There are
+three options, defined in &lt;<A HREF="file:/usr/include/dfs/dfstracebuf.h">dfs/dfstracebuf.h</A>&gt;.   DFS_TRACE_ON (1),
+turns on tracing of file system calls, excluding reads and writes.
+DFS_TRACE_NAMERES (2) turns on tracing on name resolution operations.
+DFS_TRACE_READWRITE (4) turns on tracing of read and write system
+calls.   Default is 3 (system calls + name resolution).  Tracelevel
+must be run as root.
+<P>
+<A NAME="lbAE"></A>
+<H3>DIAGNOSTICS</H3>
+<P>
+The following are frequently encountered errors:
+<P>
+``can't open /dev/dfstrace''.  Either /dev/dfstrace doesn't
+exist, or the program isn't being run as root.  
+<TT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TT>
+<P>
+<A NAME="lbAF"></A>
+<H3>SEE ALSO</H3>
+<P>
+agent, collector, traceinfo
+<P>
+<A NAME="lbAG"></A>
+<H3>BUGS</H3>
+<P>
+Should take more intuitive arguments.
+<P>
+<A NAME="lbAH"></A>
+<H3>AUTHOR</H3>
+&nbsp;
+Lily B.  Mummert
+<HR>
+<A NAME="index"></A><H3>Index</H3>
+<DL>
+<DT><A HREF="#lbAB">NAME</A><DD>
+<DT><A HREF="#lbAC">SYNOPSIS</A><DD>
+<DT><A HREF="#lbAD">DESCRIPTION</A><DD>
+<DT><A HREF="#lbAE">DIAGNOSTICS</A><DD>
+<DT><A HREF="#lbAF">SEE ALSO</A><DD>
+<DT><A HREF="#lbAG">BUGS</A><DD>
+<DT><A HREF="#lbAH">AUTHOR</A><DD>
+</DL>
+<HR>
+This document was created on
+
+Time: 05:25:53 GMT, October 10, 1998
+</BODY>
+</HTML>

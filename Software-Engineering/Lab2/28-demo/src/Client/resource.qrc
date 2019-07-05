@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/icon">
+        <file>user.jpg</file>
+        <file>option.jpg</file>
+        <file>back.jpg</file>
+    </qresource>
+</RCC>
